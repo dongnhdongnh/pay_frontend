@@ -1041,7 +1041,13 @@ img.mini-icon {
     color: #fff;
     border-radius: 30px;
 }
-
+.material-icons {
+    font-size: 20px !important;
+}
+.mat-icon {
+    height: 20px !important;
+    width: 20px !important;
+}
 .MEMBER {
     background-color: #23BF08;
 }
