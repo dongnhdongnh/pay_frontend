@@ -10,8 +10,8 @@ export class UtilityValidate {
     }
 
     static validateCode(code) {
-        if (this.validateString(code, 1, 100) === false) {
-            throw new Error('Code is required with length 1 - 100 character!');
+        if (this.validateString(code, 0, 100) === false) {
+            throw new Error('Code is required with length 0 - 100 character!');
         }
 
         if (this.validateOnlyAlphaNumeric(code) === false) {
@@ -25,24 +25,24 @@ export class UtilityValidate {
     }
 
     static validateFullName(fullName) {
-        if (this.validateString(fullName, 1, 100) === false)
-            throw new Error('Name is required with length 1 - 100 character!');
+        if (this.validateString(fullName, 0, 100) === false)
+            throw new Error('Name is required with length 0 - 100 character!');
     }
 
 
     static validateFirstName(firstName) {
-        if (this.validateString(firstName, 1, 100) === false)
-            throw new Error('First name is required with length 1 - 100 character!');
+        if (this.validateString(firstName, 0, 100) === false)
+            throw new Error('First name is required with length 0 - 100 character!');
     }
 
     static validateLastName(lastName) {
-        if (this.validateString(lastName, 1, 100) === false)
-            throw new Error('Last name is required with length 1 - 100 character!');
+        if (this.validateString(lastName, 0, 100) === false)
+            throw new Error('Last name is required with length 0 - 100 character!');
     }
 
     static validateConfigName(configName) {
-        if (this.validateString(configName, 1, 300) === false)
-            throw new Error(`Name config is required with length from 1-300 characters.`);
+        if (this.validateString(configName, 0, 300) === false)
+            throw new Error(`Name config is required with length from 0-300 characters.`);
     }
 
     static validateUsername(username) {

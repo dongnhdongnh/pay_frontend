@@ -23,11 +23,11 @@
       <div class="form-group">
         <div class="width-half">
           <input type="text" class="form-control fc-outline-white" placeholder="First Name" (keyup)="onFirstName($event)">
+          <span class="error">{{messageErrorFirstName}}</span>
         </div>
         <div class="width-half pd-l-10">
           <input type="text" class="form-control fc-outline-white" placeholder="Last Name" (keyup)="onLastName($event)">
         </div>
-        <span class="error">{{messageErrorFirstName}}</span>
       </div><!-- form-group -->
       <div class="form-group">
         <input type="email" class="form-control fc-outline-white" placeholder="Email" (keyup)="onEmail($event)">
