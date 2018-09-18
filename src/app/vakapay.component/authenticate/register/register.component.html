@@ -6,26 +6,26 @@
         <app-header-authenticate></app-header-authenticate>
       </div>
     </div>
-    <div class="login-wrapper wd-480 wd-xs-350 pd-25 pd-xs-40 pd-t-20 rounded bd bd-white-2 bg-white">
+    <div class="login-wrapper wd-480 wd-xs-350 pd-15 pd-xs-40 pd-t-20 rounded bd bd-white-2 bg-white mg-t-50">
       <div class="signin-logo tx-center tx-24 tx-bold tx-grey">Creat Your Account</div>
       <div class="form-group">
-        <div class="width-half">
+        <div class="width-half mob">
           <div class="tx-green tx-center mg-t-10 tx-20 tx-up">
             <mat-icon>person</mat-icon> Individual
           </div>
         </div>
-        <div class="width-half">
+        <div class="width-half mob">
           <div class="tx-grey tx-center mg-t-10 tx-20 tx-up">
             <mat-icon>people</mat-icon> Business
           </div>
         </div>
       </div>
       <div class="form-group">
-        <div class="width-half">
+        <div class="width-half mob">
           <input type="text" class="form-control fc-outline-white" placeholder="First Name" (keyup)="onFirstName($event)">
           <span class="error">{{messageErrorFirstName}}</span>
         </div>
-        <div class="width-half pd-l-10">
+        <div class="width-half pd-l-10 mob">
           <input type="text" class="form-control fc-outline-white" placeholder="Last Name" (keyup)="onLastName($event)">
         </div>
       </div><!-- form-group -->
