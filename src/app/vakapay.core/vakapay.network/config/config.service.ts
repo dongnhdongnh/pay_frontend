@@ -10,6 +10,6 @@ export class ConfigService {
 
     constructor(
     ) {
-        this.url = '';
+        this.url = 'http://localhost:4040';
     }
 }

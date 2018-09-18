@@ -10,6 +10,8 @@ import { ToasterModule } from 'angular2-toaster';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatMenuModule } from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 //Add routing
 import { AppRoutingModule } from './app-routing.module';
@@ -21,16 +23,18 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './vakapay.component/authenticate/register/register.component';
 import { LoginComponent } from './vakapay.component/authenticate/login/login.component';
 import { HeaderAuthenticateComponent } from './vakapay.component/authenticate/header-authenticate/header-authenticate.component';
+import { LoadingComponent } from './vakapay.component/loading/loading.component';
 
 //Service
-import { InMemoryDataService } from './vakapay.core/vakapay.memory/in-memory-data/in-memory-data.service';
+// import { InMemoryDataService } from './vakapay.core/vakapay.memory/in-memory-data/in-memory-data.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    HeaderAuthenticateComponent
+    HeaderAuthenticateComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -38,12 +42,12 @@ import { InMemoryDataService } from './vakapay.core/vakapay.memory/in-memory-dat
     AppRoutingModule,
     BrowserAnimationsModule,
     ToasterModule.forRoot(),
-    MatButtonModule, MatCheckboxModule, MatIconModule, MatMenuModule,
+    MatButtonModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,
 
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //   InMemoryDataService, { dataEncapsulation: false }
+    // )
 
   ],
   providers: [],

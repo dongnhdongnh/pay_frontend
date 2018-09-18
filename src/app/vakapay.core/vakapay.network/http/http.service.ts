@@ -16,7 +16,6 @@ var httpOptionsPost = {
 var httpOptionsGet = { withCredentials: true };
 
 @Injectable({ providedIn: 'root' })
-
 export class HttpService {
   private url = '';
 
@@ -29,9 +28,9 @@ export class HttpService {
   }
 
   //Get api
-  get(operation = 'operation', api): Promise<any> {
+  get(operation = 'operation', api): Promise<ResultObject> {
     var self = this;
-    return new Promise<any>((resolve, reject) => self.http.get(self.url + api, httpOptionsGet)
+    return new Promise<ResultObject>((resolve, reject) => self.http.get(self.url + api, httpOptionsGet)
       .subscribe(
         data => {
           self.handleSuccess(operation, data);
@@ -45,9 +44,9 @@ export class HttpService {
   };
 
   //Post api
-  post(operation = 'operation', api, data): Promise<any> {
+  post(operation = 'operation', api, data): Promise<ResultObject> {
     var self = this;
-    return new Promise<any>((resolve, reject) => {
+    return new Promise<ResultObject>((resolve, reject) => {
       self.http.post(self.url + api, data, httpOptionsPost)
         .subscribe(
           data => {

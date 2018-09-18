@@ -8,9 +8,9 @@ import { LoginComponent } from './vakapay.component/authenticate/login/login.com
 
 //Init routes
 const routes: Routes = [
-	{ path: '', component: RegisterComponent },
-	{ path: 'register', component: RegisterComponent },
-	{ path: 'login', component: LoginComponent },
+	{ path: '', component: RegisterComponent, data: { title: 'Wellcome' } },
+	{ path: 'register', component: RegisterComponent, data: { title: 'Register' } },
+	{ path: 'login', component: LoginComponent, data: { title: 'Login' } },
 ];
 
 @NgModule({

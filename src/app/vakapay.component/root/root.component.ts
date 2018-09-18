@@ -1,11 +1,28 @@
 import { BodyOutputType, Toast, ToasterConfig, ToasterService } from 'angular2-toaster';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 export class Root {
+    websiteName = 'Vakapay';
     toasterService: ToasterService;
     config: ToasterConfig;
+    router: Router;
 
-    constructor(toasterService: ToasterService) {
+    constructor(
+        toasterService: ToasterService,
+        titleService: Title,
+        route: ActivatedRoute,
+        router: Router
+    ) {
         this.toasterService = toasterService;
+        this.router = router;
+
+        //Set title
+        titleService.setTitle(`${route.snapshot.data['title']} - ${this.websiteName}`);
+    }
+
+    redirect(path = '/') {
+        this.router.navigate([path]);
     }
 
     showToastError(message: string) {

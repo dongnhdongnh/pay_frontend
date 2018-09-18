@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Root } from '../../root/root.component';
 import { ToasterService } from 'angular2-toaster';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 import { Register } from '../../../vakapay.model/authenticate/Register';
 import { Utility } from '../../../vakapay.core/vakapay.utility/Utility';
@@ -13,6 +15,12 @@ import { RegisterService } from '../../../vakapay.services/register/register.ser
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent extends Root implements OnInit {
+  //element
+  @ViewChild('firstName') firstNameElement: ElementRef;
+  @ViewChild('lastName') lastNameElement: ElementRef;
+  @ViewChild('email') emailElement: ElementRef;
+  @ViewChild('password') passwordElement: ElementRef;
+  @ViewChild('passwordConfirm') passwordConfirmElement: ElementRef;
 
   //input
   private firstName: string;
@@ -28,34 +36,97 @@ export class RegisterComponent extends Root implements OnInit {
   private messageErrorEmail = '';
   private messageErrorPassword = '';
   private messageErrorPasswordConfirm = '';
+  private messageErrorPasswordMatch = '';
 
   //validate
   private isInvalid = true;
 
+  //Loading
+  private isLoading = false;
+
+  //Service
+  private registerService: RegisterService;
+
   constructor(
     toasterService: ToasterService,
+    titleService: Title,
+    route: ActivatedRoute,
+    router: Router,
     registerService: RegisterService
   ) {
-    super(toasterService);
+    super(toasterService, titleService, route, router);
+    this.registerService = registerService;
   }
 
   ngOnInit() {
   }
 
+  async register() {
+    try {
+      this.isLoading = true;
+      this.validate();
+
+      if (this.isInvalid === true) {
+        this.isLoading = false;
+        this.showToastError(this.messageError);
+        return;
+      }
+
+      var mRegister = new Register();
+      mRegister.firstName = this.firstName;
+      mRegister.lastName = this.lastName;
+      mRegister.email = this.email;
+      mRegister.password = this.password;
+      mRegister.passwordConfirm = this.passwordConfirm;
+
+      //send ajax
+      let result = await this.registerService.register(mRegister);
+
+      //Check result
+      if (Utility.isError(result))
+        throw new Error(result.message);
+
+      //Show message success
+      this.showToastSuccess(result.message);
+      this.isLoading = false;
+
+      return;
+    } catch (error) {
+      this.isLoading = false;
+      this.showToastError(error.message || error.statusText);
+    }
+  }
+
   validate() {
     try {
       UtilityValidate.require(this, ['firstName', 'lastName', 'email', 'password', 'passwordConfirm']);
+
       UtilityValidate.validateFirstName(this.firstName);
+      UtilityValidate.validateLastName(this.lastName);
+      UtilityValidate.validateEmail(this.email);
+      UtilityValidate.validatePassword(this.password);
+      UtilityValidate.validatePassword(this.passwordConfirm);
+      UtilityValidate.comparePassword(this.password, this.passwordConfirm);
+
       this.isInvalid = false;
       this.messageError = '';
+
+      return true;
     } catch (error) {
       this.isInvalid = true;
       this.messageError = error.message;
+
+      return false;
     }
   }
 
   onFirstName(event: any) {
     try {
+      if (Utility.isEnter(event)) {
+        Utility.focus(this.lastNameElement);
+        this.redirect('/login');
+        return;
+      }
       //Get value
       this.firstName = Utility.getValueEventInput(event);
 
@@ -63,6 +134,7 @@ export class RegisterComponent extends Root implements OnInit {
       UtilityValidate.require(this, ['firstName']);
       UtilityValidate.validateFirstName(this.firstName);
 
+      this.messageErrorFirstName = '';
       //Validate form
       this.validate();
     } catch (error) {
@@ -73,12 +145,19 @@ export class RegisterComponent extends Root implements OnInit {
 
   onLastName(event: any) {
     try {
+      if (Utility.isEnter(event)) {
+        Utility.focus(this.emailElement);
+        return;
+      }
+
       //Get value
       this.lastName = Utility.getValueEventInput(event);
 
       //Validate lastName
       UtilityValidate.require(this, ['lastName']);
       UtilityValidate.validateLastName(this.lastName);
+
+      this.messageErrorLastName = '';
 
       //Validate form
       this.validate();
@@ -90,12 +169,19 @@ export class RegisterComponent extends Root implements OnInit {
 
   onEmail(event: any) {
     try {
+      if (Utility.isEnter(event)) {
+        Utility.focus(this.passwordElement);
+        return;
+      }
+
       //Get value
       this.email = Utility.getValueEventInput(event);
 
       //Validate lastName
       UtilityValidate.require(this, ['email']);
       UtilityValidate.validateEmail(this.email);
+
+      this.messageErrorEmail = '';
 
       //Validate form
       this.validate();
@@ -105,14 +191,31 @@ export class RegisterComponent extends Root implements OnInit {
     }
   }
 
+  comparePassword() {
+    try {
+      UtilityValidate.comparePassword(this.password, this.passwordConfirm);
+      this.messageErrorPasswordConfirm = '';
+    } catch (error) {
+      this.messageErrorPasswordConfirm = error.message;
+    }
+  }
+
   onPassword(event: any) {
     try {
+      if (Utility.isEnter(event)) {
+        Utility.focus(this.passwordConfirmElement);
+        return;
+      }
+
       //Get value
       this.password = Utility.getValueEventInput(event);
 
       //Validate password
       UtilityValidate.require(this, ['password']);
       UtilityValidate.validatePassword(this.password);
+      this.comparePassword();
+
+      this.messageErrorPassword = '';
 
       //Validate form
       this.validate();
@@ -124,40 +227,21 @@ export class RegisterComponent extends Root implements OnInit {
 
   onPasswordConfirm(event: any) {
     try {
+      if (Utility.isEnter(event)) {
+        this.register();
+        return;
+      }
+
       //Get value
       this.passwordConfirm = Utility.getValueEventInput(event);
 
       //Validate password confirm
-      UtilityValidate.require(this, ['passwordConfirm']);
-      UtilityValidate.validatePassword(this.passwordConfirm);
+      this.comparePassword();
 
       //Validate form
       this.validate();
     } catch (error) {
-      this.messageErrorPasswordConfirm = error.message;
       this.isInvalid = true;
     }
-  }
-
-  async register() {
-
-    this.validate();
-
-    if (this.isInvalid === true) {
-      this.showToastError(this.messageError);
-      return;
-    }
-
-    var mRegister = new Register();
-    mRegister.firstName = this.firstName;
-    mRegister.lastName = this.lastName;
-    mRegister.email = this.email;
-    mRegister.password = this.password;
-    mRegister.passwordConfirm = this.passwordConfirm;
-
-    //send ajax
-    let result = await
-
-      console.log(mRegister);
   }
 }

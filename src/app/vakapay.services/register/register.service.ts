@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Register } from '../../vakapay.model/authenticate/Register';
 import { HttpService } from '../../vakapay.core/vakapay.network/http/http.service';
+import { ResultObject } from '../../vakapay.model/result/ResultObject';
 
 
 
@@ -14,10 +15,10 @@ export class RegisterService {
     private httpService: HttpService,
   ) {
 
-  } 
+  }
 
   /** POST: register for user to the server */
-  register(mRegister: Register) {
+  register(mRegister: Register): Promise<ResultObject> {
     let operation = 'register';
     let api = this.registerUrl;
     let data = mRegister;
