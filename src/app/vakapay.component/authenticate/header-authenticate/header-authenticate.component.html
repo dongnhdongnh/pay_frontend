@@ -1,0 +1,32 @@
+<div class="container">
+  <a id="main_nav_btn" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </a>
+  <a href="/" class="brand" onclick="">
+    <img src="/assets/images/logo/logo2.svg" alt="">
+  </a>
+  <div class="nav-collapse" id="application_menu">
+    <ul class="nav clearfix">
+      <li>
+        <button mat-button [matMenuTriggerFor]="menu" style="padding: 0">
+          Products<mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" [overlapTrigger]="false">
+          <button mat-menu-item><span>Acheter/vendre des devises numériques</span></button>
+          <button mat-menu-item><span>Coinbase Pro</span></button>
+          <button mat-menu-item><span>Coinbase Prime</span></button>
+          <button mat-menu-item><span>Plate-forme Développeur</span></button>
+          <button mat-menu-item><span>Coinbase Commerce</span></button>
+        </mat-menu>
+      </li>
+      <li><a href="/help" target="_blank">Help</a></li>
+      <li><a href="/charts">Charts</a></li>
+    </ul>
+    <ul class="nav clearfix">
+      <li class="active signin"><a href="/signin">Sign In</a></li>
+      <li class=" signup"><a href="/signup" class="btn">Sign Up</a></li>
+    </ul>
+  </div>
+</div>

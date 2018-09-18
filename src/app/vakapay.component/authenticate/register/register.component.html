@@ -1,0 +1,48 @@
+<div class="d-flex align-items-center justify-content-center ht-100v">
+  <img src="/assets/images/backgrounds/bg-signin.jpg" class="wd-100p ht-100p object-fit-cover" alt="">
+  <div class="overlay-body d-flex align-items-center justify-content-center">
+    <div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <app-header-authenticate></app-header-authenticate>
+      </div>
+    </div>
+    <div class="login-wrapper wd-480 wd-xs-350 pd-25 pd-xs-40 pd-t-20 rounded bd bd-white-2 bg-white">
+      <div class="signin-logo tx-center tx-24 tx-bold tx-grey">Creat Your Account</div>
+      <div class="form-group">
+        <div class="width-half">
+          <div class="tx-green tx-center mg-t-10 tx-20 tx-up">
+            <mat-icon>person</mat-icon> Individual
+          </div>
+        </div>
+        <div class="width-half">
+          <div class="tx-grey tx-center mg-t-10 tx-20 tx-up">
+            <mat-icon>people</mat-icon> Business
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="width-half">
+          <input type="text" class="form-control fc-outline-white" placeholder="First Name" (keyup)="onFirstName($event)">
+        </div>
+        <div class="width-half pd-l-10">
+          <input type="text" class="form-control fc-outline-white" placeholder="Last Name" (keyup)="onLastName($event)">
+        </div>
+        <span class="error">{{messageErrorFirstName}}</span>
+      </div><!-- form-group -->
+      <div class="form-group">
+        <input type="email" class="form-control fc-outline-white" placeholder="Email" (keyup)="onEmail($event)">
+      </div><!-- form-group -->
+      <div class="form-group">
+        <input type="password" class="form-control fc-outline-white" placeholder="Password" (keyup)="onPassword($event)">
+      </div><!-- form-group -->
+      <div class="form-group">
+        <input type="password" class="form-control fc-outline-white" placeholder="Password Confirm" (keyup)="onPasswordConfirm($event)">
+      </div><!-- form-group -->
+      <h6 class="grey tx-12">By clicking the Submit button below you agreed to our <a href="#">privacy policy</a> and
+        <a href="#">terms</a>
+        of use of our website.</h6>
+      <button type="submit" class="btn btn-green btn-block" (click)="register()" [disabled]="isInvalid">Submit</button>
+      <div class="mg-t-20 tx-center">Already have account? <a routerLink="/login" class="tx-info">Sign In</a></div>
+    </div><!-- login-wrapper -->
+  </div><!-- overlay-body -->
+</div><!-- d-flex -->

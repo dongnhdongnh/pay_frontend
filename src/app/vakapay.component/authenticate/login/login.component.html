@@ -1,0 +1,24 @@
+<div class="d-flex align-items-center justify-content-center ht-100v">
+  <img src="/assets/images/backgrounds/bg-signin.jpg" class="wd-100p ht-100p object-fit-cover" alt="">
+  <div class="overlay-body d-flex align-items-center justify-content-center">
+    <div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <app-header-authenticate></app-header-authenticate>
+      </div>
+    </div>
+    <div class="login-wrapper wd-480 wd-xs-350 pd-25 pd-xs-40 pd-t-20 rounded bd bd-white-2 bg-white">
+      <div class="signin-logo tx-center tx-24 tx-bold tx-grey mg-b-20">Sign In</div>
+      <form method="post" action="form-validation.html" data-parsley-validate>
+        <div class="form-group">
+          <input type="email" class="form-control fc-outline-white" placeholder="Email" required>
+        </div><!-- form-group -->
+        <div class="form-group">
+          <input type="password" class="form-control fc-outline-white" placeholder="Password" required>
+          <a href="forgot.html" class="tx-info tx-12 d-block mg-t-10">Forgot password?</a>
+        </div><!-- form-group -->
+        <button type="submit" class="btn btn-green btn-block">Sign In</button>
+      </form>
+      <div class="mg-t-20 tx-center">Don't have an account? <a href="signup.html" class="tx-info">Sign Up</a></div>
+    </div><!-- login-wrapper -->
+  </div><!-- overlay-body -->
+</div><!-- d-flex -->
