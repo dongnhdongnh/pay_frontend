@@ -20,10 +20,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 //Component children
+//Authentication
 import { RegisterComponent } from './vakapay.component/authenticate/register/register.component';
 import { LoginComponent } from './vakapay.component/authenticate/login/login.component';
 import { HeaderAuthenticateComponent } from './vakapay.component/authenticate/header-authenticate/header-authenticate.component';
 import { LoadingComponent } from './vakapay.component/loading/loading.component';
+import { VerifyComponent } from './vakapay.component/authenticate/verify/verify.component';
 
 //Service
 // import { InMemoryDataService } from './vakapay.core/vakapay.memory/in-memory-data/in-memory-data.service';
@@ -34,7 +36,8 @@ import { LoadingComponent } from './vakapay.component/loading/loading.component'
     RegisterComponent,
     LoginComponent,
     HeaderAuthenticateComponent,
-    LoadingComponent
+    LoadingComponent,
+    VerifyComponent
   ],
   imports: [
     BrowserModule,
