@@ -1,3 +1,5 @@
+const vakaidUrl = 'http://192.168.1.185:5000';
+
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { OAuthService, JwksValidationHandler, OAuthEvent } from "angular-oauth2-oidc";
 import { isPlatformBrowser } from "@angular/common";
@@ -18,7 +20,7 @@ export class LoginComponent implements OnInit {
   ) {
     if (isPlatformBrowser(this.platformId)) {
       this.oauthService.configure({
-        issuer: 'http://192.168.1.185:5000', 
+        issuer: vakaidUrl,
         redirectUri: window.location.origin + '/',
         silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
         clientId: 'implicit',
@@ -42,7 +44,8 @@ export class LoginComponent implements OnInit {
         }
       });
       console.log(this.oauthService.hasValidAccessToken());
-      console.log(this.oauthService.getAccessToken());
+      const token = this.oauthService.getAccessToken();
+      localStorage.setItem('token', token);
     }
   }
 

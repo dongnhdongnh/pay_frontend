@@ -10,15 +10,26 @@ import { DashboardComponent } from 'component/dashboard/dashboard.component';
 import { IndexComponent } from 'component/page/index/index.component';
 
 import { AuthGuard } from 'guards/auth.guard';
+import { LoginGuard } from 'guards/login.guard'
 
 
 //Init routes
 const routes: Routes = [
-	{ path: '', component: RegisterComponent, data: { title: 'Wellcome' } },
-	{ path: 'register', component: RegisterComponent, data: { title: 'Register' } },
+	{ 
+		path: '', 
+		component: LoginComponent, 
+		canActivate: [LoginGuard],
+		data: { title: 'Wellcome' } },
+	{ 
+		
+		path: 'register', 
+		component: RegisterComponent, 
+		canActivate: [LoginGuard],
+		data: { title: 'Register' } },
 	{
 		path: 'login',
 		component: LoginComponent,
+		canActivate: [LoginGuard],
 		data: { title: 'Login' },
 	},
 	{
@@ -29,7 +40,11 @@ const routes: Routes = [
 		path: "signup",
 		redirectTo: "register"
 	},
-	{ path: 'verify', component: VerifyComponent, data: { title: 'Verify' } },
+	{ 
+		path: 'verify', 
+		component: VerifyComponent, 
+		canActivate: [LoginGuard],
+		data: { title: 'Verify' } },
 	{
 		path: 'dashboard',
 		component: DashboardComponent,
