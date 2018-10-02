@@ -1,0 +1,744 @@
+html {
+  font-family: Helvetica;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%
+}
+
+@font-face {
+  font-family: 'Insignia';
+  src: url('../font/Insignia.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica ';
+  src: url('../font/helveticaneuebold.ttf') format('truetype');
+  src: url('../font/helveticaneue.ttf') format('truetype');
+  font-weight: normal;
+  font-style: bold;
+  font-style: normal;
+}
+
+body {
+  font-family: Helvetica;
+  line-height: 1.42857143;
+  color: #fff;
+  font-size: 16px;
+}
+
+body {
+  padding-top: 50px;
+}
+
+.logo_vkapay1 {
+  height: 52px;
+}
+
+AccountService .page_speed_479934708 {
+  width: 100%;
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+hr {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border: 0;
+  border-top: 2px solid #32a759;
+}
+
+p {
+  font-size: 16px;
+  margin: 0 0 10px;
+}
+
+a {
+  color: #666f73;
+  text-decoration: none;
+}
+
+.h1,
+h1 {
+  font-family: 'Insignia';
+  font-size: 36px;
+  text-align: center;
+  text-transform: uppercase
+}
+
+.h2,
+h2 {
+  font-size: 20px;
+  font-family: 'Helvetica';
+  font-weight: bold;
+  text-transform: uppercase
+}
+
+.h3,
+h3 {
+  font-size: 20px;
+  font-family: 'Helvetica';
+  font-weight: bold;
+  color: #666f73;
+}
+
+.navbar-header {
+  position: initial;
+  border-radius: 8px;
+}
+
+.menu-button {
+  background-color: #19a24a;
+  font-weight: 600;
+  font-size: 13px;
+  font-family: Helvetica;
+  color: #fff;
+  padding: 9px 9px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+a:focus,
+a:hover {
+  color: #6ced3e;
+  text-decoration: none;
+}
+
+.support-button-holder a.support-button {
+  border: 0.5px solid #ffffff;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 4px;
+  margin-left: 10px;
+  margin-top: 6px;
+}
+
+.support-button-holder a.support-button:focus,
+.support-button-holder a.support-button:hover {
+  background-color: #19a24a !important;
+  color: #fff !important;
+  opacity: 1 !important
+}
+
+.navbar-inverse .navbar-toggle {
+  border-color: #fff;
+}
+
+.navbar-toggle {
+  margin-top: 12px;
+}
+
+.navbar-inverse .navbar-toggle:focus,
+.navbar-inverse .navbar-toggle:hover {
+  background-color: #19a24a;
+}
+
+.navbar-inverse {
+  background-color: #004a7c;
+  border-color: transparent;
+  padding: 0% 0.9%;
+  font-weight: 600;
+  font-family: 'Helvetica';
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: #fff;
+  font-size: 16px
+}
+
+.nav>li>a {
+  position: relative;
+  display: block;
+}
+
+.btr-menu>li {
+  position: relative;
+}
+
+.btr-menu>li:hover {
+  background: transparent;
+}
+
+.btr-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.btr-menu a:hover {
+  text-decoration: none;
+}
+
+.btr-menu>li>ul {
+  display: none;
+  border-radius: 4px;
+  font-size: 9px;
+  color: #6ced3e;
+}
+
+.btr-menu>li>ul li {
+  position: relative;
+}
+
+.btr-menu>li>ul>li>a {
+  padding: 10px;
+  font-size: 12px;
+  display: block;
+  width: 200px;
+  text-transform: uppercase;
+  color: #666f73;
+}
+
+.btr-menu>li>ul>li>a:hover {
+  color: #19a24a;
+}
+
+.btr-menu>li>ul ul {
+  display: none;
+  padding: 10px;
+  border-radius: 4px;
+  margin-left: -10px
+}
+
+.btr-menu>li>ul ul>li>a:hover {
+  color: #19a24a;
+}
+
+.btr-menu>li>ul>li li>a {
+  width: 150px;
+  font-size: 12px;
+  ;
+  padding: 10px;
+  display: block;
+  font-weight: 100;
+  color: #111;
+}
+
+.btr-menu .btrsubmenu-btn {
+  display: inherit;
+}
+
+.logo_vkapay1 {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+#banner-header {
+  width: 100%;
+  background-image: url(../images/landing/banner.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 8% 0% 8% 0%;
+}
+
+#banner-header .page-title {
+  color: #6ced3e;
+  position: relative;
+  z-index: 10
+}
+
+#banner-header.container-fluid .inner-page {
+  position: absolute
+}
+
+#header-holder.content-header #banner-header .page-title {
+  font-size: 36px;
+}
+
+#header-holder.content-header #banner-header .text {
+  font-size: 22px;
+  font-weight: 400;
+  color: #fff;
+  opacity: .5
+}
+
+#header-holder.contact-header #banner-headerd .page-title {
+  font-size: 27px;
+  font-weight: 700;
+}
+
+#header-holder.contact-header #banner-header .text {
+  font-size: 22px;
+  font-weight: 400;
+  color: #fff;
+  opacity: .5
+}
+
+#page-content {
+  padding-top: 2%;
+  padding-bottom: 40px;
+  background-color: #e9ecef
+}
+
+#page-content .content-holder img {
+  max-width: 100%
+}
+
+#page-content ol,
+#page-content ul {
+  padding: 0;
+  padding-left: 14px;
+  margin-bottom: 20px
+}
+
+#page-content ol li,
+#page-content ul li {
+  color: #7a7896;
+  font-size: 16px
+}
+
+#page-content h4 {
+  font-size: 17px;
+  color: #3f3d59;
+  font-weight: 600
+}
+
+#page-content p {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 6%
+}
+
+#main-content {
+  width: 100%;
+}
+
+.icon-most {
+  margin-top: 12%;
+  height: 90px;
+}
+
+#icon-manage {
+  position: relative;
+  width: 20%;
+  display: block;
+  content: "\f276";
+  margin-left: 3%;
+  margin-top: 3.5%;
+  float: left;
+}
+
+#icon-mobi {
+  position: relative;
+  width: 12%;
+  display: block;
+  content: "\f276";
+  margin-left: 7%;
+  margin-right: 4%;
+  margin-top: 3.5%;
+  float: left;
+}
+
+.pricing-box.pricing-box-simple .pricing-content {
+  background-image: url(../images/landing/Manage.png);
+  background-repeat: repeat-x;
+  background-position: bottom;
+  background-size: initial;
+  width: 100%;
+  padding: 0% 0% 10% 0%;
+}
+
+.pricing-box.pricing-box-simple .pricing-content .pricing-head {
+  position: relative;
+  z-index: 10;
+  padding-left: 4%;
+  padding-right: 2%;
+  margin-top: 1.5%;
+  overflow: hidden
+}
+
+.pricing-box .pricing-content {
+  border: 1px solid rgba(224, 224, 232, .79);
+  border-radius: 10px;
+  position: relative;
+  padding: 25px 27px 27px;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease
+}
+
+.pricing-box {
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.most {
+  padding: 3% 3% 3% 3%;
+  text-align: center;
+  color: #111
+}
+
+#most h1 {
+  color: #19a24a;
+}
+
+.eUltQI {
+  display: flex;
+  flex-direction: row;
+}
+
+.line {
+  display: flex;
+  padding-top: 9px;
+  flex-direction: row;
+  flex: 1 1 auto;
+}
+
+.line-box {
+  margin-left: 1%;
+  margin-right: 1%;
+  display: block;
+  border-radius: 4px;
+  text-align: center;
+  flex: 1 1 0%;
+  padding: 1% 1% 1% 1%;
+}
+
+.existing {
+  text-align: center;
+  background-color: #19a24a;
+  padding-bottom: 1%;
+  padding-top: 0.5%;
+}
+
+.GET-STARTED {
+  background-color: #e9ecef;
+  padding: 3% 3% 4% 3%;
+  text-align: center;
+}
+
+#GET-STARTED h1 {
+  color: #19a24a;
+}
+
+.line-box-get h3 {
+  padding: 1% 0% 1% 0%;
+  font-size: 20px;
+}
+
+.line-box-get {
+  margin-left: 1%;
+  margin-top: 3%;
+  border-radius: 4px;
+  background-color: #fff;
+  flex: 1 1 0%;
+  padding: 1% 2% 1% 2%;
+}
+
+.icon-get {
+  width: 80px;
+  height: 70px;
+  margin-left: 1%;
+  padding-bottom: 2%;
+  display: block;
+  position: inherit;
+  float: left;
+}
+
+.Make h1 {
+  color: #19a24a;
+  margin: auto
+}
+
+#navbar {
+  padding-top: 9px;
+  flex-direction: row;
+  flex: 1 1 auto;
+}
+
+.email {
+  -webkit-box-align: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 5% 1%;
+}
+
+.email form {
+  width: 45%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin: auto;
+  display: flex;
+}
+
+.email input {
+  font-family: Helvetica;
+  flex: 1 1 0%;
+  padding: 10px 150px 10px 10px;
+  color: #111;
+  border-radius: 4px;
+  border: 0.5px solid #666f73;
+}
+
+.email button {
+  background-color: #19a24a;
+  margin-left: 1%;
+  border: 0.5px solid #19a24a;
+  font-family: Helvetica;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  padding: 10px 12px 10px 12px;
+  border-radius: 4px;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  transition: background-color 0.2s ease 0s;
+}
+
+#footer {
+  background-color: #064975;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  text-align: center;
+  display: block
+}
+
+#footer .footer-menu-holder {
+  min-width: 130px;
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 auto;
+}
+
+#footer .address-holder,
+#footer .footer-menu-holder {
+  display: inline-block;
+  text-align: left
+}
+
+#footer h4 {
+  font-size: 20px;
+  font-family: Helvetica;
+  color: #fff;
+  margin: 0;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.footer-menu {
+  margin-top: 30px;
+  float: left;
+}
+
+.eRKctv {
+  display: block;
+  flex-direction: row;
+}
+
+#footer ul.footer-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 20px
+}
+
+#footer ul.footer-menu li {
+  margin-bottom: 3%
+}
+
+#footer ul.footer-menu li a {
+  color: #fff;
+  font-family: Helvetica;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 2px 15px;
+  margin-left: -15px;
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-transition: all .3s ease 0s;
+  transition: all .3s ease 0s
+}
+
+.Social {
+  list-style: none;
+  margin-top: 20px;
+  display: block;
+  text-align: left;
+  padding: 0;
+}
+
+#icon-Social {
+  height: 35px;
+  margin-bottom: 10px;
+}
+
+#footer ul.footer-menu li.active a,
+#footer ul.footer-menu li a:focus,
+#footer ul.footer-menu li a:hover {
+  color: #19a24a;
+  -webkit-box-shadow: 0 8px 18px rgba(0, 0, 0, .08);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, .08);
+  text-decoration: none
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+  .container1 {
+    width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-md-4 {
+    width: 32%;
+  }
+}
+
+@media (min-width: 768px) {
+  .btr-menu>li:hover>ul {
+    display: block;
+    background: #fff;
+    position: absolute;
+  }
+  .navbar-nav {
+    float: right;
+    margin: 0;
+  }
+  .btr-menu>li>ul li:hover>ul {
+    display: block;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  .h1,
+  h1 {
+    font-size: 25px;
+  }
+  .h2,
+  h2 {
+    font-size: 16px;
+  }
+  .btr-menu .btrsubmenu-btn {
+    float: right;
+    padding: 9px 20px;
+    margin: 3px 0;
+    z-index: 999;
+    display: block;
+    cursor: pointer;
+  }
+  .btr-menu>li ul {
+    width: 100% !important;
+    margin: 0;
+    position: static !important;
+    float: none !important;
+    left: 0 !important;
+  }
+  .btr-menu>li ul.active {
+    display: block;
+  }
+  .btr-menu>li:hover>ul {
+    position: static;
+  }
+  .btr-menu>li>ul a {
+    width: 100% !important;
+    padding: 10px 15px !important;
+  }
+}
+
+@media (max-width: 568px) {
+  body {
+    font-size: 12px;
+    width: 100%;
+  }
+  .h1,
+  h1 {
+    font-size: 20px;
+  }
+  .h2,
+  h2 {
+    font-size: 16px;
+  }
+  .p,
+  p {
+    font-size: 12px;
+    margin: 0 0 5px;
+  }
+  .a,
+  a {
+    font-size: 12px;
+  }
+  .menu-button {
+    display: none
+  }
+  #icon-manage {
+    padding-top: 5%
+  }
+  #icon-mobi {
+    width: 14%;
+    padding-top: 3%;
+    margin-left: 5%
+  }
+  .btr-menu>li>ul>li>a {
+    text-transform: uppercase;
+    color: #6ced3e;
+  }
+  .btr-menu>li>ul>li li>a {
+    color: #fff;
+  }
+  #most {
+    padding: 30px 0px
+  }
+  .icon-most {
+    margin-top: 8%;
+    width: 70px;
+  }
+  .most-p {
+    display: none
+  }
+  h1.existing-h1 {
+    font-size: 48px;
+    margin: 0px 0px 12px;
+    padding-top: 40px
+  }
+  .existing {
+    padding: 30px 0px
+  }
+  #GET-STARTED {
+    padding: 30px 0px
+  }
+  #footer h4 {
+    padding-top: 20px;
+    margin-bottom: 0px;
+    font-size: 16px
+  }
+  .eRKctv {
+    display: grid;
+    padding-left: 15px
+  }
+  .eqoNPb {
+    width: 90% !important;
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+  .eqoNPb button {
+    margin-top: 12px !important;
+    text-align: center !important;
+  }
+  .icon-get {
+    width: 25%;
+    padding-left: 5px
+  }
+  .Social {
+    display: -webkit-inline-box;
+  }
+  #icon-Social {
+    margin-right: 10px
+  }
+}

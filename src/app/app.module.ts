@@ -38,6 +38,8 @@ import { PortfolioComponent } from 'component/page/portfolio/portfolio.component
 
 //VakaId Login
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { LandingComponent } from 'component/landing/landing.component';
+import { LogoutComponent } from 'component/authenticate/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     LeftPanelComponent,
     FooterComponent,
     PortfolioComponent,
+    LandingComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

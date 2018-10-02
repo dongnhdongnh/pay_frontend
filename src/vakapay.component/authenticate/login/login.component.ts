@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
     private oauthService: OAuthService
   ) {
     if (isPlatformBrowser(this.platformId)) {
+      console.log('It is login...');
       this.oauthService.configure({
         issuer: vakaidUrl,
         redirectUri: window.location.origin + '/',

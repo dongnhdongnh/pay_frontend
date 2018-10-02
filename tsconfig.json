@@ -38,7 +38,7 @@
       ],
       "guards/*": [
         "vakapay.core/vakapay.guards/*"
-      ]
+      ],
     }
   }
 }
