@@ -1,0 +1,29 @@
+<div class="form-group">
+  <div class="width-half mob">
+    <input #firstName type="text" class="form-control fc-outline-white" placeholder="First Name" (keyup)="onFirstName($event)">
+    <span class="error">{{messageErrorFirstName}}</span>
+  </div>
+  <div class="width-half pd-l-10 mob">
+    <input #lastName type="text" class="form-control fc-outline-white" placeholder="Last Name" (keyup)="onLastName($event)">
+    <span class="error">{{messageErrorLastName}}</span>
+  </div>
+</div><!-- form-group -->
+<div class="form-group">
+  <input #email type="email" class="form-control fc-outline-white" placeholder="Email" (keyup)="onEmail($event)">
+  <span class="error">{{messageErrorEmail}}</span>
+</div><!-- form-group -->
+<div class="form-group">
+  <input #password type="password" class="form-control fc-outline-white" placeholder="Password" (keyup)="onPassword($event)">
+  <span class="error">{{messageErrorPassword}}</span>
+</div><!-- form-group -->
+<div class="form-group">
+  <input #passwordConfirm type="password" class="form-control fc-outline-white" placeholder="Password Confirm" (keyup)="onPasswordConfirm($event)">
+  <span class="error">{{messageErrorPasswordConfirm}}</span>
+  <span class="error">{{messageErrorPasswordMatch}}</span>
+</div><!-- form-group -->
+<h6 class="grey tx-12">By clicking the Submit button below you agreed to our
+  <a href="#">privacy policy</a> and <a href="#">terms</a>
+  of use of our website.</h6>
+<button type="button" class="btn btn-green btn-block" (click)="register()" [disabled]="isInvalid || isLoading">
+  {{isLoading ? 'Loading...' : 'Submit'}}
+</button>

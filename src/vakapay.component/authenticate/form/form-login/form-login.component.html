@@ -1,0 +1,14 @@
+<form data-parsley-validate>
+  <div class="form-group">
+    <input #email (keyup)="onEmail($event)" type="email" class="form-control fc-outline-white" placeholder="Email">
+    <span class="error">{{messageErrorEmail}}</span>
+  </div><!-- form-group -->
+  <div class="form-group">
+    <input #password (keyup)="onPassword($event)" type="password" class="form-control fc-outline-white" placeholder="Password">
+    <span class="error">{{messageErrorPassword}}</span>
+    <a href="/forgot" class="tx-info tx-12 d-block mg-t-10">Forgot password?</a>
+  </div><!-- form-group -->
+  <button (click)="login()" [disabled]="isInvalid || isLoading" type="button" class="btn btn-green btn-block">
+    Sign In
+  </button>
+</form>

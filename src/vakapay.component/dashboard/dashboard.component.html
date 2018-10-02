@@ -1,0 +1,67 @@
+<app-left-panel></app-left-panel>
+<app-header></app-header>
+<div class="br-mainpanel">
+  <div class="br-pagebody">
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer></app-footer>
+</div>
+<div id="modaldemo1" class="modal fade">
+  <div class="modal-dialog modal-dialog-vertical-center" role="document">
+    <form class="modal-content bd-0 tx-14">
+      <div class="modal-header pd-y-20 pd-x-25">
+        <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Received Ethereum</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body pd-x-20 pd-y-5">
+        <i class="icon ion-arrow-down-a tx-60 tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"></i>
+        <h6 class="check tx-20 mg-b-0">+0.1000 ETH</h6>
+        <h6 class="grey tx-16">= đ456,455</h6>
+        <div class="col-sm-12 mg-t-30 mg-sm-t-0">
+          <div class="form-layout-6">
+            <div class="row no-gutters">
+              <div class="col-4">
+                Price per coin
+              </div><!-- col-4 -->
+              <div class="col-8">
+                đ5,564,550.00
+              </div><!-- col-8 -->
+            </div><!-- row -->
+            <div class="row no-gutters">
+              <div class="col-4">
+                From ethereum address
+              </div><!-- col-4 -->
+              <div class="col-8">
+                <a href="#" data-dismiss="modal">View transaction</a>
+              </div><!-- col-8 -->
+            </div><!-- row -->
+            <div class="row no-gutters">
+              <div class="col-4">
+                Time
+              </div><!-- col-4 -->
+              <div class="col-8">
+                9/13/2018 3:43 PM
+              </div><!-- col-8 -->
+            </div><!-- row -->
+            <div class="row no-gutters">
+              <div class="col-4">
+                Status
+              </div><!-- col-4 -->
+              <div class="col-8">
+                <span class="btn btn-success verified">Completed</span>
+              </div><!-- col-8 -->
+            </div><!-- row -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer step mg-t-20">
+        <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
+          data-dismiss="modal">Close</button>
+        <a href="account.html" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Make
+          a Transaction</a>
+      </div>
+    </form>
+  </div><!-- modal-dialog -->
+</div><!-- modal -->

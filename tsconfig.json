@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -16,6 +16,29 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "model/*": [
+        "vakapay.model/*"
+      ],
+      "services/*": [
+        "vakapay.services/*"
+      ],
+      "network/*": [
+        "vakapay.core/vakapay.network/*"
+      ],
+      "utility/*": [
+        "vakapay.core/vakapay.utility/*"
+      ],
+      "memory/*": [
+        "vakapay.core/vakapay.memory/*"
+      ],
+      "component/*": [
+        "vakapay.component/*"
+      ],
+      "guards/*": [
+        "vakapay.core/vakapay.guards/*"
+      ]
+    }
   }
 }

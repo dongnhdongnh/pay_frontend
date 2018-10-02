@@ -1,0 +1,27 @@
+<div class="d-flex align-items-center justify-content-center ht-100v">
+  <img src="/assets/images/backgrounds/bg-signin.jpg" class="wd-100p ht-100p object-fit-cover" alt="">
+  <div class="overlay-body d-flex align-items-center justify-content-center">
+    <div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <app-header-authenticate></app-header-authenticate>
+      </div>
+    </div>
+    <div class="login-wrapper wd-480 wd-xs-350 pd-15 pd-xs-40 pd-t-20 rounded bd bd-white-2 bg-white mg-t-50">
+      <div class="signin-logo tx-center tx-24 tx-bold tx-grey">Creat Your Account</div>
+      <div class="form-group">
+        <div class="width-half mob">
+          <div class="tx-green tx-center mg-t-10 tx-20 tx-up">
+            <mat-icon>person</mat-icon> Individual
+          </div>
+        </div>
+        <div class="width-half mob">
+          <div class="tx-grey tx-center mg-t-10 tx-20 tx-up">
+            <mat-icon>people</mat-icon> Business
+          </div>
+        </div>
+      </div>
+      <app-form-register></app-form-register>
+      <div class="mg-t-20 tx-center">Already have account? <a routerLink="/login" class="tx-info">Sign In</a></div>
+    </div><!-- login-wrapper -->
+  </div><!-- overlay-body -->
+</div><!-- d-flex -->
