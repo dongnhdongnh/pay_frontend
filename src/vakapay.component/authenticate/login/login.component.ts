@@ -1,5 +1,4 @@
-const vakaidUrl = 'http://192.168.1.185:5000';
-
+import { ConfigService } from 'network/config/config.service';
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { OAuthService, JwksValidationHandler, OAuthEvent } from "angular-oauth2-oidc";
 import { isPlatformBrowser } from "@angular/common";
@@ -16,16 +15,17 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private oauthService: OAuthService
+    private oauthService: OAuthService,
+    private configService: ConfigService
   ) {
     if (isPlatformBrowser(this.platformId)) {
       console.log('It is login...');
       this.oauthService.configure({
-        issuer: vakaidUrl,
+        issuer: this.configService.urlVakaid,
         redirectUri: window.location.origin + '/login',
         silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
         clientId: 'implicit',
-        scope: 'openid profile',
+        scope: 'openid profile api1',
         silentRefreshTimeout: 5000, // For faster testing
         sessionChecksEnabled: true,
         requireHttps: false,

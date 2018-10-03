@@ -1,7 +1,5 @@
-const returnUrl = 'http://192.168.1.80:4200';
-const vakaidUrl = 'http://192.168.1.185:5000';
-
-import { Component, OnInit, Inject } from '@angular/core';
+import { ConfigService } from 'network/config/config.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-register',
@@ -10,8 +8,12 @@ import { Component, OnInit, Inject } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() {
-    window.location.href = `${vakaidUrl}/account/register?returlUrl=${returnUrl}`;
+  constructor(
+    private configService: ConfigService
+  ) {
+    let urlVakaid = this.configService.urlVakaid;
+    let returnUrl = this.configService.returnUrl;
+    window.location.href = `${urlVakaid}/account/register?returlUrl=${returnUrl}`;
   }
 
   ngOnInit() {
