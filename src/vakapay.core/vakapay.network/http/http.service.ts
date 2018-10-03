@@ -22,14 +22,16 @@ var httpOptionsGet = { withCredentials: true };
 @Injectable({ providedIn: 'root' })
 export class HttpService {
   private url = '';
+  private alertService: AlertService;
 
   constructor(
     private http: HttpClient,
     private configService: ConfigService,
     private messageService: MessageService,
-    private alertService: AlertService
+    alertService: AlertService
   ) {
     this.url = this.configService.url;
+    this.alertService = alertService;
   }
 
   //Get api

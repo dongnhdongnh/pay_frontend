@@ -1,5 +1,7 @@
 import { BodyOutputType, Toast, ToasterConfig, ToasterService } from 'angular2-toaster';
+import { Injectable } from '@angular/core';
 
+@Injectable({ providedIn: 'root' })
 export class AlertService {
     toasterService: ToasterService;
     config: ToasterConfig;

@@ -12,7 +12,8 @@ export class ConfigService {
 
     constructor(
     ) {
-        this.urlVakaid = 'http://192.168.1.185:5000';
+        // this.urlVakaid = 'http://192.168.1.185:5000';
+        this.urlVakaid = 'http://192.168.1.157:5000';
         this.returnUrl = 'http://192.168.1.80:4200';
 
         if (this.development === 'node') {

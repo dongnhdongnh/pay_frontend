@@ -7,9 +7,6 @@ import { Account } from 'model/account/Account';
 import { Root } from 'component/root/root.component';
 import { AccountService } from 'services/account/account.service';
 import { ImageService } from 'services/image/image.service';
-import { Utility } from 'utility/Utility';
-import { AlertService } from 'services/system/alert.service';
-import { Alert } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-profile',
@@ -20,13 +17,12 @@ export class ProfileComponent extends Root implements OnInit {
   mAccount: Account;
   mAccountSerive: any;
   selectedFile: any;
-  mImageService: ImageService;
   isLoading = false;
   isInvalid = false;
   messageError = '';
-
+  
   //Service
-  alertService: AlertService;
+  mImageService: ImageService;
 
   constructor(
     titleService: Title,
@@ -34,12 +30,10 @@ export class ProfileComponent extends Root implements OnInit {
     router: Router,
     mAccountSerive: AccountService,
     mImageService: ImageService,
-    alertService: AlertService
   ) {
     super(titleService, route, router);
     this.mAccountSerive = mAccountSerive;
     this.mImageService = mImageService;
-    this.alertService = alertService;
   }
 
   ngOnInit() {
@@ -77,7 +71,6 @@ export class ProfileComponent extends Root implements OnInit {
       return;
     } catch (error) {
       this.isLoading = false;
-      this.alertService.showToastError(error.message || error.statusText);
     }
   }
 
