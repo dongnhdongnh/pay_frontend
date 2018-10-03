@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
       console.log('It is login...');
       this.oauthService.configure({
         issuer: vakaidUrl,
-        redirectUri: window.location.origin + '/',
+        redirectUri: window.location.origin + '/login',
         silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
         clientId: 'implicit',
         scope: 'openid profile',
@@ -44,8 +44,13 @@ export class LoginComponent implements OnInit {
             }
         }
       });
-      console.log(this.oauthService.hasValidAccessToken());
+      let isValidToken = this.oauthService.hasValidAccessToken();
       const token = this.oauthService.getAccessToken();
+      if(isValidToken === false){
+        this.oauthService.getIdToken();
+        localStorage.clear();
+        return;
+      }
       localStorage.setItem('token', token);
     }
   }

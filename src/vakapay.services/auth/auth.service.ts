@@ -23,6 +23,7 @@ export class AuthService {
         //     // var userInfo = decodeInfo.userInfo;
         //     // this.mAccountService.mAccount = new Account(userInfo.Email, );
         // }
-        return !this.jwtHelper.isTokenExpired(token || '');
+        let isTokenExpired = this.jwtHelper.isTokenExpired(token || '');
+        return !isTokenExpired;
     }
 }
