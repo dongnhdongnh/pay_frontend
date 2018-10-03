@@ -1,3 +1,4 @@
+import { AccountService } from 'services/account/account.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,13 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
-  constructor() {
-
+  mAccount: any;
+  mAccountSerive: any;
+  constructor(mAccountSerive: AccountService) {
+    this.mAccountSerive = mAccountSerive;
   }
 
   ngOnInit() {
-
+    this.mAccount = this.mAccountSerive.mAccount || {};
   }
 
 }

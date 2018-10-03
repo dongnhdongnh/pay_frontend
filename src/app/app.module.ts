@@ -11,6 +11,9 @@ import { MatButtonModule, MatCheckboxModule, MatMenuModule } from '@angular/mate
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
+// RECOMMENDED (doesn't work with system.js)
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
 //Add libriary font
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
@@ -35,6 +38,7 @@ import { HeaderComponent } from 'component/page/header/header.component';
 import { LeftPanelComponent } from 'component/page/left-panel/left-panel.component';
 import { FooterComponent } from 'component/page/footer/footer.component';
 import { PortfolioComponent } from 'component/page/portfolio/portfolio.component';
+import { ProfileComponent } from 'component/page/profile/profile.component';
 
 //VakaId Login
 import { OAuthModule } from 'angular-oauth2-oidc';
@@ -59,6 +63,7 @@ import { LogoutComponent } from 'component/authenticate/logout/logout.component'
     PortfolioComponent,
     LandingComponent,
     LogoutComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +78,9 @@ import { LogoutComponent } from 'component/authenticate/logout/logout.component'
 
     //Redirect VakaId
     OAuthModule.forRoot(),
+
+    //Bootstrap dropdow module
+    BsDropdownModule.forRoot(),
 
     HttpClientModule,
     // HttpClientInMemoryWebApiModule.forRoot(

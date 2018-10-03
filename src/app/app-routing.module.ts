@@ -2,17 +2,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
+import { AuthGuard } from 'guards/auth.guard';
+import { LoginGuard } from 'guards/login.guard'
+
 //Custom component
+import { LogoutComponent } from 'component/authenticate/logout/logout.component';
 import { RegisterComponent } from 'component/authenticate/register/register.component';
 import { LoginComponent } from 'component/authenticate/login/login.component';
 import { VerifyComponent } from 'component/authenticate/verify/verify.component';
 import { DashboardComponent } from 'component/dashboard/dashboard.component';
 import { IndexComponent } from 'component/page/index/index.component';
 import { LandingComponent } from 'component/landing/landing.component';
-
-import { AuthGuard } from 'guards/auth.guard';
-import { LoginGuard } from 'guards/login.guard'
-import { LogoutComponent } from 'component/authenticate/logout/logout.component';
+import { ProfileComponent } from 'component/page/profile/profile.component';
 
 //Init routes
 const routes: Routes = [
@@ -54,15 +55,20 @@ const routes: Routes = [
 		data: { title: 'Logout' }
 	},
 	{
-		path: 'dashboard',
+		path: '',
 		component: DashboardComponent,
 		canActivate: [AuthGuard],
 		children: [
 			{
-				path: '',
+				path: 'dashboard',
 				component: IndexComponent,
 				data: { title: 'Index' }
-			}
+			},
+			{
+				path: 'profile',
+				component: ProfileComponent,
+				data: { title: 'Profile' }
+			},
 		]
 	},
 ];

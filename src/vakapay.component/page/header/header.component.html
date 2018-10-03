@@ -10,26 +10,27 @@
     <div id="logo-mob"><a><img src="src/assets/images/logo/logo2.svg" alt=""></a></div>
     <div class="br-header-right">
       <nav class="nav">
-        <div class="dropdown">
-          <a class="nav-link nav-link-profile" data-toggle="dropdown">
-            <span class="logged-name hidden-md-down">Katherine</span>
+        <div class="dropdown" dropdown>
+          <a class="nav-link nav-link-profile" data-toggle="dropdown" dropdownToggle>
+            <span class="logged-name hidden-md-down">{{mAccount.firstName}}</span>
             <img src="src/assets/images/profile/img1.jpg" class="wd-32 rounded-circle" alt="">
             <span class="square-10 bg-success"></span>
           </a>
-          <div class="dropdown-menu dropdown-menu-header wd-250">
+          <div class="dropdown-menu dropdown-menu-header wd-250" *dropdownMenu>
             <div class="tx-center">
               <a href="#"><img src="src/assets/images/profile/img1.jpg" class="wd-80 rounded-circle" alt=""></a>
-              <h6 class="logged-fullname">Katherine P. Lumaad</h6>
-              <p>youremail@domain.com</p>
+              <h6 class="logged-fullname">{{mAccount.fullName}}</h6>
+              <p>{{mAccount.email}}</p>
             </div>
             <hr>
             <ul class="list-unstyled user-profile-nav">
-              <li><a href="profile.html"><i class="icon ion-ios-person"></i> Profile</a></li>
-              <li><a href="security.html"><i class="icon ion-ios-gear"></i> Settings</a></li>
-              <li><a href="#"><i class="icon ion-ios-download"></i> Contact Support</a></li>
-              <li><a href="signin.html"><i class="icon ion-power"></i> Sign Out</a></li>
-              <li><a href="invite.html" class="bg-green pd-x-30 pd-y-11 tx-invite tx-bold tx-14 fl-right tx-white"><i
-                    class="fa fa-user mg-r-5"></i>Get Free Coin for Inviting People to VakaPay!</a>
+              <li><a routerLink="/profile"><i class="icon ion-ios-person"></i> Profile</a></li>
+              <li><a routerLink="/security"><i class="icon ion-ios-gear"></i> Settings</a></li>
+              <li><a routerLink="/support"><i class="icon ion-ios-download"></i> Contact Support</a></li>
+              <li><a routerLink="/logout"><i class="icon ion-power"></i> Sign Out</a></li>
+              <li><a routerLink="/invite" class="bg-green pd-x-30 pd-y-11 tx-invite tx-bold tx-14 fl-right tx-white"><i
+                    class="fa fa-user mg-r-5"></i>Get
+                  Free Coin for Inviting People to VakaPay!</a>
               </li>
             </ul>
           </div>
