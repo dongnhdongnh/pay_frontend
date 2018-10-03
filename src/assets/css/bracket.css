@@ -12588,6 +12588,7 @@ textarea.parsley-error:active {
 }
 .widget-4 .card-profile-img img {
   width: 100px;
+  height: 100px;
   border-radius: 100%;
 }
 .widget-4 .card-footer {
