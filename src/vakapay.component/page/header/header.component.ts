@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from 'services/account/account.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  mAccount: any;
+  mAccountSerive: any;
+  constructor(mAccountSerive: AccountService) {
+    this.mAccountSerive = mAccountSerive;
   }
 
+  ngOnInit() {
+    this.mAccount = this.mAccountSerive.mAccount || {};
+  }
 }

@@ -4,14 +4,10 @@ export class Model {
         var listKeyModel = Object.keys(model);
         var listKeyData = Object.keys(data);
         var listKeyLower = listKeyData.map(x => x.toLowerCase());
-        listKeyModel.forEach((key, index) => {
-            if (listKeyLower.includes(key.toLowerCase())) {
+        listKeyModel.forEach((key) => {
+            let index = listKeyLower.indexOf(key.toLowerCase());
+            if (index > -1) {
                 model[key] = data[listKeyData[index]];
-            }
-        });
-        Object.keys(data).map(key => {
-            if (data.hasOwnProperty(key.toLowerCase())) {
-                model[key] = data[key.toLowerCase()];
             }
         });
     }

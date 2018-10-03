@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-// import { AccountService } from './../account/account.service';
-// import { Account } from 'model/account/Account';
+import { AccountService } from 'services/account/account.service';
+import { Account } from 'model/account/Account';
 
 @Injectable({ providedIn: 'root' })
 
 export class AuthService {
     jwtHelper: JwtHelperService;
-    constructor() {
+    mAccountService: any;
+    constructor(mAccountService: AccountService) {
         this.jwtHelper = new JwtHelperService();
+        this.mAccountService = mAccountService;
     }
 
     isAuthenticated(): boolean {
@@ -16,14 +18,15 @@ export class AuthService {
         if (!token || token == 'null') return false;
         // Check whether the token is expired and return
         // true or false
-        // let isTokenExpired = !this.jwtHelper.isTokenExpired(token || '');
-        // if (isTokenExpired) {
-        //     //Get account infor
-        //     // var decodeInfo = this.jwtHelper.decodeToken(token);
-        //     // var userInfo = decodeInfo.userInfo;
-        //     // this.mAccountService.mAccount = new Account(userInfo.Email, );
-        // }
         let isTokenExpired = this.jwtHelper.isTokenExpired(token || '');
+        if (!isTokenExpired && !this.mAccountService.mAccount) {
+            //Get account infor
+            var decodeInfo = this.jwtHelper.decodeToken(token);
+            var userInfo = JSON.parse(decodeInfo.userInfo);
+            this.mAccountService.mAccount = new Account();
+            this.mAccountService.mAccount.attributes = userInfo;
+        }
+
         return !isTokenExpired;
     }
 }
