@@ -67,8 +67,10 @@
           <div class="row mg-t-20 mg-x-0">
             <div class="col-sm-8 mg-l-auto">
               <div class="form-layout-footer">
-                <button class="btn bg-green mg-t-5" type="button" (click)="onUpload()">Save</button>
-                <button class="btn btn-secondary mg-t-5" type="reset">Reset</button>
+                <button class="btn bg-green mg-t-5" type="button" (click)="onUpload()" [disabled]="!selectedFile||isInvalid||isImageLoading">
+                  Save <i [hidden]="!isImageLoading" class="fa fa-spinner fa-spin" style="font-size:15px"></i>
+                </button>
+                <button class="btn btn-secondary mg-t-5" type="reset" [disabled]="!selectedFile||isImageLoading">Reset</button>
               </div><!-- form-layout-footer -->
             </div><!-- col-8 -->
           </div>

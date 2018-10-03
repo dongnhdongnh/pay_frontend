@@ -7,6 +7,7 @@ import { Account } from 'model/account/Account';
 import { Root } from 'component/root/root.component';
 import { AccountService } from 'services/account/account.service';
 import { ImageService } from 'services/image/image.service';
+import { Utility } from 'utility/Utility';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +18,7 @@ export class ProfileComponent extends Root implements OnInit {
   mAccount: Account;
   mAccountSerive: any;
   selectedFile: any;
-  isLoading = false;
+  isImageLoading: boolean;
   isInvalid = false;
   messageError = '';
 
@@ -34,6 +35,7 @@ export class ProfileComponent extends Root implements OnInit {
     super(titleService, route, router);
     this.mAccountSerive = mAccountSerive;
     this.mImageService = mImageService;
+    this.isImageLoading = false;
   }
 
   ngOnInit() {
@@ -54,12 +56,12 @@ export class ProfileComponent extends Root implements OnInit {
 
   async onUpload() {
     try {
-      debugger;
-      this.isLoading = true;
+      this.isImageLoading = true;
+      await Utility.sleep(1000);
       this.validate();
 
       if (this.isInvalid === true) {
-        this.isLoading = false;
+        this.isImageLoading = false;
         return;
       }
 
@@ -67,11 +69,11 @@ export class ProfileComponent extends Root implements OnInit {
       let result = await this.mImageService.upload(this.selectedFile);
 
       //Show message success
-      this.isLoading = false;
+      this.isImageLoading = false;
 
       return;
     } catch (error) {
-      this.isLoading = false;
+      this.isImageLoading = false;
     }
   }
 

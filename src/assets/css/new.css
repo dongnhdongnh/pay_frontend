@@ -2,6 +2,10 @@
   color: #cc2243;
 }
 
+button[disabled] {
+  cursor: not-allowed !important;
+}
+
 .btn {
   margin: 2px;
 }
