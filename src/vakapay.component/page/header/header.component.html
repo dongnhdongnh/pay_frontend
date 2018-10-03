@@ -13,12 +13,12 @@
         <div class="dropdown" dropdown>
           <a class="nav-link nav-link-profile" data-toggle="dropdown" dropdownToggle>
             <span class="logged-name hidden-md-down">{{mAccount.firstName}}</span>
-            <img src="src/assets/images/profile/img1.jpg" class="wd-32 rounded-circle" alt="">
+            <img [src]="mAccount.avatar" class="wd-32 rounded-circle" alt="">
             <span class="square-10 bg-success"></span>
           </a>
           <div class="dropdown-menu dropdown-menu-header wd-250" *dropdownMenu>
             <div class="tx-center">
-              <a href="#"><img src="src/assets/images/profile/img1.jpg" class="wd-80 rounded-circle" alt=""></a>
+              <a href="#"><img [src]="mAccount.avatar" class="wd-80 rounded-circle" alt=""></a>
               <h6 class="logged-fullname">{{mAccount.fullName}}</h6>
               <p>{{mAccount.email}}</p>
             </div>

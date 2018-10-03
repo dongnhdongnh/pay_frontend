@@ -7,8 +7,9 @@ export class Account extends Model {
     lastName: string;
     birthday: string;
     country: string;
+    avatar: string;
 
-    constructor(email = '', phone = '', firstName = '', lastName = '', birthday = '', country = '') {
+    constructor(email = '', phone = '', firstName = '', lastName = '', birthday = '', country = '', avatar = '') {
         super();
         this.email = email;
         this.phoneNumber = phone;
@@ -16,6 +17,7 @@ export class Account extends Model {
         this.lastName = lastName;
         this.birthday = birthday;
         this.country = country;
+        this.avatar = avatar || 'assets/images/profile/img1.jpg';
     }
 
     get fullName() {

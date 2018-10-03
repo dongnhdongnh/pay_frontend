@@ -1,3 +1,4 @@
+import { Account } from './../../../vakapay.model/account/Account';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'services/account/account.service';
 
@@ -7,9 +8,8 @@ import { AccountService } from 'services/account/account.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  mAccount: any;
+  mAccount: Account;
   mAccountSerive: any;
-  urlImageProfile = 'assets/images/profile/img1.jpg';
   constructor(mAccountSerive: AccountService) {
     this.mAccountSerive = mAccountSerive;
   }
@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
     const file = event.target.files[0];
     let reader = new FileReader();
     reader.onload = (e: any) => {
-      this.urlImageProfile = e.target.result;
+      this.mAccount.avatar = e.target.result;
     }
     reader.readAsDataURL(file);
   }
