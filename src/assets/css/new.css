@@ -568,7 +568,10 @@ img.mini-icon {
   font-size: 30px;
   vertical-align: middle;
 }
-
+.inputfile+label.if-outline-green:hover {
+    background: #10a04a;
+    color: #fff;
+}
 .width-text {
   width: 100%;
   z-index: 1000;
