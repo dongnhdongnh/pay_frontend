@@ -1,6 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Root } from 'component/root/root.component';
-import { ToasterService } from 'angular2-toaster';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
@@ -8,6 +7,7 @@ import { Register } from 'model/authenticate/Register';
 import { Utility } from 'utility/Utility';
 import { UtilityValidate } from 'utility/UtilityValidate';
 import { RegisterService } from 'services/register/register.service';
+import { AlertService } from 'services/system/alert.service';
 
 @Component({
   selector: 'app-form-register',
@@ -46,15 +46,16 @@ export class FormRegisterComponent extends Root implements OnInit {
 
   //Service
   private registerService: RegisterService;
+  private alertService: AlertService;
 
   constructor(
-    toasterService: ToasterService,
     titleService: Title,
     route: ActivatedRoute,
     router: Router,
-    registerService: RegisterService
+    registerService: RegisterService,
+    alertService: AlertService
   ) {
-    super(toasterService, titleService, route, router);
+    super(titleService, route, router);
     this.registerService = registerService;
   }
 
@@ -68,7 +69,7 @@ export class FormRegisterComponent extends Root implements OnInit {
 
       if (this.isInvalid === true) {
         this.isLoading = false;
-        this.showToastError(this.messageError);
+        this.alertService.showToastError(this.messageError);
         return;
       }
 
@@ -87,13 +88,13 @@ export class FormRegisterComponent extends Root implements OnInit {
         throw new Error(result.message);
 
       //Show message success
-      this.showToastSuccess(result.message);
+      this.alertService.showToastSuccess(result.message);
       this.isLoading = false;
 
       return;
     } catch (error) {
       this.isLoading = false;
-      this.showToastError(error.message || error.statusText);
+      this.alertService.showToastError(error.message || error.statusText);
     }
   }
 

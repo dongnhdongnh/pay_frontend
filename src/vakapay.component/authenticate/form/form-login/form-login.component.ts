@@ -8,6 +8,7 @@ import { Login } from 'model/authenticate/Login';
 import { Utility } from 'utility/Utility';
 import { UtilityValidate } from 'utility/UtilityValidate';
 import { LoginService } from 'services/login/login.service';
+import { AlertService } from 'services/system/alert.service';
 
 @Component({
   selector: 'app-form-login',
@@ -36,15 +37,19 @@ export class FormLoginComponent extends Root implements OnInit {
 
   //Service
   private loginService: LoginService;
+  private alertService: AlertService;
+
   constructor(
     toasterService: ToasterService,
     titleService: Title,
     route: ActivatedRoute,
     router: Router,
-    loginService: LoginService
+    loginService: LoginService,
+    alertService: AlertService
   ) {
-    super(toasterService, titleService, route, router);
+    super(titleService, route, router);
     this.loginService = loginService;
+    this.alertService = alertService;
   }
 
   ngOnInit() {
@@ -57,7 +62,7 @@ export class FormLoginComponent extends Root implements OnInit {
 
       if (this.isInvalid === true) {
         this.isLoading = false;
-        this.showToastError(this.messageError);
+        this.alertService.showToastError(this.messageError);
         return;
       }
 
@@ -71,13 +76,13 @@ export class FormLoginComponent extends Root implements OnInit {
         throw new Error(result.message);
 
       //Show message success
-      this.showToastSuccess(result.message);
+      this.alertService.showToastSuccess(result.message);
       this.isLoading = false;
 
       return;
     } catch (error) {
       this.isLoading = false;
-      this.showToastError(error.message || error.statusText);
+      this.alertService.showToastError(error.message || error.statusText);
     }
   }
 

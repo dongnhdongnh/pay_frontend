@@ -2,13 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from 'network/message/message.service';
 
+import { ToasterService } from 'angular2-toaster';
+
 import { ResultObject } from 'model/result/ResultObject';
 import { ConfigService } from 'network/config/config.service';
+import { AlertService } from 'services/system/alert.service';
+import { Utility } from 'utility/Utility';
 
 var httpOptionsPost = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    // 'Authorization': 'my-auth-token'
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
   }),
   withCredentials: true
 };
@@ -22,7 +26,8 @@ export class HttpService {
   constructor(
     private http: HttpClient,
     private configService: ConfigService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private alertService: AlertService
   ) {
     this.url = this.configService.url;
   }
@@ -33,8 +38,9 @@ export class HttpService {
     return new Promise<ResultObject>((resolve, reject) => self.http.get(self.url + api, httpOptionsGet)
       .subscribe(
         data => {
-          self.handleSuccess(operation, data);
-          resolve(new ResultObject(data));
+          let dataConvert = new ResultObject(data);
+          self.handleSuccess(operation, dataConvert);
+          resolve(dataConvert);
         },
         error => {
           self.handleError(operation, error);
@@ -50,8 +56,9 @@ export class HttpService {
       self.http.post(self.url + api, data, httpOptionsPost)
         .subscribe(
           data => {
-            self.handleSuccess(operation, data);
-            resolve(new ResultObject(data));
+            let dataConvert = new ResultObject(data);
+            self.handleSuccess(operation, dataConvert);
+            resolve(dataConvert);
           },
           error => {
             self.handleError(operation, error);
@@ -74,6 +81,7 @@ export class HttpService {
     console.log(error); // log to console instead
     // TODO: 
     this.log(`${operation} failed: ${error.message}`);
+    this.alertService.showToastError(JSON.stringify(error));
   }
 
   /**
@@ -81,10 +89,16 @@ export class HttpService {
  * @param operation - name of the operation that success
  * @param result 
  */
-  private handleSuccess(operation = 'operation', data) {
+  private handleSuccess(operation = 'operation', data: ResultObject) {
     // 
     console.log(data); // log to console instead
     // TODO: 
     this.log(`${operation} success: ${data.message}`);
+    //Check result
+    if (Utility.isError(data)) {
+      this.alertService.showToastError(data.message);
+      return;
+    }
+    this.alertService.showToastSuccess(data.message);
   }
 }

@@ -1,17 +1,45 @@
-import { Account } from './../../../vakapay.model/account/Account';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
+
+import { Account } from 'model/account/Account';
+
+import { Root } from 'component/root/root.component';
 import { AccountService } from 'services/account/account.service';
+import { ImageService } from 'services/image/image.service';
+import { Utility } from 'utility/Utility';
+import { AlertService } from 'services/system/alert.service';
+import { Alert } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent extends Root implements OnInit {
   mAccount: Account;
   mAccountSerive: any;
-  constructor(mAccountSerive: AccountService) {
+  selectedFile: any;
+  mImageService: ImageService;
+  isLoading = false;
+  isInvalid = false;
+  messageError = '';
+
+  //Service
+  alertService: AlertService;
+
+  constructor(
+    titleService: Title,
+    route: ActivatedRoute,
+    router: Router,
+    mAccountSerive: AccountService,
+    mImageService: ImageService,
+    alertService: AlertService
+  ) {
+    super(titleService, route, router);
     this.mAccountSerive = mAccountSerive;
+    this.mImageService = mImageService;
+    this.alertService = alertService;
   }
 
   ngOnInit() {
@@ -19,20 +47,38 @@ export class ProfileComponent implements OnInit {
   }
 
   onChangeImageProfile(event) {
-    const file = event.target.files[0];
+    debugger;
+    this.selectedFile = event.target.files[0];
     let reader = new FileReader();
     reader.onload = (e: any) => {
       this.mAccount.avatar = e.target.result;
     }
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(this.selectedFile);
   }
 
-  onUpload() {
-    // this.http is the injected HttpClient
-    const uploadData = new FormData();
-    // uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
-    // this.http.post('my-backend.com/file-upload', uploadData)
-    //   .subscribe(...);
+  validate() { }
+
+  async onUpload() {
+    try {
+      this.isLoading = true;
+      this.validate();
+
+      if (this.isInvalid === true) {
+        this.isLoading = false;
+        return;
+      }
+
+      //send ajax
+      let result = await this.mImageService.upload(this.selectedFile);
+
+      //Show message success
+      this.isLoading = false;
+
+      return;
+    } catch (error) {
+      this.isLoading = false;
+      this.alertService.showToastError(error.message || error.statusText);
+    }
   }
 
 }

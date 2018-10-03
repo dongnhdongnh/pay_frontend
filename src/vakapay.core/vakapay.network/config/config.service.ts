@@ -7,9 +7,13 @@ export class ConfigService {
 
     private development: string;
     url: string;
+    urlVakaid: string;
 
     constructor(
     ) {
-        this.url = 'http://localhost:4040';
+        if (this.development === 'node') {
+            this.url = 'http://localhost:4040';
+            return;
+        }
     }
 }
