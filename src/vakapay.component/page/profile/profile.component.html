@@ -42,6 +42,17 @@
               <input type="number" class="form-control" placeholder="Postal Code">
             </div>
           </div>
+          <!-- row -->
+          <div class="row mg-t-20 mg-x-0">
+            <div class="col-sm-8 mg-l-auto">
+              <div class="form-layout-footer">
+                <button class="btn bg-green mg-t-5" type="submit">Save</button>
+                <button class="btn btn-secondary mg-t-5" type="reset">Reset</button>
+              </div><!-- form-layout-footer -->
+            </div><!-- col-8 -->
+          </div>
+        </form><!-- form-layout -->
+        <form class="form-layout form-layout-5">
           <div class="row mg-t-20 mg-x-0">
             <label class="col-sm-4 form-control-label"> Upload Avatar: <span>Max file size is 20Mb.</span></label>
             <div class="col-sm-8 mg-t-10 mg-sm-t-0">
@@ -56,7 +67,7 @@
           <div class="row mg-t-20 mg-x-0">
             <div class="col-sm-8 mg-l-auto">
               <div class="form-layout-footer">
-                <button class="btn bg-green mg-t-5" type="submit">Save</button>
+                <button class="btn bg-green mg-t-5" type="button" (click)="onUpload()">Save</button>
                 <button class="btn btn-secondary mg-t-5" type="reset">Reset</button>
               </div><!-- form-layout-footer -->
             </div><!-- col-8 -->

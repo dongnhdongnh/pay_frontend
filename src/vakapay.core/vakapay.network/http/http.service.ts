@@ -8,11 +8,11 @@ import { ResultObject } from 'model/result/ResultObject';
 import { ConfigService } from 'network/config/config.service';
 import { AlertService } from 'services/system/alert.service';
 import { Utility } from 'utility/Utility';
-
+const token = localStorage.getItem('token');
 var httpOptionsPost = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem('token')}`
+    'Authorization': `Bearer ${token}`
   }),
   withCredentials: true
 };

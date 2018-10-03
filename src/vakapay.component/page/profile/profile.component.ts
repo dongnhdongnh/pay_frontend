@@ -20,7 +20,7 @@ export class ProfileComponent extends Root implements OnInit {
   isLoading = false;
   isInvalid = false;
   messageError = '';
-  
+
   //Service
   mImageService: ImageService;
 
@@ -41,8 +41,8 @@ export class ProfileComponent extends Root implements OnInit {
   }
 
   onChangeImageProfile(event) {
-    debugger;
     this.selectedFile = event.target.files[0];
+    if (this.selectedFile == null) return;
     let reader = new FileReader();
     reader.onload = (e: any) => {
       this.mAccount.avatar = e.target.result;
@@ -54,6 +54,7 @@ export class ProfileComponent extends Root implements OnInit {
 
   async onUpload() {
     try {
+      debugger;
       this.isLoading = true;
       this.validate();
 
