@@ -44,6 +44,7 @@ import { ProfileComponent } from 'component/page/profile/profile.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { LandingComponent } from 'component/landing/landing.component';
 import { LogoutComponent } from 'component/authenticate/logout/logout.component';
+import { PagenotfoundComponent } from 'component/pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { LogoutComponent } from 'component/authenticate/logout/logout.component'
     LandingComponent,
     LogoutComponent,
     ProfileComponent,
+    PagenotfoundComponent,
   ],
   imports: [
     BrowserModule,
