@@ -39,7 +39,7 @@ export class ProfileComponent extends Root implements OnInit {
     this.isImageLoading = false;
   }
 
-  resetImage(){
+  resetImage() {
     this.mAccount.avatar = this.imageReset;
     this.selectedFile = null;
   }
@@ -47,6 +47,10 @@ export class ProfileComponent extends Root implements OnInit {
   ngOnInit() {
     this.mAccount = this.mAccountSerive.mAccount || {};
     this.imageReset = this.mAccount.avatar;
+  }
+
+  onStreetAddress1(event) {
+
   }
 
   onChangeImageProfile(event) {

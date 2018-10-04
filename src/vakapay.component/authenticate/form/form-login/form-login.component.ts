@@ -25,15 +25,15 @@ export class FormLoginComponent extends Root implements OnInit {
   private password: string;
 
   //message error
-  private messageError = '';
-  private messageErrorEmail = '';
-  private messageErrorPassword = '';
+  messageError = '';
+  messageErrorEmail = '';
+  messageErrorPassword = '';
 
   //validate
-  private isInvalid = true;
+  isInvalid = true;
 
   //Loading
-  private isLoading = false;
+  isLoading = false;
 
   //Service
   private loginService: LoginService;

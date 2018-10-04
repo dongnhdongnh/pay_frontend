@@ -9,21 +9,23 @@ import { OAuthService } from 'angular-oauth2-oidc';
 })
 export class LogoutComponent implements OnInit {
   private oauthService: OAuthService;
+  link: string;
 
   constructor(oauthService: OAuthService, private configService: ConfigService) {
     this.oauthService = oauthService;
+
+    let vakaidUrl = this.configService.urlVakaid;
+    var id = this.oauthService.getIdToken();
+
+    this.link =
+      `${vakaidUrl}/connect/endsession?post_logout_redirect_uri=` +
+      encodeURIComponent(this.configService.returnUrl) + '&id_token_hint='
+      + encodeURIComponent(id);
   }
 
   ngOnInit() {
-    let vakaidUrl = this.configService.urlVakaid;
-    var id = this.oauthService.getIdToken();
-    this.oauthService.logOut();
     localStorage.clear();
-
-    window.location.href =
-      `${vakaidUrl}/connect/endsession?post_logout_redirect_uri=` +
-      encodeURIComponent('http://vakapay.com/') + '&id_token_hint='
-      + encodeURIComponent(id);
+    this.oauthService.logOut();
   }
 
 }

@@ -3,6 +3,7 @@ import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { OAuthService, JwksValidationHandler, OAuthEvent } from "angular-oauth2-oidc";
 import { isPlatformBrowser } from "@angular/common";
 import { Router } from "@angular/router";
+import { conditionallyCreateMapObjectLiteral } from '@angular/compiler/src/render3/view/util';
 
 @Component({
   selector: 'app-login',
@@ -20,16 +21,20 @@ export class LoginComponent implements OnInit {
   ) {
     if (isPlatformBrowser(this.platformId)) {
       console.log('It is login...');
-      this.oauthService.configure({
+
+      const config = {
         issuer: this.configService.urlVakaid,
         redirectUri: window.location.origin + '/login',
         silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
-        clientId: 'implicit',
+        postLogoutRedirectUri: window.location.origin + '/',
+        clientId: configService.development === 'localhost' ? 'implicittest' : 'implicit',
         scope: 'openid profile api1',
         silentRefreshTimeout: 5000, // For faster testing
         sessionChecksEnabled: true,
-        requireHttps: false,
-      });
+        requireHttps: configService.development !== 'localhost',
+      }
+
+      this.oauthService.configure(config);
       this.oauthService.tokenValidationHandler = new JwksValidationHandler();
       this.oauthService.loadDiscoveryDocumentAndLogin();
 
