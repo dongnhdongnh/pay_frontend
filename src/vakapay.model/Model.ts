@@ -6,7 +6,7 @@ export class Model {
         var listKeyLower = listKeyData.map(x => x.toLowerCase());
         listKeyModel.forEach((key) => {
             let index = listKeyLower.indexOf(key.toLowerCase());
-            if (index > -1) {
+            if (index > -1 && data[listKeyData[index]]) {
                 model[key] = data[listKeyData[index]];
             }
         });
