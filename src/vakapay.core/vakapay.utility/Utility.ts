@@ -11,4 +11,9 @@ export class Utility {
 
     static isEnter(event: any) { return event.keyCode === 13; }
 
+    // http://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
+    static sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
 }

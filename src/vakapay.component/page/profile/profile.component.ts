@@ -7,6 +7,7 @@ import { Account } from 'model/account/Account';
 import { Root } from 'component/root/root.component';
 import { AccountService } from 'services/account/account.service';
 import { ImageService } from 'services/image/image.service';
+import { Utility } from 'utility/Utility';
 
 @Component({
   selector: 'app-profile',
@@ -17,9 +18,10 @@ export class ProfileComponent extends Root implements OnInit {
   mAccount: Account;
   mAccountSerive: any;
   selectedFile: any;
-  isLoading = false;
+  isImageLoading: boolean;
   isInvalid = false;
   messageError = '';
+  imageReset: any;
 
   //Service
   mImageService: ImageService;
@@ -34,10 +36,17 @@ export class ProfileComponent extends Root implements OnInit {
     super(titleService, route, router);
     this.mAccountSerive = mAccountSerive;
     this.mImageService = mImageService;
+    this.isImageLoading = false;
+  }
+
+  resetImage(){
+    this.mAccount.avatar = this.imageReset;
+    this.selectedFile = null;
   }
 
   ngOnInit() {
     this.mAccount = this.mAccountSerive.mAccount || {};
+    this.imageReset = this.mAccount.avatar;
   }
 
   onChangeImageProfile(event) {
@@ -50,16 +59,16 @@ export class ProfileComponent extends Root implements OnInit {
     reader.readAsDataURL(this.selectedFile);
   }
 
-  validate() { }
+  validateImageUpload() { }
 
   async onUpload() {
     try {
-      debugger;
-      this.isLoading = true;
-      this.validate();
+      this.isImageLoading = true;
+      await Utility.sleep(1000);
+      this.validateImageUpload();
 
       if (this.isInvalid === true) {
-        this.isLoading = false;
+        this.isImageLoading = false;
         return;
       }
 
@@ -67,11 +76,11 @@ export class ProfileComponent extends Root implements OnInit {
       let result = await this.mImageService.upload(this.selectedFile);
 
       //Show message success
-      this.isLoading = false;
+      this.isImageLoading = false;
 
       return;
     } catch (error) {
-      this.isLoading = false;
+      this.isImageLoading = false;
     }
   }
 

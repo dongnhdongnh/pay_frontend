@@ -4,7 +4,7 @@
   "main": "main.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 192.168.1.80 --public-host vakapay.com --disableHostCheck true",
+    "start": "ng serve --host 0.0.0.0 --public-host vakapay.com --disableHostCheck true",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
