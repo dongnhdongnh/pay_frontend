@@ -11,7 +11,7 @@ import { Utility } from 'utility/Utility';
 const token = localStorage.getItem('token');
 var httpOptionsPost = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json',
+    // 'Content-Type': 'application/json',
     'Authorization': `Bearer ${token}`
   }),
   withCredentials: true
@@ -58,6 +58,7 @@ export class HttpService {
       self.http.post(self.url + api, data, httpOptionsPost)
         .subscribe(
           data => {
+            debugger;
             let dataConvert = new ResultObject(data);
             self.handleSuccess(operation, dataConvert);
             resolve(dataConvert);

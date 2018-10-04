@@ -21,6 +21,7 @@ export class ProfileComponent extends Root implements OnInit {
   isImageLoading: boolean;
   isInvalid = false;
   messageError = '';
+  imageReset: any;
 
   //Service
   mImageService: ImageService;
@@ -38,8 +39,14 @@ export class ProfileComponent extends Root implements OnInit {
     this.isImageLoading = false;
   }
 
+  resetImage(){
+    this.mAccount.avatar = this.imageReset;
+    this.selectedFile = null;
+  }
+
   ngOnInit() {
     this.mAccount = this.mAccountSerive.mAccount || {};
+    this.imageReset = this.mAccount.avatar;
   }
 
   onChangeImageProfile(event) {
@@ -52,13 +59,13 @@ export class ProfileComponent extends Root implements OnInit {
     reader.readAsDataURL(this.selectedFile);
   }
 
-  validate() { }
+  validateImageUpload() { }
 
   async onUpload() {
     try {
       this.isImageLoading = true;
       await Utility.sleep(1000);
-      this.validate();
+      this.validateImageUpload();
 
       if (this.isInvalid === true) {
         this.isImageLoading = false;

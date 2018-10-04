@@ -41,12 +41,23 @@ export class LoginComponent implements OnInit {
             if (accessToken && idToken) {
               console.log("AccessToken : " + accessToken);
               console.log("IdToken : " + idToken);
+
+              let isValidToken = this.oauthService.hasValidAccessToken();
+              const token = this.oauthService.getAccessToken();
+              if (isValidToken === false) {
+                this.oauthService.getIdToken();
+                localStorage.clear();
+                return;
+              }
+              localStorage.setItem('token', token);
+              this.router.navigate(['/dashboard']);
+              return;
             }
         }
       });
       let isValidToken = this.oauthService.hasValidAccessToken();
       const token = this.oauthService.getAccessToken();
-      if(isValidToken === false){
+      if (isValidToken === false) {
         this.oauthService.getIdToken();
         localStorage.clear();
         return;

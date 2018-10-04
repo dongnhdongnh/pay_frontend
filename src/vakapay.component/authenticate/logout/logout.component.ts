@@ -17,11 +17,12 @@ export class LogoutComponent implements OnInit {
   ngOnInit() {
     let vakaidUrl = this.configService.urlVakaid;
     var id = this.oauthService.getIdToken();
+    this.oauthService.logOut();
     localStorage.clear();
 
     window.location.href =
       `${vakaidUrl}/connect/endsession?post_logout_redirect_uri=` +
-      encodeURIComponent('http://vakapay/register') + '&id_token_hint='
+      encodeURIComponent('http://vakapay.com/') + '&id_token_hint='
       + encodeURIComponent(id);
   }
 
