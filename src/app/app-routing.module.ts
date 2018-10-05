@@ -14,7 +14,7 @@ import { DashboardComponent } from 'component/dashboard/dashboard.component';
 import { IndexComponent } from 'component/page/index/index.component';
 import { LandingComponent } from 'component/landing/landing.component';
 import { ProfileComponent } from 'component/page/profile/profile.component';
-import { PagenotfoundComponent } from 'component/pagenotfound/pagenotfound.component';
+import { PagenotfoundComponent } from 'component/page/pagenotfound/pagenotfound.component';
 
 //Init routes
 const routes: Routes = [

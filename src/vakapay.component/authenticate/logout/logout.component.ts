@@ -1,5 +1,5 @@
-import { ConfigService } from './../../../vakapay.core/vakapay.network/config/config.service';
-import { Component, OnInit } from '@angular/core';
+import { ConfigService } from 'network/config/config.service';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
@@ -7,12 +7,14 @@ import { OAuthService } from 'angular-oauth2-oidc';
   templateUrl: './logout.component.html',
   styleUrls: ['./logout.component.css']
 })
-export class LogoutComponent implements OnInit {
-  private oauthService: OAuthService;
+export class LogoutComponent implements OnInit, AfterViewInit {
+  oauthService: OAuthService;
   link: string;
+  configService: ConfigService;
 
-  constructor(oauthService: OAuthService, private configService: ConfigService) {
+  constructor(oauthService: OAuthService, configService: ConfigService) {
     this.oauthService = oauthService;
+    this.configService = configService;
 
     let vakaidUrl = this.configService.urlVakaid;
     var id = this.oauthService.getIdToken();
@@ -24,6 +26,12 @@ export class LogoutComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.oauthService.logOut();
+    localStorage.clear();
+
+  }
+
+  ngAfterViewInit() {
     localStorage.clear();
     this.oauthService.logOut();
   }

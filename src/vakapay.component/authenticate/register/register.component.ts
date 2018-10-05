@@ -7,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  configService: ConfigService;
 
   constructor(
-    private configService: ConfigService
+    configService: ConfigService
   ) {
+    this.configService = configService;
     let urlVakaid = this.configService.urlVakaid;
     let returnUrl = this.configService.returnUrl;
     window.location.href = `${urlVakaid}/account/register?returlUrl=${returnUrl}`;

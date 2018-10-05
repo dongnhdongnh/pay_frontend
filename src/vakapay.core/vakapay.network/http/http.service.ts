@@ -30,13 +30,15 @@ var httpOptionsGet = { withCredentials: true };
 export class HttpService {
   private url = '';
   private alertService: AlertService;
+  configService: ConfigService;
 
   constructor(
     private http: HttpClient,
-    private configService: ConfigService,
+    configService: ConfigService,
     private messageService: MessageService,
     alertService: AlertService
   ) {
+    this.configService = configService;
     this.url = this.configService.url;
     this.alertService = alertService;
   }

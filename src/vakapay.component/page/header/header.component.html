@@ -1,9 +1,9 @@
 <div class="header">
   <div class="br-header">
     <div class="br-header-left">
-      <div id="logo-web"><a href="#"><img src="assets/images/logo/logo2.svg" alt=""></a></div>
-      <div class="navicon-left hidden-md-down"><a id="btnLeftMenu" href="#"><i class="icon ion-navicon-round"></i></a></div>
-      <div class="navicon-left hidden-lg-up"><a id="btnLeftMenuMobile" href="#"><i class="icon ion-navicon-round"></i></a></div>
+      <div id="logo-web"><a routerLink=""><img src="assets/images/logo/logo2.svg" alt=""></a></div>
+      <div class="navicon-left hidden-md-down"><a id="btnLeftMenu" routerLink=""><i class="icon ion-navicon-round"></i></a></div>
+      <div class="navicon-left hidden-lg-up"><a id="btnLeftMenuMobile" routerLink=""><i class="icon ion-navicon-round"></i></a></div>
     </div>
     <!-- br-header-left -->
 
@@ -18,7 +18,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-header wd-250" *dropdownMenu>
             <div class="tx-center">
-              <a href="#"><img [src]="mAccount.avatar" class="wd-80 rounded-circle" alt=""></a>
+              <a routerLink="/profile"><img [src]="mAccount.avatar" class="wd-80 rounded-circle" alt=""></a>
               <h6 class="logged-fullname">{{mAccount.fullName}}</h6>
               <p>{{mAccount.email}}</p>
             </div>
@@ -48,37 +48,37 @@
       <div id="menu-web">
         <ul>
           <li class="menu1">
-            <a href="index.html" class="menu-link active">
+            <a routerLink="/dashboard" class="menu-link active">
               <i class="menu-item-icon icon ion-ios-home-outline tx-24"></i>
               <span class="menu-item-label">Dashboard</span>
             </a>
           </li>
           <li class="menu1">
-            <a href="account.html" class="menu-link">
+            <a routerLink="/account" class="menu-link">
               <i class="menu-item-icon icon ion-ios-person-outline tx-24"></i>
               <span class="menu-item-label">Account</span>
             </a>
           </li>
           <li class="menu1">
-            <a href="#" class="menu-link">
+            <a class="menu-link">
               <i class="menu-item-icon icon ion-ios-briefcase-outline tx-24"></i>
               <span class="menu-item-label">Tools </span><i class="fa fa-caret-down pd-l-5"></i>
             </a>
             <ul class="dropdown-content">
-              <li class="menu2"><a href="addresses.html">Addresses</a></li>
-              <li class="menu2"><a href="reports.html">Reports</a></li>
+              <li class="menu2"><a routerLink="/addresses">Addresses</a></li>
+              <li class="menu2"><a routerLink="/reports">Reports</a></li>
             </ul>
           </li>
           <li class="menu1">
-            <a href="#" class="menu-link">
+            <a class="menu-link">
               <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
               <span class="menu-item-label">Setting </span> <i class="fa fa-caret-down pd-l-5"></i>
             </a>
             <ul class="dropdown-content">
-              <li class="menu2"> <a href="profile.html">My Profile</a> </li>
-              <li class="menu2"> <a href="preferences.html">Preferences</a> </li>
-              <li class="menu2"> <a href="security.html">Security</a> </li>
-              <li class="menu2"> <a href="api.html">API Access</a> </li>
+              <li class="menu2"> <a routerLink="/profile">My Profile</a> </li>
+              <li class="menu2"> <a routerLink="/preferences">Preferences</a> </li>
+              <li class="menu2"> <a routerLink="/security">Security</a> </li>
+              <li class="menu2"> <a routerLink="/api">API Access</a> </li>
             </ul>
           </li>
         </ul>
