@@ -45,6 +45,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { LandingComponent } from 'component/landing/landing.component';
 import { LogoutComponent } from 'component/authenticate/logout/logout.component';
 import { PagenotfoundComponent } from 'component/page/pagenotfound/pagenotfound.component';
+import { MessageErrorInputComponent } from 'component/system/message-error-input/message-error-input.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { PagenotfoundComponent } from 'component/page/pagenotfound/pagenotfound.
     LogoutComponent,
     ProfileComponent,
     PagenotfoundComponent,
+    MessageErrorInputComponent,
   ],
   imports: [
     BrowserModule,

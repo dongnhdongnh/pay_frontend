@@ -1,5 +1,5 @@
 import { ConfigService } from 'network/config/config.service';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
@@ -7,7 +7,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
   templateUrl: './logout.component.html',
   styleUrls: ['./logout.component.css']
 })
-export class LogoutComponent implements OnInit, AfterViewInit {
+export class LogoutComponent implements OnInit {
   oauthService: OAuthService;
   link: string;
   configService: ConfigService;
@@ -28,12 +28,7 @@ export class LogoutComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.oauthService.logOut();
     localStorage.clear();
+    console.log("aaa", this.oauthService.getIdToken());
 
   }
-
-  ngAfterViewInit() {
-    localStorage.clear();
-    this.oauthService.logOut();
-  }
-
 }
