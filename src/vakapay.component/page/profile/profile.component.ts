@@ -9,6 +9,8 @@ import { AccountService } from 'services/account/account.service';
 import { ImageService } from 'services/image/image.service';
 import { Utility } from 'utility/Utility';
 
+const MAX_FILE_SIZE = 2; //MB
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -57,30 +59,30 @@ export class ProfileComponent extends Root implements OnInit {
   }
 
   onChangeImageProfile(event) {
-    this.validateImageUpload();
-    this.selectedFile = event.target.files[0];
-    if (this.selectedFile == null) return;
-    let reader = new FileReader();
-    reader.onload = (e: any) => {
-      this.mAccount.avatar = e.target.result;
-    }
-    reader.readAsDataURL(this.selectedFile);
-  }
-
-  validateImageUpload() {
     try {
-      if (this.selectedFile == null) throw new Error('File is not choose.');
+      const file = event.target.files[0];
 
-      const fileSize = this.selectedFile.size / 1024 / 1024; // in MB
-      const MAX_FILE_SIZE = 2; //MB
-      if (fileSize > MAX_FILE_SIZE) throw new Error(`File size exceeds ${MAX_FILE_SIZE} MB`);
+      if (file) this.selectedFile = file;
+
+      this.validateImageUpload();
+      
+      let reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.mAccount.avatar = e.target.result;
+      }
+      reader.readAsDataURL(this.selectedFile);
 
       this.isInvalidFile = false;
-
     } catch (error) {
       this.messageErrorFile = error.message;
       this.isInvalidFile = true;
     }
+  }
+
+  validateImageUpload() {
+    if (this.selectedFile == null) throw new Error('File is not choose.');
+    const FILESIZE = this.selectedFile.size / 1024 / 1024; // in MB
+    if (FILESIZE > MAX_FILE_SIZE) throw new Error(`File size exceeds ${MAX_FILE_SIZE} MB`);
   }
 
   async onUpload() {

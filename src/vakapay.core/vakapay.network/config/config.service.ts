@@ -13,7 +13,7 @@ export class ConfigService {
     constructor() {
         IpService.getIpLAN();
         const origin = window.location.origin;
-        if (origin === 'https://vakapay.com') {
+        if (origin !== 'https://vakapay.vakaxalab.com') {
             this.development = 'localhost';
             this.urlVakaid = 'https://192.168.1.157:5000';
             this.url = 'https://192.168.1.157:5001';
