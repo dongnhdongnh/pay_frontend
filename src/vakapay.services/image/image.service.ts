@@ -14,14 +14,14 @@ export class ImageService {
 
     /** POST: image for user to the server */
     upload(file: any): Promise<ResultObject> {
-        
+
         const uploadData = new FormData();
         uploadData.append('avatar', file, file.name);
 
         let operation = 'image';
         let api = this.imageUrl;
         let data = uploadData;
-        return this.httpService.post(operation, api, data);
+        return this.httpService.postFormData(operation, api, data);
     }
 
 }

@@ -9,6 +9,8 @@ import { AccountService } from 'services/account/account.service';
 import { ImageService } from 'services/image/image.service';
 import { Utility } from 'utility/Utility';
 
+const MAX_FILE_SIZE = 2; //MB
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -19,9 +21,12 @@ export class ProfileComponent extends Root implements OnInit {
   mAccountSerive: any;
   selectedFile: any;
   isImageLoading: boolean;
-  isInvalid = false;
-  messageError = '';
+  isInvalidFile = false;
   imageReset: any;
+
+  //message
+  messageError = '';
+  messageErrorFile = '';
 
   //Service
   mImageService: ImageService;
@@ -39,7 +44,7 @@ export class ProfileComponent extends Root implements OnInit {
     this.isImageLoading = false;
   }
 
-  resetImage(){
+  resetImage() {
     this.mAccount.avatar = this.imageReset;
     this.selectedFile = null;
   }
@@ -49,17 +54,36 @@ export class ProfileComponent extends Root implements OnInit {
     this.imageReset = this.mAccount.avatar;
   }
 
-  onChangeImageProfile(event) {
-    this.selectedFile = event.target.files[0];
-    if (this.selectedFile == null) return;
-    let reader = new FileReader();
-    reader.onload = (e: any) => {
-      this.mAccount.avatar = e.target.result;
-    }
-    reader.readAsDataURL(this.selectedFile);
+  onStreetAddress1(event) {
+
   }
 
-  validateImageUpload() { }
+  onChangeImageProfile(event) {
+    try {
+      const file = event.target.files[0];
+
+      if (file) this.selectedFile = file;
+
+      this.validateImageUpload();
+      
+      let reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.mAccount.avatar = e.target.result;
+      }
+      reader.readAsDataURL(this.selectedFile);
+
+      this.isInvalidFile = false;
+    } catch (error) {
+      this.messageErrorFile = error.message;
+      this.isInvalidFile = true;
+    }
+  }
+
+  validateImageUpload() {
+    if (this.selectedFile == null) throw new Error('File is not choose.');
+    const FILESIZE = this.selectedFile.size / 1024 / 1024; // in MB
+    if (FILESIZE > MAX_FILE_SIZE) throw new Error(`File size exceeds ${MAX_FILE_SIZE} MB`);
+  }
 
   async onUpload() {
     try {
@@ -67,7 +91,7 @@ export class ProfileComponent extends Root implements OnInit {
       await Utility.sleep(1000);
       this.validateImageUpload();
 
-      if (this.isInvalid === true) {
+      if (this.isInvalidFile === true) {
         this.isImageLoading = false;
         return;
       }
@@ -77,6 +101,15 @@ export class ProfileComponent extends Root implements OnInit {
 
       //Show message success
       this.isImageLoading = false;
+
+      if (Utility.isError(result)) {
+        //Reset image if upload error
+        this.resetImage();
+        return;
+      }
+
+      //Change src of avatar with new link
+      this.mAccount.avatar = result.data;
 
       return;
     } catch (error) {

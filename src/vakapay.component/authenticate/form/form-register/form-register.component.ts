@@ -30,19 +30,19 @@ export class FormRegisterComponent extends Root implements OnInit {
   private passwordConfirm: string;
 
   //message error
-  private messageError = '';
-  private messageErrorFirstName = '';
-  private messageErrorLastName = '';
-  private messageErrorEmail = '';
-  private messageErrorPassword = '';
-  private messageErrorPasswordConfirm = '';
-  private messageErrorPasswordMatch = '';
+  messageError = '';
+  messageErrorFirstName = '';
+  messageErrorLastName = '';
+  messageErrorEmail = '';
+  messageErrorPassword = '';
+  messageErrorPasswordConfirm = '';
+  messageErrorPasswordMatch = '';
 
   //validate
-  private isInvalid = true;
+  isInvalid = true;
 
   //Loading
-  private isLoading = false;
+  isLoading = false;
 
   //Service
   private registerService: RegisterService;

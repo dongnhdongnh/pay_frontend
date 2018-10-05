@@ -8,6 +8,19 @@ export class ResultObject {
             this.message = '';
             this.data = null;
 
+            if (result == null) return;
+
+            //parse data if data is JSON string
+            if (result !== null && typeof result === 'string') {
+                try {
+                    result = JSON.parse(result);
+                } catch (error) {
+                    return;
+                }
+            }
+
+
+
             if (result == null) {
                 throw new Error(`Data result is NULL.`);
             }
@@ -20,15 +33,6 @@ export class ResultObject {
 
             result.data && (this.data = result.data);
             result.Data && (this.data = result.Data);
-
-            //parse data if data is JSON string
-            if (this.data !== null && typeof this.data === 'string') {
-                try {
-                    this.data = JSON.parse(this.data);
-                } catch (error) {
-                    return;
-                }
-            }
 
             return this;
         } catch (error) {

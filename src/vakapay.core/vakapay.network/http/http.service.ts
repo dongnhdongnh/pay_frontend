@@ -11,7 +11,14 @@ import { Utility } from 'utility/Utility';
 const token = localStorage.getItem('token');
 var httpOptionsPost = {
   headers: new HttpHeaders({
-    // 'Content-Type': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  }),
+  withCredentials: true
+};
+
+var httpOptionsPostFormData = {
+  headers: new HttpHeaders({
     'Authorization': `Bearer ${token}`
   }),
   withCredentials: true
@@ -23,13 +30,15 @@ var httpOptionsGet = { withCredentials: true };
 export class HttpService {
   private url = '';
   private alertService: AlertService;
+  configService: ConfigService;
 
   constructor(
     private http: HttpClient,
-    private configService: ConfigService,
+    configService: ConfigService,
     private messageService: MessageService,
     alertService: AlertService
   ) {
+    this.configService = configService;
     this.url = this.configService.url;
     this.alertService = alertService;
   }
@@ -52,13 +61,12 @@ export class HttpService {
   };
 
   //Post api
-  post(operation = 'operation', api, data): Promise<ResultObject> {
+  actionPost(operation = 'operation', api, data, httpOptions): Promise<ResultObject> {
     var self = this;
     return new Promise<ResultObject>((resolve, reject) => {
-      self.http.post(self.url + api, data, httpOptionsPost)
+      self.http.post(self.url + api, data, httpOptions)
         .subscribe(
           data => {
-            debugger;
             let dataConvert = new ResultObject(data);
             self.handleSuccess(operation, dataConvert);
             resolve(dataConvert);
@@ -69,6 +77,16 @@ export class HttpService {
           }
         );
     });
+  };
+
+  //Post api
+  post(operation, api, data): Promise<ResultObject> {
+    return this.actionPost(operation, api, data, httpOptionsPost);
+  };
+
+  //Post api
+  postFormData(operation, api, data): Promise<ResultObject> {
+    return this.actionPost(operation, api, data, httpOptionsPostFormData);
   };
 
   private log(message: string) {

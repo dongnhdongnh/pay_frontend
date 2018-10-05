@@ -1,4 +1,4 @@
-import { ConfigService } from './../../../vakapay.core/vakapay.network/config/config.service';
+import { ConfigService } from 'network/config/config.service';
 import { Component, OnInit } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 
@@ -8,22 +8,27 @@ import { OAuthService } from 'angular-oauth2-oidc';
   styleUrls: ['./logout.component.css']
 })
 export class LogoutComponent implements OnInit {
-  private oauthService: OAuthService;
+  oauthService: OAuthService;
+  link: string;
+  configService: ConfigService;
 
-  constructor(oauthService: OAuthService, private configService: ConfigService) {
+  constructor(oauthService: OAuthService, configService: ConfigService) {
     this.oauthService = oauthService;
-  }
+    this.configService = configService;
 
-  ngOnInit() {
-    let vakaidUrl = this.configService.urlVakaid;
+    let vakaidUrl = this.configService.issuer;
     var id = this.oauthService.getIdToken();
-    this.oauthService.logOut();
-    localStorage.clear();
 
-    window.location.href =
+    this.link =
       `${vakaidUrl}/connect/endsession?post_logout_redirect_uri=` +
-      encodeURIComponent('http://vakapay.com/') + '&id_token_hint='
+      encodeURIComponent(this.configService.returnUrl) + '&id_token_hint='
       + encodeURIComponent(id);
   }
 
+  ngOnInit() {
+    this.oauthService.logOut();
+    localStorage.clear();
+    console.log("aaa", this.oauthService.getIdToken());
+
+  }
 }

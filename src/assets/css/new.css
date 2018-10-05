@@ -79,7 +79,12 @@ button[disabled] {
 .bg-btc {
   background: rgb(255, 177, 25);
 }
-
+.tx-invite {
+  color: #fff !important;
+  width: 100%;
+  margin-top: 10px;
+  text-align: center;
+}
 .dont {
   font-size: 16px;
   font-weight: bold;
@@ -1696,7 +1701,9 @@ ol {
   max-width: 100%;
   margin: 0 auto;
 }
-
+.form-layout-4 h6 {
+  margin-bottom: 0;
+}
 @media only screen and (max-width: 1200px) {
   .br-mainpanel {
     max-width: 100%;
