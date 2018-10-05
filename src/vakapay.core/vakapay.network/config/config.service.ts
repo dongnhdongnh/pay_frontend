@@ -8,7 +8,7 @@ const origin = window.location.origin;
 export class ConfigService {
 
     development: string;
-    url: string;
+    urlApi: string;
     issuer: string;
     redirectUri: string;
     silentRefreshRedirectUri: string;
@@ -18,13 +18,13 @@ export class ConfigService {
     constructor() {
         IpService.getIpLAN();
         this.issuer = 'https://vakaid.vakaxalab.com';
-        this.url = 'https://api.vakaid.vakaxalab.com';
+        this.urlApi = 'https://api.vakaid.vakaxalab.com';
         this.redirectUri = `${origin}/login`;
         this.silentRefreshRedirectUri = `${origin}/silent-refresh.html`;
         this.postLogoutRedirectUri = `${origin}/`;
 
         //localhost
-        if (origin === 'https://localhost.com') {
+        if (origin === 'https://localhost:4040') {
             this.development = 'localhost';
             this.clientId = 'local';
             return;
