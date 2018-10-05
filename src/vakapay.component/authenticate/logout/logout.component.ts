@@ -16,7 +16,7 @@ export class LogoutComponent implements OnInit {
     this.oauthService = oauthService;
     this.configService = configService;
 
-    let vakaidUrl = this.configService.urlVakaid;
+    let vakaidUrl = this.configService.issuer;
     var id = this.oauthService.getIdToken();
 
     this.link =

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IpService } from 'services/system/ip.service';
+const origin = window.location.origin;
 
 @Injectable({
     providedIn: 'root'
@@ -8,35 +9,38 @@ export class ConfigService {
 
     development: string;
     url: string;
-    urlVakaid: string;
+    issuer: string;
+    redirectUri: string;
+    silentRefreshRedirectUri: string;
+    postLogoutRedirectUri: string;
+    clientId: string;
 
     constructor() {
         IpService.getIpLAN();
-        const origin = window.location.origin;
-        if (origin !== 'https://vakapay.vakaxalab.com') {
+        this.issuer = 'https://vakaid.vakaxalab.com';
+        this.url = 'https://api.vakaid.vakaxalab.com';
+        this.redirectUri = `${origin}/login`;
+        this.silentRefreshRedirectUri = `${origin}/silent-refresh.html`;
+        this.postLogoutRedirectUri = `${origin}/`;
+
+        //localhost
+        if (origin === 'https://localhost.com') {
             this.development = 'localhost';
-            this.urlVakaid = 'https://192.168.1.157:5000';
-            this.url = 'https://192.168.1.157:5001';
+            this.clientId = 'local';
             return;
         }
-
-        this.urlVakaid = 'https://vakaid.vakaxalab.com';
-        this.url = 'https://api.vakaid.vakaxalab.com';
-
-        // if (this.development === 'node') {
-        //     this.url = 'http://localhost:4040';
-        //     return;
-        // }
-
+      
+        //server
+        this.clientId = 'implicit';
     }
 
-    get returnUrl(){
-        if (this.development === 'localhost'){
-            const ip = `https://${localStorage.getItem('ipLAN')}:4040`;
+    get returnUrl() {
+        if (this.development === 'localhost') {
+            const ip = `https://${localStorage.getItem('ipLAN')}:4040/`;
             console.log(`Address web local is ${ip}`)
             return ip;
         }
 
-        return 'https://vakapay.vakaxalab.com';
+        return `${origin}/`;
     }
 }

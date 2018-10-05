@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
     configService: ConfigService
   ) {
     this.configService = configService;
-    let urlVakaid = this.configService.urlVakaid;
+    let urlVakaid = this.configService.issuer;
     let returnUrl = this.configService.returnUrl;
     window.location.href = `${urlVakaid}/account/register?returlUrl=${returnUrl}`;
   }
