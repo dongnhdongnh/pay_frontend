@@ -17942,7 +17942,8 @@ textarea.parsley-success:focus {
 
 .br-header-right a:hover,
 .br-header-right a:focus {
-  color: #56d097;
+  color: #10a04a;
+  font-weight: bold;
 }
 
 @media (max-width: 479px) {
