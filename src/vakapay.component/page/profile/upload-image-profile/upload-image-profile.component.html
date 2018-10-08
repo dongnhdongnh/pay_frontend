@@ -7,7 +7,7 @@
       <span>Choose a file...</span>
     </label>
     <message-error-input [message]='messageErrorFile'></message-error-input>
-    <message-error-input [message]='selectedFile ? selectedFile.name: "" '></message-error-input>
+    <span class="file-name-selected">{{selectedFile ? selectedFile.name: ""}}</span>
   </div>
 </div>
 <!-- row -->
