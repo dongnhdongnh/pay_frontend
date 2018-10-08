@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 //Add libriary
 import { ToasterModule } from 'angular2-toaster';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatMenuModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTabsModule } from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
@@ -40,6 +40,9 @@ import { FooterComponent } from 'component/page/footer/footer.component';
 import { PortfolioComponent } from 'component/page/portfolio/portfolio.component';
 import { ProfileComponent } from 'component/page/profile/profile.component';
 
+//Chartjs
+import { ChartsModule } from 'ng2-charts';
+
 //VakaId Login
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { LandingComponent } from 'component/landing/landing.component';
@@ -65,7 +68,7 @@ import { PagenotfoundComponent } from 'component/pagenotfound/pagenotfound.compo
     LandingComponent,
     LogoutComponent,
     ProfileComponent,
-    PagenotfoundComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
@@ -73,10 +76,13 @@ import { PagenotfoundComponent } from 'component/pagenotfound/pagenotfound.compo
     AppRoutingModule,
     BrowserAnimationsModule,
     ToasterModule.forRoot(),
-    MatButtonModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,
+    MatButtonModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule, MatTabsModule,
 
     //Font
     AngularFontAwesomeModule,
+
+    //Chartjs
+    ChartsModule,
 
     //Redirect VakaId
     OAuthModule.forRoot(),
