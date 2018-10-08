@@ -11,16 +11,6 @@
 @import '/assets/css/bracket.css';
 @import '/assets/css/new.css';
 
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
-}
-
 .container .mat-button-wrapper {
   font-size: 13px !important;
 }

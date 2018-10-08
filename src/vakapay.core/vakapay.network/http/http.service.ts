@@ -47,25 +47,26 @@ export class HttpService {
   //Get api
   get(operation = 'operation', api, alert = true): Promise<ResultObject> {
     var self = this;
-    return new Promise<ResultObject>((resolve, reject) => self.http.get(self.url + api, httpOptionsGet)
-      .subscribe(
-        data => {
-          let dataConvert = new ResultObject(data);
-          self.handleSuccess(operation, dataConvert, alert);
-          resolve(dataConvert);
-        },
-        error => {
-          self.handleError(operation, error, alert);
-          reject(error);
-        }
-      ));
+    return new Promise<ResultObject>(
+      (resolve, reject) => self.http.get(new URL(api, self.url).href, httpOptionsGet)
+        .subscribe(
+          data => {
+            let dataConvert = new ResultObject(data);
+            self.handleSuccess(operation, dataConvert, alert);
+            resolve(dataConvert);
+          },
+          error => {
+            self.handleError(operation, error, alert);
+            reject(error);
+          }
+        ));
   };
 
   //Post api
   actionPost(operation = 'operation', api, data, httpOptions, alert = true): Promise<ResultObject> {
     var self = this;
     return new Promise<ResultObject>((resolve, reject) => {
-      self.http.post(self.url + api, data, httpOptions)
+      self.http.post(new URL(api, self.url).href, data, httpOptions)
         .subscribe(
           data => {
             let dataConvert = new ResultObject(data);
@@ -103,7 +104,7 @@ export class HttpService {
     console.log(error); // log to console instead
     // TODO: 
     this.log(`${operation} failed: ${error.message}`);
-    alert && this.alertService.showToastError(JSON.stringify(error));
+    alert && this.alertService.showToastError(error.statusText);
   }
 
   /**

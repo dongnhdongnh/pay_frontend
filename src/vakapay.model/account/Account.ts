@@ -15,6 +15,9 @@ export class Account extends Model {
     postalCode: string;
     streetAddress1: string;
     streetAddress2: string;
+    currencyKey: string;
+    timezoneKey: string;
+    notifications: string[];
 
     constructor() {
         super();
@@ -32,6 +35,9 @@ export class Account extends Model {
         this.postalCode = '';
         this.streetAddress1 = '';
         this.streetAddress2 = '';
+        this.currencyKey = null;
+        this.timezoneKey = null;
+        this.notifications = [];
     }
 
     get fullName() {

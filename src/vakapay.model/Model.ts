@@ -7,7 +7,13 @@ export class Model {
         listKeyModel.forEach((key) => {
             let index = listKeyLower.indexOf(key.toLowerCase());
             if (index > -1 && data[listKeyData[index]]) {
-                model[key] = data[listKeyData[index]];
+                let value = data[listKeyData[index]];
+                if (key === 'notifications') {
+                    model[key] = String(value).split(',').map(x => x.trim());
+                    return;
+                }
+
+                model[key] = value;
             }
         });
     }

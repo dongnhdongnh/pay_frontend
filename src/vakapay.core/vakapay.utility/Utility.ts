@@ -5,6 +5,11 @@ class utility {
     static sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
+
+    static removeElement(array, index) {
+        array.splice(index, index + 1);
+        return array;
+    }
 }
 
 export class Utility extends utility {

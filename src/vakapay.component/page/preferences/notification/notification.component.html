@@ -1,0 +1,29 @@
+<h6 class="br-section-label">Notifications</h6>
+<hr>
+<div class="row mg-x-0">
+  <label class="col-sm-4 form-control-label"> Email me when:</label>
+  <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+    <label class="ckbox">
+      <input [checked]="mAccount.notifications.includes('1')" (change)="onChange1()" type="checkbox">
+      <span>I send or receive digital currency </span>
+    </label>
+    <label class="ckbox">
+      <input [checked]="mAccount.notifications.includes('2')" (change)="onChange2()" type="checkbox">
+      <span>I receive merchant orders </span>
+    </label>
+    <label class="ckbox">
+      <input [checked]="mAccount.notifications.includes('3')" (change)="onChange3()" type="checkbox">
+      <span>There are recommended actions for my account </span>
+    </label>
+  </div>
+</div><!-- row -->
+<div class="row mg-t-20 mg-x-0">
+  <div class="col-sm-8 mg-l-auto">
+    <div class="form-layout-footer">
+      <button (click)="onUpdate()" [disabled]="!isChange||isLoading||!isValid" class="btn bg-green" type="button">
+        Save
+        <i [hidden]="!isLoading" class="fa fa-spinner fa-spin" style="font-size:15px"></i>
+      </button>
+    </div><!-- form-layout-footer -->
+  </div><!-- col-8 -->
+</div>
