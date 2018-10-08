@@ -54,6 +54,9 @@ import { ProfileComponent } from 'component/page/profile/profile.component';
 import { PreferencesComponent } from 'component/page/preferences/preferences.component';
 import { NotificationComponent } from 'component/page/preferences/notification/notification.component';
 import { PreferenceComponent } from 'component/page/preferences/preference/preference.component';
+import { SecurityComponent } from 'component/page/security/security.component';
+import { ChangePasswordComponent } from 'component/page/security/change-password/change-password.component';
+import { TwoFactorAuthenticationComponent } from 'component/page/security/two-factor-authentication/two-factor-authentication.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +84,9 @@ import { PreferenceComponent } from 'component/page/preferences/preference/prefe
     PreferencesComponent,
     NotificationComponent,
     PreferenceComponent,
+    SecurityComponent,
+    ChangePasswordComponent,
+    TwoFactorAuthenticationComponent,
   ],
   imports: [
     BrowserModule,
