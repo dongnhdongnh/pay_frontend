@@ -1,0 +1,22 @@
+<div class="row mg-t-20 mg-x-0">
+  <label class="col-sm-4 form-control-label"> Upload Avatar: <span>Max file size is 20Mb.</span></label>
+  <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+    <input type="file" id="file-2" class="inputfile" (change)="onChangeImage($event)">
+    <label for="file-2" class="if-outline if-outline-green">
+      <i class="icon ion-ios-upload-outline tx-24"></i>
+      <span>Choose a file...</span>
+    </label>
+    <message-error-input [message]='messageErrorFile'></message-error-input>
+  </div>
+</div>
+<!-- row -->
+<div class="row mg-t-20 mg-x-0">
+  <div class="col-sm-8 mg-l-auto">
+    <div class="form-layout-footer">
+      <button (click)="onUpload()" [disabled]="!selectedFile||isInvalid||isLoading" class="btn bg-green mg-t-5" type="button">
+        Save <i [hidden]="!isLoading" class="fa fa-spinner fa-spin" style="font-size:15px"></i>
+      </button>
+      <button (click)="onReset()" [disabled]="!selectedFile||isLoading" class="btn btn-secondary mg-t-5" type="reset">Reset</button>
+    </div><!-- form-layout-footer -->
+  </div><!-- col-8 -->
+</div>

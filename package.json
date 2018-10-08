@@ -4,7 +4,7 @@
   "main": "main.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0 --port 4040 --public-host vakapay.com --disableHostCheck true",
+    "start": "ng serve --port 4040 --ssl",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -26,6 +26,7 @@
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
     "@auth0/angular-jwt": "^2.0.0",
+    "@ng-select/ng-select": "^2.10.1",
     "angular-font-awesome": "^3.1.2",
     "angular-in-memory-web-api": "^0.6.1",
     "angular-oauth2-oidc": "^4.0.3",

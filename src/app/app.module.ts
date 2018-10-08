@@ -11,6 +11,9 @@ import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTabsModule } from
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
+//ng-select
+import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
+
 // RECOMMENDED (doesn't work with system.js)
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
@@ -38,7 +41,6 @@ import { HeaderComponent } from 'component/page/header/header.component';
 import { LeftPanelComponent } from 'component/page/left-panel/left-panel.component';
 import { FooterComponent } from 'component/page/footer/footer.component';
 import { PortfolioComponent } from 'component/page/portfolio/portfolio.component';
-import { ProfileComponent } from 'component/page/profile/profile.component';
 
 //Chartjs
 import { ChartsModule } from 'ng2-charts';
@@ -47,7 +49,12 @@ import { ChartsModule } from 'ng2-charts';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { LandingComponent } from 'component/landing/landing.component';
 import { LogoutComponent } from 'component/authenticate/logout/logout.component';
-import { PagenotfoundComponent } from 'component/pagenotfound/pagenotfound.component';
+import { PagenotfoundComponent } from 'component/page/pagenotfound/pagenotfound.component';
+import { MessageErrorInputComponent } from 'component/system/message-error-input/message-error-input.component';
+import { UploadImageProfileComponent } from 'component/page/profile/upload-image-profile/upload-image-profile.component';
+import { UpdateProfileComponent } from 'component/page/profile/update-profile/update-profile.component';
+import { ProfileComponent } from 'component/page/profile/profile.component';
+import { PreferencesComponent } from 'component/page/preferences/preferences.component';
 
 @NgModule({
   declarations: [
@@ -68,11 +75,16 @@ import { PagenotfoundComponent } from 'component/pagenotfound/pagenotfound.compo
     LandingComponent,
     LogoutComponent,
     ProfileComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    MessageErrorInputComponent,
+    UploadImageProfileComponent,
+    UpdateProfileComponent,
+    PreferencesComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    NgSelectModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ToasterModule.forRoot(),
@@ -95,7 +107,14 @@ import { PagenotfoundComponent } from 'component/pagenotfound/pagenotfound.compo
     //   InMemoryDataService, { dataEncapsulation: false }
     // ),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: NG_SELECT_DEFAULT_CONFIG,
+      useValue: {
+        notFoundText: 'Custom not found'
+      }
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
