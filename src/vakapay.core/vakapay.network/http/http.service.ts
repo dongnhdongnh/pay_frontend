@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from 'network/message/message.service';
-
-import { ToasterService } from 'angular2-toaster';
-
 import { ResultObject } from 'model/result/ResultObject';
 import { ConfigService } from 'network/config/config.service';
 import { AlertService } from 'services/system/alert.service';
@@ -39,40 +36,40 @@ export class HttpService {
     alertService: AlertService
   ) {
     this.configService = configService;
-    this.url = this.configService.url;
+    this.url = this.configService.urlApi;
     this.alertService = alertService;
   }
 
   //Get api
-  get(operation = 'operation', api): Promise<ResultObject> {
+  get(operation = 'operation', api, alert = true): Promise<ResultObject> {
     var self = this;
     return new Promise<ResultObject>((resolve, reject) => self.http.get(self.url + api, httpOptionsGet)
       .subscribe(
         data => {
           let dataConvert = new ResultObject(data);
-          self.handleSuccess(operation, dataConvert);
+          self.handleSuccess(operation, dataConvert, alert);
           resolve(dataConvert);
         },
         error => {
-          self.handleError(operation, error);
+          self.handleError(operation, error, alert);
           reject(error);
         }
       ));
   };
 
   //Post api
-  actionPost(operation = 'operation', api, data, httpOptions): Promise<ResultObject> {
+  actionPost(operation = 'operation', api, data, httpOptions, alert = true): Promise<ResultObject> {
     var self = this;
     return new Promise<ResultObject>((resolve, reject) => {
       self.http.post(self.url + api, data, httpOptions)
         .subscribe(
           data => {
             let dataConvert = new ResultObject(data);
-            self.handleSuccess(operation, dataConvert);
+            self.handleSuccess(operation, dataConvert, alert);
             resolve(dataConvert);
           },
           error => {
-            self.handleError(operation, error);
+            self.handleError(operation, error, alert);
             reject(error);
           }
         );
@@ -80,13 +77,13 @@ export class HttpService {
   };
 
   //Post api
-  post(operation, api, data): Promise<ResultObject> {
-    return this.actionPost(operation, api, data, httpOptionsPost);
+  post(operation, api, data, alert = true): Promise<ResultObject> {
+    return this.actionPost(operation, api, data, httpOptionsPost, alert);
   };
 
   //Post api
-  postFormData(operation, api, data): Promise<ResultObject> {
-    return this.actionPost(operation, api, data, httpOptionsPostFormData);
+  postFormData(operation, api, data, alert = true): Promise<ResultObject> {
+    return this.actionPost(operation, api, data, httpOptionsPostFormData, alert);
   };
 
   private log(message: string) {
@@ -98,11 +95,11 @@ export class HttpService {
    * @param operation - name of the operation that failed
    * @param error 
    */
-  private handleError(operation = 'operation', error) {
+  private handleError(operation = 'operation', error, alert: boolean) {
     console.log(error); // log to console instead
     // TODO: 
     this.log(`${operation} failed: ${error.message}`);
-    this.alertService.showToastError(JSON.stringify(error));
+    alert && this.alertService.showToastError(JSON.stringify(error));
   }
 
   /**
@@ -110,16 +107,16 @@ export class HttpService {
  * @param operation - name of the operation that success
  * @param result 
  */
-  private handleSuccess(operation = 'operation', data: ResultObject) {
+  private handleSuccess(operation = 'operation', data: ResultObject, alert: boolean) {
     // 
     console.log(data); // log to console instead
     // TODO: 
     this.log(`${operation} success: ${data.message}`);
     //Check result
-    if (Utility.isError(data)) {
+    if (alert && Utility.isError(data)) {
       this.alertService.showToastError(data.message);
       return;
     }
-    this.alertService.showToastSuccess(data.message);
+    alert && this.alertService.showToastSuccess(data.message);
   }
 }

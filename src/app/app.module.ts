@@ -46,6 +46,8 @@ import { LandingComponent } from 'component/landing/landing.component';
 import { LogoutComponent } from 'component/authenticate/logout/logout.component';
 import { PagenotfoundComponent } from 'component/page/pagenotfound/pagenotfound.component';
 import { MessageErrorInputComponent } from 'component/system/message-error-input/message-error-input.component';
+import { UploadImageProfileComponent } from 'component/page/profile/upload-image-profile/upload-image-profile.component';
+import { UpdateProfileComponent } from 'component/page/profile/update-profile/update-profile.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +70,8 @@ import { MessageErrorInputComponent } from 'component/system/message-error-input
     ProfileComponent,
     PagenotfoundComponent,
     MessageErrorInputComponent,
+    UploadImageProfileComponent,
+    UpdateProfileComponent,
   ],
   imports: [
     BrowserModule,
