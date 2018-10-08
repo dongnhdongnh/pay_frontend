@@ -13,6 +13,7 @@ import { Account } from 'model/account/Account';
 })
 export class ProfileComponent extends Root implements OnInit {
   mAccount: Account;
+  isLoading = false;
 
   constructor(
     titleService: Title,
@@ -25,9 +26,5 @@ export class ProfileComponent extends Root implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-  onStreetAddress1(event) {
-
   }
 }

@@ -48,19 +48,19 @@
       <div id="menu-web">
         <ul>
           <li class="menu1">
-            <a routerLink="/dashboard" class="menu-link active">
+            <a routerLink="/dashboard" routerLinkActive="active" class="menu-link">
               <i class="menu-item-icon icon ion-ios-home-outline tx-24"></i>
               <span class="menu-item-label">Dashboard</span>
             </a>
           </li>
           <li class="menu1">
-            <a routerLink="/account" class="menu-link">
+            <a routerLink="/account" routerLinkActive="active" class="menu-link">
               <i class="menu-item-icon icon ion-ios-person-outline tx-24"></i>
               <span class="menu-item-label">Account</span>
             </a>
           </li>
           <li class="menu1">
-            <a class="menu-link">
+            <a class="menu-link" routerLinkActive="active">
               <i class="menu-item-icon icon ion-ios-briefcase-outline tx-24"></i>
               <span class="menu-item-label">Tools </span><i class="fa fa-caret-down pd-l-5"></i>
             </a>
@@ -70,16 +70,16 @@
             </ul>
           </li>
           <li class="menu1">
-            <a class="menu-link">
+            <a class="menu-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
               <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
               <span class="menu-item-label">Setting </span> <i class="fa fa-caret-down pd-l-5"></i>
+              <ul class="dropdown-content">
+                <li class="menu2"> <a routerLink="/profile" routerLinkActive="active">My Profile</a> </li>
+                <li class="menu2"> <a routerLink="/preferences" routerLinkActive="active">Preferences</a> </li>
+                <li class="menu2"> <a routerLink="/security" routerLinkActive="active">Security</a> </li>
+                <li class="menu2"> <a routerLink="/api" routerLinkActive="active">API Access</a> </li>
+              </ul>
             </a>
-            <ul class="dropdown-content">
-              <li class="menu2"> <a routerLink="/profile">My Profile</a> </li>
-              <li class="menu2"> <a routerLink="/preferences">Preferences</a> </li>
-              <li class="menu2"> <a routerLink="/security">Security</a> </li>
-              <li class="menu2"> <a routerLink="/api">API Access</a> </li>
-            </ul>
           </li>
         </ul>
       </div>

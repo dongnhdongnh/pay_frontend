@@ -5,23 +5,27 @@ import { ResultObject } from 'model/result/ResultObject';
 import { ConfigService } from 'network/config/config.service';
 import { AlertService } from 'services/system/alert.service';
 import { Utility } from 'utility/Utility';
-const token = localStorage.getItem('token');
 var httpOptionsPost = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token}`
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
   }),
   withCredentials: true
 };
 
 var httpOptionsPostFormData = {
   headers: new HttpHeaders({
-    'Authorization': `Bearer ${token}`
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
   }),
   withCredentials: true
 };
 
-var httpOptionsGet = { withCredentials: true };
+var httpOptionsGet = {
+  headers: new HttpHeaders({
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+  }),
+  withCredentials: true
+};
 
 @Injectable({ providedIn: 'root' })
 export class HttpService {

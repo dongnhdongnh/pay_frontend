@@ -43,20 +43,43 @@ class Validate {
         var expire = PASSWORD_RESET_TOKEN_EXPIRE;
         return time + expire >= new Date().getTime() / 1000;
     }
-}
-
-export class UtilityValidate extends Validate {
-
-    static validateFilter(filter) {
-        if (this.isValidFilter(filter) === false)
-            throw new Error('Filter is invalid.');
-    }
 
     //Return guid
     static isValidFilter(filter) {
         return /^[a-z0-9@.]+$/i.test(filter);
     }
 
+    static validateString(str, lengthMin, lengthMax, name = 'String') {
+        if (typeof str !== 'string') throw new Error(`${name} is not string.`);
+        if (lengthMax && str.length > lengthMax) throw new Error(`${name} is required with max-length ${lengthMax}`);
+        if (lengthMin && str.length < lengthMin) throw new Error(`${name} is required with min-length ${lengthMin}`);
+    }
+
+    static isPostalCode(str){
+        return /^[a-z0-9-]+$/i.test(str); 
+    }
+}
+
+export class UtilityValidate extends Validate {
+
+    static validateStreet(str){
+        this.validateString(str, 0, 300, 'Street Address');
+    }
+
+    static validateCity(str){
+        this.validateString(str, 0, 300, 'City');
+    }
+
+    static validatePostalCode(str){
+        this.validateString(str, 0, 50, 'Postal code');
+        if(this.isPostalCode(str) === false)
+            throw new Error(`Postal code ${str} is invalid`);
+    }
+
+    static validateFilter(filter) {
+        if (this.isValidFilter(filter) === false)
+            throw new Error('Filter is invalid.');
+    }
 
     static validateNumberPositive(number) {
         if (this.isNumber(number) === false) {
@@ -167,18 +190,15 @@ export class UtilityValidate extends Validate {
     }
 
     static validateAdressJdcoin(address) {
-        if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
+        if (!/^(0x)?[0-9a-f]{40}$/i.test(address))
             // check if it has the basic requirements of an address
             throw new Error('Address JDCoin is invalid');
-        }
 
         if (
             /^(0x)?[0-9a-f]{40}$/.test(address) ||
-            /^(0x)?[0-9A-F]{40}$/.test(address)) {
+            /^(0x)?[0-9A-F]{40}$/.test(address))
             // If it's all small caps or all all caps, return true
             return true;
-        }
-
         return true;
     }
 
@@ -210,29 +230,17 @@ export class UtilityValidate extends Validate {
 
     static validateSeoUrl(seoUrl) {
         if (!seoUrl) throw new Error('Seo url is NULL');
-
-        if (!/^[a-zA-Z0-9_-]+$/i.test(seoUrl)) {
-            throw new Error(`Seo url is invalid.`);
-        }
-
+        if (!/^[a-zA-Z0-9_-]+$/i.test(seoUrl)) throw new Error(`Seo url is invalid.`);
     }
 
     static validateId(id) {
-        if (/^[a-z0-9-]+$/i.test(id) === false)
-            throw new Error('Id is invalid');
+        if (/^[a-z0-9-]+$/i.test(id) === false) throw new Error('Id is invalid');
     }
 
     static validatePasswordReset(password) {
         if (/^[a-z0-9_:.]+$/i.test(password) === false)
             throw new Error('Password reset is invalid.');
-        if (this.isValidAprroveLink(password)) {
+        if (this.isValidAprroveLink(password))
             throw new Error('Link counter has expired.');
-        }
-    }
-
-    static validateString(str, lengthMin, lengthMax, name = 'String') {
-        if (str !== 'string') throw new Error(`${name} is not string.`);
-        if (lengthMax && str.length > lengthMax) throw new Error(`${name} is required with max-length ${lengthMax}`);
-        if (lengthMin && str.length < lengthMin) throw new Error(`${name} is required with min-length ${lengthMin}`);
     }
 }
