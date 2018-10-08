@@ -1225,9 +1225,11 @@ img.mini-icon {
 
 .ckbox {
   font-size: 12px;
-  letter-spacing: -1px;
+  letter-spacing: -0.3px;
 }
-
+.tx-invite:hover {
+  background: #0a7937 !important;
+}
 .fa-pencil:hover,
 .fa-trash:hover,
 .fa-user-circle-o:hover {
@@ -1479,7 +1481,9 @@ input:focus {
 .tx-red {
   color: #DC3545;
 }
-
+.g-recaptcha {
+  width: 100% !important;
+}
 .verified {
   text-shadow: none;
   border-radius: 2px;
@@ -1487,7 +1491,10 @@ input:focus {
   font-size: 10px;
   text-transform: uppercase;
 }
-
+.select-list {
+  width: 300px !important;
+  max-width: 100%;
+}
 .verified.btn-secondary {
   margin-top: 5px;
 }
