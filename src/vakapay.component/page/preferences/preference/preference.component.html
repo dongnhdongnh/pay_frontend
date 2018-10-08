@@ -4,7 +4,7 @@
   <label class="col-sm-4 form-control-label"> Local Currency:</label>
   <div class="col-sm-8 mg-t-10 mg-sm-t-0">
     <ng-select [items]="listCurrency" bindLabel="name" bindValue="key" [(ngModel)]="mAccount.currencyKey" name="currency"
-      (change)="onChangeCurrency($event)" placeholder="Choose Currency">
+      (change)="onChangeCurrency($event)" placeholder="Choose Currency" class="select-list">
     </ng-select>
   </div>
 </div><!-- row -->
@@ -12,7 +12,7 @@
   <label class="col-sm-4 form-control-label"> Time zone:</label>
   <div class="col-sm-8 mg-t-10 mg-sm-t-0">
     <ng-select [items]="listTimeZone" bindLabel="name" bindValue="key" [(ngModel)]="mAccount.timezoneKey" name="timezone"
-      (change)="onChangeTimezone($event)" placeholder="Choose Time Zone">
+      (change)="onChangeTimezone($event)" placeholder="Choose Time Zone" class="select-list">
     </ng-select>
   </div>
 </div><!-- row -->

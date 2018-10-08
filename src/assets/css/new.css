@@ -1225,7 +1225,7 @@ img.mini-icon {
 
 .ckbox {
   font-size: 12px;
-  letter-spacing: -1px;
+  letter-spacing: -0.3px;
 }
 
 .fa-pencil:hover,
@@ -1489,7 +1489,10 @@ input:focus {
   font-size: 10px;
   text-transform: uppercase;
 }
-
+.select-list {
+  width: 300px !important;
+  max-width: 100%;
+}
 .verified.btn-secondary {
   margin-top: 5px;
 }
