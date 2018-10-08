@@ -1479,7 +1479,9 @@ input:focus {
 .tx-red {
   color: #DC3545;
 }
-
+.g-recaptcha {
+  width: 100% !important;
+}
 .verified {
   text-shadow: none;
   border-radius: 2px;
