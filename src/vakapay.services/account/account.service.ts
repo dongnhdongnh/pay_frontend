@@ -3,17 +3,25 @@ import { Injectable } from '@angular/core';
 import { HttpService } from 'network/http/http.service';
 import { Utility } from 'utility/Utility';
 import { Account } from 'model/account/Account';
-import { PathService } from 'services/path/path.service';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
-    private getInfoUrl = '/api/user/get-info';  // URL to web api
+
+    private getInfoUrl = '/api/user/get-info';
+    private updateProfileUrl = '/api/user/update-profile';
+
     public mAccount: Account;
-    configService: ConfigService;
+    private urlApi: string;
 
     constructor(private httpService: HttpService, configService: ConfigService) {
-        this.mAccount = null;
-        this.configService = configService;
+        this.mAccount = new Account();
+        this.urlApi = configService.urlApi;
+    }
+
+    updateProfile(data: any) {
+        let operation = 'update profile';
+        let api = this.updateProfileUrl;
+        return this.httpService.post(operation, api, data);
     }
 
     async getInfo() {
@@ -27,11 +35,12 @@ export class AccountService {
             }
 
             this.mAccount.attributes = result.data;
-            if (result.data.avatar) {
-                this.mAccount.avatar = PathService.join(this.configService.urlApi, this.mAccount.avatar);
+            if (result.data.avatar || result.data.Avatar) {
+                this.mAccount.avatar = new URL(this.mAccount.avatar, this.urlApi).href;
             }
         } catch (error) {
             console.log(JSON.stringify(error));
         }
     }
+
 }

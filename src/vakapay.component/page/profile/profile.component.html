@@ -15,42 +15,8 @@
   <div class="br-section-wrapper">
     <div class="row mg-t-20">
       <div class="col-xl-6">
-        <form class="form-layout form-layout-5">
-          <h6 class="br-section-label">Personal Details</h6>
-          <hr>
-          <div class="row mg-t-20 mg-x-0">
-            <label class="col-sm-4 form-control-label"> Street address 1:</label>
-            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-              <input type="text" class="form-control" placeholder="Street address" (keyup)="onStreetAddress1($event)">
-            </div>
-          </div>
-          <div class="row mg-t-20 mg-x-0">
-            <label class="col-sm-4 form-control-label"> Street address 2:</label>
-            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-              <input type="text" class="form-control" placeholder="Street address">
-            </div>
-          </div>
-          <div class="row mg-t-20 mg-x-0">
-            <label class="col-sm-4 form-control-label"> City:</label>
-            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-              <input type="text" class="form-control" placeholder="City">
-            </div>
-          </div>
-          <div class="row mg-t-20 mg-x-0">
-            <label class="col-sm-4 form-control-label"> Postal code:</label>
-            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-              <input type="number" class="form-control" placeholder="Postal Code">
-            </div>
-          </div>
-          <!-- row -->
-          <div class="row mg-t-20 mg-x-0">
-            <div class="col-sm-8 mg-l-auto">
-              <div class="form-layout-footer">
-                <button class="btn bg-green mg-t-5" type="submit">Save</button>
-                <button class="btn btn-secondary mg-t-5" type="reset">Reset</button>
-              </div><!-- form-layout-footer -->
-            </div><!-- col-8 -->
-          </div>
+        <form class="form-layout form-layout-5">          
+          <update-profile [mAccount]='mAccount'></update-profile>
           <hr>
           <upload-image-profile [mAccount]='mAccount'></upload-image-profile>          
         </form><!-- form-layout -->

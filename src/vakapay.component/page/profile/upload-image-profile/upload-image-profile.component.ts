@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Account } from 'model/account/Account';
-import { AccountService } from 'services/account/account.service';
 import { ImageService } from 'services/image/image.service';
 import { Utility } from 'utility/Utility';
 import { UtilityValidate } from 'utility/UtilityValidate';
@@ -16,8 +15,8 @@ export class UploadImageProfileComponent implements OnInit {
 
   urlApi: string;
   selectedFile: any;
-  isImageLoading: boolean;
-  isInvalidFile = false;
+  isLoading: boolean;
+  isInvalid = true;
   imageReset: any;
 
   //message
@@ -32,15 +31,15 @@ export class UploadImageProfileComponent implements OnInit {
     configService: ConfigService
   ) {
     this.mImageService = mImageService;
-    this.isImageLoading = false;
+    this.isLoading = false;
     this.urlApi = configService.urlApi;
   }
 
-  resetFormUploadImage() {
+  onReset() {
     this.mAccount.avatar = this.imageReset;
     this.selectedFile = null;
-    this.isInvalidFile = true;
-    this.isImageLoading = false;
+    this.isInvalid = true;
+    this.isLoading = false;
   }
 
 
@@ -52,18 +51,18 @@ export class UploadImageProfileComponent implements OnInit {
     try {
       UtilityValidate.validateImage(file);
 
-      this.isInvalidFile = false;
+      this.isInvalid = false;
       this.messageErrorFile = '';
       return true;
     } catch (error) {
       this.messageErrorFile = error.message;
-      this.isInvalidFile = true;
-      this.resetFormUploadImage();
+      this.isInvalid = true;
+      this.onReset();
       return false;
     }
   }
 
-  onChangeImageProfile(event) {
+  onChangeImage(event) {
     const file = event.target.files[0];
 
     if (file == null) return;
@@ -81,12 +80,11 @@ export class UploadImageProfileComponent implements OnInit {
 
   async onUpload() {
     try {
-      this.isImageLoading = true;
-      await Utility.sleep(1000);
+      this.isLoading = true;
       UtilityValidate.validateImage(this.selectedFile);
 
-      if (this.isInvalidFile === true) {
-        this.isImageLoading = false;
+      if (this.isInvalid === true) {
+        this.isLoading = false;
         return;
       }
 
@@ -94,11 +92,11 @@ export class UploadImageProfileComponent implements OnInit {
       let result = await this.mImageService.upload(this.selectedFile);
 
       //Show message success
-      this.isImageLoading = false;
+      this.isLoading = false;
 
       if (Utility.isError(result)) {
         //Reset image if upload error
-        this.resetFormUploadImage();
+        this.onReset();
         return;
       }
 
@@ -107,11 +105,11 @@ export class UploadImageProfileComponent implements OnInit {
       this.mAccount.avatar = urlImage.href;
       this.imageReset = this.mAccount.avatar;
 
-      this.resetFormUploadImage();
+      this.onReset();
 
       return;
     } catch (error) {
-      this.resetFormUploadImage();
+      this.onReset();
     }
   }
 }

@@ -1,23 +1,37 @@
 import { Model } from "model/Model";
 
 export class Account extends Model {
+    avatar: string;
+    birthday: string;
+    city: string;
+    country: string;
+    countryCode: string;
     email: string;
-    phoneNumber: string;
     firstName: string;
     lastName: string;
-    birthday: string;
-    country: string;
-    avatar: string;
+    id: string;
+    ipWhiteList: string;
+    phoneNumber: string;
+    postalCode: string;
+    streetAddress1: string;
+    streetAddress2: string;
 
-    constructor(email = '', phone = '', firstName = '', lastName = '', birthday = '', country = '', avatar = '') {
+    constructor() {
         super();
-        this.email = email;
-        this.phoneNumber = phone;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthday = birthday;
-        this.country = country;
-        this.avatar = avatar || 'assets/images/profile/img1.jpg';
+        this.avatar = '' || 'assets/images/profile/img1.jpg';
+        this.birthday = '';
+        this.city = '';
+        this.country = '';
+        this.countryCode = '';
+        this.email = '';
+        this.firstName = '';
+        this.lastName = '';
+        this.id = '';
+        this.ipWhiteList = '';
+        this.phoneNumber = '';
+        this.postalCode = '';
+        this.streetAddress1 = '';
+        this.streetAddress2 = '';
     }
 
     get fullName() {

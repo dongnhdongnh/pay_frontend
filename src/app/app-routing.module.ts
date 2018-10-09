@@ -15,6 +15,7 @@ import { IndexComponent } from 'component/page/index/index.component';
 import { LandingComponent } from 'component/landing/landing.component';
 import { ProfileComponent } from 'component/page/profile/profile.component';
 import { PagenotfoundComponent } from 'component/page/pagenotfound/pagenotfound.component';
+import { PreferencesComponent } from 'component/page/preferences/preferences.component';
 
 //Init routes
 const routes: Routes = [
@@ -69,6 +70,11 @@ const routes: Routes = [
 				path: 'profile',
 				component: ProfileComponent,
 				data: { title: 'Profile' }
+			},
+			{
+				path: 'preferences',
+				component: PreferencesComponent,
+				data: { title: 'Preferences' }
 			},
 		]
 	},
