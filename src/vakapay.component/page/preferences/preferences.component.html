@@ -1,0 +1,67 @@
+<!-- ########## END: HEAD PANEL ########## -->
+<!-- ########## START: MAIN PANEL ########## -->
+<div class="br-mainpanel">
+  <div class="br-pagebody">
+    <div class="row row-sm mg-t-20">
+      <div class="col-xl-12 bg-white mg-t-20">
+        <form class="form-layout">
+          <h6 class="br-section-label">Preferences</h6>
+          <hr>
+          <div class="row mg-x-0">
+            <label class="col-sm-4 form-control-label"> Local Currency:</label>
+            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+              <ng-select [items]="listCurrency" bindLabel="name" bindValue="key" [(ngModel)]="selectedCurrencyKey" name="currency"
+                placeholder="Choose Currency">
+              </ng-select>
+            </div>
+          </div><!-- row -->
+          <div class="row mg-t-20 mg-x-0">
+            <label class="col-sm-4 form-control-label"> Time zone:</label>
+            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+              <ng-select [items]="listTimeZone" bindLabel="name" bindValue="key" [(ngModel)]="selectedTimeZoneKey" name="timezone"
+                placeholder="Choose Time Zone">
+              </ng-select>
+            </div>
+          </div><!-- row -->
+          <div class="row mg-t-20 mg-x-0">
+            <div class="col-sm-8 mg-l-auto">
+              <div class="form-layout-footer">
+                <button class="btn bg-green" type="submit">Save</button>
+              </div><!-- form-layout-footer -->
+            </div><!-- col-8 -->
+          </div>
+          <div class="mg-t-30">
+            <h6 class="br-section-label">Notifications</h6>
+            <hr>
+            <div class="row mg-x-0">
+              <label class="col-sm-4 form-control-label"> Email me when:</label>
+              <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                <label class="ckbox">
+                  <input type="checkbox">
+                  <span>I send or receive digital currency </span>
+                </label>
+                <label class="ckbox">
+                  <input type="checkbox">
+                  <span>I receive merchant orders </span>
+                </label>
+                <label class="ckbox">
+                  <input type="checkbox">
+                  <span>There are recommended actions for my account </span>
+                </label>
+              </div>
+            </div><!-- row -->
+            <div class="row mg-t-20 mg-x-0">
+              <div class="col-sm-8 mg-l-auto">
+                <div class="form-layout-footer">
+                  <button class="btn bg-green" type="submit">Save</button>
+                </div><!-- form-layout-footer -->
+              </div><!-- col-8 -->
+            </div>
+          </div><!-- form-layout -->
+        </form><!-- form-layout -->
+      </div><!-- col-6 -->
+    </div><!-- row -->
+  </div><!-- br-section-wrapper -->
+</div><!-- br-mainpanel -->
+<div class="clear-both"></div>
+<!-- ########## END: MAIN PANEL ########## -->

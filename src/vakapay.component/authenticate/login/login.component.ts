@@ -2,7 +2,6 @@ import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { OAuthService, OAuthEvent } from "angular-oauth2-oidc";
 import { isPlatformBrowser } from "@angular/common";
 import { Router } from "@angular/router";
-import { ConfigService } from 'network/config/config.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +16,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object,
     oauthService: OAuthService,
-    private configService: ConfigService,
   ) {
     if (isPlatformBrowser(this.platformId)) {
       this.oauthService = oauthService;

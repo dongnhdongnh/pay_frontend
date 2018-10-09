@@ -19,8 +19,9 @@ export class AuthService {
         // Check whether the token is expired and return
         // true or false
         let isTokenExpired = this.jwtHelper.isTokenExpired(token || '');
+        
+        //Get account infor
         if (!isTokenExpired && !this.mAccountService.mAccount) {
-            //Get account infor
             var decodeInfo = this.jwtHelper.decodeToken(token);
             var userInfo = JSON.parse(decodeInfo.userInfo);
             this.mAccountService.mAccount = new Account();
