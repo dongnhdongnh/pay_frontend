@@ -16,7 +16,7 @@ import { LandingComponent } from 'component/landing/landing.component';
 import { ProfileComponent } from 'component/page/profile/profile.component';
 import { PagenotfoundComponent } from 'component/page/pagenotfound/pagenotfound.component';
 import { PreferencesComponent } from 'component/page/preferences/preferences.component';
-
+import { AccountsComponent } from 'component/page/accounts/accounts.component';
 //Init routes
 const routes: Routes = [
 	{
@@ -76,6 +76,12 @@ const routes: Routes = [
 				component: PreferencesComponent,
 				data: { title: 'Preferences' }
 			},
+			{
+				path: 'account',
+				component: AccountsComponent,
+				data: { title: 'accounts' }
+			},
+			
 		]
 	},
 	{ path: '404', component: PagenotfoundComponent },

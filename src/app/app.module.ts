@@ -52,7 +52,7 @@ import { UploadImageProfileComponent } from 'component/page/profile/upload-image
 import { UpdateProfileComponent } from 'component/page/profile/update-profile/update-profile.component';
 import { ProfileComponent } from 'component/page/profile/profile.component';
 import { PreferencesComponent } from 'component/page/preferences/preferences.component';
-
+import { AccountsComponent } from 'component/page/accounts/accounts.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,6 +77,7 @@ import { PreferencesComponent } from 'component/page/preferences/preferences.com
     UploadImageProfileComponent,
     UpdateProfileComponent,
     PreferencesComponent,
+    AccountsComponent
   ],
   imports: [
     BrowserModule,
