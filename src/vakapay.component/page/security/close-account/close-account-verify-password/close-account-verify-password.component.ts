@@ -1,5 +1,5 @@
 import { CloseAccountService } from './../../../../../vakapay.services/account/close-account.service';
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { SecurityService } from 'services/security/security.service';
 import { Utility } from 'utility/Utility';
 import { UtilityValidate } from 'utility/UtilityValidate';
@@ -9,6 +9,7 @@ import { UtilityValidate } from 'utility/UtilityValidate';
   templateUrl: './close-account-verify-password.component.html',
 })
 export class CloseAccountVerifyPasswordComponent {
+  @ViewChild('password') passwordElement: ElementRef;
   @Input() form;
 
   //input
@@ -26,6 +27,8 @@ export class CloseAccountVerifyPasswordComponent {
 
   cancel() {
     this.form.modal.close();
+    this.onReset();
+    this.form.step = 1;
   }
 
   requireSendCodePhone() {
@@ -70,11 +73,13 @@ export class CloseAccountVerifyPasswordComponent {
   }
 
   onReset() {
-    // this.mAccount.avatar = this.imageReset;
-    // this.selectedFile = null;
     this.isValid = false;
     this.isLoading = false;
     this.isChange = false;
+
+    //custom
+    this.messageErrorPassword = '';
+    this.passwordElement.nativeElement.value = '';
   }
 
   validate() {

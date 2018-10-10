@@ -1,17 +1,18 @@
-import { CloseAccountService } from 'services/account/close-account.service';
 import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { Utility } from 'utility/Utility';
 import { UtilityValidate } from 'utility/UtilityValidate';
+import { CloseAccountService } from 'services/account/close-account.service';
 
 @Component({
   selector: 'close-account-verify-phone',
   templateUrl: './close-account-verify-phone.component.html',
 })
+
 export class CloseAccountVerifyPhoneComponent {
   @ViewChild('code') codeElement: ElementRef;
   @Input() form;
   //input
-  code = '';
+  code: string;
 
   //status
   isLoading = false;
@@ -27,12 +28,14 @@ export class CloseAccountVerifyPhoneComponent {
   }
 
   requireSendCodePhone() {
-    this.codeElement.nativeElement.value = '';
+    this.closeAccountService.requireSendCodePhone();
     this.onReset();
   }
 
   cancel() {
     this.form.modal.close();
+    this.onReset();
+    this.form.step = 1;
   }
 
   async onUpdate() {
@@ -47,7 +50,8 @@ export class CloseAccountVerifyPhoneComponent {
       }
 
       var dataPost = {
-        code: this.code
+        code: this.code,
+        password: this.form.password
       };
 
       //send ajax
@@ -74,9 +78,9 @@ export class CloseAccountVerifyPhoneComponent {
     this.isValid = false;
     this.isLoading = false;
     this.isChange = false;
-
-    //
-    this.closeAccountService.requireSendCodePhone();
+    //custom
+    this.messageErrorCode = '';
+    this.codeElement.nativeElement.value = '';
   }
 
   validate() {
