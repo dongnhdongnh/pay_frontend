@@ -16,6 +16,7 @@ import { LandingComponent } from 'component/landing/landing.component';
 import { ProfileComponent } from 'component/page/profile/profile.component';
 import { PagenotfoundComponent } from 'component/page/pagenotfound/pagenotfound.component';
 import { PreferencesComponent } from 'component/page/preferences/preferences.component';
+import { AddressesComponent } from 'component/addresses/addresses.component';
 
 //Init routes
 const routes: Routes = [
@@ -55,6 +56,11 @@ const routes: Routes = [
 		path: 'logout',
 		component: LogoutComponent,
 		data: { title: 'Logout' }
+	},
+	{
+		path: 'addresses',
+		component: AddressesComponent,
+		data: { title: 'Addresses' }
 	},
 	{
 		path: '',
