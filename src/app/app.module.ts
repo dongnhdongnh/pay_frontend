@@ -53,8 +53,7 @@ import { UpdateProfileComponent } from 'component/page/profile/update-profile/up
 import { ProfileComponent } from 'component/page/profile/profile.component';
 import { PreferencesComponent } from 'component/page/preferences/preferences.component';
 import { ObjectivesComponent } from './objectives/objectives.component';
-import { AddressesComponent } from './vakapay.component/addresses/addresses.component';
-
+import { AddressesComponent } from "../vakapay.component/addresses/addresses.component";
 @NgModule({
   declarations: [
     AppComponent,
