@@ -32,20 +32,25 @@ button[disabled] {
 }
 
 .icon img {
-  width: 60px;
+  width: 50px;
   margin: 0 auto;
   display: block;
+  padding: 10px;
+  background: #fff;
+  border-radius: 5px;
 }
 
 .bg-green {
   background: #10a04a;
   color: #fff;
 }
-
-.bg-green:hover {
-  background: #0a7937;
+.sms .input-group-addon {
+  background: #10a04a;
+  color: #fff;
 }
-
+.sms .op-6 {
+  opacity: 1;
+}
 .tx-green {
   color: #10a04a;
 }
@@ -263,11 +268,14 @@ button:focus {
 }
 
 .btn-trans:hover {
-  border-color: #10a04a;
+  border-color: #0ba9d7;
   color: #fff;
-  background: #10a04a;
+  background: #0ba9d7;
 }
-
+.resend-sms {
+  color: #10a04a;
+  cursor: pointer;
+}
 .bd-green {
   border-color: #10a04a !important;
 }
@@ -2058,7 +2066,4 @@ ol {
   .op-3-mob {
     opacity: 0.3;
   }
-  /* .login-wrapper {
-        margin: auto 15px;
-    } */
 }
