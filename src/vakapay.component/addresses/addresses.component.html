@@ -1,3 +1,104 @@
-<p>
-  addresses works!
-</p>
+<!-- ########## START: MAIN PANEL ########## -->
+<div class="br-mainpanel">
+  <div class="br-pagebody">
+    <div class="row row-sm mg-t-20">
+      <div class="col-xl-12 bg-white mg-t-20 pd-30">
+        <h6 class="tx-inverse tx-uppercase tx-bold tx-18 mg-t-10 mg-b-10">Your Address</h6>
+        <p class="br-section-text">Each account on VakaPay is a collection of addresses. New addresses are automatically
+          generated for each payment on VakaPay and stay associated with your account forever (so it is safe to reuse them).</p>
+        <div class="col-12 mg-b-20">
+          <div class="col-md-3 col-sm-12 pd-l-0 pd-r-0 mg-t-10">
+            <select class="form-control select2 select2-hidden-accessible" data-placeholder="BTC Wallet (0.0000 BTC)" tabindex="-1" aria-hidden="true">
+              <option label="Choose Currency"></option>
+              <option value="USA">VKC Wallet (0.0000 VKC)</option>
+              <option value="UK">ETH Wallet (0.0000 ETH)</option>
+              <option value="China">EOS Wallet (0.0000 EOS)</option>
+            </select>
+          </div>
+          <div class="col-md-4 col-sm-12 pd-r-0 mg-t-10">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Bitcoin address or label...">
+              <span class="input-group-btn">
+                <button class="btn bd bg-white tx-gray-600" type="button"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-12 hidden-mob"></div>
+          <div class="col-md-3 col-sm-12 pd-r-0 mg-t-10">
+            <a href="" class="btn bg-green pd-x-30 pd-y-11 tx-uppercase tx-bold tx-14 fl-right tx-white"><i class="fa fa-credit-card mg-r-5"></i>Creat
+              new wallet</a>
+          </div>
+        </div>
+        <div class="clear-both"></div>
+        <div class="bd bd-gray-300 table-responsive table-add">
+          <table class="table table-hover mg-b-0">
+            <thead>
+              <tr>
+                <th>Address</th>
+                <th>Label</th>
+                <th>Created</th>
+                <th>Detail</th>
+              </tr>
+            </thead>
+            <tbody class="table-add-body">
+              <tr>
+                <td>3GiLC4weCamfEqaWFrHyoRykMXRfB4W1FP</td>
+                <td>Tiger Nixon</td>
+                <td>less than a minute ago</td>
+                <td><span class="btn btn-secondary verified" data-toggle="modal" data-target="#modaldemo1">Details</span></td>
+              </tr>
+              <tr>
+                <td>36saLyD3Z8T3mXkSpAajEAmGXuouwHDnVz</td>
+                <td>Garrett Winters</td>
+                <td>about 1 hour ago</td>
+                <td><span class="btn btn-secondary verified" data-toggle="modal" data-target="#modaldemo1">Details</span></td>
+              </tr>
+              <tr>
+                <td>3Lkgz9Rk3k4ZsnzbULLMsHNaNJ4MMhKEwX</td>
+                <td>Ashton Cox</td>
+                <td>Junior Technical Author</td>
+                <td><span class="btn btn-secondary verified" data-toggle="modal" data-target="#modaldemo1">Details</span></td>
+              </tr>
+              <tr>
+                <td>3D6t6FTD4rL7xrpMUSCrVgLKmJCsweSh1c</td>
+                <td>Cedric Kelly</td>
+                <td>Senior Javascript Developer</td>
+                <td><span class="btn btn-secondary verified" data-toggle="modal" data-target="#modaldemo1">Details</span></td>
+              </tr>
+              <tr>
+                <td>39YnKD83BYQB6SajUGHZBmnrx6WSDDHZ5f</td>
+                <td>Airi Satou</td>
+                <td>Accountant</td>
+                <td><span class="btn btn-secondary verified" data-toggle="modal" data-target="#modaldemo1">Details</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div><!-- bd -->
+        <div class="ht-80 d-flex align-items-center justify-content-center mg-t-20">
+          <ul class="pagination pagination-basic pagination-rounded mg-b-0">
+            <li class="page-item hidden-xs-down">
+              <a class="page-link" href="#" aria-label="First"><i class="fa fa-angle-double-left"></i></a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous"><i class="fa fa-angle-left"></i></a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item hidden-xs-down"><a class="page-link" href="#">3</a></li>
+            <li class="page-item hidden-xs-down"><a class="page-link" href="#">4</a></li>
+            <li class="page-item disabled"><span class="page-link">...</span></li>
+            <li class="page-item"><a class="page-link" href="#">10</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next"><i class="fa fa-angle-right"></i></a>
+            </li>
+            <li class="page-item hidden-xs-down">
+              <a class="page-link" href="#" aria-label="Last"><i class="fa fa-angle-double-right"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div><!-- col-6 -->
+    </div><!-- row -->
+  </div><!-- br-section-wrapper -->
+</div><!-- br-mainpanel -->
+<div class="clear-both"></div>
+<!-- ########## END: MAIN PANEL ########## -->
