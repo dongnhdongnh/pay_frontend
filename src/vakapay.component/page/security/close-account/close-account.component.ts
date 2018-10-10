@@ -7,9 +7,8 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 })
 export class CloseAccountComponent {
 
-  form = {
-    modal: {}
-  };
+  form = {step: 1, modal: {}};
+  modal: any;
 
   modalName = 'modalCloseAccount';
 
@@ -17,17 +16,16 @@ export class CloseAccountComponent {
   }
 
   ngAfterViewInit(): void {
-    this.form = {
-      modal: this.ngxSmartModalService.getModal(this.modalName)
-    }
+    this.modal = this.ngxSmartModalService.getModal(this.modalName);
+    this.form.modal = this.modal;
   }
 
   openModal() {
-    this.ngxSmartModalService.getModal(this.modalName).open();
+    this.modal.open();
   }
 
   closeModal() {
-    this.ngxSmartModalService.getModal(this.modalName).close();
+    this.modal.close();
   }
 
 }

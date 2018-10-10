@@ -2,20 +2,20 @@
   <h6 class="br-section-label">DEACTIVE ACCOUNT</h6>
   <hr>
   <div class="row mg-x-0">
-    <label class="col-sm-4 form-control-label"> 
+    <label class="col-sm-4 form-control-label">
       Deactive your VakaPay account - <i class="tx-red tx-bold">
-      you can use your account again after active</i> </label>
+        you can use your account again after active</i> </label>
     <div class="col-sm-8 mg-l-auto">
       <div class="form-layout-footer">
         <a (click)="openModal()" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">
           Deactive Account
         </a>
-      </div><!-- form-layout-footer -->
-    </div><!-- col-8 -->
-  </div><!-- row -->
+      </div>
+    </div>
+  </div>
 </div>
 
 <ngx-smart-modal #modalCloseAccount [identifier]="'modalCloseAccount'">
-  <close-account-verify-password [form]="form"></close-account-verify-password>
-  <close-account-verify-phone [form]="form"></close-account-verify-phone>
+  <close-account-verify-password [form]="form" [hidden]="form.step !== 1"></close-account-verify-password>
+  <close-account-verify-phone [form]="form" [hidden]="form.step !== 2"></close-account-verify-phone>
 </ngx-smart-modal>

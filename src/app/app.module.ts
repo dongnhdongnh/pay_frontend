@@ -74,6 +74,7 @@ import { CloseAccountVerifyPasswordComponent }
   from 'component/page/security/close-account/close-account-verify-password/close-account-verify-password.component';
 import { CloseAccountVerifyPhoneComponent }
   from 'component/page/security/close-account/close-account-verify-phone/close-account-verify-phone.component';
+import { LoadingButtonComponent } from 'component/loading-button/loading-button.component';
 
 @NgModule({
   declarations: [
@@ -111,6 +112,7 @@ import { CloseAccountVerifyPhoneComponent }
     TwofaVerifyCodeComponentWithPhoneComponent,
     CloseAccountVerifyPasswordComponent,
     CloseAccountVerifyPhoneComponent,
+    LoadingButtonComponent,
   ],
   imports: [
     BrowserModule,

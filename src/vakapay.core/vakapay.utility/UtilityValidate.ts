@@ -154,7 +154,7 @@ export class UtilityValidate extends Validate {
     }
 
     static validatePassword(password) {
-        this.validateString(password, 0, 50, 'Password')
+        this.validateString(password, 6, 50, 'Password')
     }
 
     static validateFullName(fullName) {

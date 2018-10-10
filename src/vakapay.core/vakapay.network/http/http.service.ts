@@ -32,7 +32,6 @@ export class HttpService {
   private url = '';
   private alertService: AlertService;
   configService: ConfigService;
-  resultTest = new ResultObject({ status: 'success', data: null, message: 'Success' });
 
   constructor(
     private http: HttpClient,
@@ -43,6 +42,20 @@ export class HttpService {
     this.configService = configService;
     this.url = this.configService.urlApi;
     this.alertService = alertService;
+  }
+
+  test(operation = 'operation', alert = true) {
+    var self = this;
+    return new Promise<ResultObject>(
+      (resolve) => {
+        let dataConvert = new ResultObject({ 
+          status: 'success', 
+          data: null, 
+          message: `Hardcode api ${operation}` 
+        });
+        self.handleSuccess(operation, dataConvert, alert);
+        resolve(dataConvert);
+      });
   }
 
   //Get api

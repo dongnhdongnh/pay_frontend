@@ -11,7 +11,6 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
 
   //#region init variable
   @Input() form;
-  @ViewChild('code') codeElement: ElementRef;
 
   //input
   code = '';
@@ -30,7 +29,7 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
 
   constructor(accountService: TwofaService) {
     this.twofaService = accountService;
-  }
+  }  
 
   cancel(){
     this.form.modal.close();
@@ -76,7 +75,7 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
     this.isValid = false;
     this.isLoading = false;
     this.isChange = false;
-  }
+  }  
 
   validate() {
     try {
