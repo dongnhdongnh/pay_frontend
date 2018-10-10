@@ -39,7 +39,7 @@ button[disabled] {
 
 .bg-green {
   background: #10a04a;
-  color: #fff;
+  color: #fff !important;
 }
 
 .bg-green:hover {
@@ -47,7 +47,7 @@ button[disabled] {
 }
 
 .tx-green {
-  color: #10a04a;
+  color: #10a04a !important;
 }
 
 .tx-green:hover {}
@@ -79,12 +79,14 @@ button[disabled] {
 .bg-btc {
   background: rgb(255, 177, 25);
 }
+
 .tx-invite {
   color: #fff !important;
   width: 100%;
   margin-top: 10px;
   text-align: center;
 }
+
 .dont {
   font-size: 16px;
   font-weight: bold;
@@ -573,10 +575,12 @@ img.mini-icon {
   font-size: 30px;
   vertical-align: middle;
 }
+
 .inputfile+label.if-outline-green:hover {
-    background: #10a04a;
-    color: #fff;
+  background: #10a04a;
+  color: #fff;
 }
+
 .width-text {
   width: 100%;
   z-index: 1000;
@@ -1227,9 +1231,11 @@ img.mini-icon {
   font-size: 12px;
   letter-spacing: -0.3px;
 }
+
 .tx-invite:hover {
   background: #0a7937 !important;
 }
+
 .fa-pencil:hover,
 .fa-trash:hover,
 .fa-user-circle-o:hover {
@@ -1481,9 +1487,11 @@ input:focus {
 .tx-red {
   color: #DC3545;
 }
+
 .g-recaptcha {
   width: 100% !important;
 }
+
 .verified {
   text-shadow: none;
   border-radius: 2px;
@@ -1491,10 +1499,12 @@ input:focus {
   font-size: 10px;
   text-transform: uppercase;
 }
+
 .select-list {
   width: 300px !important;
   max-width: 100%;
 }
+
 .verified.btn-secondary {
   margin-top: 5px;
 }
@@ -1708,9 +1718,11 @@ ol {
   max-width: 100%;
   margin: 0 auto;
 }
+
 .form-layout-4 h6 {
   margin-bottom: 0;
 }
+
 @media only screen and (max-width: 1200px) {
   .br-mainpanel {
     max-width: 100%;

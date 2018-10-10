@@ -1,5 +1,5 @@
 import { CloseAccountService } from 'services/account/close-account.service';
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { Utility } from 'utility/Utility';
 import { UtilityValidate } from 'utility/UtilityValidate';
 
@@ -8,6 +8,7 @@ import { UtilityValidate } from 'utility/UtilityValidate';
   templateUrl: './close-account-verify-phone.component.html',
 })
 export class CloseAccountVerifyPhoneComponent {
+  @ViewChild('code') codeElement: ElementRef;
   @Input() form;
   //input
   code = '';
@@ -26,7 +27,8 @@ export class CloseAccountVerifyPhoneComponent {
   }
 
   requireSendCodePhone() {
-    this.closeAccountService.requireSendCodePhone();
+    this.codeElement.nativeElement.value = '';
+    this.onReset();
   }
 
   cancel() {
@@ -57,6 +59,7 @@ export class CloseAccountVerifyPhoneComponent {
       if (Utility.isError(result)) return;
 
       this.onReset();
+      this.form.step = 1;
       this.form.modal.close();
 
       return;
@@ -71,6 +74,9 @@ export class CloseAccountVerifyPhoneComponent {
     this.isValid = false;
     this.isLoading = false;
     this.isChange = false;
+
+    //
+    this.closeAccountService.requireSendCodePhone();
   }
 
   validate() {
