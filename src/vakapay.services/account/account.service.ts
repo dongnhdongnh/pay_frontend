@@ -11,6 +11,7 @@ export class AccountService {
     private updateProfileUrl = '/api/user/update-profile';
     private updatePreferenceUrl = '/api/user/update-preferences';
     private updateNotificationsUrl = '/api/user/update-notifications';
+    private verifyCodeWithOldPhoneUrl = '/api/user/verify-code-with-old-phone';
 
     public mAccount: Account;
     private urlApi: string;

@@ -839,7 +839,7 @@ img.mini-icon {
 }
 
 .half {
-  width: 200px;
+  width: 200px !important;
   margin: 0 auto;
   letter-spacing: 17px;
   text-align: center;

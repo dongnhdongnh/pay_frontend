@@ -1,0 +1,23 @@
+<div class="row mg-t-30 mg-x-0">
+  <label class="col-sm-4 form-control-label"> Require verification code to send:</label>
+  <div class="col-sm-8 mg-l-auto">
+    <label class="rdiobox">
+      <input name="radio" type="radio" (click)="change(1)">
+      <span>Any amount of digital currency — <i class="tx-green tx-bold">Most secure</i></span>
+    </label>
+    <label class="rdiobox">
+      <input name="radio" type="radio" (click)="change(2)">
+      <span>Over 1.2000 BTC (42.7655 ETH) per day </span>
+    </label>
+    <label class="rdiobox">
+      <input name="radio" type="radio" (click)="change(3)">
+      <span>Never — <i class="tx-red tx-bold">Least secure</i></span>
+    </label>
+    <div class="form-layout-footer">
+      <button (click)="onUpdate()" [disabled]="!isChange||!isValid||isLoading" class="btn bg-green" type="button">
+        Save
+        <i [hidden]="!isLoading" class="fa fa-spinner fa-spin" style="font-size:15px"></i>
+      </button>
+    </div>
+  </div><!-- col-8 -->
+</div><!-- row -->

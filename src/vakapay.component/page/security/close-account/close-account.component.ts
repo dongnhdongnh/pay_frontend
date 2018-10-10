@@ -1,18 +1,17 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Component({
-  selector: 'app-two-factor-authentication',
-  templateUrl: './two-factor-authentication.component.html',
+  selector: 'app-close-account',
+  templateUrl: './close-account.component.html',
 })
-
-export class TwoFactorAuthenticationComponent implements AfterViewInit {
+export class CloseAccountComponent {
 
   form = {
     modal: {}
   };
 
-  modalName = 'modalTwoFA';
+  modalName = 'modalCloseAccount';
 
   constructor(public ngxSmartModalService: NgxSmartModalService) {
   }

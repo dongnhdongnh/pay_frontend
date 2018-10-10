@@ -4,9 +4,16 @@
   <label class="col-sm-4 form-control-label"> Your two-factor method is: SMS</label>
   <div class="col-sm-8 mg-l-auto">
     <div class="form-layout-footer">
-      <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
-        data-target="#modaldemo1">+
-        Enable Authenticator</a>
+      <a (click)="openModal()" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">
+        +Enable Authenticator
+      </a>
     </div><!-- form-layout-footer -->
   </div><!-- col-8 -->
 </div><!-- row -->
+
+<ngx-smart-modal #modalTwoFA [identifier]="'modalTwoFA'">
+  <twofa-verify-code-with-phone [form]="form"></twofa-verify-code-with-phone>
+</ngx-smart-modal>
+
+<twofa-options></twofa-options>
+

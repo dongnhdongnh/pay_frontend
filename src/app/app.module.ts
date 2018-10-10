@@ -14,6 +14,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 //ng-select
 import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 
+//modal in angular
+import { NgxSmartModalModule } from 'ngx-smart-modal';
+
 // RECOMMENDED (doesn't work with system.js)
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
@@ -44,6 +47,8 @@ import { PortfolioComponent } from 'component/page/portfolio/portfolio.component
 
 //VakaId Login
 import { OAuthModule } from 'angular-oauth2-oidc';
+
+//Component page
 import { LandingComponent } from 'component/landing/landing.component';
 import { LogoutComponent } from 'component/authenticate/logout/logout.component';
 import { PagenotfoundComponent } from 'component/page/pagenotfound/pagenotfound.component';
@@ -57,6 +62,18 @@ import { PreferenceComponent } from 'component/page/preferences/preference/prefe
 import { SecurityComponent } from 'component/page/security/security.component';
 import { ChangePasswordComponent } from 'component/page/security/change-password/change-password.component';
 import { TwoFactorAuthenticationComponent } from 'component/page/security/two-factor-authentication/two-factor-authentication.component';
+import { TwofaOptionsComponent } from 'component/page/security/two-factor-authentication/enable/twofa-options/twofa-options.component';
+import { SessionActiveComponent } from 'component/page/security/session-active/session-active.component';
+import { AccountActivityComponent } from 'component/page/security/account-activity/account-activity.component';
+import { CloseAccountComponent } from 'component/page/security/close-account/close-account.component';
+
+//TwofaVerify
+import { TwofaVerifyCodeComponentWithPhoneComponent }
+  from 'component/page/security/two-factor-authentication/enable/twofa-verify-code-with-phone/twofa-verify-code-with-phone.component';
+import { CloseAccountVerifyPasswordComponent }
+  from 'component/page/security/close-account/close-account-verify-password/close-account-verify-password.component';
+import { CloseAccountVerifyPhoneComponent }
+  from 'component/page/security/close-account/close-account-verify-phone/close-account-verify-phone.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +104,13 @@ import { TwoFactorAuthenticationComponent } from 'component/page/security/two-fa
     SecurityComponent,
     ChangePasswordComponent,
     TwoFactorAuthenticationComponent,
+    TwofaOptionsComponent,
+    SessionActiveComponent,
+    AccountActivityComponent,
+    CloseAccountComponent,
+    TwofaVerifyCodeComponentWithPhoneComponent,
+    CloseAccountVerifyPasswordComponent,
+    CloseAccountVerifyPhoneComponent,
   ],
   imports: [
     BrowserModule,
@@ -105,6 +129,9 @@ import { TwoFactorAuthenticationComponent } from 'component/page/security/two-fa
 
     //Bootstrap dropdow module
     BsDropdownModule.forRoot(),
+
+    //modal
+    NgxSmartModalModule.forRoot(),
 
     HttpClientModule,
     // HttpClientInMemoryWebApiModule.forRoot(

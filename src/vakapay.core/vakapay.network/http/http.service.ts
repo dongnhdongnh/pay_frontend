@@ -32,6 +32,7 @@ export class HttpService {
   private url = '';
   private alertService: AlertService;
   configService: ConfigService;
+  resultTest = new ResultObject({ status: 'success', data: null, message: 'Success' });
 
   constructor(
     private http: HttpClient,
@@ -113,7 +114,6 @@ export class HttpService {
  * @param result 
  */
   private handleSuccess(operation = 'operation', data: ResultObject, alert: boolean) {
-    // 
     console.log(data); // log to console instead
     // TODO: 
     this.log(`${operation} success: ${data.message}`);

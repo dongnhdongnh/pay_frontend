@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SecurityComponent } from 'component/page/security/security.component';
+import { SessionActiveComponent } from 'component/page/security/session-active/session-active.component';
 
-describe('SecurityComponent', () => {
-  let component: SecurityComponent;
-  let fixture: ComponentFixture<SecurityComponent>;
+describe('SessionActiveComponent', () => {
+  let component: SessionActiveComponent;
+  let fixture: ComponentFixture<SessionActiveComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SecurityComponent ]
+      declarations: [ SessionActiveComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SecurityComponent);
+    fixture = TestBed.createComponent(SessionActiveComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
