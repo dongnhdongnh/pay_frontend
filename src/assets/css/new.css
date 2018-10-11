@@ -1320,7 +1320,12 @@ tbody .form-control {
 }
 
 .tx-value {
+  color: #535353;
+  font-size: 20px;
+}
+.card-body p {
   color: #10a04a;
+  font-weight: bold;
 }
 
 tbody .value {
@@ -1735,6 +1740,36 @@ ol {
 
 .form-layout-4 h6 {
   margin-bottom: 0;
+}
+
+.balance {
+  min-height: 315px;
+}
+.toggle-light {
+  height: 26px;
+  width: 60px;
+  margin-left: auto;
+}
+.toggle-inner {
+  width: 94px;
+  margin-left: -34px;
+}
+.toggle-on {
+  height: 26px; width: 47px; text-indent: -8.66667px; line-height: 26px;
+}
+.toggle-blob {
+  height: 26px; width: 26px; margin-left: -13px;
+}
+.toggle-off {
+  height: 26px; width: 47px; margin-left: -13px; text-indent: 8.66667px; line-height: 26px;
+}
+.disabled-form {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,.5);
+  z-index: 100;
+  cursor: not-allowed;
 }
 
 @media only screen and (max-width: 1200px) {
