@@ -6,21 +6,26 @@ import { Utility } from 'utility/Utility';
 })
 export class WalletService {
 
-  url_getAllWallet = '/api/wallet/all'
+  url_getAllWalletByUserID = '/api/wallet/all?userID='
   url_getWalletInfor = '/api/wallet/History'
   url_getWalletHistory = '/api/wallet/History'
   constructor(private httpService: HttpService) { }
   async getAllWallet(mAccount) {
     try {
-      let operation = 'get info user';
-      let api = this.url_getAllWallet;
-      await this.httpService.post(operation, api, mAccount, false)
-        .then((result) => {
-          console.log(JSON.stringify(result));
-        })
-      // if (Utility.isError(result)) {
-      //   console.log(result.message);
-      //   return;
+      let operation = 'get all wallets by info user';
+      let api = this.url_getAllWalletByUserID+mAccount.id;
+      let result = await this.httpService.get(operation, api, false);
+      console.log(mAccount.id+" result "+result);
+      return result;
+      if (Utility.isError(result)) {
+        console.log(result.message);
+        return;
+      }
+      else
+      {
+
+
+      }
 
     } catch (error) {
       console.log(JSON.stringify(error));

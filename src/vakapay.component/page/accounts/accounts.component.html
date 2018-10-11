@@ -1,3 +1,4 @@
+
 <div class="br-mainpanel">
     <div class="br-pagebody">
       <div class="row row-sm mg-t-20">
@@ -14,14 +15,17 @@
             <div class="clear-both"></div>
             <div class="row row-sm tab-account mg-t-20">
               <div class="col-xl-12 tab-left">
+
+                
                 <div class="tab-left-top nav" role="tablist">
-                  <div class="active show d-table-cell" data-toggle="tab" href="#tab1" role="tab" aria-selected="true">
+
+                  <div *ngFor="let wallet of wallets;let i = index" class="d-table-cell" data-toggle="tab" href="#tab1" role="tab" aria-selected="true" >
                     <div class="bg-white border">
                       <div class="pd-x-10 pd-t-10 d-flex align-items-center">
                         <i class="icon tx-60 lh-0 tx-white op-7 mg-r-10"><img src="../assets/icons/icon-vkc.svg" alt=""></i>
                         <div class="mg-r-20 width-text">
-                          <p class="tx-15 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-vkc mg-b-0">VKC Wallet</p>
-                          <p class="tx-14 tx-grey tx-lato tx-bold mg-b-0 lh-1">0.00005 VKC</p>
+                          <p class="tx-15 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-vkc mg-b-0">{{i}} {{wallet.networkname}} </p>
+                          <p class="tx-14 tx-grey tx-lato tx-bold mg-b-0 lh-1">{{wallet.balance}} {{wallet.networkname}}</p>
                           <div class="pd-t-10 pd-b-10 d-flex align-items-center">
                             <a href="#" class="btn btn-trans tx-grey tx-11 tx-uppercase pd-y-7 pd-x-10 tx-mont tx-medium mg-t-10 mg-r-5"
                               data-toggle="modal" data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
@@ -42,118 +46,12 @@
                       </div>
                     </div>
                   </div>
-                  <div class="d-table-cell" data-toggle="tab" href="#tab1b" role="tab" aria-selected="false">
-                    <div class="bg-white border">
-                      <div class="pd-x-10 pd-t-10 d-flex align-items-center">
-                        <i class="icon tx-60 lh-0 tx-white op-7 mg-r-10"><img src="../assets/icons/icon-vkc.svg" alt=""></i>
-                        <div class="mg-r-20 width-text">
-                          <p class="tx-15 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-vkc mg-b-0">VKC Vault</p>
-                          <p class="tx-14 tx-grey tx-lato tx-bold mg-b-0 lh-1">0.00005 VKC</p>
-                          <div class="pd-t-10 pd-b-10 d-flex align-items-center">
-                            <a href="#" class="btn btn-trans tx-grey tx-11 tx-uppercase pd-y-7 pd-x-10 tx-mont tx-medium mg-t-10 mg-r-5"
-                              data-toggle="modal" data-target="#modaldemo7"><i class="fa fa-download mg-r-3"></i>Deposit</a>
-                            <a href="#" class="btn btn-trans tx-grey tx-11 tx-uppercase pd-y-7 pd-x-10 tx-mont tx-medium mg-t-10 mg-r-5"
-                              data-toggle="modal" data-target="#modaldemo8"><i class="fa fa-upload mg-r-3"></i>Withdraw
-                            </a>
-                            <div class="dropdown">
-                              <a href="#" onclick="myFunction2()" class="dropbtn btn btn-trans tx-grey tx-11 tx-uppercase pd-y-7 pd-x-10 tx-mont tx-medium mg-t-10"><i
-                                  class="fa fa-cog"></i>
-                              </a>
-                              <div id="myDropdown2" class="dropdown-content2 rounded">
-                                <a href="#" data-toggle="modal" data-target="#modaldemo12"><i class="fa fa-info-circle tx-13 mg-r-5"></i>Vault
-                                  Details
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  
+                
+              
+                 
                   <!-- col-3 -->
-                  <div class="d-table-cell" data-toggle="tab" href="#tab2" role="tab">
-                    <div class="bg-white border">
-                      <div class="pd-x-10 pd-t-10 d-flex align-items-center">
-                        <i class="icon tx-60 lh-0 tx-white op-7 mg-r-10"><img src="../assets/icons/icon-btc.svg" alt=""></i>
-                        <div class="mg-r-20 width-text">
-                          <p class="tx-15 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-btc mg-b-0">BitCoin</p>
-                          <p class="tx-14 tx-grey tx-lato tx-bold mg-b-0 lh-1">0.0000 BTC</p>
-                          <div class="pd-t-10 pd-b-10 d-flex align-items-center">
-                            <a href="#" class="btn btn-trans tx-grey tx-11 tx-uppercase pd-y-7 pd-x-10 tx-mont tx-medium mg-t-10 mg-r-5"
-                              data-toggle="modal" data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
-                            <a href="#" class="btn btn-trans tx-grey tx-11 tx-uppercase pd-y-7 pd-x-10 tx-mont tx-medium mg-t-10 mg-r-5"
-                              data-toggle="modal" data-target="#modaldemo2"><i class="fa fa-cart-arrow-down mg-r-3"></i>Receive
-                            </a>
-                            <div class="dropdown">
-                              <a href="#" onclick="myFunction3()" class="dropbtn btn btn-trans tx-grey tx-11 tx-uppercase pd-y-7 pd-x-10 tx-mont tx-medium mg-t-10"><i
-                                  class="fa fa-cog"></i>
-                              </a>
-                              <div id="myDropdown3" class="dropdown-content2 rounded">
-                                <a href="#" data-toggle="modal" data-target="#modaldemo9"><i class="fa fa-exchange tx-13 mg-r-5"></i>Transfer</a>
-                                <a href="#" data-toggle="modal" data-target="#modaldemo10"><i class="fa fa-ban tx-13 mg-r-5"></i>Delete</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- col-3 -->
-                  <div class="d-table-cell" data-toggle="tab" href="#tab3" role="tab" (click)="onClickWalletTab($event,'ETH')" >
-                    <div class="bg-white border">
-                      <div class="pd-x-10 pd-t-10 d-flex align-items-center">
-                        <i class="icon tx-60 lh-0 tx-white op-7 mg-r-10"><img src="../assets/icons/icon-eth.svg" alt=""></i>
-                        <div class="mg-r-20 width-text">
-                          <p class="tx-15 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-eth mg-b-0">Ethereumm</p>
-                          <p class="tx-14 tx-grey tx-lato tx-bold mg-b-0 lh-1">521,152 ETH</p>
-                          <div class="pd-t-10 pd-b-10 d-flex align-items-center">
-                            <a href="#" class="btn btn-trans tx-grey tx-11 tx-uppercase pd-y-7 pd-x-10 tx-mont tx-medium mg-t-10 mg-r-5"
-                              data-toggle="modal" data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
-                            <a href="#" class="btn btn-trans tx-grey tx-11 tx-uppercase pd-y-7 pd-x-10 tx-mont tx-medium mg-t-10 mg-r-5"
-                              data-toggle="modal" data-target="#modaldemo2"><i class="fa fa-cart-arrow-down mg-r-3"></i>Receive
-                            </a>
-                            <div class="dropdown">
-                              <a href="#" onclick="onClickWalletTab($event,'ETH')" class="dropbtn btn btn-trans tx-grey tx-11 tx-uppercase pd-y-7 pd-x-10 tx-mont tx-medium mg-t-10"><i
-                                  class="fa fa-cog"></i>
-                              </a>
-                              <div id="myDropdown4" class="dropdown-content2 rounded">
-                                <a href="#" data-toggle="modal" data-target="#modaldemo9"><i class="fa fa-exchange tx-13 mg-r-5"></i>Transfer</a>
-                                <a href="#" data-toggle="modal" data-target="#modaldemo10"><i class="fa fa-ban tx-13 mg-r-5"></i>Delete</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- col-3 -->
-                  <div class="d-table-cell" data-toggle="tab" href="#tab4" role="tab">
-                    <div class="bg-white border">
-                      <div class="pd-x-10 pd-t-10 d-flex align-items-center">
-                        <i class="icon tx-60 lh-0 tx-white op-7 mg-r-10"><img src="../assets/icons/icon-eos.svg" alt=""></i>
-                        <div class="mg-r-20 width-text">
-                          <p class="tx-15 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-eos mg-b-0">EOS</p>
-                          <p class="tx-14 tx-grey tx-lato tx-bold mg-b-0 lh-1">0.0000 EOS</p>
-                          <div class="pd-t-10 pd-b-10 d-flex align-items-center">
-                            <a href="#" class="btn btn-trans tx-grey tx-11 tx-uppercase pd-y-7 pd-x-10 tx-mont tx-medium mg-t-10 mg-r-5"
-                              data-toggle="modal" data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
-                            <a href="#" class="btn btn-trans tx-grey tx-11 tx-uppercase pd-y-7 pd-x-10 tx-mont tx-medium mg-t-10 mg-r-5"
-                              data-toggle="modal" data-target="#modaldemo2"><i class="fa fa-cart-arrow-down mg-r-3"></i>Receive
-                            </a>
-                            <div class="dropdown">
-                              <a href="#" onclick="myFunction5()" class="dropbtn btn btn-trans tx-grey tx-11 tx-uppercase pd-y-7 pd-x-10 tx-mont tx-medium mg-t-10"><i
-                                  class="fa fa-cog"></i>
-                              </a>
-                              <div id="myDropdown5" class="dropdown-content2 rounded">
-                                <a href="#" data-toggle="modal" data-target="#modaldemo9"><i class="fa fa-exchange tx-13 mg-r-5"></i>Transfer</a>
-                                <a href="#" data-toggle="modal" data-target="#modaldemo10"><i class="fa fa-ban tx-13 mg-r-5"></i>Delete</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                
                 </div>
               </div>
               <div class="col-xl-12 tab-content tab-right">
