@@ -1,5 +1,3 @@
-import { element } from 'protractor';
-
 class utility {
     // http://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
     static sleep(ms) {

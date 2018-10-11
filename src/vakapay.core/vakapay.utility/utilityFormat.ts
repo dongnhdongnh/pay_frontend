@@ -10,13 +10,13 @@ export class UtilityFormat {
     }
 
     static encodeObject(obj, keys) {
-        keys.forEach(element => obj[element] && (obj[element] = utilityFormat.encodeText(obj[element])));
+        keys.forEach(element => obj[element] && (obj[element] = this.encodeText(obj[element])));
 
         return obj;
     }
 
     static decodeObject(obj, keys) {
-        keys.forEach(element => obj[element] && (obj[element] = utilityFormat.decodeText(obj[element])));
+        keys.forEach(element => obj[element] && (obj[element] = this.decodeText(obj[element])));
 
         return obj;
     }
@@ -39,17 +39,17 @@ export class UtilityFormat {
     }
 
     //Get number with decimals
-    static getNumber(number, decimals) {
+    static getNumber(number, decimals = null) {
         if (typeof number == 'string') {
             number = number.trim().replace(/,/g, '');
         }
         if (!number) return 0;
         if (decimals && typeof decimals == 'number') {
-            number = parseFloat((parseFloat(number) || 0));
+            number = parseFloat(`${parseFloat(number) || 0}`);
             let result = parseFloat(number.toFixed(decimals));
             if (result > number) {
                 var sub = parseFloat(1 + '0'.repeat(decimals));
-                sub = 1 / parseFloat(sub);
+                sub = 1 / parseFloat(`${sub}`);
                 result = result - sub;
             }
             return parseFloat(result.toFixed(decimals));
@@ -86,14 +86,14 @@ export class UtilityFormat {
             //Get all element after first poin and join them
             let spli = String(number).split('.');
             if (spli.length > 1) {
-                var [a, ...after] = spli;
-                if (after) {
-                    after = after.join('');
+                var [a, ..._after] = spli;
+                if (_after) {
+                    var after = _after.join('');
                 }
             }
         }
 
-        number = String(this.getNumber(number)).split('.');
+        number = String(this.getNumber(`${number}`)).split('.');
         var x = number[0];
         {
             x = x.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
@@ -156,12 +156,40 @@ export class UtilityFormat {
         }
     }
 
-    static formatDate(time, format) {
+    static formatDateBefore(time) {
+        var agoSeconds = new Date().getTime() / 1000 - time;
+        var agoMinutes = agoSeconds / 60;
+        if (agoMinutes < 1) {
+            var value = parseInt(String(agoSeconds));
+            return `${value} second${value === 1 ? '' : 's'} ago`;
+        }
+
+        var agoHours = agoMinutes / 60;
+        if (agoHours < 1) {
+            var value = parseInt(String(agoMinutes));
+            return `${value} minute${value === 1 ? '' : 's'} ago`;
+        }
+
+        var agoDay = agoMinutes / 24;
+        if (agoDay < 1) {
+            var value = parseInt(String(agoHours));
+            return `${value} hour${value === 1 ? '' : 's'} ago`;
+        }
+
+        var agoYear = agoDay / 365;
+        if (agoYear < 1) {
+            var value = parseInt(String(agoDay));
+            return `${value} day${value === 1 ? '' : 's'} ago`;
+        }
+
+        var value = parseInt(String(agoYear));
+        return `${value} year${value === 1 ? '' : 's'} ago`;
+
+    }
+
+    static formatDate(time, format = "H:i:s - m/d/Y") {
         if (time == null)
             return null;
-
-        if (format == null)
-            format = "H:i:s - m/d/Y";
 
         //Example: format as string "H:i:s - d/m/Y"
         //time has unit that is miliseconds

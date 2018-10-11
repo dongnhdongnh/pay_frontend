@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 //Add libriary
 import { ToasterModule } from 'angular2-toaster';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatMenuModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule } from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
@@ -63,8 +63,8 @@ import { SecurityComponent } from 'component/page/security/security.component';
 import { ChangePasswordComponent } from 'component/page/security/change-password/change-password.component';
 import { TwoFactorAuthenticationComponent } from 'component/page/security/two-factor-authentication/two-factor-authentication.component';
 import { TwofaOptionsComponent } from 'component/page/security/two-factor-authentication/enable/twofa-options/twofa-options.component';
-import { SessionActiveComponent } from 'component/page/security/session-active/session-active.component';
-import { AccountActivityComponent } from 'component/page/security/account-activity/account-activity.component';
+import { SessionActiveComponent } from 'component/page/activity/session-active/session-active.component';
+import { AccountActivityComponent } from 'component/page/activity/account-activity/account-activity.component';
 import { CloseAccountComponent } from 'component/page/security/close-account/close-account.component';
 
 //TwofaVerify
@@ -78,6 +78,7 @@ import { CloseAccountVerifyPasswordComponent }
 import { CloseAccountVerifyPhoneComponent }
   from 'component/page/security/close-account/close-account-verify-phone/close-account-verify-phone.component';
 import { LoadingButtonComponent } from 'component/loading-button/loading-button.component';
+import { ActivityComponent } from 'component/page/activity/activity.component';
 
 @NgModule({
   declarations: [
@@ -117,6 +118,7 @@ import { LoadingButtonComponent } from 'component/loading-button/loading-button.
     CloseAccountVerifyPhoneComponent,
     LoadingButtonComponent,
     TwofaOptionsVerifyWithPhoneComponent,
+    ActivityComponent,
   ],
   imports: [
     BrowserModule,
@@ -125,6 +127,7 @@ import { LoadingButtonComponent } from 'component/loading-button/loading-button.
     AppRoutingModule,
     BrowserAnimationsModule,
     ToasterModule.forRoot(),
+    MatTableModule,
     MatButtonModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,
 
     //Font

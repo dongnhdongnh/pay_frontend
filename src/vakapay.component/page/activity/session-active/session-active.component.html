@@ -1,0 +1,58 @@
+<h5 class="mg-t-20 tx-green tx-15">Web Sessions</h5>
+<h6 class="grey tx-left tx-14">
+  These sessions are currently signed in to your account.
+  Sign out all other sessions
+</h6>
+<br>
+<div class="table-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource" style="width: 100%;">
+
+    <ng-container matColumnDef="signedIn">
+      <mat-header-cell *matHeaderCellDef> Signed In </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span class="mobile-label">Signed In:</span> {{element.signedIn}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="browser">
+      <mat-header-cell *matHeaderCellDef> Browser </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span class="mobile-label">Browser:</span> {{element.browser}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="userIp">
+      <mat-header-cell *matHeaderCellDef> IP Address </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span class="mobile-label">IP Address:</span> {{element.userIp}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+      <mat-header-cell *matHeaderCellDef> Near </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span class="mobile-label">Near:</span> {{element.address}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="current">
+      <mat-header-cell *matHeaderCellDef> Current </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span class="mobile-label">Current:</span> <i class="fa fa-check tx-13
+          tx-grey"></i> </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span class="mobile-label">Delete:</span>
+        <a (click)=delete(element.id)>
+          <i class="fa fa-times tx-13 tx-grey" style="font-size: 17px;"></i>
+        </a>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
