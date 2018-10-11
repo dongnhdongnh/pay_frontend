@@ -17,6 +17,7 @@ import { ProfileComponent } from 'component/page/profile/profile.component';
 import { PagenotfoundComponent } from 'component/page/pagenotfound/pagenotfound.component';
 import { PreferencesComponent } from 'component/page/preferences/preferences.component';
 import { AddressesComponent } from 'component/addresses/addresses.component';
+import { ReportsComponent } from "component/reports/reports.component";
 
 //Init routes
 const routes: Routes = [
@@ -61,6 +62,11 @@ const routes: Routes = [
 		path: 'addresses',
 		component: AddressesComponent,
 		data: { title: 'Addresses' }
+	},
+	{
+		path: 'reports',
+		component: ReportsComponent,
+		data: { title: 'Reports' }
 	},
 	{
 		path: '',
