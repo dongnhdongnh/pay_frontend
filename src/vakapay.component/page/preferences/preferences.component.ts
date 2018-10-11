@@ -1,6 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Root } from 'component/root/root.component';
 import { AccountService } from 'services/account/account.service';
 import { Account } from 'model/account/Account';
@@ -10,9 +10,9 @@ import { Account } from 'model/account/Account';
   templateUrl: './preferences.component.html',
   styleUrls: ['./preferences.component.css']
 })
-export class PreferencesComponent extends Root implements OnInit {
+export class PreferencesComponent extends Root {
   mAccount: Account;
-  
+
   constructor(
     titleService: Title,
     route: ActivatedRoute,
@@ -21,8 +21,5 @@ export class PreferencesComponent extends Root implements OnInit {
   ) {
     super(titleService, route, router);
     this.mAccount = mAccountSerive.mAccount;
-  }
-
-  ngOnInit() {
   }
 }

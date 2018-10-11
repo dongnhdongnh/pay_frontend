@@ -3,7 +3,8 @@
   <div class="col-sm-8 mg-l-auto">
     <label class="rdiobox">
       <input name="radio" type="radio" (click)="change(1)">
-      <span>Any amount of digital currency — <i class="tx-green tx-bold">Most secure</i></span>
+      <span>Any amount of digital currency — <i class="tx-green tx-bold">Most
+          secure</i></span>
     </label>
     <label class="rdiobox">
       <input name="radio" type="radio" (click)="change(2)">
@@ -14,10 +15,18 @@
       <span>Never — <i class="tx-red tx-bold">Least secure</i></span>
     </label>
     <div class="form-layout-footer">
-      <button (click)="onUpdate()" [disabled]="!isChange||!isValid||isLoading" class="btn bg-green" type="button">
+      <button
+        (click)="openModal()"
+        [disabled]="!form.isChange||!form.isValid"
+        class="btn bg-green"
+        type="button">
         Save
-        <loading-button></loading-button>
       </button>
     </div>
-  </div><!-- col-8 -->
-</div><!-- row -->
+  </div>
+</div>
+
+<ngx-smart-modal #modalTwofaOptions [identifier]="'modalTwofaOptions'">
+  <twofa-options-verify-with-phone [form]="form">
+  </twofa-options-verify-with-phone>
+</ngx-smart-modal>

@@ -1,3 +1,4 @@
+import { TwofaEnableService } from 'services/twofa/twofa-enable.service';
 import { Component, AfterViewInit } from '@angular/core';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 
@@ -14,7 +15,9 @@ export class TwoFactorAuthenticationComponent implements AfterViewInit {
 
   modalName = 'modalTwoFA';
 
-  constructor(public ngxSmartModalService: NgxSmartModalService) {
+  constructor(
+    public ngxSmartModalService: NgxSmartModalService,
+    private twofaEnableService: TwofaEnableService) {
   }
 
   ngAfterViewInit(): void {
@@ -24,7 +27,9 @@ export class TwoFactorAuthenticationComponent implements AfterViewInit {
   }
 
   openModal() {
+    this.twofaEnableService.requireSendCodePhone();
     this.ngxSmartModalService.getModal(this.modalName).open();
+    
   }
 
   closeModal() {

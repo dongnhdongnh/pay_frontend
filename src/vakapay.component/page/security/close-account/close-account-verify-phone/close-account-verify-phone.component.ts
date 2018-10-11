@@ -2,6 +2,7 @@ import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { Utility } from 'utility/Utility';
 import { UtilityValidate } from 'utility/UtilityValidate';
 import { CloseAccountService } from 'services/account/close-account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'close-account-verify-phone',
@@ -24,7 +25,9 @@ export class CloseAccountVerifyPhoneComponent {
 
   //#endregion init variable
 
-  constructor(private closeAccountService: CloseAccountService) {
+  constructor(
+    private closeAccountService: CloseAccountService,
+    private router: Router,) {
   }
 
   requireSendCodePhone() {
@@ -65,6 +68,9 @@ export class CloseAccountVerifyPhoneComponent {
       this.onReset();
       this.form.step = 1;
       this.form.modal.close();
+
+      //logout
+      this.router.navigate(['/logout']);
 
       return;
     } catch (error) {

@@ -37,7 +37,7 @@
     <div class="form-layout-footer">
       <button (click)="onUpdate()" [disabled]="!isChange||!isValid||isLoading" class="btn bg-green mg-t-5" type="button">
         Save
-        <loading-button></loading-button>
+        <loading-button [isLoading]='isLoading'></loading-button>
       </button>
       <button [disabled]="!isChange||isLoading" (click)="onReset()" class="btn btn-secondary mg-t-5" type="reset">Reset</button>
     </div><!-- form-layout-footer -->

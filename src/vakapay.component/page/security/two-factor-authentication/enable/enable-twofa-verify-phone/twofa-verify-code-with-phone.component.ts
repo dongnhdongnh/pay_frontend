@@ -1,14 +1,14 @@
-import { Component, ElementRef, ViewChild, Input } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild } from '@angular/core';
 import { Utility } from 'utility/Utility';
 import { UtilityValidate } from 'utility/UtilityValidate';
-import { TwofaService } from 'services/twofa/twofa.service';
+import { TwofaEnableService } from 'services/twofa/twofa-enable.service';
 
 @Component({
   selector: 'twofa-verify-code-with-phone',
   templateUrl: './twofa-verify-code-with-phone.component.html'
 })
 export class TwofaVerifyCodeComponentWithPhoneComponent {
-
+  @ViewChild('code') codeElement: ElementRef;
   //#region init variable
   @Input() form;
 
@@ -24,15 +24,21 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
   messageErrorCode = '';
 
   //service
-  twofaService: TwofaService;
+  twofaEnableService: TwofaEnableService;
   //#endregion init variable
 
-  constructor(accountService: TwofaService) {
-    this.twofaService = accountService;
-  }  
+  constructor(accountService: TwofaEnableService) {
+    this.twofaEnableService = accountService;
+  }
 
-  cancel(){
+  requireSendCodePhone(){
+    this.onReset();
+    this.twofaEnableService.requireSendCodePhone();
+  }
+
+  cancel() {
     this.form.modal.close();
+    this.onReset();
   }
 
   async onUpdate() {
@@ -51,7 +57,7 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
       };
 
       //send ajax
-      let result = await this.twofaService.verifyCodeWithPhone(dataPost);
+      let result = await this.twofaEnableService.update(dataPost);
 
       //Show message success
       this.isLoading = false;
@@ -70,12 +76,14 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
   }
 
   onReset() {
-    // this.mAccount.avatar = this.imageReset;
-    // this.selectedFile = null;
     this.isValid = false;
     this.isLoading = false;
     this.isChange = false;
-  }  
+
+    //custom
+    this.messageErrorCode = '';
+    this.codeElement.nativeElement.value = '';
+  }
 
   validate() {
     try {

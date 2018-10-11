@@ -8,7 +8,7 @@ export class CloseAccountService {
     private closeAccountUrl = '/api/security/close-account';
     private verifyWithPasswordUrl = '/api/close-account/verify-with-password';
     private verifyWithPhoneUrl = '/api/close-account/verify-with-phone';
-    private sendCodePhoneUrl = '/api/close-account/require-send-code-phone';
+    private requireSendCodePhoneUrl = '/api/close-account/require-send-code-phone';
 
     constructor(private httpService: HttpService) {
     }
@@ -26,7 +26,7 @@ export class CloseAccountService {
 
     requireSendCodePhone() {
         let operation = 'require server to send code to phone to verify close account';
-        let api = this.sendCodePhoneUrl;
+        let api = this.requireSendCodePhoneUrl;
         if (this.test) return this.resultTest(operation);
         return this.httpService.post(operation, api, null, false);
     }

@@ -69,7 +69,10 @@ import { CloseAccountComponent } from 'component/page/security/close-account/clo
 
 //TwofaVerify
 import { TwofaVerifyCodeComponentWithPhoneComponent }
-  from 'component/page/security/two-factor-authentication/enable/twofa-verify-code-with-phone/twofa-verify-code-with-phone.component';
+  from 'component/page/security/two-factor-authentication/enable/enable-twofa-verify-phone/twofa-verify-code-with-phone.component';
+import { TwofaOptionsVerifyWithPhoneComponent }
+  from 'component/page/security/two-factor-authentication/enable/twofa-options/twofa-options-verify-with-phone/twofa-options-verify-with-phone.component';
+
 import { CloseAccountVerifyPasswordComponent }
   from 'component/page/security/close-account/close-account-verify-password/close-account-verify-password.component';
 import { CloseAccountVerifyPhoneComponent }
@@ -113,6 +116,7 @@ import { LoadingButtonComponent } from 'component/loading-button/loading-button.
     CloseAccountVerifyPasswordComponent,
     CloseAccountVerifyPhoneComponent,
     LoadingButtonComponent,
+    TwofaOptionsVerifyWithPhoneComponent,
   ],
   imports: [
     BrowserModule,

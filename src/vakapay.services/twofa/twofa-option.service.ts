@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpService } from 'network/http/http.service';
 
 @Injectable({ providedIn: 'root' })
-export class TwofaService {
+export class TwofaOptionService {
 
-    private verifyCodeWithPhoneUrl = '/api/twofa/enable/verify-code-with-phone';
-    private requiredSendCodePhone = '/api/twofa/enable/require-send-code-phone';
-    private updateTwofaVerifyOptionsUrl = '/api/twofa/update-verify-options';
+    private updateTwofaVerifyOptionsUrl = '/api/twofa/option/update';
+    private requireSendCodePhoneUrl = '/api/twofa/option/require-send-code-phone';
     private test = true;
 
     constructor(private httpService: HttpService) { }
@@ -15,14 +14,14 @@ export class TwofaService {
         return this.httpService.test(operation);
     }
 
-    verifyCodeWithPhone(data: any) {
-        let operation = 'twofa - verify code with phone';
-        let api = this.verifyCodeWithPhoneUrl;
+    requireSendCodePhone() {
+        let operation = 'require server to send code to phone to verify change option twofa';
+        let api = this.requireSendCodePhoneUrl;
         if (this.test) return this.resultTest(operation);
-        return this.httpService.post(operation, api, data);
+        return this.httpService.post(operation, api, null, false);
     }
 
-    updateTwofaVerifyOptions(data: any) {
+    update(data: any) {
         let operation = 'twofa - update options verify';
         let api = this.updateTwofaVerifyOptionsUrl;
         if (this.test) return this.resultTest(operation);

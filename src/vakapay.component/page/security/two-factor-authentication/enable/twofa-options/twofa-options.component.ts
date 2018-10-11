@@ -1,26 +1,25 @@
-import { Component } from '@angular/core';
-import { TwofaService } from 'services/twofa/twofa.service';
-import { Utility } from 'utility/Utility';
+import { Component, AfterViewInit } from '@angular/core';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Component({
   selector: 'twofa-options',
   templateUrl: './twofa-options.component.html',
 })
-export class TwofaOptionsComponent {
+export class TwofaOptionsComponent implements AfterViewInit {
   option: number;
 
-  //status
-  isLoading = false;
-  isValid = false;
-  isChange = false;
+  form = {
+    modal: {},
+    reset: {},
+    option: 0,
+    isValid: false,
+    isChange: false,
+  };
 
-  //service
-  twofaService: TwofaService;
+  modalName = 'modalTwofaOptions';
 
-  constructor(accountService: TwofaService) {
-    this.twofaService = accountService;
-  }
-  
+  constructor(public ngxSmartModalService: NgxSmartModalService) { }
+
   validate() {
     try {
       //get value input
@@ -28,54 +27,34 @@ export class TwofaOptionsComponent {
         throw new Error(`Option is invalid.`);
       }
 
-      this.isValid = true;
+      this.form.isValid = true;
     } catch (error) {
-      this.isValid = false;
+      this.form.isValid = false;
     }
   }
 
   change(value) {
-    this.isChange = true;
+    this.form.isChange = true;
     this.option = value;
+    this.form.option = this.option;
     this.validate();
   }
 
   reset() {
-    this.isChange = false;
-    this.isValid = false;
+    this.form.isChange = false;
+    this.form.isValid = false;
   }
 
-  async onUpdate() {
-    try {
-      if (this.isChange === false) return;
-      this.isLoading = true;
-      this.validate();
+  ngAfterViewInit(): void {
+    this.form.modal = this.ngxSmartModalService.getModal(this.modalName);
+  }
 
-      if (this.isValid === false) {
-        this.isLoading = false;
-        return;
-      }
+  openModal() {
+    this.ngxSmartModalService.getModal(this.modalName).open();
+  }
 
-      var dataPost = {
-        option: this.option
-      };
-
-      //send ajax
-      let result = await this.twofaService.updateTwofaVerifyOptions(dataPost);
-
-      //Show message success
-      this.isLoading = false;
-
-      if (Utility.isError(result)) return;
-
-      this.reset();
-
-      return;
-    } catch (error) {
-      //Show message success
-      this.isLoading = false;
-      console.log(JSON.stringify(error));
-    }
+  closeModal() {
+    this.ngxSmartModalService.getModal(this.modalName).close();
   }
 
 }

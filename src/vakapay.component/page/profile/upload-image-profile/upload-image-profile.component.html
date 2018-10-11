@@ -16,7 +16,7 @@
     <div class="form-layout-footer">
       <button (click)="onUpload()" [disabled]="!selectedFile||isInvalid||isLoading" class="btn bg-green mg-t-5" type="button">
         Save
-        <loading-button></loading-button>
+        <loading-button [isLoading]='isLoading'></loading-button>
       </button>
       <button (click)="onReset()" [disabled]="!selectedFile||isLoading" class="btn btn-secondary mg-t-5" type="reset">Reset</button>
     </div><!-- form-layout-footer -->
