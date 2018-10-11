@@ -1,12 +1,14 @@
 <div class="br-mainpanel">
   <div class="br-pagebody">
     <div class="row row-sm mg-t-20">
-      <div class="col-xl-12 bg-white mg-t-20">
-        <form class="form-layout">
+      <div class="col-xl-6 mg-t-20">
+        <form class="form-layout bg-white rounded balance">
           <app-preference [mAccount]='mAccount'></app-preference>
-          <div class="mg-t-30">
-            <app-notification [mAccount]='mAccount'></app-notification>
-          </div><!-- form-layout -->
+        </form><!-- form-layout -->
+      </div><!-- col-6 -->
+      <div class="col-xl-6 mg-t-20">
+        <form class="form-layout bg-white rounded balance">
+          <app-notification [mAccount]='mAccount'></app-notification>
         </form><!-- form-layout -->
       </div><!-- col-6 -->
     </div><!-- row -->
