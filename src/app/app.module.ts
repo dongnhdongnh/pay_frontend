@@ -26,6 +26,9 @@ import { AppRoutingModule } from './app-routing.module';
 //Component parent
 import { AppComponent } from './app.component';
 
+// import pagination component
+import { JwPaginationComponent } from 'jw-angular-pagination';
+
 //Component children
 //Authentication
 import { RegisterComponent } from 'component/authenticate/register/register.component';
@@ -77,7 +80,8 @@ import { AccountsComponent } from 'component/page/accounts/accounts.component';
     UploadImageProfileComponent,
     UpdateProfileComponent,
     PreferencesComponent,
-    AccountsComponent
+    AccountsComponent,
+    JwPaginationComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from 'network/http/http.service';
 import { Utility } from 'utility/Utility';
+import { ResultObject } from 'model/result/ResultObject';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,17 +14,16 @@ export class WalletService {
   async getAllWallet(mAccount) {
     try {
       let operation = 'get all wallets by info user';
-      let api = this.url_getAllWalletByUserID+mAccount.id;
+      let api = this.url_getAllWalletByUserID + mAccount.id;
       let result = await this.httpService.get(operation, api, false);
-      console.log(mAccount.id+" result "+result);
-      return result;
+      console.log(mAccount.id + " result " + result);
+
       if (Utility.isError(result)) {
         console.log(result.message);
         return;
       }
-      else
-      {
-
+      else {
+        return result;
 
       }
 
@@ -44,6 +44,12 @@ export class WalletService {
     } catch (error) {
       console.log(JSON.stringify(error));
     }
-
   }
+
+  getWalletHistory(wallet): Promise<ResultObject> {
+      let operation = 'get wallet history';
+      let api = this.url_getWalletHistory;
+      return this.httpService.post(operation, api, wallet, false);
+  }
+
 }
