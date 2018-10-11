@@ -1,1502 +1,1580 @@
-
-<div class="br-mainpanel">
-    <div class="br-pagebody">
-      <div class="row row-sm mg-t-20">
-        <div class="col-xl-12 bg-white mg-t-20">
-          <form class="form-layout">
-            <div class="row-sm">
-              <div class="width-half">
-                <h6 class="br-section-label">Your Account</h6>
+  <!-- ########## START: MAIN PANEL ########## -->
+  <div class="br-mainpanel">
+      <div class="br-pagebody">
+        <div class="row row-sm mg-t-20">
+          <div class="col-xl-12 bg-white mg-t-20">
+            <form class="form-layout">
+              <div class="row-sm">
+                <div class="width-half">
+                  <h6 class="br-section-label tx-green"><i class="fa fa-user"></i> Your Account</h6>
+                  <p class="br-section-text">You can send, receive or make some vault to save your current coin more safely!</p>
+                </div>
+                <div class="width-half">
+                  <a href="#" class="btn addnew bg-green" data-toggle="modal" data-target="#modaldemo5"> + New Account</a>
+                </div>
               </div>
-              <div class="width-half">
-                <a href="#" class="btn addnew bg-green" data-toggle="modal" data-target="#modaldemo5"> + New Account</a>
-              </div>
-            </div>
-            <div class="clear-both"></div>
-            <div class="row row-sm tab-account mg-t-20">
-              <div class="col-xl-12 tab-left">
-
-                
-                <div class="tab-left-top nav" role="tablist">
-
-                  <div *ngFor="let wallet of wallets;let i = index" class="d-table-cell" data-toggle="tab" href="#tab1" role="tab" aria-selected="true" >
-                    <div class="bg-white border">
-                      <div class="pd-x-10 pd-t-10 d-flex align-items-center">
-                        <i class="icon tx-60 lh-0 tx-white op-7 mg-r-10"><img src="../assets/icons/icon-vkc.svg" alt=""></i>
-                        <div class="mg-r-20 width-text">
-                          <p class="tx-15 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-vkc mg-b-0">{{i}} {{wallet.networkname}} </p>
-                          <p class="tx-14 tx-grey tx-lato tx-bold mg-b-0 lh-1">{{wallet.balance}} {{wallet.networkname}}</p>
-                          <div class="pd-t-10 pd-b-10 d-flex align-items-center">
-                            <a href="#" class="btn btn-trans tx-grey tx-11 tx-uppercase pd-y-7 pd-x-10 tx-mont tx-medium mg-t-10 mg-r-5"
-                              data-toggle="modal" data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
-                            <a href="#" class="btn btn-trans tx-grey tx-11 tx-uppercase pd-y-7 pd-x-10 tx-mont tx-medium mg-t-10 mg-r-5"
-                              data-toggle="modal" data-target="#modaldemo2"><i class="fa fa-arrow-circle-down mg-r-3"></i>Receive
-                            </a>
-                            <div class="dropdown">
-                              <a href="#" onclick="myFunction1()" class="dropbtn btn btn-trans tx-grey tx-11 tx-uppercase pd-y-7 pd-x-10 tx-mont tx-medium mg-t-10"><i
-                                  class="fa fa-cog"></i>
+              <div class="clear-both"></div>
+              <div class="row row-sm tab-account mg-t-20">
+                <div class="col-xl-12 tab-left">
+                  <div class="tab-left-top nav" role="tablist">
+                    <div class="active show d-table-cell" data-toggle="tab" href="#tab1" role="tab" aria-selected="true">
+                      <div class="bg-green border p-rl h120">
+                        <div class="pd-x-10 pd-t-10 d-flex align-items-center">
+                          <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-vkc.svg" alt=""></i>
+                          <div class="mg-r-20 width-text">
+                            <p class="tx-15 tx-white tx-spacing-1 mg-b-0">VKC Wallet</p>
+                            <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">0.00005 VKC</p>
+                            <div class="pd-t-10 pd-b-10 d-flex align-items-center">
+                              <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo3"><i
+                                  class="fa fa-send mg-r-3"></i>Send</a>
+                              <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo2"><i
+                                  class="fa fa-arrow-circle-down mg-r-3"></i>Receive
                               </a>
-                              <div id="myDropdown1" class="dropdown-content2 rounded">
-                                <a href="#" data-toggle="modal" data-target="#modaldemo9"><i class="fa fa-exchange tx-13 mg-r-5"></i>Transfer</a>
-                                <a href="#" data-toggle="modal" data-target="#modaldemo10"><i class="fa fa-ban tx-13 mg-r-5"></i>Delete</a>
+                              <div class="dropdown">
+                                <a href="#" onclick="myFunction1()" class="dropbtn btn btn-trans send-receive"><i class="fa fa-cog"></i>
+                                </a>
+                                <div id="myDropdown1" class="dropdown-content2 rounded">
+                                  <a href="#" data-toggle="modal" data-target="#modaldemo9"><i class="fa fa-exchange tx-13 mg-r-5"></i>Transfer</a>
+                                  <a href="#" data-toggle="modal" data-target="#modaldemo10"><i class="fa fa-ban tx-13 mg-r-5"></i>Delete</a>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
+                        <span class="wallet__bg-img">
+                          <img src="../assets/icons/wallet-bg-img-2.png" alt="">
+                        </span>
                       </div>
                     </div>
-                  </div>
-                  
-                
-              
-                 
-                  <!-- col-3 -->
-                
-                </div>
-              </div>
-              <div class="col-xl-12 tab-content tab-right">
-                <div class="table-content border tab-pane active show" id="tab1" role="tabpanel">
-                  <div class="col-xs-12">
-                    <h6 class="br-section-label col-md-8 col-sm-12">Transactions</h6>
-                    <div class="col-md-4 col-sm-12 pd-r-0">
-                      <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn">
-                          <button class="btn bd bg-white tx-gray-600" type="button"><i class="fa fa-search"></i></button>
+                    <div class="d-table-cell" data-toggle="tab" href="#tab1b" role="tab" aria-selected="false">
+                      <div class="bg-green border p-rl h120">
+                        <div class="pd-x-10 pd-t-10 d-flex align-items-center">
+                          <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-vault.svg" alt=""></i>
+                          <div class="mg-r-20 width-text">
+                            <p class="tx-15 tx-white tx-spacing-1 mg-b-0">VKC Vault</p>
+                            <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">0.00005 VKC</p>
+                            <div class="pd-t-10 pd-b-10 d-flex align-items-center">
+                              <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo7"><i
+                                  class="fa fa-download mg-r-3"></i>Deposit</a>
+                              <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo8"><i
+                                  class="fa fa-upload mg-r-3"></i>Withdraw
+                              </a>
+                              <div class="dropdown">
+                                <a href="#" onclick="myFunction2()" class="dropbtn btn btn-trans send-receive"><i class="fa fa-cog"></i>
+                                </a>
+                                <div id="myDropdown2" class="dropdown-content2 rounded">
+                                  <a href="#" data-toggle="modal" data-target="#modaldemo12"><i class="fa fa-info-circle tx-13 mg-r-5"></i>Vault
+                                    Details
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <span class="wallet__bg-img">
+                          <img src="../assets/icons/wallet-bg-img-2.png" alt="">
+                        </span>
+                      </div>
+                    </div>
+                    <!-- col-3 -->
+                    <div class="d-table-cell" data-toggle="tab" href="#tab2" role="tab">
+                      <div class="bg-btc border p-rl h120">
+                        <div class="pd-x-10 pd-t-10 d-flex align-items-center">
+                          <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-btc.svg" alt=""></i>
+                          <div class="mg-r-20 width-text">
+                            <p class="tx-15 tx-white tx-spacing-1 mg-b-0">BitCoin</p>
+                            <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">0.0000 BTC</p>
+                            <div class="pd-t-10 pd-b-10 d-flex align-items-center">
+                              <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo3"><i
+                                  class="fa fa-send mg-r-3"></i>Send</a>
+                              <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo2"><i
+                                  class="fa fa-cart-arrow-down mg-r-3"></i>Receive
+                              </a>
+                              <div class="dropdown">
+                                <a href="#" onclick="myFunction3()" class="dropbtn btn btn-trans send-receive"><i class="fa fa-cog"></i>
+                                </a>
+                                <div id="myDropdown3" class="dropdown-content2 rounded">
+                                  <a href="#" data-toggle="modal" data-target="#modaldemo9"><i class="fa fa-exchange tx-13 mg-r-5"></i>Transfer</a>
+                                  <a href="#" data-toggle="modal" data-target="#modaldemo10"><i class="fa fa-ban tx-13 mg-r-5"></i>Delete</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <span class="wallet__bg-img">
+                          <img src="../assets/icons/wallet-bg-img-1.png" alt="">
+                        </span>
+                      </div>
+                    </div>
+                    <!-- col-3 -->
+                    <div class="d-table-cell" data-toggle="tab" href="#tab3" role="tab">
+                      <div class="bg-eth border p-rl h120">
+                        <div class="pd-x-10 pd-t-10 d-flex align-items-center">
+                          <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eth.svg" alt=""></i>
+                          <div class="mg-r-20 width-text">
+                            <p class="tx-15 tx-white tx-spacing-1 mg-b-0">Ethereum</p>
+                            <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">521,152 ETH</p>
+                            <div class="pd-t-10 pd-b-10 d-flex align-items-center">
+                              <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo3"><i
+                                  class="fa fa-send mg-r-3"></i>Send</a>
+                              <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo2"><i
+                                  class="fa fa-cart-arrow-down mg-r-3"></i>Receive
+                              </a>
+                              <div class="dropdown">
+                                <a href="#" onclick="myFunction4()" class="dropbtn btn btn-trans send-receive"><i class="fa fa-cog"></i>
+                                </a>
+                                <div id="myDropdown4" class="dropdown-content2 rounded">
+                                  <a href="#" data-toggle="modal" data-target="#modaldemo9"><i class="fa fa-exchange tx-13 mg-r-5"></i>Transfer</a>
+                                  <a href="#" data-toggle="modal" data-target="#modaldemo10"><i class="fa fa-ban tx-13 mg-r-5"></i>Delete</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <span class="wallet__bg-img">
+                          <img src="../assets/icons/wallet-bg-img-3.png" alt="">
+                        </span>
+                      </div>
+                    </div>
+                    <!-- col-3 -->
+                    <div class="d-table-cell" data-toggle="tab" href="#tab4" role="tab">
+                      <div class="bg-eos border p-rl h120">
+                        <div class="pd-x-10 pd-t-10 d-flex align-items-center">
+                          <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eos.svg" alt=""></i>
+                          <div class="mg-r-20 width-text">
+                            <p class="tx-15 tx-white tx-spacing-1 mg-b-0">EOS</p>
+                            <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">0.0000 EOS</p>
+                            <div class="pd-t-10 pd-b-10 d-flex align-items-center">
+                              <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo3"><i
+                                  class="fa fa-send mg-r-3"></i>Send</a>
+                              <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo2"><i
+                                  class="fa fa-cart-arrow-down mg-r-3"></i>Receive
+                              </a>
+                              <div class="dropdown">
+                                <a href="#" onclick="myFunction5()" class="dropbtn btn btn-trans send-receive"><i class="fa fa-cog"></i>
+                                </a>
+                                <div id="myDropdown5" class="dropdown-content2 rounded">
+                                  <a href="#" data-toggle="modal" data-target="#modaldemo9"><i class="fa fa-exchange tx-13 mg-r-5"></i>Transfer</a>
+                                  <a href="#" data-toggle="modal" data-target="#modaldemo10"><i class="fa fa-ban tx-13 mg-r-5"></i>Delete</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <span class="wallet__bg-img">
+                          <img src="../assets/icons/wallet-bg-img-4.png" alt="">
                         </span>
                       </div>
                     </div>
                   </div>
-                  <div class="clear-both"></div>
-                  <div class="col-xs-12">
-                    <div class="bd-gray-300 table-responsive table-recent-acc">
-                      <table class="table table-hover mg-b-0 table-fix">
-                        <tbody>
-                          <tr data-toggle="modal" data-target="#modaldemo1">
-                            <td width="10" class="hidden-mob">
-                              <div class="date-month">Aug</div>
-                              <div class="date-day">25</div>
-                            </td>
-                            <td class="round">
-                              <i class="tx-btc tx-20"><img src="../assets/icons/receive.svg" alt=""></i>
-                            </td>
-                            <td width="40%" class="tx-left">
-                              <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Received VakaCoin</p>
-                              <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
-                            </td>
-                            <td width="40%" class="tx-right">
-                              <p class="mg-b-0 tx-inverse tx-medium">+0.1800 VKC</p>
-                              <span class="d-block tx-13 tx-grey">+₫258,476.00</span>
-                            </td>
-                          </tr>
-                          <tr data-toggle="modal" data-target="#modaldemo1">
-                            <td width="10" class="hidden-mob">
-                              <div class="date-month">Sep</div>
-                              <div class="date-day">10</div>
-                            </td>
-                            <td class="round">
-                              <i class="tx-btc tx-20"><img src="../assets/icons/send.svg" alt=""></i>
-                            </td>
-                            <td width="40%" class="tx-left">
-                              <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Send VakaCoin</p>
-                              <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
-                            </td>
-                            <td width="40%" class="tx-right">
-                              <p class="mg-b-0 tx-inverse tx-medium">+0.1000 VKC</p>
-                              <span class="d-block tx-13 tx-grey">+₫456,476.00</span>
-                            </td>
-                          </tr>
-                          <tr data-toggle="modal" data-target="#modaldemo1">
-                            <td width="10" class="hidden-mob">
-                              <div class="date-month">Aug</div>
-                              <div class="date-day">25</div>
-                            </td>
-                            <td class="round">
-                              <i class="tx-btc tx-20"><img src="../assets/icons/receive.svg" alt=""></i>
-                            </td>
-                            <td width="40%" class="tx-left">
-                              <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Received VakaCoin</p>
-                              <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
-                            </td>
-                            <td width="40%" class="tx-right">
-                              <p class="mg-b-0 tx-inverse tx-medium">+0.1800 VKC</p>
-                              <span class="d-block tx-13 tx-grey">+₫258,476.00</span>
-                            </td>
-                          </tr>
-                          <tr data-toggle="modal" data-target="#modaldemo1">
-                            <td width="10" class="hidden-mob">
-                              <div class="date-month">Aug</div>
-                              <div class="date-day">25</div>
-                            </td>
-                            <td class="round">
-                              <i class="tx-btc tx-20"><img src="../assets/icons/receive.svg" alt=""></i>
-                            </td>
-                            <td width="40%" class="tx-left">
-                              <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Received VakaCoin</p>
-                              <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
-                            </td>
-                            <td width="40%" class="tx-right">
-                              <p class="mg-b-0 tx-inverse tx-medium">+0.1800 VKC</p>
-                              <span class="d-block tx-13 tx-grey">+₫258,476.00</span>
-                            </td>
-                          </tr>
-                          <tr data-toggle="modal" data-target="#modaldemo1">
-                            <td width="10" class="hidden-mob">
-                              <div class="date-month">Sep</div>
-                              <div class="date-day">10</div>
-                            </td>
-                            <td class="round">
-                              <i class="tx-btc tx-20"><img src="../assets/icons/send.svg" alt=""></i>
-                            </td>
-                            <td width="40%" class="tx-left">
-                              <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Send VakaCoin</p>
-                              <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
-                            </td>
-                            <td width="40%" class="tx-right">
-                              <p class="mg-b-0 tx-inverse tx-medium">+0.1000 VKC</p>
-                              <span class="d-block tx-13 tx-grey">+₫456,476.00</span>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div><!-- bd -->
-                    <div class="ht-80 d-flex align-items-center justify-content-center mg-t-20">
-                      <ul class="pagination pagination-basic pagination-rounded mg-b-0">
-                        <li class="page-item hidden-xs-down">
-                          <a class="page-link" href="#" aria-label="First"><i class="fa fa-angle-double-left"></i></a>
-                        </li>
-                        <li class="page-item">
-                          <a class="page-link" href="#" aria-label="Previous"><i class="fa fa-angle-left"></i></a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item hidden-xs-down"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item hidden-xs-down"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item disabled"><span class="page-link">...</span></li>
-                        <li class="page-item"><a class="page-link" href="#">10</a></li>
-                        <li class="page-item">
-                          <a class="page-link" href="#" aria-label="Next"><i class="fa fa-angle-right"></i></a>
-                        </li>
-                        <li class="page-item hidden-xs-down">
-                          <a class="page-link" href="#" aria-label="Last"><i class="fa fa-angle-double-right"></i></a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <!-- Tab panes -->
                 </div>
-                <div class="table-content border tab-pane" id="tab1b" role="tabpanel">
-                  <div class="col-xs-12">
-                    <h6 class="br-section-label col-md-8 col-sm-12">Transactions</h6>
-                    <div class="col-md-4 col-sm-12 pd-r-0">
-                      <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn">
-                          <button class="btn bd bg-white tx-gray-600" type="button"><i class="fa fa-search"></i></button>
-                        </span>
+                <div class="col-xl-12 tab-content tab-right">
+                  <div class="table-content border tab-pane active show" id="tab1" role="tabpanel">
+                    <div class="col-xs-12">
+                      <h6 class="br-section-label col-md-8 col-sm-12">Transactions</h6>
+                      <div class="col-md-4 col-sm-12 pd-r-0">
+                        <div class="input-group">
+                          <input type="text" class="form-control" placeholder="Search...">
+                          <span class="input-group-btn">
+                            <button class="btn bd bg-white tx-gray-600" type="button"><i class="fa fa-search"></i></button>
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="clear-both"></div>
-                  <div class="col-xs-12">
-                    <div class="bd-gray-300 table-responsive table-recent-acc">
-                      <table class="table table-hover mg-b-0 table-fix">
-                        <tbody>
-                          <tr data-toggle="modal" data-target="#modaldemo1">
-                            <td width="10" class="hidden-mob">
-                              <div class="date-month">Aug</div>
-                              <div class="date-day">25</div>
-                            </td>
-                            <td class="round">
-                              <i class="tx-btc tx-20"><img src="../assets/icons/receive.svg" alt=""></i>
-                            </td>
-                            <td width="40%" class="tx-left">
-                              <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Received VakaCoin</p>
-                              <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
-                            </td>
-                            <td width="40%" class="tx-right">
-                              <p class="mg-b-0 tx-inverse tx-medium">+0.1800 VKC</p>
-                              <span class="d-block tx-13 tx-grey">+₫258,476.00</span>
-                            </td>
-                          </tr>
-                          <tr data-toggle="modal" data-target="#modaldemo1">
-                            <td width="10" class="hidden-mob">
-                              <div class="date-month">Sep</div>
-                              <div class="date-day">10</div>
-                            </td>
-                            <td class="round">
-                              <i class="tx-btc tx-20"><img src="../assets/icons/send.svg" alt=""></i>
-                            </td>
-                            <td width="40%" class="tx-left">
-                              <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Send VakaCoin</p>
-                              <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
-                            </td>
-                            <td width="40%" class="tx-right">
-                              <p class="mg-b-0 tx-inverse tx-medium">+0.1000 VKC</p>
-                              <span class="d-block tx-13 tx-grey">+₫456,476.00</span>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div><!-- bd -->
-                  </div>
-                  <!-- Tab panes -->
-                </div>
-                <div class="table-content border tab-pane" id="tab2" role="tabpanel">
-                  <div class="col-xs-12">
-                    <h6 class="br-section-label">Recent Activity</h6>
-                  </div>
-                  <div class="col-xs-12">
-                    <div class="bd-gray-300 table-responsive table-recent-acc">
-                      <table class="table table-hover mg-b-0 table-fix">
-                        <tbody>
-                          <tr data-toggle="modal" data-target="#modaldemo1">
-                            <td width="10" class="hidden-mob">
-                              <div class="date-month">Aug</div>
-                              <div class="date-day">25</div>
-                            </td>
-                            <td class="round">
-                              <i class="tx-btc tx-20"><img src="../assets/icons/transfer.svg" alt=""></i>
-                            </td>
-                            <td width="40%" class="tx-left">
-                              <p class="mg-b-0 tx-inverse tx-medium tx-btc">Transferred BitCoin</p>
-                              <span class="d-block tx-13 hidden-mob">From BitCoin Wallet</span>
-                            </td>
-                            <td width="40%" class="tx-right">
-                              <p class="mg-b-0 tx-inverse tx-medium">+0.1800 BTC</p>
-                              <span class="d-block tx-13 tx-grey">+₫258,476.00</span>
-                            </td>
-                          </tr>
-                          <tr data-toggle="modal" data-target="#modaldemo1">
-                            <td width="10" class="hidden-mob">
-                              <div class="date-month">Aug</div>
-                              <div class="date-day">25</div>
-                            </td>
-                            <td class="round">
-                              <i class="tx-btc tx-20"><img src="../assets/icons/receive.svg" alt=""></i>
-                            </td>
-                            <td width="40%" class="tx-left">
-                              <p class="mg-b-0 tx-inverse tx-medium tx-btc">Received BitCoin</p>
-                              <span class="d-block tx-13 hidden-mob">From BitCoin address</span>
-                            </td>
-                            <td width="40%" class="tx-right">
-                              <p class="mg-b-0 tx-inverse tx-medium">-5.2500 ETH</p>
-                              <span class="d-block tx-13 tx-grey">-₫456,476.00</span>
-                            </td>
-                          </tr>
-                          <tr data-toggle="modal" data-target="#modaldemo1">
-                            <td width="10" class="hidden-mob">
-                              <div class="date-month">Sep</div>
-                              <div class="date-day">10</div>
-                            </td>
-                            <td class="round">
-                              <i class="tx-btc tx-20"><img src="../assets/icons/send.svg" alt=""></i>
-                            </td>
-                            <td width="40%" class="tx-left">
-                              <p class="mg-b-0 tx-inverse tx-medium tx-btc">Send BitCoin</p>
-                              <span class="d-block tx-13 hidden-mob">From BitCoin address</span>
-                            </td>
-                            <td width="40%" class="tx-right">
-                              <p class="mg-b-0 tx-inverse tx-medium">+0.1000 BTC</p>
-                              <span class="d-block tx-13 tx-grey">+₫456,476.00</span>
-                            </td>
-                          </tr>
-                          <tr data-toggle="modal" data-target="#modaldemo1">
-                            <td width="10" class="hidden-mob">
-                              <div class="date-month">Aug</div>
-                              <div class="date-day">25</div>
-                            </td>
-                            <td class="round">
-                              <i class="tx-btc tx-20"><img src="../assets/icons/receive.svg" alt=""></i>
-                            </td>
-                            <td width="40%" class="tx-left">
-                              <p class="mg-b-0 tx-inverse tx-medium tx-btc">Received BitCoin</p>
-                              <span class="d-block tx-13 hidden-mob">From BitCoin address</span>
-                            </td>
-                            <td width="40%" class="tx-right">
-                              <p class="mg-b-0 tx-inverse tx-medium">+0.1800 BTC</p>
-                              <span class="d-block tx-13 tx-grey">+₫258,476.00</span>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div><!-- bd -->
-                  </div>
-                  <!-- Tab panes -->
-                </div>
-                <div class="table-content border tab-pane" id="tab3" role="tabpanel">
-                  <div class="col-xs-12">
-                    <h6 class="br-section-label">Recent Activity</h6>
-                  </div>
-                  <div class="col-xs-12">
-                    <div class="no-tran table-recent-acc">
-                      <div class="modal-body pd-x-20 pd-y-5 no-tran-box">
-                        <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/icon-eth.svg"
-                            alt=""></i>
-                        <h6 class="check tx-20 mg-b-0 mg-t-20">No transactions</h6>
-                        <p class="mg-b-20 mg-x-20 tx-center">VakaPay is the easiest place to get started.</p>
+                    <div class="clear-both"></div>
+                    <div class="col-xs-12">
+                      <div class="bd-gray-300 table-responsive table-recent-acc">
+                        <table class="table table-hover mg-b-0 table-fix">
+                          <tbody>
+                            <tr data-toggle="modal" data-target="#modaldemo1">
+                              <td width="20%" class="hidden-mob">
+                                <div class="date-month">
+                                  June 26, 2017 5:59 AM
+                                </div>
+                              </td>
+                              <td class="round">
+                                <i class="tx-btc tx-20"><img src="../assets/icons/receive.svg" alt=""></i>
+                              </td>
+                              <td width="20%" class="tx-left">
+                                <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Received VakaCoin</p>
+                                <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
+                              </td>
+                              <td width="10%" class="tx-left hidden-mob">
+                                <i class="status bg-success">Received</i>
+                              </td>
+                              <td width="40%" class="tx-right">
+                                <p class="mg-b-0 tx-inverse tx-medium tx-green">+0.1800 VKC</p>
+                                <span class="d-block tx-13 tx-grey">+₫258,476.00</span>
+                              </td>
+                            </tr>
+                            <tr data-toggle="modal" data-target="#modaldemo1">
+                              <td width="20%" class="hidden-mob">
+                                <div class="date-month">
+                                  June 26, 2017 5:59 AM
+                                </div>
+                              </td>
+                              <td class="round">
+                                <i class="tx-btc tx-20"><img src="../assets/icons/send.svg" alt=""></i>
+                              </td>
+                              <td width="20%" class="tx-left">
+                                <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Send VakaCoin</p>
+                                <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
+                              </td>
+                              <td width="10%" class="tx-left hidden-mob">
+                                <i class="status bg-info">Sent</i>
+                              </td>
+                              <td width="40%" class="tx-right">
+                                <p class="mg-b-0 tx-inverse tx-medium tx-red">-0.1000 VKC</p>
+                                <span class="d-block tx-13 tx-grey">+₫456,476.00</span>
+                              </td>
+                            </tr>
+                            <tr data-toggle="modal" data-target="#modaldemo1">
+                              <td width="20%" class="hidden-mob">
+                                <div class="date-month">
+                                  June 26, 2017 5:59 AM
+                                </div>
+                              </td>
+                              <td class="round">
+                                <i class="tx-btc tx-20"><img src="../assets/icons/transfer.svg" alt=""></i>
+                              </td>
+                              <td width="20%" class="tx-left">
+                                <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Transfer VakaCoin</p>
+                                <span class="d-block tx-13 hidden-mob">From VakaCoin vault</span>
+                              </td>
+                              <td width="10%" class="tx-left hidden-mob">
+                                <i class="status btn-transfer">Transfer</i>
+                              </td>
+                              <td width="40%" class="tx-right">
+                                <p class="mg-b-0 tx-inverse tx-medium tx-green">+0.1800 VKC</p>
+                                <span class="d-block tx-13 tx-grey">+₫258,476.00</span>
+                              </td>
+                            </tr>
+                            <tr data-toggle="modal" data-target="#modaldemo1">
+                              <td width="20%" class="hidden-mob">
+                                <div class="date-month">
+                                  June 26, 2017 5:59 AM
+                                </div>
+                              </td>
+                              <td class="round">
+                                <i class="tx-btc tx-20"><img src="../assets/icons/pending.svg" alt=""></i>
+                              </td>
+                              <td width="20%" class="tx-left">
+                                <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Pending VakaCoin</p>
+                                <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
+                              </td>
+                              <td width="10%" class="tx-left hidden-mob">
+                                <i class="status btn-warning">Pending</i>
+                              </td>
+                              <td width="40%" class="tx-right">
+                                <p class="mg-b-0 tx-inverse tx-medium tx-green">+0.1800 VKC</p>
+                                <span class="d-block tx-13 tx-grey">+₫258,476.00</span>
+                              </td>
+                            </tr>
+                            <tr data-toggle="modal" data-target="#modaldemo1">
+                              <td width="20%" class="hidden-mob">
+                                <div class="date-month">
+                                  June 26, 2017 5:59 AM
+                                </div>
+                              </td>
+                              <td class="round">
+                                <i class="tx-btc tx-20"><img src="../assets/icons/decline.svg" alt=""></i>
+                              </td>
+                              <td width="20%" class="tx-left">
+                                <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Declined VakaCoin</p>
+                                <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
+                              </td>
+                              <td width="10%" class="tx-left hidden-mob">
+                                <i class="status bg-danger">Decline</i>
+                              </td>
+                              <td width="40%" class="tx-right">
+                                <p class="mg-b-0 tx-inverse tx-medium tx-red">-0.1000 VKC</p>
+                                <span class="d-block tx-13 tx-grey">-₫456,476.00</span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div><!-- bd -->
+                      <div class="ht-80 d-flex align-items-center justify-content-center mg-t-20">
+                        <ul class="pagination pagination-basic pagination-rounded mg-b-0">
+                          <li class="page-item hidden-xs-down">
+                            <a class="page-link" href="#" aria-label="First"><i class="fa fa-angle-double-left"></i></a>
+                          </li>
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous"><i class="fa fa-angle-left"></i></a>
+                          </li>
+                          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item hidden-xs-down"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item hidden-xs-down"><a class="page-link" href="#">4</a></li>
+                          <li class="page-item disabled"><span class="page-link">...</span></li>
+                          <li class="page-item"><a class="page-link" href="#">10</a></li>
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next"><i class="fa fa-angle-right"></i></a>
+                          </li>
+                          <li class="page-item hidden-xs-down">
+                            <a class="page-link" href="#" aria-label="Last"><i class="fa fa-angle-double-right"></i></a>
+                          </li>
+                        </ul>
                       </div>
                     </div>
+                    <!-- Tab panes -->
                   </div>
-                  <!-- Tab panes -->
-                </div>
-                <div class="table-content border tab-pane" id="tab4" role="tabpanel">
-                  <div class="col-xs-12">
-                    <h6 class="br-section-label">Recent Activity</h6>
-                  </div>
-                  <div class="col-xs-12">
-                    <div class="no-tran table-recent-acc">
-                      <div class="modal-body pd-x-20 pd-y-5 no-tran-box">
-                        <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/icon-eos.svg"
-                            alt=""></i>
-                        <h6 class="check tx-20 mg-b-0 mg-t-20">No transactions</h6>
-                        <p class="mg-b-20 mg-x-20 tx-center">VakaPay is the easiest place to get started.</p>
+                  <div class="table-content border tab-pane" id="tab1b" role="tabpanel">
+                    <div class="col-xs-12">
+                      <h6 class="br-section-label col-md-8 col-sm-12">Transactions</h6>
+                      <div class="col-md-4 col-sm-12 pd-r-0">
+                        <div class="input-group">
+                          <input type="text" class="form-control" placeholder="Search...">
+                          <span class="input-group-btn">
+                            <button class="btn bd bg-white tx-gray-600" type="button"><i class="fa fa-search"></i></button>
+                          </span>
+                        </div>
                       </div>
                     </div>
+                    <div class="clear-both"></div>
+                    <div class="col-xs-12">
+                      <div class="bd-gray-300 table-responsive table-recent-acc">
+                        <table class="table table-hover mg-b-0 table-fix">
+                          <tbody>
+                            <tr data-toggle="modal" data-target="#modaldemo1">
+                              <td width="20%" class="hidden-mob">
+                                <div class="date-month">
+                                  June 26, 2017 5:59 AM
+                                </div>
+                              </td>
+                              <td class="round">
+                                <i class="tx-btc tx-20"><img src="../assets/icons/send.svg" alt=""></i>
+                              </td>
+                              <td width="20%" class="tx-left">
+                                <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Widthrew funds</p>
+                                <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
+                              </td>
+                              <td width="10%" class="tx-left hidden-mob">
+                                <i class="status bg-info">Widthdrew</i>
+                              </td>
+                              <td width="40%" class="tx-right">
+                                <p class="mg-b-0 tx-inverse tx-medium tx-red">+0.1000 VKC</p>
+                                <span class="d-block tx-13 tx-grey">+₫456,476.00</span>
+                              </td>
+                            </tr>
+                            <tr data-toggle="modal" data-target="#modaldemo1">
+                              <td width="20%" class="hidden-mob">
+                                <div class="date-month">
+                                  June 26, 2017 5:59 AM
+                                </div>
+                              </td>
+                              <td class="round">
+                                <i class="tx-btc tx-20"><img src="../assets/icons/receive.svg" alt=""></i>
+                              </td>
+                              <td width="20%" class="tx-left">
+                                <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Deposit VakaCoin</p>
+                                <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
+                              </td>
+                              <td width="10%" class="tx-left hidden-mob">
+                                <i class="status bg-success">Deposit</i>
+                              </td>
+                              <td width="40%" class="tx-right">
+                                <p class="mg-b-0 tx-inverse tx-medium tx-green">-0.1800 VKC</p>
+                                <span class="d-block tx-13 tx-grey">-₫258,476.00</span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div><!-- bd -->
+                    </div>
+                    <!-- Tab panes -->
                   </div>
-                  <!-- Tab panes -->
-                </div>
-              </div><!-- br-section-wrapper -->
-            </div>
-            <!-- row -->
-          </form>
-        </div><!-- col-12 -->
-      </div><!-- row -->
-    </div><!-- br-section-wrapper -->
-  </div><!-- br-mainpanel -->
-  <div class="clear-both"></div>
-  <!-- ########## END: MAIN PANEL ########## -->
-  <div class="br-profile">
-    <footer class="br-footer">
-      <div class="footer-left">
-        <div class="mg-b-2">Copyright &copy; 2018 VakaPay. All Rights Reserved.</div>
-        <div>Attentively and carefully made by <a href="#" style="color:rgb(28, 175, 154);">VakaGroup</a>.</div>
-      </div>
-      <div class="footer-right">
-        <div class="dropdown">
-          <a href="" class="tx-gray-800 d-inline-block" data-toggle="dropdown">
-            <div class="ht-45 pd-x-20 bd d-flex align-items-center justify-content-center">
-              <span class="mg-r-10 tx-13 tx-medium">English</span>
-              <i class="fa fa-angle-down mg-l-10"></i>
-            </div>
-          </a>
-          <div class="dropdown-menu pd-10">
-            <nav class="nav nav-style-1 flex-column">
-              <a href="" class="nav-link"> English</a>
-              <a href="" class="nav-link"> Tieng Viet</a>
-              <a href="" class="nav-link"> Japan</a>
-            </nav>
-          </div><!-- dropdown-menu -->
-        </div><!-- dropdown -->
-      </div>
-    </footer>
-  </div>
-
-
-  <div id="modaldemo1" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <form class="modal-content bd-0 tx-14">
-        <div class="modal-header pd-y-20 pd-x-25">
-          <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Received Ethereum</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body pd-x-20 pd-y-5">
-          <i class="icon ion-arrow-down-a tx-60 tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"></i>
-          <h6 class="check tx-20 mg-b-0">+0.1000 ETH</h6>
-          <h6 class="grey tx-16">= đ456,455</h6>
-          <div class="col-sm-12 mg-t-30 mg-sm-t-0 mg-b-20">
-            <div class="form-layout-6">
-              <div class="row no-gutters">
-                <div class="col-4">
-                  Price per coin
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  đ5,564,550.00
-                </div><!-- col-8 -->
-              </div><!-- row -->
-              <div class="row no-gutters">
-                <div class="col-4">
-                  From ethereum address
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  <a href="#" data-dismiss="modal">View transaction</a>
-                </div><!-- col-8 -->
-              </div><!-- row -->
-              <div class="row no-gutters">
-                <div class="col-4">
-                  Time
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  9/13/2018 3:43 PM
-                </div><!-- col-8 -->
-              </div><!-- row -->
-              <div class="row no-gutters">
-                <div class="col-4">
-                  Status
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  <span class="btn btn-success verified">Completed</span>
-                </div><!-- col-8 -->
-              </div><!-- row -->
-            </div>
-          </div>
-        </div>
-      </form>
-    </div><!-- modal-dialog -->
-  </div><!-- modal -->
-
-
-  <div id="modaldemo2" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <form class="modal-content bd-0 tx-14">
-        <div class="modal-header pd-y-20 pd-x-25">
-          <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">{{Coin}} Wallet Address</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body pd-x-20 pd-y-5">
-          <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/icon-vkc.svg"
-              alt="" class="img-medium"></i>
-          <h6 class="check tx-20 mg-b-0">Only send Ether (ETH) to this address</h6>
-          <h6 class="grey tx-15 mg-t-5">Sending any other digital asset, including Ethereum Classic (ETC), will result
-            in
-            permanent loss.
-          </h6>
-        </div>
-        <div class="modal-footer">
-          <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium img-center" data-toggle="modal"
-            data-dismiss="modal" data-target="#modaldemo2b"> Show Address
-          </a>
-        </div>
-      </form>
-    </div><!-- modal-dialog -->
-  </div><!-- modal -->
-
-
-  <div id="modaldemo2b" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <form class="modal-content bd-0 tx-14">
-        <div class="modal-header pd-y-20 pd-x-25">
-          <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">{{Coin}} Wallet Address</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body pd-x-20 pd-y-5">
-          <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/qr.png"
-              alt="" class="img-big"></i>
-          <div class="row mg-t-20 mg-b-20">
-            <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-              <div class="input-group">
-                <input type="text" class="form-control tx-center" value="0x3d259096D3fBD5078a743d0a798268BDd80A6b37" readonly>
-                <span class="input-group-addon tx-size-sm lh-2 bg-green tx-white">Copy</span>
+                  <div class="table-content border tab-pane" id="tab2" role="tabpanel">
+                    <div class="col-xs-12">
+                      <h6 class="br-section-label">Recent Activity</h6>
+                    </div>
+                    <div class="col-xs-12">
+                      <div class="no-tran table-recent-acc">
+                        <div class="modal-body pd-x-20 pd-y-5 no-tran-box">
+                          <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/icon-btc.svg"
+                              alt=""></i>
+                          <h6 class="check tx-20 mg-b-0 mg-t-20">No transactions</h6>
+                          <p class="mg-b-20 mg-x-20 tx-center">VakaPay is the easiest place to get started.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Tab panes -->
+                  </div>
+                  <div class="table-content border tab-pane" id="tab3" role="tabpanel">
+                    <div class="col-xs-12">
+                      <h6 class="br-section-label">Recent Activity</h6>
+                    </div>
+                    <div class="col-xs-12">
+                      <div class="no-tran table-recent-acc">
+                        <div class="modal-body pd-x-20 pd-y-5 no-tran-box">
+                          <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/icon-eth.svg"
+                              alt=""></i>
+                          <h6 class="check tx-20 mg-b-0 mg-t-20">No transactions</h6>
+                          <p class="mg-b-20 mg-x-20 tx-center">VakaPay is the easiest place to get started.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Tab panes -->
+                  </div>
+                  <div class="table-content border tab-pane" id="tab4" role="tabpanel">
+                    <div class="col-xs-12">
+                      <h6 class="br-section-label">Recent Activity</h6>
+                    </div>
+                    <div class="col-xs-12">
+                      <div class="no-tran table-recent-acc">
+                        <div class="modal-body pd-x-20 pd-y-5 no-tran-box">
+                          <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/icon-eos.svg"
+                              alt=""></i>
+                          <h6 class="check tx-20 mg-b-0 mg-t-20">No transactions</h6>
+                          <p class="mg-b-20 mg-x-20 tx-center">VakaPay is the easiest place to get started.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Tab panes -->
+                  </div>
+                </div><!-- br-section-wrapper -->
               </div>
-            </div>
-          </div><!-- row -->
+              <!-- row -->
+            </form>
+          </div><!-- col-12 -->
+        </div><!-- row -->
+      </div><!-- br-section-wrapper -->
+    </div><!-- br-mainpanel -->
+    <div class="clear-both"></div>
+    <!-- ########## END: MAIN PANEL ########## -->
+    <div class="br-profile">
+      <footer class="br-footer">
+        <div class="footer-left">
+          <div class="mg-b-2">Copyright &copy; 2018 VakaPay. All Rights Reserved.</div>
+          <div>Attentively and carefully made by <a href="#" style="color:rgb(28, 175, 154);">VakaGroup</a>.</div>
         </div>
-      </form>
-    </div><!-- modal-dialog -->
-  </div><!-- modal -->
-
-  <div id="modaldemo3" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <form class="modal-content bd-0 tx-14">
-        <div class="modal-header pd-y-20 pd-x-25">
-          <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Send VakaCoin</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="footer-right">
+          <div class="dropdown">
+            <a href="" class="tx-gray-800 d-inline-block" data-toggle="dropdown">
+              <div class="ht-45 pd-x-20 bd d-flex align-items-center justify-content-center">
+                <span class="mg-r-10 tx-13 tx-medium">English</span>
+                <i class="fa fa-angle-down mg-l-10"></i>
+              </div>
+            </a>
+            <div class="dropdown-menu pd-10">
+              <nav class="nav nav-style-1 flex-column">
+                <a href="" class="nav-link"> English</a>
+                <a href="" class="nav-link"> Tieng Viet</a>
+                <a href="" class="nav-link"> Japan</a>
+              </nav>
+            </div><!-- dropdown-menu -->
+          </div><!-- dropdown -->
         </div>
-        <div class="modal-body pd-y-10 pd-x-25">
-          <div class="row">
-            <ul class="nav nav-tabs nav-tabs-style-1 nav-justified tx-13" role="tablist">
-              <li class="nav-item width-half">
-                <a class="nav-link pd-y-10 active" data-toggle="tab" href="#taba" role="tab">Wallet Address</a>
-              </li>
-              <li class="nav-item width-half">
-                <a class="nav-link pd-y-10" data-toggle="tab" href="#tabb" role="tab">Email Address</a>
-              </li>
-            </ul>
-          </div><!-- row -->
-          <div class="tab-content">
-            <div class="tab-pane active" id="taba" role="tabpanel">
-              <div class="row mg-t-10">
-                <label class="col-sm-12 form-control-label"> Recipient:<i class="tx-danger">*</i></label>
-                <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-                  <input type="text" class="form-control" placeholder="Enter a VKC Address" required>
-                </div>
-              </div><!-- row -->
-              <div class="row mg-t-20">
-                <label class="col-sm-12 form-control-label"> Withdraw From:<i class="tx-danger">*</i></label>
-                <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-                  <div class="input-number">
-                    <div class="input-left"><span color="slate"><img src="../assets/icons/icon-vkc.svg" alt="" class="mini-icon"></span>VKC
-                      Wallet
-                    </div>
-                    <div class="input-right"><input class="form-control fc-outline-white bg-white" placeholder="0.10000000 VKC"
-                        disabled></div>
-                  </div>
-                </div>
-              </div><!-- row -->
-              <div class="row mg-t-20">
-                <label class="col-sm-12 form-control-label"> Amount:<i class="tx-danger">*</i></label>
-                <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-                  <div class="width-half-mini input-number">
-                    <div class="input-left bg-green"><span color="slate">VND</span></div>
-                    <div class="input-right"><input class="form-control fc-outline-white" placeholder="" maxlength="15"></div>
-                  </div>
-                  <div class="transfer"><i class="fa fa-exchange"></i></div>
-                  <div class="width-half-mini input-number">
-                    <div class="input-left bg-green"><span color="slate">VKC</span></div>
-                    <div class="input-right"><input class="form-control fc-outline-white" placeholder="" maxlength="15"></div>
-                  </div>
-                </div>
-              </div><!-- row -->
-              <div class="row mg-t-20">
-                <label class="col-sm-12 form-control-label"> Note:<i class="tx-danger">*</i></label>
-                <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-                  <textarea rows="3" class="form-control" placeholder="Write an optional message"></textarea>
-                </div>
-              </div><!-- row -->
-            </div>
-            <div class="tab-pane" id="tabb" role="tabpanel">
-              <div class="row mg-t-10">
-                <label class="col-sm-12 form-control-label"> Recipient:<i class="tx-danger">*</i></label>
-                <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-                  <input type="text" class="form-control" placeholder="Enter an email Address" required>
-                </div>
-              </div><!-- row -->
-              <div class="row mg-t-20">
-                <label class="col-sm-12 form-control-label"> Withdraw From:<i class="tx-danger">*</i></label>
-                <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-                  <div class="input-number">
-                    <div class="input-left"><span color="slate"><img src="../assets/icons/icon-vkc.svg" alt="" class="mini-icon"></span>VKC
-                      Wallet
-                    </div>
-                    <div class="input-right"><input class="form-control fc-outline-white bg-white" placeholder="0.10000000 VKC"
-                        disabled></div>
-                  </div>
-                </div>
-              </div><!-- row -->
-              <div class="row mg-t-20">
-                <label class="col-sm-12 form-control-label"> Amount:<i class="tx-danger">*</i></label>
-                <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-                  <div class="width-half-mini input-number">
-                    <div class="input-left"><span color="slate">VND</span></div>
-                    <div class="input-right"><input class="form-control fc-outline-white" placeholder="" maxlength="15"></div>
-                  </div>
-                  <div class="transfer"><i class="fa fa-exchange"></i></div>
-                  <div class="width-half-mini input-number">
-                    <div class="input-left"><span color="slate">VKC</span></div>
-                    <div class="input-right"><input class="form-control fc-outline-white" placeholder="" maxlength="15"></div>
-                  </div>
-                </div>
-              </div><!-- row -->
-              <div class="row mg-t-20">
-                <label class="col-sm-12 form-control-label"> Note:<i class="tx-danger">*</i></label>
-                <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-                  <textarea rows="3" class="form-control" placeholder="Write an optional message"></textarea>
-                </div>
-              </div><!-- row -->
-            </div>
+      </footer>
+    </div>
+  
+  
+    <div id="modaldemo1" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <form class="modal-content bd-0 tx-14">
+          <div class="modal-header pd-y-20 pd-x-25">
+            <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Received Ethereum</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-        </div>
-        <div class="modal-footer step">
-          <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
-            data-dismiss="modal">Cancel</button>
-          <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
-            data-dismiss="modal" data-target="#modaldemo3b">Continue</a>
-        </div>
-      </form>
-    </div><!-- modal-dialog -->
-  </div><!-- modal -->
-
-
-
-
-  <div id="modaldemo3b" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <form class="modal-content bd-0 tx-14">
-        <div class="modal-header pd-y-20 pd-x-25">
-          <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Confirm VKC Send</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body pd-25">
-          <div class="row">
-            <label class="col-sm-12 form-control-label"> Transactions:<i class="tx-danger">*</i></label>
-            <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+          <div class="modal-body pd-x-20 pd-y-5">
+            <i class="icon ion-arrow-down-a tx-60 tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"></i>
+            <h6 class="check tx-20 mg-b-0">+0.1000 ETH</h6>
+            <h6 class="grey tx-16">= đ456,455</h6>
+            <div class="col-sm-12 mg-t-30 mg-sm-t-0 mg-b-20">
               <div class="form-layout-6">
                 <div class="row no-gutters">
-                  <div class="col-3 col-sm-3">
+                  <div class="col-4">
+                    Price per coin
+                  </div><!-- col-4 -->
+                  <div class="col-8">
+                    đ5,564,550.00
+                  </div><!-- col-8 -->
+                </div><!-- row -->
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    From ethereum address
+                  </div><!-- col-4 -->
+                  <div class="col-8">
+                    <a href="#" data-dismiss="modal">View transaction</a>
+                  </div><!-- col-8 -->
+                </div><!-- row -->
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    Time
+                  </div><!-- col-4 -->
+                  <div class="col-8">
+                    9/13/2018 3:43 PM
+                  </div><!-- col-8 -->
+                </div><!-- row -->
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    Status
+                  </div><!-- col-4 -->
+                  <div class="col-8">
+                    <span class="btn btn-success verified">Completed</span>
+                  </div><!-- col-8 -->
+                </div><!-- row -->
+              </div>
+            </div>
+          </div>
+        </form>
+      </div><!-- modal-dialog -->
+    </div><!-- modal -->
+  
+  
+    <div id="modaldemo2" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <form class="modal-content bd-0 tx-14">
+          <div class="modal-header pd-y-20 pd-x-25">
+            <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">{{Coin}} Wallet Address</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pd-x-20 pd-y-5">
+            <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/icon-vkc.svg"
+                alt="" class="img-medium"></i>
+            <h6 class="check tx-20 mg-b-0">Only send Ether (ETH) to this address</h6>
+            <h6 class="grey tx-15 mg-t-5">Sending any other digital asset, including Ethereum Classic (ETC), will result
+              in
+              permanent loss.
+            </h6>
+          </div>
+          <div class="modal-footer">
+            <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium img-center" data-toggle="modal"
+              data-dismiss="modal" data-target="#modaldemo2b"> Show Address
+            </a>
+          </div>
+        </form>
+      </div><!-- modal-dialog -->
+    </div><!-- modal -->
+  
+  
+    <div id="modaldemo2b" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <form class="modal-content bd-0 tx-14">
+          <div class="modal-header pd-y-20 pd-x-25">
+            <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">{{Coin}} Wallet Address</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pd-x-20 pd-y-5">
+            <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/qr.png"
+                alt="" class="img-big"></i>
+            <div class="row mg-t-20 mg-b-20">
+              <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                <div class="input-group">
+                  <input type="text" class="form-control tx-center" value="0x3d259096D3fBD5078a743d0a798268BDd80A6b37"
+                    readonly>
+                  <span class="input-group-addon tx-size-sm lh-2 bg-green tx-white">Copy</span>
+                </div>
+              </div>
+            </div><!-- row -->
+          </div>
+        </form>
+      </div><!-- modal-dialog -->
+    </div><!-- modal -->
+  
+    <div id="modaldemo3" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <form class="modal-content bd-0 tx-14">
+          <div class="modal-header pd-y-20 pd-x-25">
+            <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Send VakaCoin</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pd-y-10 pd-x-25">
+            <div class="row">
+              <ul class="nav nav-tabs nav-tabs-style-1 nav-justified tx-13" role="tablist">
+                <li class="nav-item width-half">
+                  <a class="nav-link pd-y-10 active" data-toggle="tab" href="#taba" role="tab">Wallet Address</a>
+                </li>
+                <li class="nav-item width-half">
+                  <a class="nav-link pd-y-10" data-toggle="tab" href="#tabb" role="tab">Email Address</a>
+                </li>
+              </ul>
+            </div><!-- row -->
+            <div class="tab-content">
+              <div class="tab-pane active" id="taba" role="tabpanel">
+                <div class="row mg-t-10">
+                  <label class="col-sm-12 form-control-label"> Recipient:<i class="tx-danger">*</i></label>
+                  <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                    <input type="text" class="form-control" placeholder="Enter a VKC Address" required>
+                  </div>
+                </div><!-- row -->
+                <div class="row mg-t-20">
+                  <label class="col-sm-12 form-control-label"> Withdraw From:<i class="tx-danger">*</i></label>
+                  <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                    <div class="input-number">
+                      <div class="input-left"><span color="slate"><img src="../assets/icons/icon-vkc.svg" alt="" class="mini-icon"></span>VKC
+                        Wallet
+                      </div>
+                      <div class="input-right"><input class="form-control fc-outline-white bg-white" placeholder="0.10000000 VKC"
+                          disabled></div>
+                    </div>
+                  </div>
+                </div><!-- row -->
+                <div class="row mg-t-20">
+                  <label class="col-sm-12 form-control-label"> Amount:<i class="tx-danger">*</i></label>
+                  <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                    <div class="width-half-mini input-number">
+                      <div class="input-left bg-green"><span color="slate">VND</span></div>
+                      <div class="input-right"><input class="form-control fc-outline-white" placeholder="" maxlength="15"></div>
+                    </div>
+                    <div class="transfer"><i class="fa fa-exchange"></i></div>
+                    <div class="width-half-mini input-number">
+                      <div class="input-left bg-green"><span color="slate">VKC</span></div>
+                      <div class="input-right"><input class="form-control fc-outline-white" placeholder="" maxlength="15"></div>
+                    </div>
+                  </div>
+                </div><!-- row -->
+                <div class="row mg-t-20">
+                  <label class="col-sm-12 form-control-label"> Note:<i class="tx-danger">*</i></label>
+                  <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                    <textarea rows="3" class="form-control" placeholder="Write an optional message"></textarea>
+                  </div>
+                </div><!-- row -->
+              </div>
+              <div class="tab-pane" id="tabb" role="tabpanel">
+                <div class="row mg-t-10">
+                  <label class="col-sm-12 form-control-label"> Recipient:<i class="tx-danger">*</i></label>
+                  <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                    <input type="text" class="form-control" placeholder="Enter an email Address" required>
+                  </div>
+                </div><!-- row -->
+                <div class="row mg-t-20">
+                  <label class="col-sm-12 form-control-label"> Withdraw From:<i class="tx-danger">*</i></label>
+                  <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                    <div class="input-number">
+                      <div class="input-left"><span color="slate"><img src="../assets/icons/icon-vkc.svg" alt="" class="mini-icon"></span>VKC
+                        Wallet
+                      </div>
+                      <div class="input-right"><input class="form-control fc-outline-white bg-white" placeholder="0.10000000 VKC"
+                          disabled></div>
+                    </div>
+                  </div>
+                </div><!-- row -->
+                <div class="row mg-t-20">
+                  <label class="col-sm-12 form-control-label"> Amount:<i class="tx-danger">*</i></label>
+                  <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                    <div class="width-half-mini input-number">
+                      <div class="input-left"><span color="slate">VND</span></div>
+                      <div class="input-right"><input class="form-control fc-outline-white" placeholder="" maxlength="15"></div>
+                    </div>
+                    <div class="transfer"><i class="fa fa-exchange"></i></div>
+                    <div class="width-half-mini input-number">
+                      <div class="input-left"><span color="slate">VKC</span></div>
+                      <div class="input-right"><input class="form-control fc-outline-white" placeholder="" maxlength="15"></div>
+                    </div>
+                  </div>
+                </div><!-- row -->
+                <div class="row mg-t-20">
+                  <label class="col-sm-12 form-control-label"> Note:<i class="tx-danger">*</i></label>
+                  <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                    <textarea rows="3" class="form-control" placeholder="Write an optional message"></textarea>
+                  </div>
+                </div><!-- row -->
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer step">
+            <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
+              data-dismiss="modal">Cancel</button>
+            <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
+              data-dismiss="modal" data-target="#modaldemo3b">Continue</a>
+          </div>
+        </form>
+      </div><!-- modal-dialog -->
+    </div><!-- modal -->
+  
+  
+  
+  
+    <div id="modaldemo3b" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <form class="modal-content bd-0 tx-14">
+          <div class="modal-header pd-y-20 pd-x-25">
+            <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Confirm VKC Send</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pd-25">
+            <div class="row">
+              <label class="col-sm-12 form-control-label"> Transactions:<i class="tx-danger">*</i></label>
+              <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                <div class="form-layout-6">
+                  <div class="row no-gutters">
+                    <div class="col-3 col-sm-3">
+                      To
+                    </div><!-- col-4 -->
+                    <div class="col-9 col-sm-9 break">
+                      0xb0bBB44011C1AC2a8Ebd087CA3829f7a99F698dE
+                    </div><!-- col-8 -->
+                  </div><!-- row -->
+                  <div class="row no-gutters">
+                    <div class="col-3 col-sm-3">
+                      Amount
+                    </div><!-- col-4 -->
+                    <div class="col-9 col-sm-9">
+                      0.0010 ETH₫
+                    </div><!-- col-8 -->
+                  </div><!-- row -->
+                  <div class="row no-gutters">
+                    <div class="col-3 col-sm-3">
+                      VakaPay fee
+                    </div><!-- col-4 -->
+                    <div class="col-9 col-sm-9">
+                      ₫0.00
+                    </div><!-- col-8 -->
+                  </div><!-- row -->
+                  <div class="row no-gutters">
+                    <div class="col-3 col-sm-3">
+                      Miner fee
+                    </div><!-- col-4 -->
+                    <div class="col-9 col-sm-9">
+                      0.000147 ETH
+                    </div><!-- col-8 -->
+                  </div><!-- row -->
+                  <div class="row no-gutters">
+                    <div class="col-3 col-sm-3">
+                      Total
+                    </div><!-- col-4 -->
+                    <div class="col-9 col-sm-9">
+                      0.001147 ETH
+                    </div><!-- col-8 -->
+                  </div><!-- row -->
+                </div>
+                <div class="mg-t-20">
+                  <label class="col-sm-12 form-control-label"> Enter the 2-step verification code provided by SMS to your
+                    phone:
+                  </label>
+                  <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                    <div class="input-group sms">
+                      <span class="input-group-addon"><i class="fa fa-phone tx-16 lh-0 op-6"></i></span>
+                      <input id="phoneMask" type="text" class="form-control fc-outline-white half" maxlength="7"
+                        placeholder="0000000">
+                    </div>
+                    <span class="resend">Didn't receive the verification code? <br> <a href="#">Re-send SMS</a></span>
+                  </div>
+                </div><!-- row -->
+              </div>
+            </div><!-- row -->
+          </div>
+          <div class="modal-footer step">
+            <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
+              data-toggle="modal" data-dismiss="modal" data-target="#modaldemo3">Go Back</button>
+            <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
+              data-dismiss="modal" data-target="#modaldemo3c">Confirm</a>
+          </div>
+        </form>
+      </div>
+    </div><!-- modal-dialog -->
+  
+  
+  
+    <div id="modaldemo3c" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <div class="modal-content">
+          <div class="modal-body tx-center pd-y-20 pd-x-20">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
+            <h4 class="tx-success mg-b-20">Your transaction is on the way!</h4>
+            <p class="mg-b-20 mg-x-20">You sent 0.0010 ETH (₫0.00) to an external address.</p>
+            <a href="#" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-toggle="modal"
+              data-dismiss="modal" data-target="#modaldemo3d"> View Details
+            </a>
+          </div><!-- modal-body -->
+        </div>
+      </div>
+    </div><!-- modal-dialog -->
+  
+  
+  
+    <div id="modaldemo4" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <form class="modal-content bd-0 tx-14">
+          <div class="modal-header pd-y-20 pd-x-25">
+            <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Sent VakaCoin</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pd-x-20 pd-y-5">
+            <i class="icon ion-arrow-up-a tx-60 tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"></i>
+            <h6 class="check tx-20 mg-b-0">+0.1000 ETH</h6>
+            <h6 class="grey tx-16">= đ456,455</h6>
+            <div class="col-sm-12 mg-t-30 mg-sm-t-0">
+              <div class="form-layout-6">
+                <div class="row no-gutters">
+                  <div class="col-4">
                     To
                   </div><!-- col-4 -->
-                  <div class="col-9 col-sm-9 break">
+                  <div class="col-8">
                     0xb0bBB44011C1AC2a8Ebd087CA3829f7a99F698dE
                   </div><!-- col-8 -->
                 </div><!-- row -->
                 <div class="row no-gutters">
-                  <div class="col-3 col-sm-3">
-                    Amount
+                  <div class="col-4">
+                    Note
                   </div><!-- col-4 -->
-                  <div class="col-9 col-sm-9">
-                    0.0010 ETH₫
+                  <div class="col-8">
+                    Test send
                   </div><!-- col-8 -->
                 </div><!-- row -->
                 <div class="row no-gutters">
-                  <div class="col-3 col-sm-3">
-                    VakaPay fee
+                  <div class="col-4">
+                    Price per coin
                   </div><!-- col-4 -->
-                  <div class="col-9 col-sm-9">
-                    ₫0.00
+                  <div class="col-8">
+                    ₫4,230,165.65
                   </div><!-- col-8 -->
                 </div><!-- row -->
                 <div class="row no-gutters">
-                  <div class="col-3 col-sm-3">
-                    Miner fee
+                  <div class="col-4">
+                    Confirmations
                   </div><!-- col-4 -->
-                  <div class="col-9 col-sm-9">
-                    0.000147 ETH
+                  <div class="col-8">
+                    1
                   </div><!-- col-8 -->
                 </div><!-- row -->
                 <div class="row no-gutters">
-                  <div class="col-3 col-sm-3">
-                    Total
+                  <div class="col-4">
+                    Fee
                   </div><!-- col-4 -->
-                  <div class="col-9 col-sm-9">
-                    0.001147 ETH
+                  <div class="col-8">
+                    0.00014700 ETH
+                  </div><!-- col-8 -->
+                </div><!-- row -->
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    Transaction
+                  </div><!-- col-4 -->
+                  <div class="col-8">
+                    View transaction
+                  </div><!-- col-8 -->
+                </div><!-- row -->
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    Time
+                  </div><!-- col-4 -->
+                  <div class="col-8">
+                    9/13/2018 3:43 PM
+                  </div><!-- col-8 -->
+                </div><!-- row -->
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    Status
+                  </div><!-- col-4 -->
+                  <div class="col-8">
+                    <span class="btn btn-warning verified">pending</span>
                   </div><!-- col-8 -->
                 </div><!-- row -->
               </div>
-              <div class="mg-t-20">
-                <label class="col-sm-12 form-control-label"> Enter the 2-step verification code provided by SMS to your
-                  phone:
-                </label>
-                <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-                  <div class="input-group sms">
-                    <span class="input-group-addon"><i class="fa fa-phone tx-16 lh-0 op-6"></i></span>
-                    <input id="phoneMask" type="text" class="form-control fc-outline-white half" maxlength="7"
-                      placeholder="0000000">
-                  </div>
-                  <span class="resend">Didn't receive the verification code? <br> <a href="#">Re-send SMS</a></span>
-                </div>
-              </div><!-- row -->
-            </div>
-          </div><!-- row -->
-        </div>
-        <div class="modal-footer step">
-          <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
-            data-toggle="modal" data-dismiss="modal" data-target="#modaldemo3">Go Back</button>
-          <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
-            data-dismiss="modal" data-target="#modaldemo3c">Confirm</a>
-        </div>
-      </form>
-    </div>
-  </div><!-- modal-dialog -->
-
-
-
-  <div id="modaldemo3c" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <div class="modal-content">
-        <div class="modal-body tx-center pd-y-20 pd-x-20">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-          <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
-          <h4 class="tx-success mg-b-20">Your transaction is on the way!</h4>
-          <p class="mg-b-20 mg-x-20">You sent 0.0010 ETH (₫0.00) to an external address.</p>
-          <a href="#" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-toggle="modal"
-            data-dismiss="modal" data-target="#modaldemo3d"> View Details
-          </a>
-        </div><!-- modal-body -->
-      </div>
-    </div>
-  </div><!-- modal-dialog -->
-
-
-
-  <div id="modaldemo4" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <form class="modal-content bd-0 tx-14">
-        <div class="modal-header pd-y-20 pd-x-25">
-          <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Sent VakaCoin</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body pd-x-20 pd-y-5">
-          <i class="icon ion-arrow-up-a tx-60 tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"></i>
-          <h6 class="check tx-20 mg-b-0">+0.1000 ETH</h6>
-          <h6 class="grey tx-16">= đ456,455</h6>
-          <div class="col-sm-12 mg-t-30 mg-sm-t-0">
-            <div class="form-layout-6">
-              <div class="row no-gutters">
-                <div class="col-4">
-                  To
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  0xb0bBB44011C1AC2a8Ebd087CA3829f7a99F698dE
-                </div><!-- col-8 -->
-              </div><!-- row -->
-              <div class="row no-gutters">
-                <div class="col-4">
-                  Note
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  Test send
-                </div><!-- col-8 -->
-              </div><!-- row -->
-              <div class="row no-gutters">
-                <div class="col-4">
-                  Price per coin
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  ₫4,230,165.65
-                </div><!-- col-8 -->
-              </div><!-- row -->
-              <div class="row no-gutters">
-                <div class="col-4">
-                  Confirmations
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  1
-                </div><!-- col-8 -->
-              </div><!-- row -->
-              <div class="row no-gutters">
-                <div class="col-4">
-                  Fee
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  0.00014700 ETH
-                </div><!-- col-8 -->
-              </div><!-- row -->
-              <div class="row no-gutters">
-                <div class="col-4">
-                  Transaction
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  View transaction
-                </div><!-- col-8 -->
-              </div><!-- row -->
-              <div class="row no-gutters">
-                <div class="col-4">
-                  Time
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  9/13/2018 3:43 PM
-                </div><!-- col-8 -->
-              </div><!-- row -->
-              <div class="row no-gutters">
-                <div class="col-4">
-                  Status
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  <span class="btn btn-warning verified">pending</span>
-                </div><!-- col-8 -->
-              </div><!-- row -->
             </div>
           </div>
-        </div>
-        <div class="modal-footer step mg-t-20">
-          <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
-            data-dismiss="modal">Close</button>
-          <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
-            data-dismiss="modal" data-target="#modaldemo3">Send More</a>
-        </div>
-      </form>
-    </div>
-  </div><!-- modal-dialog -->
-
-  <div id="modaldemo5" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <form class="modal-content bd-0 tx-14">
-        <div class="modal-header pd-y-20 pd-x-25 bd-b">
-          <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Choose a currency</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body pd-x-20 pd-y-5">
-          <div class="col-xs-12">
-            <div class="bd-gray-300 table-responsive">
-              <table class="table table-hover mg-b-0 table-fix">
-                <tbody>
-                  <tr data-toggle="modal" data-target="#modaldemo5b" data-dismiss="modal">
-                    <td class="round">
-                      <i class="icon tx-btc"><img src="../assets/icons/icon-btc.svg" alt=""></i>
-                    </td>
-                    <td width="30%" class="tx-left">
-                      <p class="mg-b-0 tx-inverse tx-medium tx-btc">BitCoin</p>
-                    </td>
-                    <td width="60%" class="tx-right">
-                      >
-                    </td>
-                  </tr>
-                  <tr data-toggle="modal" data-target="#modaldemo5b" data-dismiss="modal">
-                    <td class="round">
-                      <i class="icon tx-btc"><img src="../assets/icons/icon-vkc.svg" alt=""></i>
-                    </td>
-                    <td width="30%" class="tx-left">
-                      <p class="mg-b-0 tx-inverse tx-medium tx-vkc">VakaCoin</p>
-                    </td>
-                    <td width="60%" class="tx-right">
-                      >
-                    </td>
-                  </tr>
-                  <tr data-toggle="modal" data-target="#modaldemo5b" data-dismiss="modal">
-                    <td class="round">
-                      <i class="icon tx-btc"><img src="../assets/icons/icon-eth.svg" alt=""></i>
-                    </td>
-                    <td width="30%" class="tx-left">
-                      <p class="mg-b-0 tx-inverse tx-medium tx-eth">Ethereum</p>
-                    </td>
-                    <td width="60%" class="tx-right">
-                      >
-                    </td>
-                  </tr>
-                  <tr data-toggle="modal" data-target="#modaldemo5b" data-dismiss="modal">
-                    <td class="round">
-                      <i class="icon tx-btc"><img src="../assets/icons/icon-eos.svg" alt=""></i>
-                    </td>
-                    <td width="30%" class="tx-left">
-                      <p class="mg-b-0 tx-inverse tx-medium tx-eos">EOS</p>
-                    </td>
-                    <td width="60%" class="tx-right">
-                      >
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div><!-- bd -->
-          </div>
-        </div>
-      </form>
-    </div>
-  </div><!-- modal-dialog -->
-
-
-  <div id="modaldemo5b" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <form class="modal-content bd-0 tx-14">
-        <div class="modal-body pd-25">
-          <div class="row">
-            <i class="icon tx-100 tx-success lh-1 mg-t-20 d-inline-block tx-center wd100 tx-medium" style="margin:0 auto;"><img
-                src="../assets/icons/vault.svg" alt=""></i>
-            <h5 class="check tx-success tx-18 tx-center wd100">Name Your BCH Vault</h5>
-          </div>
-          <div class="row mg-t-20">
-            <label class="col-sm-4 form-control-label"> Vault Name:</label>
-            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-              <input type="text" class="form-control" placeholder="VKC Vault" required>
-            </div>
-          </div><!-- row -->
-          <div class="row mg-t-20">
-            <label class="col-sm-4 form-control-label">Who will approve withdrawals?</label>
-            <div class="col-sm-8 mg-l-auto">
-              <label class="rdiobox">
-                <input name="radio" type="radio">
-                <span class="tx-green tx-uppercase tx-bold">Individual</span>
-                <h6 class="tx-12 tx-grey pd-l-20">I will approve my own withdrawals.</h6>
-              </label>
-              <label class="rdiobox">
-                <input name="radio" type="radio">
-                <span class="tx-green tx-uppercase tx-bold">Group</span>
-                <h6 class="tx-12 tx-grey pd-l-20">I will invite people I trust to co-sign withdrawals.</h6>
-              </label>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer step">
-          <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
-            data-dismiss="modal">Cancel</button>
-          <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
-            data-dismiss="modal" data-target="#modaldemo5c">Next1</a>
-          <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
-            data-dismiss="modal" data-target="#modaldemo5e">Next2</a>
-        </div>
-      </form>
-    </div><!-- modal-dialog -->
-  </div>
-
-
-
-  <div id="modaldemo5e" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <form class="modal-content bd-0 tx-14">
-        <div class="modal-body pd-25">
-          <div class="row">
-            <i class="icon tx-100 tx-success lh-1 mg-t-20 d-inline-block tx-center wd100 tx-medium" style="margin:0 auto;"><img
-                src="../assets/icons/users.svg" alt=""></i>
-            <h5 class="check tx-success tx-18 tx-center wd100">How many signers?</h5>
-            <hr>
-          </div>
-          <div class="row">
-            <label class="col-sm-12 form-control-label tx-center tx-12">A co-signer is another VakaPay user who
-              approves withdrawals.
-              More signers increases the security of the vault.</label>
-            <div class="col-sm-6">
-              <a href="#" class="btn bg-green tx-12 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium wd100" data-toggle="modal"
-                data-dismiss="modal" data-target="#modaldemo5f">3 Co-Signers</a>
-              <span class="tx-12 tx-center d-block">At least 2 of them needed to complete a withdrawal.</span>
-            </div>
-            <div class="col-sm-6">
-              <a href="#" class="btn bg-green tx-12 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium wd100" data-toggle="modal"
-                data-dismiss="modal" data-target="#modaldemo5f">5 Co-Signers</a>
-              <span class="tx-12 tx-center d-block">At least 3 of them needed to complete a withdrawal.</span>
-            </div>
-          </div><!-- row -->
-        </div>
-      </form>
-    </div><!-- modal-dialog -->
-  </div>
-
-  <div id="modaldemo5f" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <form class="modal-content bd-0 tx-14">
-        <div class="modal-header pd-y-20 pd-x-25">
-          <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add a Secondary Email</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body pd-25">
-          <div class="row">
-            <i class="icon tx-100 tx-success lh-1 mg-t-20 d-inline-block tx-center wd100 tx-medium" style="margin:0 auto;"><img
-                src="../assets/icons/users.svg" alt=""></i>
-            <h5 class="check tx-success tx-25 tx-center wd100">Invite Vault Co-Signers</h5>
-          </div>
-          <div class="row mg-t-20">
-            <label class="col-sm-12 form-control-label"> Co-signer #1:</label>
-            <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-              <input type="text" class="form-control" placeholder="VKC@gmail.com" disabled>
-            </div>
-          </div><!-- row -->
-          <div class="row mg-t-20">
-            <label class="col-sm-12 form-control-label"> Co-Signer #2:</label>
-            <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-              <input type="text" class="form-control" placeholder="email@example.com" required>
-            </div>
-          </div><!-- row -->
-          <div class="row mg-t-20">
-            <label class="col-sm-12 form-control-label"> Co-Signer #3:</label>
-            <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-              <input type="text" class="form-control" placeholder="email@example.com" required>
-            </div>
-          </div><!-- row -->
-        </div>
-        <div class="modal-footer step">
-          <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
-            data-toggle="modal" data-dismiss="modal" data-target="#modaldemo5e">Previous</button>
-          <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
-            data-dismiss="modal" data-target="#modaldemo5d">Next</a>
-        </div>
-      </form>
-    </div><!-- modal-dialog -->
-  </div>
-
-
-  <div id="modaldemo5c" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <form class="modal-content bd-0 tx-14">
-        <div class="modal-header pd-y-20 pd-x-25">
-          <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add a Secondary Email</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body pd-25">
-          <div class="row">
-            <i class="icon tx-100 tx-success lh-1 mg-t-20 d-inline-block tx-center wd100 tx-medium" style="margin:0 auto;"><img
-                src="../assets/icons/users.svg" alt=""></i>
-            <h5 class="check tx-success tx-15 tx-center wd100">Every withdrawal from your vault will need to be
-              approved from two email addresses.</h5>
-          </div>
-          <div class="row mg-t-20">
-            <label class="col-sm-12 form-control-label"> Primary Email:</label>
-            <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-              <input type="text" class="form-control" placeholder="VKC@gmail.com" disabled>
-            </div>
-          </div><!-- row -->
-          <div class="row mg-t-20">
-            <label class="col-sm-12 form-control-label"> Secondary Email:</label>
-            <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-              <input type="text" class="form-control" placeholder="email@example.com" required>
-            </div>
-          </div><!-- row -->
-        </div>
-        <div class="modal-footer step">
-          <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
-            data-toggle="modal" data-dismiss="modal" data-target="#modaldemo5b">Previous</button>
-          <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
-            data-dismiss="modal" data-target="#modaldemo5d">Next</a>
-        </div>
-      </form>
-    </div><!-- modal-dialog -->
-  </div>
-
-
-
-  <div id="modaldemo5d" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <form class="modal-content bd-0 tx-14">
-        <div class="modal-header pd-y-20 pd-x-25">
-          <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Waiting for Confirmation</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body pd-25">
-          <div class="row">
-            <i class="icon tx-100 tx-success lh-1 mg-t-20 d-inline-block tx-center wd100 tx-medium" style="margin:0 auto;"><img
-                src="../assets/icons/mail.svg" alt=""></i>
-            <h5 class="check tx-success tx-15 tx-center wd100">Please confirm your secondary e-mail address.</h5>
-          </div>
-          <div class="row mg-t-20">
-            <label class="col-sm-12 form-control-label pd-x-50"><i class="fa fa-check mg-r-5 tx-green tx-18"
-                aria-hidden="true"></i><b>Vakaxa
-                Company
-              </b> (vaka@gmail.com)</label>
-          </div><!-- row -->
-          <div class="row">
-            <label class="col-sm-12 form-control-label pd-x-50"><i class="fa fa-clock-o mg-r-10 tx-16" aria-hidden="true"></i>vakagroup@gmail.com</label>
-          </div><!-- row -->
-        </div>
-        <div class="modal-footer step">
-          <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
-            data-toggle="modal" data-dismiss="modal" data-target="#modaldemo5c">Back</button>
-          <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
-            data-dismiss="modal" data-target="#modaldemo5d2">Success Popup</a>
-        </div>
-      </form>
-    </div><!-- modal-dialog -->
-  </div>
-
-  <div id="modaldemo5d2" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <form class="modal-content bd-0 tx-14">
-        <div class="modal-body pd-x-20 pd-y-5 tx-center">
-          <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
-          <h6 class="check tx-20 mg-b-0">Vault setup complete</h6>
-          <h6 class="grey tx-16">Your vault "BCH Vault" is now ready to be used!</h6>
-          <div class="col-sm-12 mg-t-30 mg-sm-t-0 popup mg-b-30">
-            <div class="form-layout-6">
-              <div class="row no-gutters">
-                <div class="col-4">
-                  Signers
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  <p> <b>Vaka1</b> (vaka@gmail.com)<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
-                  <p><b>Vaka2</b> (vakagroup@gmail.com)<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
-                  <p><b>Vaka3</b> (vakapay@gmail.com)<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
-                  <p class="mg-t-20">Signers required for withdrawal: <b>2 of 3</b></p>
-                </div><!-- col-8 -->
-              </div><!-- row -->
-              <div class="row no-gutters">
-                <div class="col-4 break">
-                  Notifications
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  <p>vaka@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
-                  <p>vakagroup@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
-                  <p>vakapay@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
-                  <p>+84 97 3760659 (SMS)<i class="fa fa-phone mg-l-5 tx-15" aria-hidden="true"></i></p>
-                </div><!-- col-8 -->
-              </div><!-- row -->
-              <div class="row no-gutters">
-                <div class="col-4">
-                  Time Delay
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  <p>48h<i class="fa fa-clock-o mg-l-5 tx-15" aria-hidden="true"></i></p>
-                </div><!-- col-8 -->
-              </div><!-- row -->
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer step">
-          <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
-            data-dismiss="modal">Close</button>
-          <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Manager
-            Account</a>
-        </div>
-      </form>
-    </div><!-- modal-dialog -->
-  </div>
-
-
-  <div id="modaldemo6" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <form class="modal-content bd-0 tx-14">
-        <div class="modal-header pd-y-20 pd-x-25">
-          <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Congratulation</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body pd-25">
-          <div class="row">
-            <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block tx-center wd100 tx-medium"
-              style="margin:0 auto;"></i>
-            <h5 class="check tx-success tx-18 tx-center wd100">Vault setup complete</h5>
-            <h5 class="check tx-15 tx-center wd100">Your vault "BTC Vault" is now ready to be used!</h5>
-          </div>
-          <div class="col-sm-12 mg-t-30 mg-sm-t-0 popup">
-            <div class="form-layout-6">
-              <div class="row no-gutters">
-                <div class="col-4">
-                  Approvers
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  <p>vaka@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
-                  <p>vakagroup@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
-                </div><!-- col-8 -->
-              </div><!-- row -->
-              <div class="row no-gutters">
-                <div class="col-4 break">
-                  Notifications
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  <p>vaka@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
-                  <p>vakagroup@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
-                  <p>+84 97 3760659 (SMS)<i class="fa fa-phone mg-l-5 tx-15" aria-hidden="true"></i></p>
-                </div><!-- col-8 -->
-              </div><!-- row -->
-              <div class="row no-gutters">
-                <div class="col-4">
-                  Time Delay
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  <p>48h<i class="fa fa-clock-o mg-l-5 tx-15" aria-hidden="true"></i></p>
-                </div><!-- col-8 -->
-              </div><!-- row -->
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer step">
-          <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
-            data-dismiss="modal">Close</button>
-          <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Continue
-            to Vault</a>
-        </div>
-      </form>
-    </div><!-- modal-dialog -->
-  </div>
-
-
-  <div id="modaldemo7" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <form class="modal-content bd-0 tx-14">
-        <div class="modal-header pd-y-20 pd-x-25">
-          <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Deposit into ETH Vault</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body pd-25">
-          <div class="row">
-            <ul class="nav nav-tabs nav-tabs-style-1 nav-justified tx-13" role="tablist">
-              <li class="nav-item width-half">
-                <a class="nav-link pd-y-10 active" data-toggle="tab" href="#tabaa" role="tab">From Account</a>
-              </li>
-              <li class="nav-item width-half">
-                <a class="nav-link pd-y-10" data-toggle="tab" href="#tabbb" role="tab">Ethereum Address</a>
-              </li>
-            </ul>
-          </div><!-- row -->
-          <div class="tab-content">
-            <div class="tab-pane active" id="tabaa" role="tabpanel">
-              <div class="row mg-t-20">
-                <label class="col-sm-12 form-control-label"> Deposit From:<i class="tx-danger">*</i></label>
-                <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-                  <div class="input-number">
-                    <div class="input-left"><span color="slate"><img src="../assets/icons/icon-eth.svg" alt="" class="mini-icon"></span>VKC
-                      Wallet
-                    </div>
-                    <div class="input-right"><input class="form-control fc-outline-white bg-white" placeholder="0.10000000 ETH"
-                        disabled></div>
-                  </div>
-                </div>
-              </div><!-- row -->
-              <div class="row mg-t-20">
-                <label class="col-sm-12 form-control-label"> Amount:<i class="tx-danger">*</i></label>
-                <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-                  <div class="input-number">
-                    <div class="input-left"><span color="slate">ETH</span></div>
-                    <div class="input-right"><input class="form-control fc-outline-white" placeholder="" maxlength="15"></div>
-                  </div>
-                </div>
-              </div><!-- row -->
-              <div class="modal-footer step mg-t-20">
-                <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
-                  data-dismiss="modal">Cancel</button>
-                <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
-                  data-dismiss="modal" data-target="#modaldemo3b">Continue</a>
-              </div>
-            </div>
-            <div class="tab-pane" id="tabbb" role="tabpanel">
-              <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/icon-vkc.svg"
-                  alt="" class="img-medium"></i>
-              <h6 class="check tx-20 mg-b-0">Only send Ether (ETH) to this address</h6>
-              <h6 class="grey tx-15 mg-t-5">Sending any other digital asset, including Ethereum Classic (ETC), will
-                result
-                in permanent loss.
-              </h6>
-              <div class="modal-footer mg-t-20">
-                <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium img-center"
-                  data-toggle="modal" data-dismiss="modal" data-target="#modaldemo2b"> Show Address
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </form>
-    </div><!-- modal-dialog -->
-  </div><!-- modal -->
-
-
-
-  <div id="modaldemo8" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <form class="modal-content bd-0 tx-14">
-        <div class="modal-header pd-y-20 pd-x-25">
-          <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Withdraw from ETH Vault</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body pd-25">
-          <div class="row">
-            <label class="col-sm-12 form-control-label"> Transfer to:<i class="tx-danger">*</i></label>
-            <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-              <div class="input-number">
-                <div class="input-left"><span color="slate"><img src="../assets/icons/icon-vkc.svg" alt="" class="mini-icon"></span>VKC
-                  Wallet
-                </div>
-                <div class="input-right"><input class="form-control fc-outline-white bg-white" placeholder="0.10000000 VKC"
-                    disabled></div>
-              </div>
-            </div>
-          </div><!-- row -->
-          <div class="row mg-t-20">
-            <label class="col-sm-12 form-control-label"> Amount:<i class="tx-danger">*</i></label>
-            <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-              <div class="input-number">
-                <div class="input-left"><span color="slate">ETH</span></div>
-                <div class="input-right"><input class="form-control fc-outline-white" placeholder="" maxlength="15"></div>
-              </div>
-            </div>
-          </div><!-- row -->
-          <div class="row mg-t-20">
-            <label class="col-sm-12 form-control-label"> Enter the 2-step verification code provided by SMS to your
-              phone:
-              <i class="tx-danger">*</i></label>
-            <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-              <div class="input-group sms">
-                <span class="input-group-addon"><i class="fa fa-phone tx-16 lh-0 op-6"></i></span>
-                <input id="phoneMask" type="text" class="form-control fc-outline-white half" maxlength="7" placeholder="0000000">
-              </div>
-              <span class="resend">Didn't receive the verification code? <br> <a href="#">Re-send SMS</a></span>
-            </div>
-          </div><!-- row -->
-        </div>
-        <div class="modal-footer step">
-          <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
-            data-dismiss="modal">Cancel</button>
-          <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
-            data-dismiss="modal" data-target="#modaldemo13">Continue</a>
-        </div>
-      </form>
-    </div><!-- modal-dialog -->
-  </div><!-- modal -->
-
-
-
-  <div id="modaldemo9" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <form class="modal-content bd-0 tx-14">
-        <div class="modal-header pd-y-20 pd-x-25">
-          <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Transfer {{Coin}}</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body pd-25">
-          <div class="row">
-            <label class="col-sm-12 form-control-label"> Transfer to:</label>
-            <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-              <div class="input-number">
-                <div class="input-left"><span color="slate"><img src="../assets/icons/icon-vkc.svg" alt="" class="mini-icon"></span>VKC
-                  Vault
-                </div>
-                <div class="input-right"><input class="form-control fc-outline-white bg-white" placeholder="0.10000000 VKC"
-                    disabled=""></div>
-              </div>
-            </div>
-          </div><!-- row -->
-          <div class="row mg-t-20">
-            <label class="col-sm-12 form-control-label"> Amount:<i class="tx-danger">*</i></label>
-            <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-              <div class="input-number">
-                <div class="input-left"><span color="slate">VKC</span></div>
-                <div class="input-right"><input class="form-control fc-outline-white" placeholder="" maxlength="15"></div>
-              </div>
-            </div>
-          </div><!-- row -->
           <div class="modal-footer step mg-t-20">
+            <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
+              data-dismiss="modal">Close</button>
+            <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
+              data-dismiss="modal" data-target="#modaldemo3">Send More</a>
+          </div>
+        </form>
+      </div>
+    </div><!-- modal-dialog -->
+  
+    <div id="modaldemo5" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <form class="modal-content bd-0 tx-14">
+          <div class="modal-header pd-y-20 pd-x-25 bd-b">
+            <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Choose a currency</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pd-x-20 pd-y-5">
+            <div class="col-xs-12">
+              <div class="bd-gray-300 table-responsive">
+                <table class="table table-hover mg-b-0 table-fix">
+                  <tbody>
+                    <tr data-toggle="modal" data-target="#modaldemo5b" data-dismiss="modal">
+                      <td class="round">
+                        <i class="icon tx-btc"><img src="../assets/icons/icon-btc.svg" alt=""></i>
+                      </td>
+                      <td width="30%" class="tx-left">
+                        <p class="mg-b-0 tx-inverse tx-medium tx-btc">BitCoin</p>
+                      </td>
+                      <td width="60%" class="tx-right">
+                        >
+                      </td>
+                    </tr>
+                    <tr data-toggle="modal" data-target="#modaldemo5b" data-dismiss="modal">
+                      <td class="round">
+                        <i class="icon tx-btc"><img src="../assets/icons/icon-vkc.svg" alt=""></i>
+                      </td>
+                      <td width="30%" class="tx-left">
+                        <p class="mg-b-0 tx-inverse tx-medium tx-vkc">VakaCoin</p>
+                      </td>
+                      <td width="60%" class="tx-right">
+                        >
+                      </td>
+                    </tr>
+                    <tr data-toggle="modal" data-target="#modaldemo5b" data-dismiss="modal">
+                      <td class="round">
+                        <i class="icon tx-btc"><img src="../assets/icons/icon-eth.svg" alt=""></i>
+                      </td>
+                      <td width="30%" class="tx-left">
+                        <p class="mg-b-0 tx-inverse tx-medium tx-eth">Ethereum</p>
+                      </td>
+                      <td width="60%" class="tx-right">
+                        >
+                      </td>
+                    </tr>
+                    <tr data-toggle="modal" data-target="#modaldemo5b" data-dismiss="modal">
+                      <td class="round">
+                        <i class="icon tx-btc"><img src="../assets/icons/icon-eos.svg" alt=""></i>
+                      </td>
+                      <td width="30%" class="tx-left">
+                        <p class="mg-b-0 tx-inverse tx-medium tx-eos">EOS</p>
+                      </td>
+                      <td width="60%" class="tx-right">
+                        >
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div><!-- bd -->
+            </div>
+          </div>
+        </form>
+      </div>
+    </div><!-- modal-dialog -->
+  
+  
+    <div id="modaldemo5b" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <form class="modal-content bd-0 tx-14">
+          <div class="modal-body pd-25">
+            <div class="row">
+              <i class="icon tx-100 tx-success lh-1 mg-t-20 d-inline-block tx-center wd100 tx-medium" style="margin:0 auto;"><img
+                  src="../assets/icons/vault.svg" alt=""></i>
+              <h5 class="check tx-success tx-18 tx-center wd100">Name Your BCH Vault</h5>
+            </div>
+            <div class="row mg-t-20">
+              <label class="col-sm-4 form-control-label"> Vault Name:</label>
+              <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                <input type="text" class="form-control" placeholder="VKC Vault" required>
+              </div>
+            </div><!-- row -->
+            <div class="row mg-t-20">
+              <label class="col-sm-4 form-control-label">Who will approve withdrawals?</label>
+              <div class="col-sm-8 mg-l-auto">
+                <label class="rdiobox">
+                  <input name="radio" type="radio">
+                  <span class="tx-green tx-uppercase tx-bold">Individual</span>
+                  <h6 class="tx-12 tx-grey pd-l-20">I will approve my own withdrawals.</h6>
+                </label>
+                <label class="rdiobox">
+                  <input name="radio" type="radio">
+                  <span class="tx-green tx-uppercase tx-bold">Group</span>
+                  <h6 class="tx-12 tx-grey pd-l-20">I will invite people I trust to co-sign withdrawals.</h6>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer step">
             <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
               data-dismiss="modal">Cancel</button>
             <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
-              data-dismiss="modal" data-target="#modaldemo11">Continue</a>
+              data-dismiss="modal" data-target="#modaldemo5c">Next1</a>
+            <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
+              data-dismiss="modal" data-target="#modaldemo5e">Next2</a>
           </div>
-        </div>
-
-      </form>
-    </div><!-- modal-dialog -->
-  </div>
-
-
-
-  <div id="modaldemo10" class="modal fade">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content tx-size-sm">
-        <div class="modal-body tx-center pd-y-20 pd-x-20">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-          <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
-          <h4 class="tx-danger  tx-semibold mg-b-20">Are You Sure?</h4>
-          <p class="mg-b-20 mg-x-20">This permanently delete your account, and cannot be undone.</p>
-          <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20"
-            data-dismiss="modal" aria-label="Close">
-            Continue</button>
-        </div><!-- modal-body -->
-      </div><!-- modal-content -->
+        </form>
+      </div><!-- modal-dialog -->
     </div>
-  </div>
-
-
-
-  <div id="modaldemo11" class="modal fade">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content tx-size-sm">
-        <div class="modal-body tx-center pd-y-20 pd-x-20">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-          <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
-          <h4 class="tx-success tx-semibold mg-b-20">Congratulations!</h4>
-          <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority
-            have
-            suffered alteration.</p>
-          <button type="button" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20"
-            data-dismiss="modal" aria-label="Close">
-            Done</button>
-        </div><!-- modal-body -->
-      </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-  </div>
-
-
-  <div id="modaldemo12" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <form class="modal-content bd-0 tx-14">
-        <div class="modal-header pd-y-20 pd-x-25">
-          <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">{{Coin}} Vault - Vault Details</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body pd-x-20 pd-y-5">
-          <i class="icon ion-arrow-down-a tx-60 tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"></i>
-          <h6 class="check tx-20 mg-b-0">+0.1000 ETH</h6>
-          <h6 class="grey tx-16">= đ456,455</h6>
-          <div class="col-sm-12 mg-t-30 mg-sm-t-0 popup mg-b-30">
-            <div class="form-layout-6">
-              <div class="row no-gutters">
-                <div class="col-4">
-                  Approvers
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  <p>vaka@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
-                  <p>vakagroup@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
-                </div><!-- col-8 -->
-              </div><!-- row -->
-              <div class="row no-gutters">
-                <div class="col-4 break">
-                  Notifications
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  <p>vaka@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
-                  <p>vakagroup@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
-                  <p>+84 97 3760659 (SMS)<i class="fa fa-phone mg-l-5 tx-15" aria-hidden="true"></i></p>
-                </div><!-- col-8 -->
-              </div><!-- row -->
-              <div class="row no-gutters">
-                <div class="col-4">
-                  Time Delay
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  <p>48h<i class="fa fa-clock-o mg-l-5 tx-15" aria-hidden="true"></i></p>
-                </div><!-- col-8 -->
-              </div><!-- row -->
-              <div class="row no-gutters">
-                <div class="col-4">
-                  History
-                </div><!-- col-4 -->
-                <div class="col-8">
-                  <p>Friday Sep 14, 2018 at 2:08AM - Created</p>
-                  <p>Friday Sep 14, 2018 at 2:13AM - Configured</p>
-                  <p>Friday Sep 14, 2018 at 2:13AM - Ready</p>
-                </div><!-- col-8 -->
-              </div><!-- row -->
+  
+  
+  
+    <div id="modaldemo5e" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <form class="modal-content bd-0 tx-14">
+          <div class="modal-body pd-25">
+            <div class="row">
+              <i class="icon tx-100 tx-success lh-1 mg-t-20 d-inline-block tx-center wd100 tx-medium" style="margin:0 auto;"><img
+                  src="../assets/icons/users.svg" alt=""></i>
+              <h5 class="check tx-success tx-18 tx-center wd100">How many signers?</h5>
+              <hr>
+            </div>
+            <div class="row">
+              <label class="col-sm-12 form-control-label tx-center tx-12">A co-signer is another VakaPay user who
+                approves withdrawals.
+                More signers increases the security of the vault.</label>
+              <div class="col-sm-6">
+                <a href="#" class="btn bg-green tx-12 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium wd100" data-toggle="modal"
+                  data-dismiss="modal" data-target="#modaldemo5f">3 Co-Signers</a>
+                <span class="tx-12 tx-center d-block">At least 2 of them needed to complete a withdrawal.</span>
+              </div>
+              <div class="col-sm-6">
+                <a href="#" class="btn bg-green tx-12 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium wd100" data-toggle="modal"
+                  data-dismiss="modal" data-target="#modaldemo5f">5 Co-Signers</a>
+                <span class="tx-12 tx-center d-block">At least 3 of them needed to complete a withdrawal.</span>
+              </div>
+            </div><!-- row -->
+          </div>
+        </form>
+      </div><!-- modal-dialog -->
+    </div>
+  
+    <div id="modaldemo5f" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <form class="modal-content bd-0 tx-14">
+          <div class="modal-header pd-y-20 pd-x-25">
+            <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add a Secondary Email</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body pd-25">
+            <div class="row">
+              <i class="icon tx-100 tx-success lh-1 mg-t-20 d-inline-block tx-center wd100 tx-medium" style="margin:0 auto;"><img
+                  src="../assets/icons/users.svg" alt=""></i>
+              <h5 class="check tx-success tx-25 tx-center wd100">Invite Vault Co-Signers</h5>
+            </div>
+            <div class="row mg-t-20">
+              <label class="col-sm-12 form-control-label"> Co-signer #1:</label>
+              <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                <input type="text" class="form-control" placeholder="VKC@gmail.com" disabled>
+              </div>
+            </div><!-- row -->
+            <div class="row mg-t-20">
+              <label class="col-sm-12 form-control-label"> Co-Signer #2:</label>
+              <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                <input type="text" class="form-control" placeholder="email@example.com" required>
+              </div>
+            </div><!-- row -->
+            <div class="row mg-t-20">
+              <label class="col-sm-12 form-control-label"> Co-Signer #3:</label>
+              <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                <input type="text" class="form-control" placeholder="email@example.com" required>
+              </div>
+            </div><!-- row -->
+          </div>
+          <div class="modal-footer step">
+            <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
+              data-toggle="modal" data-dismiss="modal" data-target="#modaldemo5e">Previous</button>
+            <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
+              data-dismiss="modal" data-target="#modaldemo5d">Next</a>
+          </div>
+        </form>
+      </div><!-- modal-dialog -->
+    </div>
+  
+  
+    <div id="modaldemo5c" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <form class="modal-content bd-0 tx-14">
+          <div class="modal-header pd-y-20 pd-x-25">
+            <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add a Secondary Email</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body pd-25">
+            <div class="row">
+              <i class="icon tx-100 tx-success lh-1 mg-t-20 d-inline-block tx-center wd100 tx-medium" style="margin:0 auto;"><img
+                  src="../assets/icons/users.svg" alt=""></i>
+              <h5 class="check tx-success tx-15 tx-center wd100">Every withdrawal from your vault will need to be
+                approved from two email addresses.</h5>
+            </div>
+            <div class="row mg-t-20">
+              <label class="col-sm-12 form-control-label"> Primary Email:</label>
+              <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                <input type="text" class="form-control" placeholder="VKC@gmail.com" disabled>
+              </div>
+            </div><!-- row -->
+            <div class="row mg-t-20">
+              <label class="col-sm-12 form-control-label"> Secondary Email:</label>
+              <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                <input type="text" class="form-control" placeholder="email@example.com" required>
+              </div>
+            </div><!-- row -->
+          </div>
+          <div class="modal-footer step">
+            <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
+              data-toggle="modal" data-dismiss="modal" data-target="#modaldemo5b">Previous</button>
+            <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
+              data-dismiss="modal" data-target="#modaldemo5d">Next</a>
+          </div>
+        </form>
+      </div><!-- modal-dialog -->
+    </div>
+  
+  
+  
+    <div id="modaldemo5d" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <form class="modal-content bd-0 tx-14">
+          <div class="modal-header pd-y-20 pd-x-25">
+            <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Waiting for Confirmation</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body pd-25">
+            <div class="row">
+              <i class="icon tx-100 tx-success lh-1 mg-t-20 d-inline-block tx-center wd100 tx-medium" style="margin:0 auto;"><img
+                  src="../assets/icons/mail.svg" alt=""></i>
+              <h5 class="check tx-success tx-15 tx-center wd100">Please confirm your secondary e-mail address.</h5>
+            </div>
+            <div class="row mg-t-20">
+              <label class="col-sm-12 form-control-label pd-x-50"><i class="fa fa-check mg-r-5 tx-green tx-18"
+                  aria-hidden="true"></i><b>Vakaxa
+                  Company
+                </b> (vaka@gmail.com)</label>
+            </div><!-- row -->
+            <div class="row">
+              <label class="col-sm-12 form-control-label pd-x-50"><i class="fa fa-clock-o mg-r-10 tx-16" aria-hidden="true"></i>vakagroup@gmail.com</label>
+            </div><!-- row -->
+          </div>
+          <div class="modal-footer step">
+            <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
+              data-toggle="modal" data-dismiss="modal" data-target="#modaldemo5c">Back</button>
+            <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
+              data-dismiss="modal" data-target="#modaldemo5d2">Success Popup</a>
+          </div>
+        </form>
+      </div><!-- modal-dialog -->
+    </div>
+  
+    <div id="modaldemo5d2" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <form class="modal-content bd-0 tx-14">
+          <div class="modal-body pd-x-20 pd-y-5 tx-center">
+            <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
+            <h6 class="check tx-20 mg-b-0">Vault setup complete</h6>
+            <h6 class="grey tx-16">Your vault "BCH Vault" is now ready to be used!</h6>
+            <div class="col-sm-12 mg-t-30 mg-sm-t-0 popup mg-b-30">
+              <div class="form-layout-6">
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    Signers
+                  </div><!-- col-4 -->
+                  <div class="col-8">
+                    <p> <b>Vaka1</b> (vaka@gmail.com)<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
+                    <p><b>Vaka2</b> (vakagroup@gmail.com)<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
+                    <p><b>Vaka3</b> (vakapay@gmail.com)<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
+                    <p class="mg-t-20">Signers required for withdrawal: <b>2 of 3</b></p>
+                  </div><!-- col-8 -->
+                </div><!-- row -->
+                <div class="row no-gutters">
+                  <div class="col-4 break">
+                    Notifications
+                  </div><!-- col-4 -->
+                  <div class="col-8">
+                    <p>vaka@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
+                    <p>vakagroup@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
+                    <p>vakapay@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
+                    <p>+84 97 3760659 (SMS)<i class="fa fa-phone mg-l-5 tx-15" aria-hidden="true"></i></p>
+                  </div><!-- col-8 -->
+                </div><!-- row -->
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    Time Delay
+                  </div><!-- col-4 -->
+                  <div class="col-8">
+                    <p>48h<i class="fa fa-clock-o mg-l-5 tx-15" aria-hidden="true"></i></p>
+                  </div><!-- col-8 -->
+                </div><!-- row -->
+              </div>
             </div>
           </div>
-        </div>
-      </form>
-    </div><!-- modal-dialog -->
-  </div>
-
-
-  <div id="modaldemo13" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-      <form class="modal-content bd-0 tx-14">
-        <div class="modal-header pd-y-20 pd-x-25">
-          <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Waiting for Others Confirmation</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body pd-25">
-          <div class="row">
-            <i class="icon tx-100 tx-success lh-1 mg-t-20 d-inline-block tx-center wd100 tx-medium" style="margin:0 auto;"><img
-                src="../assets/icons/mail.svg" alt=""></i>
-            <h5 class="check tx-success tx-15 tx-center wd100">Please wait for others confirmation e-mail.</h5>
+          <div class="modal-footer step">
+            <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
+              data-dismiss="modal">Close</button>
+            <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Manager
+              Account</a>
           </div>
-          <div class="row mg-t-20">
-            <label class="col-sm-12 form-control-label pd-x-50"><i class="fa fa-check mg-r-5 tx-green tx-18"
-                aria-hidden="true"></i><b>Vakaxa
-                Company
-              </b> (vaka@gmail.com)</label>
-          </div><!-- row -->
-          <div class="row">
-            <label class="col-sm-12 form-control-label pd-x-50"><i class="fa fa-clock-o mg-r-10 tx-16" aria-hidden="true"></i>vakagroup@gmail.com</label>
-          </div><!-- row -->
-          <div class="row">
-            <label class="col-sm-12 form-control-label pd-x-50"><i class="fa fa-clock-o mg-r-10 tx-16" aria-hidden="true"></i>vakagroup2@gmail.com</label>
-          </div><!-- row -->
-        </div>
-        <div class="modal-footer step">
-          <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
-            data-toggle="modal" data-dismiss="modal" data-target="#modaldemo5c">Back</button>
-          <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
-            data-dismiss="modal" data-target="#modaldemo3c">Success Popup</a>
-        </div>
-      </form>
-    </div><!-- modal-dialog -->
-  </div>
+        </form>
+      </div><!-- modal-dialog -->
+    </div>
+  
+  
+    <div id="modaldemo6" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <form class="modal-content bd-0 tx-14">
+          <div class="modal-header pd-y-20 pd-x-25">
+            <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Congratulation</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body pd-25">
+            <div class="row">
+              <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block tx-center wd100 tx-medium"
+                style="margin:0 auto;"></i>
+              <h5 class="check tx-success tx-18 tx-center wd100">Vault setup complete</h5>
+              <h5 class="check tx-15 tx-center wd100">Your vault "BTC Vault" is now ready to be used!</h5>
+            </div>
+            <div class="col-sm-12 mg-t-30 mg-sm-t-0 popup">
+              <div class="form-layout-6">
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    Approvers
+                  </div><!-- col-4 -->
+                  <div class="col-8">
+                    <p>vaka@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
+                    <p>vakagroup@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
+                  </div><!-- col-8 -->
+                </div><!-- row -->
+                <div class="row no-gutters">
+                  <div class="col-4 break">
+                    Notifications
+                  </div><!-- col-4 -->
+                  <div class="col-8">
+                    <p>vaka@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
+                    <p>vakagroup@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
+                    <p>+84 97 3760659 (SMS)<i class="fa fa-phone mg-l-5 tx-15" aria-hidden="true"></i></p>
+                  </div><!-- col-8 -->
+                </div><!-- row -->
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    Time Delay
+                  </div><!-- col-4 -->
+                  <div class="col-8">
+                    <p>48h<i class="fa fa-clock-o mg-l-5 tx-15" aria-hidden="true"></i></p>
+                  </div><!-- col-8 -->
+                </div><!-- row -->
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer step">
+            <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
+              data-dismiss="modal">Close</button>
+            <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Continue
+              to Vault</a>
+          </div>
+        </form>
+      </div><!-- modal-dialog -->
+    </div>
+  
+  
+    <div id="modaldemo7" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <form class="modal-content bd-0 tx-14">
+          <div class="modal-header pd-y-20 pd-x-25">
+            <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Deposit into ETH Vault</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pd-25">
+            <div class="row">
+              <ul class="nav nav-tabs nav-tabs-style-1 nav-justified tx-13" role="tablist">
+                <li class="nav-item width-half">
+                  <a class="nav-link pd-y-10 active" data-toggle="tab" href="#tabaa" role="tab">From Account</a>
+                </li>
+                <li class="nav-item width-half">
+                  <a class="nav-link pd-y-10" data-toggle="tab" href="#tabbb" role="tab">Ethereum Address</a>
+                </li>
+              </ul>
+            </div><!-- row -->
+            <div class="tab-content">
+              <div class="tab-pane active" id="tabaa" role="tabpanel">
+                <div class="row mg-t-20">
+                  <label class="col-sm-12 form-control-label"> Deposit From:<i class="tx-danger">*</i></label>
+                  <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                    <div class="input-number">
+                      <div class="input-left"><span color="slate"><img src="../assets/icons/icon-eth.svg" alt="" class="mini-icon"></span>VKC
+                        Wallet
+                      </div>
+                      <div class="input-right"><input class="form-control fc-outline-white bg-white" placeholder="0.10000000 ETH"
+                          disabled></div>
+                    </div>
+                  </div>
+                </div><!-- row -->
+                <div class="row mg-t-20">
+                  <label class="col-sm-12 form-control-label"> Amount:<i class="tx-danger">*</i></label>
+                  <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                    <div class="input-number">
+                      <div class="input-left"><span color="slate">ETH</span></div>
+                      <div class="input-right"><input class="form-control fc-outline-white" placeholder="" maxlength="15"></div>
+                    </div>
+                  </div>
+                </div><!-- row -->
+                <div class="modal-footer step mg-t-20">
+                  <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
+                    data-dismiss="modal">Cancel</button>
+                  <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
+                    data-dismiss="modal" data-target="#modaldemo3b">Continue</a>
+                </div>
+              </div>
+              <div class="tab-pane" id="tabbb" role="tabpanel">
+                <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/icon-vkc.svg"
+                    alt="" class="img-medium"></i>
+                <h6 class="check tx-20 mg-b-0">Only send Ether (ETH) to this address</h6>
+                <h6 class="grey tx-15 mg-t-5">Sending any other digital asset, including Ethereum Classic (ETC), will
+                  result
+                  in permanent loss.
+                </h6>
+                <div class="modal-footer mg-t-20">
+                  <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium img-center"
+                    data-toggle="modal" data-dismiss="modal" data-target="#modaldemo2b"> Show Address
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        </form>
+      </div><!-- modal-dialog -->
+    </div><!-- modal -->
+  
+  
+  
+    <div id="modaldemo8" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <form class="modal-content bd-0 tx-14">
+          <div class="modal-header pd-y-20 pd-x-25">
+            <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Withdraw from ETH Vault</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pd-25">
+            <div class="row">
+              <label class="col-sm-12 form-control-label"> Transfer to:<i class="tx-danger">*</i></label>
+              <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                <div class="input-number">
+                  <div class="input-left"><span color="slate"><img src="../assets/icons/icon-vkc.svg" alt="" class="mini-icon"></span>VKC
+                    Wallet
+                  </div>
+                  <div class="input-right"><input class="form-control fc-outline-white bg-white" placeholder="0.10000000 VKC"
+                      disabled></div>
+                </div>
+              </div>
+            </div><!-- row -->
+            <div class="row mg-t-20">
+              <label class="col-sm-12 form-control-label"> Amount:<i class="tx-danger">*</i></label>
+              <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                <div class="input-number">
+                  <div class="input-left"><span color="slate">ETH</span></div>
+                  <div class="input-right"><input class="form-control fc-outline-white" placeholder="" maxlength="15"></div>
+                </div>
+              </div>
+            </div><!-- row -->
+            <div class="row mg-t-20">
+              <label class="col-sm-12 form-control-label"> Enter the 2-step verification code provided by SMS to your
+                phone:
+                <i class="tx-danger">*</i></label>
+              <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                <div class="input-group sms">
+                  <span class="input-group-addon"><i class="fa fa-phone tx-16 lh-0 op-6"></i></span>
+                  <input id="phoneMask" type="text" class="form-control fc-outline-white half" maxlength="7" placeholder="0000000">
+                </div>
+                <span class="resend">Didn't receive the verification code? <br> <a href="#">Re-send SMS</a></span>
+              </div>
+            </div><!-- row -->
+          </div>
+          <div class="modal-footer step">
+            <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
+              data-dismiss="modal">Cancel</button>
+            <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
+              data-dismiss="modal" data-target="#modaldemo13">Continue</a>
+          </div>
+        </form>
+      </div><!-- modal-dialog -->
+    </div><!-- modal -->
+  
+  
+  
+    <div id="modaldemo9" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <form class="modal-content bd-0 tx-14">
+          <div class="modal-header pd-y-20 pd-x-25">
+            <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Transfer {{Coin}}</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body pd-25">
+            <div class="row">
+              <label class="col-sm-12 form-control-label"> Transfer to:</label>
+              <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                <div class="input-number">
+                  <div class="input-left"><span color="slate"><img src="../assets/icons/icon-vkc.svg" alt="" class="mini-icon"></span>VKC
+                    Vault
+                  </div>
+                  <div class="input-right"><input class="form-control fc-outline-white bg-white" placeholder="0.10000000 VKC"
+                      disabled=""></div>
+                </div>
+              </div>
+            </div><!-- row -->
+            <div class="row mg-t-20">
+              <label class="col-sm-12 form-control-label"> Amount:<i class="tx-danger">*</i></label>
+              <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                <div class="input-number">
+                  <div class="input-left"><span color="slate">VKC</span></div>
+                  <div class="input-right"><input class="form-control fc-outline-white" placeholder="" maxlength="15"></div>
+                </div>
+              </div>
+            </div><!-- row -->
+            <div class="modal-footer step mg-t-20">
+              <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
+                data-dismiss="modal">Cancel</button>
+              <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
+                data-dismiss="modal" data-target="#modaldemo11">Continue</a>
+            </div>
+          </div>
+  
+        </form>
+      </div><!-- modal-dialog -->
+    </div>
+  
+  
+  
+    <div id="modaldemo10" class="modal fade">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content tx-size-sm">
+          <div class="modal-body tx-center pd-y-20 pd-x-20">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
+            <h4 class="tx-danger  tx-semibold mg-b-20">Are You Sure?</h4>
+            <p class="mg-b-20 mg-x-20">This permanently delete your account, and cannot be undone.</p>
+            <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20"
+              data-dismiss="modal" aria-label="Close">
+              Continue</button>
+          </div><!-- modal-body -->
+        </div><!-- modal-content -->
+      </div>
+    </div>
+  
+  
+  
+    <div id="modaldemo11" class="modal fade">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content tx-size-sm">
+          <div class="modal-body tx-center pd-y-20 pd-x-20">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
+            <h4 class="tx-success tx-semibold mg-b-20">Congratulations!</h4>
+            <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority
+              have
+              suffered alteration.</p>
+            <button type="button" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20"
+              data-dismiss="modal" aria-label="Close">
+              Done</button>
+          </div><!-- modal-body -->
+        </div><!-- modal-content -->
+      </div><!-- modal-dialog -->
+    </div>
+  
+  
+    <div id="modaldemo12" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <form class="modal-content bd-0 tx-14">
+          <div class="modal-header pd-y-20 pd-x-25">
+            <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">{{Coin}} Vault - Vault Details</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body pd-x-20 pd-y-5">
+            <i class="icon ion-arrow-down-a tx-60 tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"></i>
+            <h6 class="check tx-20 mg-b-0">+0.1000 ETH</h6>
+            <h6 class="grey tx-16">= đ456,455</h6>
+            <div class="col-sm-12 mg-t-30 mg-sm-t-0 popup mg-b-30">
+              <div class="form-layout-6">
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    Approvers
+                  </div><!-- col-4 -->
+                  <div class="col-8">
+                    <p>vaka@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
+                    <p>vakagroup@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
+                  </div><!-- col-8 -->
+                </div><!-- row -->
+                <div class="row no-gutters">
+                  <div class="col-4 break">
+                    Notifications
+                  </div><!-- col-4 -->
+                  <div class="col-8">
+                    <p>vaka@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
+                    <p>vakagroup@gmail.com<i class="fa fa-envelope mg-l-5 tx-15" aria-hidden="true"></i></p>
+                    <p>+84 97 3760659 (SMS)<i class="fa fa-phone mg-l-5 tx-15" aria-hidden="true"></i></p>
+                  </div><!-- col-8 -->
+                </div><!-- row -->
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    Time Delay
+                  </div><!-- col-4 -->
+                  <div class="col-8">
+                    <p>48h<i class="fa fa-clock-o mg-l-5 tx-15" aria-hidden="true"></i></p>
+                  </div><!-- col-8 -->
+                </div><!-- row -->
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    History
+                  </div><!-- col-4 -->
+                  <div class="col-8">
+                    <p>Friday Sep 14, 2018 at 2:08AM - Created</p>
+                    <p>Friday Sep 14, 2018 at 2:13AM - Configured</p>
+                    <p>Friday Sep 14, 2018 at 2:13AM - Ready</p>
+                  </div><!-- col-8 -->
+                </div><!-- row -->
+              </div>
+            </div>
+          </div>
+        </form>
+      </div><!-- modal-dialog -->
+    </div>
+  
+  
+    <div id="modaldemo13" class="modal fade">
+      <div class="modal-dialog modal-dialog-vertical-center" role="document">
+        <form class="modal-content bd-0 tx-14">
+          <div class="modal-header pd-y-20 pd-x-25">
+            <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Waiting for Others Confirmation</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body pd-25">
+            <div class="row">
+              <i class="icon tx-100 tx-success lh-1 mg-t-20 d-inline-block tx-center wd100 tx-medium" style="margin:0 auto;"><img
+                  src="../assets/icons/mail.svg" alt=""></i>
+              <h5 class="check tx-success tx-15 tx-center wd100">Please wait for others confirmation e-mail.</h5>
+            </div>
+            <div class="row mg-t-20">
+              <label class="col-sm-12 form-control-label pd-x-50"><i class="fa fa-check mg-r-5 tx-green tx-18"
+                  aria-hidden="true"></i><b>Vakaxa
+                  Company
+                </b> (vaka@gmail.com)</label>
+            </div><!-- row -->
+            <div class="row">
+              <label class="col-sm-12 form-control-label pd-x-50"><i class="fa fa-clock-o mg-r-10 tx-16" aria-hidden="true"></i>vakagroup@gmail.com</label>
+            </div><!-- row -->
+            <div class="row">
+              <label class="col-sm-12 form-control-label pd-x-50"><i class="fa fa-clock-o mg-r-10 tx-16" aria-hidden="true"></i>vakagroup2@gmail.com</label>
+            </div><!-- row -->
+          </div>
+          <div class="modal-footer step">
+            <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
+              data-toggle="modal" data-dismiss="modal" data-target="#modaldemo5c">Back</button>
+            <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
+              data-dismiss="modal" data-target="#modaldemo3c">Success Popup</a>
+          </div>
+        </form>
+      </div><!-- modal-dialog -->
+    </div>
+  
