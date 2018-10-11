@@ -54,7 +54,13 @@ button[disabled] {
 .tx-green {
   color: #10a04a !important;
 }
-
+.tfa {
+  line-height: 15px;
+  font-weight: bold;
+  font-size: 14px;
+  vertical-align: baseline;
+  padding: 5px 0;
+}
 .tx-green:hover {}
 
 .port {
@@ -1735,6 +1741,9 @@ ol {
   .br-mainpanel {
     max-width: 100%;
   }
+  .balance {
+    min-height: auto;
+  }
 }
 
 @media only screen and (max-width: 991px) {
@@ -2077,5 +2086,13 @@ ol {
   }
   .op-3-mob {
     opacity: 0.3;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .tfa {
+      padding: 0;
+  }
+  .identity {
+      padding: 5px 15px;
   }
 }

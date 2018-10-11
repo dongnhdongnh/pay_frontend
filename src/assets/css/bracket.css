@@ -14002,7 +14002,9 @@ textarea.parsley-error:active {
 }
 
 .widget-4 .card-body {
-  background-color: #f8f9fa;
+  background: url('../images/backgrounds/bg-signin.jpg') center no-repeat;
+  background-size: cover;
+  background-color: #064975;
   text-align: center;
   padding-top: 70px;
   padding-bottom: 25px;
