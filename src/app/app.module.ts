@@ -54,6 +54,7 @@ import { ProfileComponent } from 'component/page/profile/profile.component';
 import { PreferencesComponent } from 'component/page/preferences/preferences.component';
 import { ObjectivesComponent } from './objectives/objectives.component';
 import { AddressesComponent } from "../vakapay.component/addresses/addresses.component";
+import { ReportsComponent } from '../vakapay.component/reports/reports.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,6 +81,7 @@ import { AddressesComponent } from "../vakapay.component/addresses/addresses.com
     PreferencesComponent,
     ObjectivesComponent,
     AddressesComponent,
+    ReportsComponent,
   ],
   imports: [
     BrowserModule,
