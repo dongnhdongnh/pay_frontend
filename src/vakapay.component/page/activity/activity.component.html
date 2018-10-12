@@ -1,479 +1,111 @@
 <div class="br-pagebody">
-  <div class="row row-sm mg-t-20">
-    <div class="col-xl-12 bg-white mg-t-20 rounded">
-      <form class="form-layout">
-        <div class="row-sm mg-t-20">
+  <div id="activity" class="row row-sm bg-white rounded">
+    <div class="col-xl-12">
+      <div class="form-layout">
+        <div class="row-sm">
           <div class="width-half">
-            <h6 class="br-section-label">Active Sessions</h6>
+            <h6 class="br-section-label tx-green"><i class="fa
+                fa-calendar-check-o"></i> Active Sessions</h6>
+            <p class="br-section-text">You can manage your active sessions like
+              web sessions, account activity, ...
+              here!</p>
           </div>
         </div>
         <div class="clear-both"></div>
-        <hr>
-        <app-session-active></app-session-active>
-        <app-account-activity></app-account-activity>
-      </form><!-- form-layout -->
+        <div class="nav" role="tablist">
+          <mat-tab-group>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <div class="show d-table-cell mg-t-20">
+                  <div class="card">
+                    <div class="pd-x-20 pd-t-20 d-flex tx-green
+                      align-items-center">
+                      <i class="fa fa-globe tx-60 lh-0 op-5"></i>
+                      <div class="mg-l-20">
+                        <p class="tx-28 tx-green mg-b-0 lh-1">Web Sessions</p>
+                        <span class="tx-12 tx-roboto tx-gray-600">These sessions
+                          are
+                          currently signed in</span>
+                      </div>
+                    </div>
+                    <div id="ch5" class="ht-60 tr-y-1 rickshaw_graph tx-green"><svg
+                        width="427" height="60">
+                        <g>
+                          <path
+                            d="M0,30Q30.838888888888885,25.75,35.58333333333333,26.25C42.699999999999996,27,64.05,37.125,71.16666666666666,37.5S99.63333333333334,31.5,106.75,30S135.21666666666664,22.5,142.33333333333331,22.5S170.8,27.75,177.91666666666669,30S206.38333333333333,42.75,213.5,45S241.96666666666667,52.5,249.08333333333334,52.5S277.54999999999995,46.125,284.66666666666663,45S313.1333333333333,42.375,320.25,41.25S348.7166666666667,33.375,355.83333333333337,33.75S384.29999999999995,45.375,391.41666666666663,45Q396.1611111111111,44.75,427,30L427,60Q396.1611111111111,60,391.41666666666663,60C384.29999999999995,60,362.95000000000005,60,355.83333333333337,60S327.3666666666667,60,320.25,60S291.7833333333333,60,284.66666666666663,60S256.2,60,249.08333333333334,60S220.61666666666667,60,213.5,60S185.03333333333336,60,177.91666666666669,60S149.45,60,142.33333333333331,60S113.86666666666666,60,106.75,60S78.28333333333332,60,71.16666666666666,60S42.699999999999996,60,35.58333333333333,60Q30.838888888888885,60,0,60Z"
+                            class="area" fill="#10a04a"></path>
+                        </g>
+                      </svg></div>
+                  </div>
+                </div>
+              </ng-template>
+              <div class="col-xl-12 tab-content tab-right">
+                <app-session-active></app-session-active>
+              </div><!-- br-section-wrapper -->
+            </mat-tab>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <div class="active show d-table-cell mg-t-20">
+                  <div class="card">
+                    <div class="pd-x-20 pd-t-20 d-flex tx-green
+                      align-items-center">
+                      <i class="fa fa-globe tx-60 lh-0 op-5"></i>
+                      <div class="mg-l-20">
+                        <p class="tx-28 tx-green mg-b-0 lh-1">Web Sessions</p>
+                        <span class="tx-12 tx-roboto tx-gray-600">These sessions
+                          are
+                          currently signed in</span>
+                      </div>
+                    </div>
+                    <div id="ch5" class="ht-60 tr-y-1 rickshaw_graph tx-green"><svg
+                        width="427" height="60">
+                        <g>
+                          <path
+                            d="M0,30Q30.838888888888885,25.75,35.58333333333333,26.25C42.699999999999996,27,64.05,37.125,71.16666666666666,37.5S99.63333333333334,31.5,106.75,30S135.21666666666664,22.5,142.33333333333331,22.5S170.8,27.75,177.91666666666669,30S206.38333333333333,42.75,213.5,45S241.96666666666667,52.5,249.08333333333334,52.5S277.54999999999995,46.125,284.66666666666663,45S313.1333333333333,42.375,320.25,41.25S348.7166666666667,33.375,355.83333333333337,33.75S384.29999999999995,45.375,391.41666666666663,45Q396.1611111111111,44.75,427,30L427,60Q396.1611111111111,60,391.41666666666663,60C384.29999999999995,60,362.95000000000005,60,355.83333333333337,60S327.3666666666667,60,320.25,60S291.7833333333333,60,284.66666666666663,60S256.2,60,249.08333333333334,60S220.61666666666667,60,213.5,60S185.03333333333336,60,177.91666666666669,60S149.45,60,142.33333333333331,60S113.86666666666666,60,106.75,60S78.28333333333332,60,71.16666666666666,60S42.699999999999996,60,35.58333333333333,60Q30.838888888888885,60,0,60Z"
+                            class="area" fill="#10a04a"></path>
+                        </g>
+                      </svg></div>
+                  </div>
+                </div>
+              </ng-template>
+              <div class="col-xl-12 tab-content tab-right">
+                <app-account-activity></app-account-activity>
+              </div><!-- br-section-wrapper -->
+            </mat-tab>
+
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <div class="d-table-cell mg-t-20">
+                  <div class="card">
+                    <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+                      <i class="fa fa-check-square-o tx-60 lh-0 tx-green op-5"></i>
+                      <div class="mg-l-20">
+                        <p class="tx-28 tx-green mg-b-0 lh-1">Confirmed Devices</p>
+                        <span class="tx-12 tx-roboto tx-gray-600">These devices
+                          are
+                          currently allowed to access</span>
+                      </div>
+                    </div>
+                    <div id="ch6" class="ht-60 tr-y-1 rickshaw_graph"><svg
+                        width="427" height="60">
+                        <g>
+                          <path
+                            d="M0,30Q30.838888888888885,25.75,35.58333333333333,26.25C42.699999999999996,27,64.05,37.125,71.16666666666666,37.5S99.63333333333334,31.5,106.75,30S135.21666666666664,22.5,142.33333333333331,22.5S170.8,27.75,177.91666666666669,30S206.38333333333333,42.75,213.5,45S241.96666666666667,52.5,249.08333333333334,52.5S277.54999999999995,46.125,284.66666666666663,45S313.1333333333333,42.375,320.25,41.25S348.7166666666667,33.375,355.83333333333337,33.75S384.29999999999995,45.375,391.41666666666663,45Q396.1611111111111,44.75,427,30L427,60Q396.1611111111111,60,391.41666666666663,60C384.29999999999995,60,362.95000000000005,60,355.83333333333337,60S327.3666666666667,60,320.25,60S291.7833333333333,60,284.66666666666663,60S256.2,60,249.08333333333334,60S220.61666666666667,60,213.5,60S185.03333333333336,60,177.91666666666669,60S149.45,60,142.33333333333331,60S113.86666666666666,60,106.75,60S78.28333333333332,60,71.16666666666666,60S42.699999999999996,60,35.58333333333333,60Q30.838888888888885,60,0,60Z"
+                            class="area" fill="#10a04a"></path>
+                        </g>
+                      </svg></div>
+                  </div>
+                </div>
+              </ng-template>
+
+              <div class="col-xl-12 tab-content tab-right">
+                <app-confirmed-devices></app-confirmed-devices>
+              </div><!-- br-section-wrapper -->
+            </mat-tab>
+
+          </mat-tab-group>
+        </div>
+      </div>
     </div><!-- col-6 -->
   </div><!-- row -->
 </div><!-- br-section-wrapper -->
-<div class="clear-both"></div>
-
-<!-- ########## START: MAIN PANEL ########## -->
-<div class="br-mainpanel">
-  <div class="br-pagebody">
-    <div class="row row-sm bg-white rounded">
-      <div class="col-xl-12">
-        <div class="form-layout">
-          <div class="row-sm">
-            <div class="width-half">
-              <h6 class="br-section-label tx-green"><i class="fa fa-calendar-check-o"></i> Active Sessions</h6>
-              <p class="br-section-text">You can manage your active sessions like web sessions, account activity, ...
-                here!</p>
-            </div>
-            <div class="width-half">
-              <a href="#" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium fl-right"
-                data-toggle="modal" data-target="#modaldemo4">Deactive Account </a>
-            </div>
-          </div>
-          <div class="clear-both"></div>
-          <div class="nav" role="tablist">
-            <div class="active show d-table-cell col-sm-6 col-lg-4 mg-t-20" data-toggle="tab" href="#tab1" role="tab">
-              <div class="card">
-                <div class="pd-x-20 pd-t-20 d-flex tx-green align-items-center">
-                  <i class="fa fa-globe tx-60 lh-0 op-5"></i>
-                  <div class="mg-l-20">
-                    <p class="tx-28 tx-green mg-b-0 lh-1">Web Sessions</p>
-                    <span class="tx-12 tx-roboto tx-gray-600">These sessions are currently signed in</span>
-                  </div>
-                </div>
-                <div id="ch5" class="ht-60 tr-y-1 rickshaw_graph tx-green"><svg width="427" height="60">
-                    <g>
-                      <path d="M0,30Q30.838888888888885,25.75,35.58333333333333,26.25C42.699999999999996,27,64.05,37.125,71.16666666666666,37.5S99.63333333333334,31.5,106.75,30S135.21666666666664,22.5,142.33333333333331,22.5S170.8,27.75,177.91666666666669,30S206.38333333333333,42.75,213.5,45S241.96666666666667,52.5,249.08333333333334,52.5S277.54999999999995,46.125,284.66666666666663,45S313.1333333333333,42.375,320.25,41.25S348.7166666666667,33.375,355.83333333333337,33.75S384.29999999999995,45.375,391.41666666666663,45Q396.1611111111111,44.75,427,30L427,60Q396.1611111111111,60,391.41666666666663,60C384.29999999999995,60,362.95000000000005,60,355.83333333333337,60S327.3666666666667,60,320.25,60S291.7833333333333,60,284.66666666666663,60S256.2,60,249.08333333333334,60S220.61666666666667,60,213.5,60S185.03333333333336,60,177.91666666666669,60S149.45,60,142.33333333333331,60S113.86666666666666,60,106.75,60S78.28333333333332,60,71.16666666666666,60S42.699999999999996,60,35.58333333333333,60Q30.838888888888885,60,0,60Z"
-                        class="area" fill="#10a04a"></path>
-                    </g>
-                  </svg></div>
-              </div>
-            </div>
-            <div class="d-table-cell col-lg-4 col-sm-6 mg-t-20" data-toggle="tab" href="#tab1b" role="tab">
-              <div class="card">
-                <div class="pd-x-20 pd-t-20 d-flex align-items-center">
-                  <i class="fa fa-check-square-o tx-60 lh-0 tx-green op-5"></i>
-                  <div class="mg-l-20">
-                    <p class="tx-28 tx-green mg-b-0 lh-1">Confirmed Devices</p>
-                    <span class="tx-12 tx-roboto tx-gray-600">These devices are currently allowed to access</span>
-                  </div>
-                </div>
-                <div id="ch6" class="ht-60 tr-y-1 rickshaw_graph"><svg width="427" height="60">
-                    <g>
-                      <path d="M0,30Q30.838888888888885,25.75,35.58333333333333,26.25C42.699999999999996,27,64.05,37.125,71.16666666666666,37.5S99.63333333333334,31.5,106.75,30S135.21666666666664,22.5,142.33333333333331,22.5S170.8,27.75,177.91666666666669,30S206.38333333333333,42.75,213.5,45S241.96666666666667,52.5,249.08333333333334,52.5S277.54999999999995,46.125,284.66666666666663,45S313.1333333333333,42.375,320.25,41.25S348.7166666666667,33.375,355.83333333333337,33.75S384.29999999999995,45.375,391.41666666666663,45Q396.1611111111111,44.75,427,30L427,60Q396.1611111111111,60,391.41666666666663,60C384.29999999999995,60,362.95000000000005,60,355.83333333333337,60S327.3666666666667,60,320.25,60S291.7833333333333,60,284.66666666666663,60S256.2,60,249.08333333333334,60S220.61666666666667,60,213.5,60S185.03333333333336,60,177.91666666666669,60S149.45,60,142.33333333333331,60S113.86666666666666,60,106.75,60S78.28333333333332,60,71.16666666666666,60S42.699999999999996,60,35.58333333333333,60Q30.838888888888885,60,0,60Z"
-                        class="area" fill="#10a04a"></path>
-                    </g>
-                  </svg></div>
-              </div>
-            </div>
-            <div class="d-table-cell col-lg-4 col-sm-6 mg-t-20" data-toggle="tab" href="#tab2" role="tab">
-              <div class="card">
-                <div class="pd-x-20 pd-t-20 d-flex align-items-center">
-                  <i class="fa fa-calendar-check-o tx-60 lh-0 tx-green op-5"></i>
-                  <div class="mg-l-20">
-                    <p class="tx-28 tx-green mg-b-0 lh-1">Account Activity</p>
-                    <span class="tx-12 tx-roboto tx-gray-600">Recent activity on your account</span>
-                  </div>
-                </div>
-                <div id="ch7" class="ht-60 tr-y-1 rickshaw_graph"><svg width="427" height="60">
-                    <g>
-                      <path d="M0,30Q30.838888888888885,25.75,35.58333333333333,26.25C42.699999999999996,27,64.05,37.125,71.16666666666666,37.5S99.63333333333334,31.5,106.75,30S135.21666666666664,22.5,142.33333333333331,22.5S170.8,27.75,177.91666666666669,30S206.38333333333333,42.75,213.5,45S241.96666666666667,52.5,249.08333333333334,52.5S277.54999999999995,46.125,284.66666666666663,45S313.1333333333333,42.375,320.25,41.25S348.7166666666667,33.375,355.83333333333337,33.75S384.29999999999995,45.375,391.41666666666663,45Q396.1611111111111,44.75,427,30L427,60Q396.1611111111111,60,391.41666666666663,60C384.29999999999995,60,362.95000000000005,60,355.83333333333337,60S327.3666666666667,60,320.25,60S291.7833333333333,60,284.66666666666663,60S256.2,60,249.08333333333334,60S220.61666666666667,60,213.5,60S185.03333333333336,60,177.91666666666669,60S149.45,60,142.33333333333331,60S113.86666666666666,60,106.75,60S78.28333333333332,60,71.16666666666666,60S42.699999999999996,60,35.58333333333333,60Q30.838888888888885,60,0,60Z"
-                        class="area" fill="#10a04a"></path>
-                    </g>
-                  </svg></div>
-              </div>
-            </div>
-            <div class="col-xl-12 tab-content tab-right">
-              <div class="col-xl-12 pd-30 mg-t-20 tab-pane active show" id="tab1" role="tabpanel">
-                <h5 class="tx-green tx-15"><i class="fa fa-globe mg-r-5"></i>Web Sessions</h5>
-                <h6 class="grey tx-left tx-14"> These sessions are currently signed in to your account. <span class="resend-sms">Sign
-                    out all other
-                    sessions</span></h6>
-                <div class="bd bd-gray-300 table-responsive table-add mg-t-20">
-                  <table class="table table-hover mg-b-0">
-                    <thead>
-                      <tr>
-                        <th>Signed In</th>
-                        <th>Browser</th>
-                        <th>IP Address</th>
-                        <th>Near</th>
-                        <th>Current</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody class="table-add-body">
-                      <tr>
-                        <td>8 days ago</td>
-                        <td>Chrome (Windows)</td>
-                        <td>123.24.172.65</td>
-                        <td>Vietnam, Hanoi</td>
-                        <td><i class="fa fa-check tx-13 tx-grey"></i></td>
-                        <td><a href="#"><i class="fa fa-times tx-13 tx-grey"></i></a></td>
-                      </tr>
-                      <tr>
-                        <td>8 days ago</td>
-                        <td>Chrome (Windows)</td>
-                        <td>123.24.172.65</td>
-                        <td>Vietnam, Hanoi</td>
-                        <td></td>
-                        <td><a href="#"><i class="fa fa-times tx-13 tx-grey"></i></a></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div><!-- bd -->
-              </div><!-- col-6 -->
-              <div class="col-xl-12 mg-t-20 pd-30 tab-pane" id="tab1b" role="tabpanel">
-                <h5 class="tx-green tx-15"><i class="fa fa-check-square-o"></i> Confirmed Devices</h5>
-                <h6 class="grey tx-left tx-14"> These devices are currently allowed to access your account. <span class="resend-sms">Remove
-                    all other devices</span></h6>
-                <div class="bd bd-gray-300 table-responsive table-add mg-t-20">
-                  <table class="table table-hover mg-b-0">
-                    <thead>
-                      <tr>
-                        <th>Confirmed</th>
-                        <th>Browser</th>
-                        <th>IP Address</th>
-                        <th>Near</th>
-                        <th>Current</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody class="table-add-body">
-                      <tr>
-                        <td>8 days ago</td>
-                        <td>Chrome (Windows)</td>
-                        <td>123.24.172.65</td>
-                        <td>Vietnam, Hanoi</td>
-                        <td><i class="fa fa-check tx-13 tx-grey"></i></td>
-                        <td><a href="#"><i class="fa fa-times tx-13 tx-grey"></i></a></td>
-                      </tr>
-                      <tr>
-                        <td>21 days ago</td>
-                        <td>Firefox (Windows)</td>
-                        <td>123.24.172.65</td>
-                        <td>Vietnam, Hanoi</td>
-                        <td></td>
-                        <td><a href="#"><i class="fa fa-times tx-13 tx-grey"></i></a></td>
-                      </tr>
-                      <tr>
-                        <td>about 1 month ago</td>
-                        <td>Chrome (Windows)</td>
-                        <td>123.24.172.65</td>
-                        <td>Vietnam, Hanoi</td>
-                        <td></td>
-                        <td><a href="#"><i class="fa fa-times tx-13 tx-grey"></i></a></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div><!-- bd -->
-              </div><!-- col-6 -->
-              <div class="col-xl-12 pd-30 mg-t-20 tab-pane" id="tab2" role="tabpanel">
-                <h5 class="tx-green tx-15"><i class="fa fa-calendar-check-o"></i> Account Activity</h5>
-                <h6 class="grey tx-left tx-14">Recent activity on your account.</h6>
-                <div class="bd bd-gray-300 table-responsive table-add mg-t-20">
-                  <table class="table table-hover mg-b-0">
-                    <thead>
-                      <tr>
-                        <th>Action</th>
-                        <th>Source</th>
-                        <th>IP Address</th>
-                        <th>Location</th>
-                        <th>When</th>
-                      </tr>
-                    </thead>
-                    <tbody class="table-add-body">
-                      <tr>
-                        <td>phone added</td>
-                        <td>web</td>
-                        <td>123.24.172.65</td>
-                        <td>Vietnam, Hanoi</td>
-                        <td>about 3 hours ago</td>
-                      </tr>
-                      <tr>
-                        <td>phone added</td>
-                        <td>web</td>
-                        <td>123.24.172.65</td>
-                        <td>Vietnam, Hanoi</td>
-                        <td>about 3 hours ago</td>
-                      </tr>
-                      <tr>
-                        <td>phone added</td>
-                        <td>web</td>
-                        <td>123.24.172.65</td>
-                        <td>Vietnam, Hanoi</td>
-                        <td>about 3 hours ago</td>
-                      </tr>
-                      <tr>
-                        <td>phone added</td>
-                        <td>web</td>
-                        <td>123.24.172.65</td>
-                        <td>Vietnam, Hanoi</td>
-                        <td>about 3 hours ago</td>
-                      </tr>
-                      <tr>
-                        <td>phone added</td>
-                        <td>web</td>
-                        <td>123.24.172.65</td>
-                        <td>Vietnam, Hanoi</td>
-                        <td>about 3 hours ago</td>
-                      </tr>
-                      <tr>
-                        <td>phone added</td>
-                        <td>web</td>
-                        <td>123.24.172.65</td>
-                        <td>Vietnam, Hanoi</td>
-                        <td>about 3 hours ago</td>
-                      </tr>
-                      <tr>
-                        <td>phone added</td>
-                        <td>web</td>
-                        <td>123.24.172.65</td>
-                        <td>Vietnam, Hanoi</td>
-                        <td>about 3 hours ago</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div><!-- bd -->
-                <div class="ht-80 d-flex align-items-center justify-content-center mg-t-20">
-                  <ul class="pagination pagination-basic pagination-rounded mg-b-0">
-                    <li class="page-item hidden-xs-down">
-                      <a class="page-link" href="#" aria-label="First"><i class="fa fa-angle-double-left"></i></a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Previous"><i class="fa fa-angle-left"></i></a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item hidden-xs-down"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item hidden-xs-down"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item disabled"><span class="page-link">...</span></li>
-                    <li class="page-item"><a class="page-link" href="#">10</a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Next"><i class="fa fa-angle-right"></i></a>
-                    </li>
-                    <li class="page-item hidden-xs-down">
-                      <a class="page-link" href="#" aria-label="Last"><i class="fa fa-angle-double-right"></i></a>
-                    </li>
-                  </ul>
-                </div>
-              </div><!-- col-6 -->
-            </div><!-- br-section-wrapper -->
-          </div>
-        </div>
-      </div><!-- col-6 -->
-    </div><!-- row -->
-  </div><!-- br-section-wrapper -->
-</div><!-- br-mainpanel -->
-<div class="clear-both"></div>
-<!-- ########## END: MAIN PANEL ########## -->
-<div class="br-profile">
-  <footer class="br-footer">
-    <div class="footer-left">
-      <div class="mg-b-2">Copyright &copy; 2018 VakaPay. All Rights Reserved.</div>
-      <div>Attentively and carefully made by <a href="#" style="color:rgb(28, 175, 154);">VakaGroup</a>.</div>
-    </div>
-    <div class="footer-right">
-      <div class="dropdown">
-        <a href="" class="tx-gray-800 d-inline-block" data-toggle="dropdown">
-          <div class="ht-45 pd-x-20 bd d-flex align-items-center justify-content-center">
-            <span class="mg-r-10 tx-13 tx-medium">English</span>
-            <i class="fa fa-angle-down mg-l-10"></i>
-          </div>
-        </a>
-        <div class="dropdown-menu pd-10">
-          <nav class="nav nav-style-1 flex-column">
-            <a href="" class="nav-link"> English</a>
-            <a href="" class="nav-link"> Tieng Viet</a>
-            <a href="" class="nav-link"> Japan</a>
-          </nav>
-        </div><!-- dropdown-menu -->
-      </div><!-- dropdown -->
-    </div>
-  </footer>
-</div>
-
-
-
-<div id="modaldemo1x" class="modal fade">
-  <div class="modal-dialog modal-dialog-vertical-center" role="document">
-    <form class="modal-content bd-0 tx-14">
-      <div class="modal-header pd-y-20 pd-x-25">
-        <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Change Password</h6>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body pd-25">
-        <div class="row">
-          <label class="col-sm-12 form-control-label"> Old Password:<i class="tx-danger">*</i></label>
-          <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-            <input type="password" class="form-control" placeholder="" required>
-          </div>
-        </div><!-- row -->
-        <div class="row mg-t-20">
-          <label class="col-sm-12 form-control-label"> New Password:<i class="tx-danger">*</i></label>
-          <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-            <input type="password" class="form-control" placeholder="" required>
-          </div>
-        </div><!-- row -->
-        <div class="row mg-t-20">
-          <label class="col-sm-12 form-control-label"> Confirm New Password:<i class="tx-danger">*</i></label>
-          <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-            <input type="password" class="form-control" placeholder="" required>
-          </div>
-        </div><!-- row -->
-        <div class="row mg-t-20">
-          <label class="col-sm-12 form-control-label"> Enter the 2-step verification code provided by SMS to your
-            phone:<i class="tx-danger">*</i></label>
-          <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-            <div class="input-group sms">
-              <span class="input-group-addon"><i class="fa fa-phone tx-16 lh-0 op-6"></i></span>
-              <input id="phoneMask" type="text" class="form-control fc-outline-white half" maxlength="7" placeholder="0000000">
-            </div>
-            <span class="resend">Didn't receive the verification code? <br> <a href="#">Re-send SMS</a></span>
-          </div>
-        </div><!-- row -->
-      </div>
-      <div class="modal-footer step">
-        <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
-          data-dismiss="modal">Close</button>
-        <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
-          data-dismiss="modal" data-target="#modaldemo1y">Change</a>
-      </div>
-    </form>
-  </div><!-- modal-dialog -->
-</div><!-- modal -->
-
-<div id="modaldemo1y" class="modal fade">
-  <div class="modal-dialog modal-dialog-vertical-center" role="document">
-    <form class="modal-content bd-0 tx-14">
-      <div class="modal-body pd-25">
-        <div class="row">
-          <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block tx-center wd100 tx-medium"
-            style="margin:0 auto;"></i>
-          <h5 class="check tx-success tx-15 tx-center wd100">You successfully to change your current password!</h5>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-l-auto mg-r-auto"
-          data-dismiss="modal">Close</button>
-      </div>
-    </form>
-  </div><!-- modal-dialog -->
-</div><!-- modal -->
-
-<div id="modaldemo1" class="modal fade">
-  <div class="modal-dialog modal-dialog-vertical-center" role="document">
-    <form class="modal-content bd-0 tx-14">
-      <div class="modal-header pd-y-20 pd-x-25">
-        <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Confirm by phone</h6>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body pd-25">
-        <div class="row">
-          <label class="col-sm-12 form-control-label"> Enter the 2-step verification code provided by SMS to your
-            phone:<i class="tx-danger">*</i></label>
-          <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-            <div class="input-group sms">
-              <span class="input-group-addon"><i class="fa fa-phone tx-16 lh-0 op-6"></i></span>
-              <input id="phoneMask" type="text" class="form-control fc-outline-white half" maxlength="7" placeholder="0000000">
-            </div>
-            <span class="resend">Didn't receive the verification code? <br> <a href="#">Re-send SMS</a></span>
-          </div>
-        </div><!-- row -->
-      </div>
-      <div class="modal-footer step">
-        <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
-          data-dismiss="modal">Cancel</button>
-        <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
-          data-dismiss="modal" data-target="#modaldemo3">+ Verify by Phone</a>
-      </div>
-    </form>
-  </div><!-- modal-dialog -->
-</div><!-- modal -->
-
-
-<div id="modaldemo3" class="modal fade">
-  <div class="modal-dialog modal-dialog-vertical-center" role="document">
-    <form class="modal-content bd-0 tx-14">
-      <div class="modal-body pd-25">
-        <div class="row">
-          <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block tx-center wd100 tx-medium"
-            style="margin:0 auto;"></i>
-          <h5 class="check tx-success tx-15 tx-center wd100">You successfully to active Two-Factor Authentication!</h5>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-l-auto mg-r-auto"
-          data-dismiss="modal">Close</button>
-      </div>
-    </form>
-  </div><!-- modal-dialog -->
-</div><!-- modal -->
-
-
-<div id="modaldemo4" class="modal fade">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content tx-size-sm">
-      <div class="modal-body tx-center pd-y-20 pd-x-20">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-        <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
-        <h4 class="tx-danger  tx-semibold mg-b-10">Are You Sure?</h4>
-        <p class="mg-b-20 mg-x-20">You can't use your account anymore.</p>
-        <div class="form-group mg-t-10">
-          <label class="col-sm-4 form-control-label"> Your password:<i class="tx-danger">*</i></label>
-          <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-            <input type="password" class="form-control" placeholder="" required="">
-          </div>
-        </div>
-      </div><!-- modal-body -->
-      <div class="modal-footer step">
-        <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
-          data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20 mg-t-20"
-          data-toggle="modal" data-dismiss="modal" data-target="#modaldemo4b" aria-label="Continue">
-          Continue</button>
-      </div>
-    </div><!-- modal-content -->
-  </div>
-</div>
-
-
-<div id="modaldemo4b" class="modal fade">
-  <div class="modal-dialog modal-dialog-vertical-center" role="document">
-    <form class="modal-content bd-0 tx-14">
-      <div class="modal-header pd-y-20 pd-x-25">
-        <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Confirm deactive account</h6>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body pd-25">
-        <div class="row mg-t-20">
-          <label class="col-sm-12 form-control-label"> Enter the 2-step verification code provided by SMS to your
-            phone:<i class="tx-danger">*</i></label>
-          <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-            <div class="input-group sms">
-              <span class="input-group-addon"><i class="fa fa-phone tx-16 lh-0 op-6"></i></span>
-              <input id="phoneMask" type="text" class="form-control fc-outline-white half" maxlength="7" placeholder="0000000">
-            </div>
-            <span class="resend">Didn't receive the verification code? <br> <a href="#">Re-send SMS</a></span>
-          </div>
-        </div><!-- row -->
-      </div>
-      <div class="modal-footer step">
-        <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
-          data-dismiss="modal">Cancel</button>
-        <a href="#" class="btn bg-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium tx-white" data-dismiss="modal">Deactive</a>
-      </div>
-    </form>
-  </div><!-- modal-dialog -->
-</div><!-- modal -->

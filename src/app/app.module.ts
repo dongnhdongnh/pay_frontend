@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 
 //Add libriary
 import { ToasterModule } from 'angular2-toaster';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule, MatTabsModule } from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
@@ -79,6 +79,7 @@ import { CloseAccountVerifyPhoneComponent }
   from 'component/page/security/close-account/close-account-verify-phone/close-account-verify-phone.component';
 import { LoadingButtonComponent } from 'component/loading-button/loading-button.component';
 import { ActivityComponent } from 'component/page/activity/activity.component';
+import { ConfirmedDevicesComponent } from 'component/page/activity/confirmed-devices/confirmed-devices.component';
 
 @NgModule({
   declarations: [
@@ -119,6 +120,7 @@ import { ActivityComponent } from 'component/page/activity/activity.component';
     LoadingButtonComponent,
     TwofaOptionsVerifyWithPhoneComponent,
     ActivityComponent,
+    ConfirmedDevicesComponent,
   ],
   imports: [
     BrowserModule,
@@ -128,7 +130,7 @@ import { ActivityComponent } from 'component/page/activity/activity.component';
     BrowserAnimationsModule,
     ToasterModule.forRoot(),
     MatTableModule,
-    MatButtonModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,
+    MatButtonModule, MatTabsModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,
 
     //Font
     AngularFontAwesomeModule,

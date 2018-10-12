@@ -37,18 +37,32 @@
     display: inline-block;
     font-weight: bold;
   }
-
   .mat-header-row {
     display: none;
   }
-
   .mat-row {
     flex-direction: column;
     align-items: start;
     padding: 8px 24px;
   }
-  
   mat-cell:first-of-type {
     padding-left: 0 !important;
   }
+}
+
+#activity .mat-tab-label {
+  height: 100% !important;
+  padding-left: 0 !important;
+}
+
+#activity .mat-tab-group {
+  max-width: 100%;
+}
+
+#activity .mat-tab-list {
+  max-width: 100%;
+}
+
+#activity .mat-ink-bar {
+  visibility: hidden !important;
 }
