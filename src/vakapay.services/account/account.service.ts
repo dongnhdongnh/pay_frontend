@@ -11,7 +11,6 @@ export class AccountService {
     private updateProfileUrl = '/api/user/update-profile';
     private updatePreferenceUrl = '/api/user/update-preferences';
     private updateNotificationsUrl = '/api/user/update-notifications';
-    private verifyCodeWithOldPhoneUrl = '/api/user/verify-code-with-old-phone';
 
     public mAccount: Account;
     private urlApi: string;
@@ -46,6 +45,7 @@ export class AccountService {
             let result = await this.httpService.get(operation, api, false);
             if (Utility.isError(result)) {
                 console.log(result.message);
+                this.getInfo();
                 return;
             }
 
