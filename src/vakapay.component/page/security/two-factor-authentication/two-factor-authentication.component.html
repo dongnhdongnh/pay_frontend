@@ -1,4 +1,4 @@
-<h6 class="br-section-label">Two-Factor Authentication</h6>
+<h6 class="br-section-label tx-green"><i class="fa fa-mobile"></i> Two-Factor Authentication</h6>
 <hr>
 <div class="row mg-x-0">
   <label class="col-sm-4 form-control-label"> Your two-factor method is: SMS</label>
@@ -14,6 +14,5 @@
 <ngx-smart-modal #modalTwoFA [identifier]="'modalTwoFA'">
   <twofa-verify-code-with-phone [form]="form"></twofa-verify-code-with-phone>
 </ngx-smart-modal>
-
 <twofa-options></twofa-options>
 
