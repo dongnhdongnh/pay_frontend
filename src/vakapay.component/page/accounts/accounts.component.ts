@@ -16,7 +16,6 @@ import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
 export class AccountsComponent extends Root implements OnInit {
   mAccount: Account;
   walletService: WalletService;
-  wallets: Wallet[] = new Array<Wallet>();
   walletsData: any;
   wallet_current: any;
   Coin;
@@ -41,16 +40,18 @@ export class AccountsComponent extends Root implements OnInit {
     this.walletsData = JSON.parse(result.message);
     for (var i = 0; i < this.walletsData.length; i++) {
       console.log(this.walletsData[i]);
-      var _w = new Wallet();
-      _w.attributesLower = this.walletsData[i];
-      this.wallets.push(_w);
-      console.log(_w.networkname);
+      // var _w = new Wallet();
+      // _w.attributesLower = this.walletsData[i];
+      // this.wallets.push(_w);
+      // console.log(_w.networkname);
     }
     await this.getHistory(this.walletsData[0]);
   }
 
   async getHistory(wallet) {
     try {
+      if (wallet == null)
+        return;
       this.wallet_current = wallet;
       let walletSearch: any = {};
       walletSearch.wallet = wallet;
@@ -79,6 +80,37 @@ export class AccountsComponent extends Root implements OnInit {
 
   public onClickWalletTab(event, name) {
     console.log(JSON.stringify(event) + name);
+    switch (name) {
+      case 'VKCW':
+        this.updateCurrentWallet("VAKA");
+        break;
+      case 'VKCV':
+
+        break;
+      case 'BTC':
+        this.updateCurrentWallet("BTC");
+        break;
+      case 'ETH':
+        this.updateCurrentWallet("Ethereum");
+        break;
+      case 'EOS':
+        this.updateCurrentWallet("EOS");
+        break;
+      default:
+        break;
+    }
+  }
+
+  updateCurrentWallet(networkName) {
+
+    this.walletsData.forEach(element => {
+      if (element.NetworkName == networkName) {
+        this.wallet_current = element;
+        this.getHistory(this.wallet_current);
+        console.log(JSON.stringify(this.wallet_current));
+        return;
+      }
+    });
   }
 
   // array of all items to be paged
@@ -100,8 +132,8 @@ export class AccountsComponent extends Root implements OnInit {
 
   getTime(timestamp) {
     var theDate = new Date(timestamp * 1000);
-    var monthNames = ["January", "February", "March", "April", "May","June","July", "August", "September", "October", "November","December"];
-    return monthNames[theDate.getMonth()]+" " + theDate.getDate()+","+theDate.getFullYear()+" "+theDate.getHours()+":"+theDate.getMinutes();
+    var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    return monthNames[theDate.getMonth()] + " " + theDate.getDate() + "," + theDate.getFullYear() + " " + theDate.getHours() + ":" + theDate.getMinutes();
   }
 
 
@@ -113,7 +145,7 @@ export class AccountsComponent extends Root implements OnInit {
   itemsPerPage = 10;
   totalItems = 1;
   async pageChanged($event) {
-    
+
     this.currentPage = $event;
 
     await this.getHistory(this.walletsData[0]);

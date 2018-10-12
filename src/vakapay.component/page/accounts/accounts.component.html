@@ -18,7 +18,7 @@
           <div class="row row-sm tab-account mg-t-20">
             <div class="col-xl-12 tab-left">
               <div class="tab-left-top nav" role="tablist">
-                <div class="active show d-table-cell" data-toggle="tab" href="#tab1" role="tab" aria-selected="true">
+                <div class="active show d-table-cell" data-toggle="tab" href="#tab1" role="tab" aria-selected="true" (click)="onClickWalletTab($event,'VKCW')">
                   <div class="bg-green border p-rl h120">
                     <div class="pd-x-10 pd-t-10 d-flex align-items-center">
                       <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-vkc.svg" alt=""></i>
@@ -47,7 +47,7 @@
                     </span>
                   </div>
                 </div>
-                <div class="d-table-cell" data-toggle="tab" href="#tab1b" role="tab" aria-selected="false">
+                <div class="d-table-cell" data-toggle="tab" href="#tab1b" role="tab" aria-selected="false" (click)="onClickWalletTab($event,'VKCV')">
                   <div class="bg-green border p-rl h120">
                     <div class="pd-x-10 pd-t-10 d-flex align-items-center">
                       <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-vault.svg" alt=""></i>
@@ -78,7 +78,7 @@
                   </div>
                 </div>
                 <!-- col-3 -->
-                <div class="d-table-cell" data-toggle="tab" href="#tab2" role="tab" (click)="onClickWalletTab($event,'Bitcoin')">
+                <div class="d-table-cell" data-toggle="tab" href="#tab2" role="tab" (click)="onClickWalletTab($event,'BTC')">
                   <div class="bg-btc border p-rl h120">
                     <div class="pd-x-10 pd-t-10 d-flex align-items-center">
                       <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-btc.svg" alt=""></i>
@@ -108,7 +108,7 @@
                   </div>
                 </div>
                 <!-- col-3 -->
-                <div class="d-table-cell" data-toggle="tab" href="#tab3" role="tab">
+                <div class="d-table-cell" data-toggle="tab" href="#tab3" role="tab" (click)="onClickWalletTab($event,'ETH')">
                   <div class="bg-eth border p-rl h120">
                     <div class="pd-x-10 pd-t-10 d-flex align-items-center">
                       <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eth.svg" alt=""></i>
@@ -138,7 +138,7 @@
                   </div>
                 </div>
                 <!-- col-3 -->
-                <div class="d-table-cell" data-toggle="tab" href="#tab4" role="tab">
+                <div class="d-table-cell" data-toggle="tab" href="#tab4" role="tab" (click)="onClickWalletTab($event,'EOS')">
                   <div class="bg-eos border p-rl h120">
                     <div class="pd-x-10 pd-t-10 d-flex align-items-center">
                       <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eos.svg" alt=""></i>
