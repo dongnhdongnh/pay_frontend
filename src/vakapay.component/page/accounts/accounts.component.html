@@ -187,32 +187,57 @@
                   <div class="bd-gray-300 table-responsive table-recent-acc">
                     <table class="table table-hover mg-b-0 table-fix">
                       <tbody>
-                       
+
 
                         <!-- <div *ngFor="let item of pageOfItems">                  -->
-                          <tr data-toggle="modal" data-target="#modaldemo1" *ngFor="let item of pageOfItems">
-                            <td width="20%" class="hidden-mob">
-                              <div class="date-month">
-                                {{item.CreatedAt}}
-                               
-                               
-                              </div>
-                            </td>
+                        <tr data-toggle="modal" data-target="#modaldemo1" *ngFor="let item of searchDatas | 
+                          paginate: { id: 'some_id',
+                                      itemsPerPage: itemsPerPage,
+                                      currentPage: currentPage,
+                                      totalItems: totalItems }">
+                          <td width="20%" class="hidden-mob">
+                            <div class="date-month">
+                              {{item.CreatedAt}}
+
+
+                            </div>
+                          </td>
+
+                          <div *ngIf="item.type==0">
                             <td class="round">
-                              <i class="tx-btc tx-20"><img src="../assets/icons/decline.svg" alt=""></i>
+                              <i class="tx-btc tx-20"><img src="../assets/icons/send.svg" alt=""></i>
                             </td>
                             <td width="20%" class="tx-left">
-                              <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Declined VakaCoin</p>
+                              <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Widthrew funds</p>
                               <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
                             </td>
                             <td width="10%" class="tx-left hidden-mob">
-                              <i class="status bg-danger">Decline</i>
+                              <i class="status bg-info">Withdrawn</i>
                             </td>
                             <td width="40%" class="tx-right">
                               <p class="mg-b-0 tx-inverse tx-medium tx-red">{{item.Amount}} {{Coin}}</p>
-                              <span class="d-block tx-13 tx-grey">-₫456,476.00</span>
+                              <span class="d-block tx-13 tx-grey">+₫456,476.00</span>
                             </td>
-                          </tr>
+                          </div>
+                          <div *ngIf="item.type==1">
+                            <td class="round">
+                              <i class="tx-btc tx-20"><img src="../assets/icons/receive.svg" alt=""></i>
+                            </td>
+                            <td width="20%" class="tx-left">
+                              <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Deposit VakaCoin</p>
+                              <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
+                            </td>
+                            <td width="10%" class="tx-left hidden-mob">
+                              <i class="status bg-success">Deposit</i>
+                            </td>
+                            <td width="40%" class="tx-right">
+                              <p class="mg-b-0 tx-inverse tx-medium tx-green">{{item.Amount}} {{Coin}}</p>
+                              <span class="d-block tx-13 tx-grey">-₫258,476.00</span>
+                            </td>
+                          </div>
+
+
+                        </tr>
                         <!-- </div> -->
 
                       </tbody>
@@ -223,6 +248,10 @@
                     <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
 
                   </div>
+                  <pagination-controls id="some_id" (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
+                    autoHide="true" responsive="true" previousLabel="Previous" nextLabel="Next"
+                    screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+                  </pagination-controls>
 
                   <!-- page -->
                   <!-- <div class="ht-80 d-flex align-items-center justify-content-center mg-t-20">

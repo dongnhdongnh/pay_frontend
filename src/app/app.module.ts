@@ -28,7 +28,7 @@ import { AppComponent } from './app.component';
 
 // import pagination component
 import { JwPaginationComponent } from 'jw-angular-pagination';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 //Component children
 //Authentication
 import { RegisterComponent } from 'component/authenticate/register/register.component';
@@ -81,7 +81,8 @@ import { AccountsComponent } from 'component/page/accounts/accounts.component';
     UpdateProfileComponent,
     PreferencesComponent,
     AccountsComponent,
-    JwPaginationComponent
+    JwPaginationComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -105,6 +106,7 @@ import { AccountsComponent } from 'component/page/accounts/accounts.component';
     // HttpClientInMemoryWebApiModule.forRoot(
     //   InMemoryDataService, { dataEncapsulation: false }
     // ),
+    NgxPaginationModule
   ],
   providers: [
     {

@@ -45,6 +45,7 @@
     "jw-angular-pagination": "^1.0.5",
     "moment": "^2.22.2",
     "ngx-bootstrap": "^3.0.1",
+    "ngx-pagination": "^3.2.1",
     "path": "^0.12.7",
     "reflect-metadata": "^0.1.12",
     "rxjs": "~6.2.0",
