@@ -40,12 +40,14 @@ export class AccountService {
 
     async getInfo() {
         try {
+            while (!localStorage.getItem('token')) {
+                await Utility.sleep(100);
+            }
             let operation = 'get info user';
             let api = this.getInfoUrl;
             let result = await this.httpService.get(operation, api, false);
             if (Utility.isError(result)) {
                 console.log(result.message);
-                this.getInfo();
                 return;
             }
 
@@ -54,7 +56,9 @@ export class AccountService {
                 this.mAccount.avatar = new URL(this.mAccount.avatar, this.urlApi).href;
             }
         } catch (error) {
-            console.log(JSON.stringify(error));
+            // console.log(JSON.stringify(error));
+            await Utility.sleep(5000);
+            this.getInfo();
         }
     }
 

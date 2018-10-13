@@ -6,36 +6,36 @@
           <div class="width-half">
             <h6 class="br-section-label tx-green"><i class="fa
                 fa-calendar-check-o"></i> Active Sessions</h6>
-            <p class="br-section-text">You can manage your active sessions like
-              web sessions, account activity, ...
-              here!</p>
-          </div>
+            <p class="br-section-text">
+              You can manage your active sessions like web sessions, account
+              activity, ... here!
+            </p>
+          </div>          
         </div>
         <div class="clear-both"></div>
         <div class="nav" role="tablist">
-          <mat-tab-group>
+          <mat-tab-group [selectedIndex]="0" [disableRipple]="true">
             <mat-tab>
               <ng-template mat-tab-label>
-                <div class="show d-table-cell mg-t-20">
+                <div class="d-table-cell mg-t-10 hidden-mob">
                   <div class="card">
-                    <div class="pd-x-20 pd-t-20 d-flex tx-green
-                      align-items-center">
-                      <i class="fa fa-globe tx-60 lh-0 op-5"></i>
-                      <div class="mg-l-20">
-                        <p class="tx-28 tx-green mg-b-0 lh-1">Web Sessions</p>
-                        <span class="tx-12 tx-roboto tx-gray-600">These sessions
-                          are
-                          currently signed in</span>
+                    <div class="bg-green overflow-hidden">
+                      <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+                        <i class="ion ion-earth tx-60 lh-0 tx-white-8"></i>
+                        <div class="mg-l-20">
+                          <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Active
+                            Sessions</p>
+                          <p class="tx-20 tx-white tx-lato tx-bold mg-b-0 lh-1">Web Sessions</p>
+                          <span class="tx-10 tx-roboto tx-white-8">Currently Signed in to your account</span>
+                        </div>
                       </div>
+                      <div id="ch1" class="ht-50 tr-y-1 rickshaw_graph"><svg width="315" height="50">
+                          <g>
+                            <path d="M0,25Q22.75,19.291666666666664,26.25,19.374999999999996C31.5,19.499999999999996,47.25,25.0625,52.5,26.25S73.5,30.875,78.75,31.25S99.75,30.625,105,30S126,24.25,131.25,25S152.25,35.625,157.5,37.5S178.5,43.75,183.75,43.75S204.75,38.4375,210,37.5S231,35.3125,236.25,34.375S257.25,27.8125,262.5,28.125S283.5,37.8125,288.75,37.5Q292.25,37.291666666666664,315,25L315,50Q292.25,50,288.75,50C283.5,50,267.75,50,262.5,50S241.5,50,236.25,50S215.25,50,210,50S189,50,183.75,50S162.75,50,157.5,50S136.5,50,131.25,50S110.25,50,105,50S84,50,78.75,50S57.75,50,52.5,50S31.5,50,26.25,50Q22.75,50,0,50Z"
+                              class="area" fill="rgba(255,255,255,0.5)"></path>
+                          </g>
+                        </svg></div>
                     </div>
-                    <div id="ch5" class="ht-60 tr-y-1 rickshaw_graph tx-green"><svg
-                        width="427" height="60">
-                        <g>
-                          <path
-                            d="M0,30Q30.838888888888885,25.75,35.58333333333333,26.25C42.699999999999996,27,64.05,37.125,71.16666666666666,37.5S99.63333333333334,31.5,106.75,30S135.21666666666664,22.5,142.33333333333331,22.5S170.8,27.75,177.91666666666669,30S206.38333333333333,42.75,213.5,45S241.96666666666667,52.5,249.08333333333334,52.5S277.54999999999995,46.125,284.66666666666663,45S313.1333333333333,42.375,320.25,41.25S348.7166666666667,33.375,355.83333333333337,33.75S384.29999999999995,45.375,391.41666666666663,45Q396.1611111111111,44.75,427,30L427,60Q396.1611111111111,60,391.41666666666663,60C384.29999999999995,60,362.95000000000005,60,355.83333333333337,60S327.3666666666667,60,320.25,60S291.7833333333333,60,284.66666666666663,60S256.2,60,249.08333333333334,60S220.61666666666667,60,213.5,60S185.03333333333336,60,177.91666666666669,60S149.45,60,142.33333333333331,60S113.86666666666666,60,106.75,60S78.28333333333332,60,71.16666666666666,60S42.699999999999996,60,35.58333333333333,60Q30.838888888888885,60,0,60Z"
-                            class="area" fill="#10a04a"></path>
-                        </g>
-                      </svg></div>
                   </div>
                 </div>
               </ng-template>
@@ -43,31 +43,61 @@
                 <app-session-active></app-session-active>
               </div><!-- br-section-wrapper -->
             </mat-tab>
+
             <mat-tab>
               <ng-template mat-tab-label>
-                <div class="active show d-table-cell mg-t-20">
+                <div class="d-table-cell mg-t-10 hidden-mob">
                   <div class="card">
-                    <div class="pd-x-20 pd-t-20 d-flex tx-green
-                      align-items-center">
-                      <i class="fa fa-globe tx-60 lh-0 op-5"></i>
-                      <div class="mg-l-20">
-                        <p class="tx-28 tx-green mg-b-0 lh-1">Web Sessions</p>
-                        <span class="tx-12 tx-roboto tx-gray-600">These sessions
-                          are
-                          currently signed in</span>
+                    <div class="bg-green overflow-hidden">
+                      <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+                        <i class="ion ion-monitor tx-60 lh-0 tx-white-8"></i>
+                        <div class="mg-l-20">
+                          <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Active
+                            Sessions</p>
+                          <p class="tx-20 tx-white tx-lato tx-bold mg-b-0 lh-1">Confirm Devices</p>
+                          <span class="tx-10 tx-roboto tx-white-8">Currently Devices allowed to access</span>
+                        </div>
                       </div>
+                      <div id="ch1" class="ht-50 tr-y-1 rickshaw_graph"><svg width="315" height="50">
+                          <g>
+                            <path d="M0,25Q22.75,19.291666666666664,26.25,19.374999999999996C31.5,19.499999999999996,47.25,25.0625,52.5,26.25S73.5,30.875,78.75,31.25S99.75,30.625,105,30S126,24.25,131.25,25S152.25,35.625,157.5,37.5S178.5,43.75,183.75,43.75S204.75,38.4375,210,37.5S231,35.3125,236.25,34.375S257.25,27.8125,262.5,28.125S283.5,37.8125,288.75,37.5Q292.25,37.291666666666664,315,25L315,50Q292.25,50,288.75,50C283.5,50,267.75,50,262.5,50S241.5,50,236.25,50S215.25,50,210,50S189,50,183.75,50S162.75,50,157.5,50S136.5,50,131.25,50S110.25,50,105,50S84,50,78.75,50S57.75,50,52.5,50S31.5,50,26.25,50Q22.75,50,0,50Z"
+                              class="area" fill="rgba(255,255,255,0.5)"></path>
+                          </g>
+                        </svg></div>
                     </div>
-                    <div id="ch5" class="ht-60 tr-y-1 rickshaw_graph tx-green"><svg
-                        width="427" height="60">
-                        <g>
-                          <path
-                            d="M0,30Q30.838888888888885,25.75,35.58333333333333,26.25C42.699999999999996,27,64.05,37.125,71.16666666666666,37.5S99.63333333333334,31.5,106.75,30S135.21666666666664,22.5,142.33333333333331,22.5S170.8,27.75,177.91666666666669,30S206.38333333333333,42.75,213.5,45S241.96666666666667,52.5,249.08333333333334,52.5S277.54999999999995,46.125,284.66666666666663,45S313.1333333333333,42.375,320.25,41.25S348.7166666666667,33.375,355.83333333333337,33.75S384.29999999999995,45.375,391.41666666666663,45Q396.1611111111111,44.75,427,30L427,60Q396.1611111111111,60,391.41666666666663,60C384.29999999999995,60,362.95000000000005,60,355.83333333333337,60S327.3666666666667,60,320.25,60S291.7833333333333,60,284.66666666666663,60S256.2,60,249.08333333333334,60S220.61666666666667,60,213.5,60S185.03333333333336,60,177.91666666666669,60S149.45,60,142.33333333333331,60S113.86666666666666,60,106.75,60S78.28333333333332,60,71.16666666666666,60S42.699999999999996,60,35.58333333333333,60Q30.838888888888885,60,0,60Z"
-                            class="area" fill="#10a04a"></path>
-                        </g>
-                      </svg></div>
                   </div>
                 </div>
               </ng-template>
+              <div class="col-xl-12 tab-content tab-right">
+                <app-confirmed-devices></app-confirmed-devices>
+              </div><!-- br-section-wrapper -->
+            </mat-tab>
+
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <div class="d-table-cell mg-t-10 hidden-mob">
+                  <div class="card">
+                    <div class="bg-green overflow-hidden">
+                      <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+                        <i class="fa fa-calendar-check-o tx-60 lh-0 tx-white-8"></i>
+                        <div class="mg-l-20">
+                          <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Active
+                            Sessions</p>
+                          <p class="tx-20 tx-white tx-lato tx-bold mg-b-0 lh-1">Account Activity</p>
+                          <span class="tx-10 tx-roboto tx-white-8">Recent activity on your account</span>
+                        </div>
+                      </div>
+                      <div id="ch1" class="ht-50 tr-y-1 rickshaw_graph"><svg width="315" height="50">
+                          <g>
+                            <path d="M0,25Q22.75,19.291666666666664,26.25,19.374999999999996C31.5,19.499999999999996,47.25,25.0625,52.5,26.25S73.5,30.875,78.75,31.25S99.75,30.625,105,30S126,24.25,131.25,25S152.25,35.625,157.5,37.5S178.5,43.75,183.75,43.75S204.75,38.4375,210,37.5S231,35.3125,236.25,34.375S257.25,27.8125,262.5,28.125S283.5,37.8125,288.75,37.5Q292.25,37.291666666666664,315,25L315,50Q292.25,50,288.75,50C283.5,50,267.75,50,262.5,50S241.5,50,236.25,50S215.25,50,210,50S189,50,183.75,50S162.75,50,157.5,50S136.5,50,131.25,50S110.25,50,105,50S84,50,78.75,50S57.75,50,52.5,50S31.5,50,26.25,50Q22.75,50,0,50Z"
+                              class="area" fill="rgba(255,255,255,0.5)"></path>
+                          </g>
+                        </svg></div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+
               <div class="col-xl-12 tab-content tab-right">
                 <app-account-activity></app-account-activity>
               </div><!-- br-section-wrapper -->
@@ -75,31 +105,31 @@
 
             <mat-tab>
               <ng-template mat-tab-label>
-                <div class="d-table-cell mg-t-20">
+                <div class="d-table-cell mg-t-10 hidden-mob">
                   <div class="card">
-                    <div class="pd-x-20 pd-t-20 d-flex align-items-center">
-                      <i class="fa fa-check-square-o tx-60 lh-0 tx-green op-5"></i>
-                      <div class="mg-l-20">
-                        <p class="tx-28 tx-green mg-b-0 lh-1">Confirmed Devices</p>
-                        <span class="tx-12 tx-roboto tx-gray-600">These devices
-                          are
-                          currently allowed to access</span>
+                    <div class="bg-green overflow-hidden">
+                      <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+                        <i class="fa fa-mobile tx-80 lh-0 tx-white-8"></i>
+                        <div class="mg-l-20">
+                          <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Active
+                            Sessions</p>
+                          <p class="tx-20 tx-white tx-lato tx-bold mg-b-0 lh-1">Third-Party App</p>
+                          <span class="tx-10 tx-roboto tx-white-8">Manage your 3-Party App</span>
+                        </div>
                       </div>
+                      <div id="ch1" class="ht-50 tr-y-1 rickshaw_graph"><svg width="315" height="50">
+                          <g>
+                            <path d="M0,25Q22.75,19.291666666666664,26.25,19.374999999999996C31.5,19.499999999999996,47.25,25.0625,52.5,26.25S73.5,30.875,78.75,31.25S99.75,30.625,105,30S126,24.25,131.25,25S152.25,35.625,157.5,37.5S178.5,43.75,183.75,43.75S204.75,38.4375,210,37.5S231,35.3125,236.25,34.375S257.25,27.8125,262.5,28.125S283.5,37.8125,288.75,37.5Q292.25,37.291666666666664,315,25L315,50Q292.25,50,288.75,50C283.5,50,267.75,50,262.5,50S241.5,50,236.25,50S215.25,50,210,50S189,50,183.75,50S162.75,50,157.5,50S136.5,50,131.25,50S110.25,50,105,50S84,50,78.75,50S57.75,50,52.5,50S31.5,50,26.25,50Q22.75,50,0,50Z"
+                              class="area" fill="rgba(255,255,255,0.5)"></path>
+                          </g>
+                        </svg></div>
                     </div>
-                    <div id="ch6" class="ht-60 tr-y-1 rickshaw_graph"><svg
-                        width="427" height="60">
-                        <g>
-                          <path
-                            d="M0,30Q30.838888888888885,25.75,35.58333333333333,26.25C42.699999999999996,27,64.05,37.125,71.16666666666666,37.5S99.63333333333334,31.5,106.75,30S135.21666666666664,22.5,142.33333333333331,22.5S170.8,27.75,177.91666666666669,30S206.38333333333333,42.75,213.5,45S241.96666666666667,52.5,249.08333333333334,52.5S277.54999999999995,46.125,284.66666666666663,45S313.1333333333333,42.375,320.25,41.25S348.7166666666667,33.375,355.83333333333337,33.75S384.29999999999995,45.375,391.41666666666663,45Q396.1611111111111,44.75,427,30L427,60Q396.1611111111111,60,391.41666666666663,60C384.29999999999995,60,362.95000000000005,60,355.83333333333337,60S327.3666666666667,60,320.25,60S291.7833333333333,60,284.66666666666663,60S256.2,60,249.08333333333334,60S220.61666666666667,60,213.5,60S185.03333333333336,60,177.91666666666669,60S149.45,60,142.33333333333331,60S113.86666666666666,60,106.75,60S78.28333333333332,60,71.16666666666666,60S42.699999999999996,60,35.58333333333333,60Q30.838888888888885,60,0,60Z"
-                            class="area" fill="#10a04a"></path>
-                        </g>
-                      </svg></div>
                   </div>
                 </div>
               </ng-template>
 
               <div class="col-xl-12 tab-content tab-right">
-                <app-confirmed-devices></app-confirmed-devices>
+                <third-party-app></third-party-app>
               </div><!-- br-section-wrapper -->
             </mat-tab>
 

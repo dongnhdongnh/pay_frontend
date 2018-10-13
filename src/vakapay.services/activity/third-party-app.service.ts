@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from 'network/http/http.service';
-import { WebSession, ListWebSession } from 'model/activity/WebSession';
+import { ThirdPartyApp, ListThirdPartyApp } from 'model/activity/ThirdPartyApp';
 import { Utility } from 'utility/Utility';
 
 @Injectable({ providedIn: 'root' })
-export class WebSessionService {
-    public list: WebSession[];
+export class ThirdPartyAppService {
+    public list: ThirdPartyApp[];
     private test = true;
     isError: boolean = false;
     isLoading: boolean = false;
@@ -16,7 +16,7 @@ export class WebSessionService {
     async getList(offset = 0, limit = 8) {
         try {
             this.isLoading = true;
-            let operation = 'get list web sessions';
+            let operation = 'get list third party services';
             let api = `/api/activity/web-session/get-list?offset=${offset}&limit=${limit}`;
             let result = await this.httpService.get(operation, api, false);
             this.isLoading = false;
@@ -27,11 +27,10 @@ export class WebSessionService {
             }
 
             this.isError = false;
-            var list = new ListWebSession();
+            var list = new ListThirdPartyApp();
             list.list = result.data;
             list.format();
             this.list = list.list;
-            return;
         } catch (error) {
             this.isError = true;
             this.isLoading = false;

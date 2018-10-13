@@ -18,7 +18,8 @@ export class AppComponent {
     @Inject(PLATFORM_ID) private platformId: Object,
     oauthService: OAuthService,
     accountService: AccountService
-  ) {
+  ) {   
+
     accountService.getInfo();
 
     if (!isPlatformBrowser(this.platformId)) return;

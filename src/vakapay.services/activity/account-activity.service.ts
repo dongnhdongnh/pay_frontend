@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from 'network/http/http.service';
-import { WebSession, ListWebSession } from 'model/activity/WebSession';
+import { AccountActivity, ListAccountActivity } from 'model/activity/AccountActivity';
 import { Utility } from 'utility/Utility';
 
 @Injectable({ providedIn: 'root' })
-export class WebSessionService {
-    public list: WebSession[];
+export class AccountActivityService {
+    public list: AccountActivity[];
     private test = true;
     isError: boolean = false;
     isLoading: boolean = false;
@@ -16,8 +16,8 @@ export class WebSessionService {
     async getList(offset = 0, limit = 8) {
         try {
             this.isLoading = true;
-            let operation = 'get list web sessions';
-            let api = `/api/activity/web-session/get-list?offset=${offset}&limit=${limit}`;
+            let operation = 'get list account activity';
+            let api = `/api/activity/account-activity/get-list?offset=${offset}&limit=${limit}`;
             let result = await this.httpService.get(operation, api, false);
             this.isLoading = false;
 
@@ -27,7 +27,7 @@ export class WebSessionService {
             }
 
             this.isError = false;
-            var list = new ListWebSession();
+            var list = new ListAccountActivity();
             list.list = result.data;
             list.format();
             this.list = list.list;

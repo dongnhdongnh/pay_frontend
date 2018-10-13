@@ -1,7 +1,7 @@
 import { Model } from "model/Model";
 import { UtilityFormat } from "utility/utilityFormat";
 
-export class WebSession extends Model {
+export class ConfirmedDevice extends Model {
     id: string;
     signedIn: number;
     browser: string;
@@ -24,7 +24,7 @@ export class WebSession extends Model {
     }
 }
 
-export class ListWebSession extends Model {
+export class ListConfirmedDevice extends Model {
     list: any[]
 
     constructor() {
@@ -33,13 +33,10 @@ export class ListWebSession extends Model {
     }
 
     format() {
-        this.list.sort((a, b) => {
-            return b.signedIn - a.signedIn;
-        })
         this.list = this.list.map(item => {
-            let webSession = new WebSession();
-            webSession.attributes = item;
-            return webSession;
+            let confirmedDevice = new ConfirmedDevice();
+            confirmedDevice.attributes = item;
+            return confirmedDevice;
         })
     }
 }

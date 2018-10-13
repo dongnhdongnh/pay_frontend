@@ -1,95 +1,76 @@
-<div class="col-xl-12 pd-30 mg-t-20 tab-pane" id="tab2" role="tabpanel">
-  <h5 class="tx-green tx-15"><i class="fa fa-calendar-check-o"></i>
-    Account Activity</h5>
-  <h6 class="grey tx-left tx-14">Recent activity on your account.</h6>
-  <div class="bd bd-gray-300 table-responsive table-add mg-t-20">
-    <table class="table table-hover mg-b-0">
-      <thead>
-        <tr>
-          <th>Action</th>
-          <th>Source</th>
-          <th>IP Address</th>
-          <th>Location</th>
-          <th>When</th>
-        </tr>
-      </thead>
-      <tbody class="table-add-body">
-        <tr>
-          <td>phone added</td>
-          <td>web</td>
-          <td>123.24.172.65</td>
-          <td>Vietnam, Hanoi</td>
-          <td>about 3 hours ago</td>
-        </tr>
-        <tr>
-          <td>phone added</td>
-          <td>web</td>
-          <td>123.24.172.65</td>
-          <td>Vietnam, Hanoi</td>
-          <td>about 3 hours ago</td>
-        </tr>
-        <tr>
-          <td>phone added</td>
-          <td>web</td>
-          <td>123.24.172.65</td>
-          <td>Vietnam, Hanoi</td>
-          <td>about 3 hours ago</td>
-        </tr>
-        <tr>
-          <td>phone added</td>
-          <td>web</td>
-          <td>123.24.172.65</td>
-          <td>Vietnam, Hanoi</td>
-          <td>about 3 hours ago</td>
-        </tr>
-        <tr>
-          <td>phone added</td>
-          <td>web</td>
-          <td>123.24.172.65</td>
-          <td>Vietnam, Hanoi</td>
-          <td>about 3 hours ago</td>
-        </tr>
-        <tr>
-          <td>phone added</td>
-          <td>web</td>
-          <td>123.24.172.65</td>
-          <td>Vietnam, Hanoi</td>
-          <td>about 3 hours ago</td>
-        </tr>
-        <tr>
-          <td>phone added</td>
-          <td>web</td>
-          <td>123.24.172.65</td>
-          <td>Vietnam, Hanoi</td>
-          <td>about 3 hours ago</td>
-        </tr>
-      </tbody>
-    </table>
-  </div><!-- bd -->
-  <div class="ht-80 d-flex align-items-center justify-content-center
-                mg-t-20">
-    <ul class="pagination pagination-basic pagination-rounded
-                  mg-b-0">
-      <li class="page-item hidden-xs-down">
-        <a class="page-link" href="#" aria-label="First"><i class="fa fa-angle-double-left"></i></a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Previous"><i class="fa fa-angle-left"></i></a>
-      </li>
-      <li class="page-item active"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item hidden-xs-down"><a class="page-link" href="#">3</a></li>
-      <li class="page-item hidden-xs-down"><a class="page-link" href="#">4</a></li>
-      <li class="page-item disabled"><span class="page-link">...</span></li>
-      <li class="page-item"><a class="page-link" href="#">10</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next"><i class="fa
-                        fa-angle-right"></i></a>
-      </li>
-      <li class="page-item hidden-xs-down">
-        <a class="page-link" href="#" aria-label="Last"><i class="fa
-                        fa-angle-double-right"></i></a>
-      </li>
-    </ul>
+<div class="col-xl-12 mg-t-20 pd-10 tab-pane activity-table">
+  <div class="width-half">
+    <h5 class="mg-t-20 tx-green tx-15"><i class="fa fa-check-square-o"></i>
+      Confirmed Devices</h5>
+    <h6 class="grey tx-left tx-14">
+      These devices are currently allowed to access your account.
+      <span class="resend-sms">Remove all other devices</span>
+    </h6>
+    <br>
   </div>
-</div><!-- col-6 -->
+  <div class="width-half text-right">
+    <app-refresh [service]="service"></app-refresh>
+  </div>
+</div>
+
+<mat-table #table [dataSource]="this.service.list"
+  style="width:
+  100%;">
+
+  <ng-container matColumnDef="signedIn">
+    <mat-header-cell *matHeaderCellDef> Signed In </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      {{element.signedIn}}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="signedInFormat">
+    <mat-header-cell *matHeaderCellDef> Signed In </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span class="mobile-label">Signed In:</span>
+      {{element.signedInFormat}}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="browser">
+    <mat-header-cell fxFlex="300px" *matHeaderCellDef> Browser
+    </mat-header-cell>
+    <mat-cell fxFlex="300px" *matCellDef="let element">
+      <span class="mobile-label">Browser:</span> {{element.browser}}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="ip">
+    <mat-header-cell *matHeaderCellDef> IP location </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span class="mobile-label">IP location:</span> {{element.ip}}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="location">
+    <mat-header-cell *matHeaderCellDef> Near </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span class="mobile-label">Near:</span> {{element.location}}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="current">
+    <mat-header-cell *matHeaderCellDef> Current </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span class="mobile-label">Current:</span> <i class="fa fa-check tx-13
+        tx-grey"></i> </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span class="mobile-label">Delete:</span>
+      <a (click)=delete(element.id)>
+        <i class="fa fa-times tx-13 tx-grey" style="font-size: 17px;"></i>
+      </a>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

@@ -80,6 +80,8 @@ import { CloseAccountVerifyPhoneComponent }
 import { LoadingButtonComponent } from 'component/loading-button/loading-button.component';
 import { ActivityComponent } from 'component/page/activity/activity.component';
 import { ConfirmedDevicesComponent } from 'component/page/activity/confirmed-devices/confirmed-devices.component';
+import { ThirdPartyAppComponent } from 'component/page/activity/third-party-app/third-party-app.component';
+import { RefreshComponent } from 'component/refresh/refresh.component';
 
 @NgModule({
   declarations: [
@@ -121,6 +123,8 @@ import { ConfirmedDevicesComponent } from 'component/page/activity/confirmed-dev
     TwofaOptionsVerifyWithPhoneComponent,
     ActivityComponent,
     ConfirmedDevicesComponent,
+    ThirdPartyAppComponent,
+    RefreshComponent,
   ],
   imports: [
     BrowserModule,
