@@ -220,6 +220,7 @@ a {
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
+
 /* 
 a:hover {
   text-decoration: none;
@@ -18392,6 +18393,7 @@ textarea.parsley-success:focus {
   outline: none;
 }
 
+.br-menu-item.active .br-menu-link,
 .br-menu-link.active {
   /* background-image: linear-gradient(to right, #1CAF9A 0%, #17A2B8 100%); */
   background: #10a04a;

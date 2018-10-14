@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 //Add libriary
 import { ToasterModule } from 'angular2-toaster';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule, MatTabsModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule, MatTabsModule, MatSidenavModule } from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
@@ -133,7 +133,7 @@ import { RefreshComponent } from 'component/refresh/refresh.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     ToasterModule.forRoot(),
-    MatTableModule,
+    MatTableModule, MatSidenavModule,
     MatButtonModule, MatTabsModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,
 
     //Font
