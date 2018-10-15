@@ -8,6 +8,7 @@ import { Root } from 'component/root/root.component';
 import { WalletService } from 'services/wallet/wallet.service';
 import { Jsonp } from '@angular/http';
 import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
+
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
@@ -26,6 +27,7 @@ export class AccountsComponent extends Root implements OnInit {
     mAccountSerive: AccountService,
     walletService: WalletService) {
     super(titleService, route, router);
+   
     this.mAccount = mAccountSerive.mAccount;
     this.mAccount.id = "8377a95b-79b4-4dfb-8e1e-b4833443c306";
     this.Coin = "ETH";
@@ -36,16 +38,22 @@ export class AccountsComponent extends Root implements OnInit {
   }
 
   async getUserData() {
-    var result = await this.walletService.getAllWallet(this.mAccount);
-    this.walletsData = JSON.parse(result.message);
-    for (var i = 0; i < this.walletsData.length; i++) {
-      console.log(this.walletsData[i]);
-      // var _w = new Wallet();
-      // _w.attributesLower = this.walletsData[i];
-      // this.wallets.push(_w);
-      // console.log(_w.networkname);
+    try {
+      var result = await this.walletService.getAllWallet(this.mAccount);
+      console.log(result);
+      this.walletsData = JSON.parse(result.message);
+      for (var i = 0; i < this.walletsData.length; i++) {
+        console.log(this.walletsData[i]);
+        // var _w = new Wallet();
+        // _w.attributesLower = this.walletsData[i];
+        // this.wallets.push(_w);
+        // console.log(_w.networkname);
+      }
+      await this.getHistory(this.walletsData[0]);
+    } catch (error) {
+      console.log(error);
     }
-    await this.getHistory(this.walletsData[0]);
+   
   }
 
   async getHistory(wallet) {
@@ -54,7 +62,8 @@ export class AccountsComponent extends Root implements OnInit {
         return;
       this.wallet_current = wallet;
       let walletSearch: any = {};
-      walletSearch.wallet = wallet;
+      walletSearch.userID =  this.mAccount.id;
+      walletSearch.networkName=this.wallet_current.Currency;
       walletSearch.offset = (this.currentPage - 1) * this.itemsPerPage;
       walletSearch.limit = this.itemsPerPage;
       walletSearch.orderBy = ['CreatedAt'];
@@ -63,7 +72,7 @@ export class AccountsComponent extends Root implements OnInit {
       this.searchDatas = JSON.parse(result.message);
       this.totalItems = Number(result.data);
       this.searchDatas.forEach(element => {
-        element.type = this.wallet_current.Address == element.FromAddress ? 0 : 1;//0:withdran,1:deposit
+      //  element.type = this.wallet_current.Address == element.FromAddress ? 0 : 1;//0:withdran,1:deposit
         element.CreatedAt = this.getTime(element.CreatedAt);
       });
     } catch (error) {
