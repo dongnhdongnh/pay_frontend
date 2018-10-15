@@ -5,6 +5,7 @@ import { Utility } from 'utility/Utility';
 
 @Injectable({ providedIn: 'root' })
 export class WebSessionService {
+    public deleteUrl = '/api/activity/web-session/delete';
     public list: WebSession[];
     private test = true;
     isError: boolean = false;
@@ -36,6 +37,12 @@ export class WebSessionService {
             this.isError = true;
             this.isLoading = false;
         }
+    }
+
+    delete(data: any) {
+        let operation = 'delete web session';
+        let api = this.deleteUrl;
+        return this.httpService.post(operation, api, data);
     }
 
     refresh() {

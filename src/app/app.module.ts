@@ -82,6 +82,8 @@ import { ActivityComponent } from 'component/page/activity/activity.component';
 import { ConfirmedDevicesComponent } from 'component/page/activity/confirmed-devices/confirmed-devices.component';
 import { ThirdPartyAppComponent } from 'component/page/activity/third-party-app/third-party-app.component';
 import { RefreshComponent } from 'component/refresh/refresh.component';
+import { ButtonDeleteComponent } from 'component/button-delete/button-delete.component';
+import { WaitingLoadPageComponent } from 'component/waiting-load-page/waiting-load-page.component';
 
 @NgModule({
   declarations: [
@@ -125,6 +127,8 @@ import { RefreshComponent } from 'component/refresh/refresh.component';
     ConfirmedDevicesComponent,
     ThirdPartyAppComponent,
     RefreshComponent,
+    ButtonDeleteComponent,
+    WaitingLoadPageComponent,
   ],
   imports: [
     BrowserModule,
