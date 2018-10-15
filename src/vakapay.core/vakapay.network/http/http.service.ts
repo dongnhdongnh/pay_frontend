@@ -5,27 +5,6 @@ import { ResultObject } from 'model/result/ResultObject';
 import { ConfigService } from 'network/config/config.service';
 import { AlertService } from 'services/system/alert.service';
 import { Utility } from 'utility/Utility';
-var httpOptionsPost = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem('token')}`
-  }),
-  withCredentials: true
-};
-
-var httpOptionsPostFormData = {
-  headers: new HttpHeaders({
-    'Authorization': `Bearer ${localStorage.getItem('token')}`
-  }),
-  withCredentials: true
-};
-
-var httpOptionsGet = {
-  headers: new HttpHeaders({
-    'Authorization': `Bearer ${localStorage.getItem('token')}`
-  }),
-  withCredentials: true
-};
 
 @Injectable({ providedIn: 'root' })
 export class HttpService {
@@ -44,19 +23,62 @@ export class HttpService {
     this.alertService = alertService;
   }
 
+  httpOptionsPost() {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }),
+      withCredentials: true
+    };
+  }
+
+  httpOptionsPostFormData() {
+    return {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }),
+      withCredentials: true
+    };
+  }
+
+  httpOptionsGet() {
+    return {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }),
+      withCredentials: true
+    };
+  }
+
+  test(operation = 'operation', alert = true) {
+    var self = this;
+    return new Promise<ResultObject>(
+      (resolve) => {
+        let dataConvert = new ResultObject({
+          status: 'success',
+          data: null,
+          message: `Hardcode api ${operation}`
+        });
+        self.handleSuccess(operation, '', dataConvert, alert);
+        resolve(dataConvert);
+      });
+  }
+
   //Get api
   get(operation = 'operation', api, alert = true): Promise<ResultObject> {
     var self = this;
+    let URL_API = new URL(api, self.url).href;
     return new Promise<ResultObject>(
-      (resolve, reject) => self.http.get(new URL(api, self.url).href, httpOptionsGet)
+      (resolve, reject) => self.http.get(URL_API, self.httpOptionsGet())
         .subscribe(
           data => {
             let dataConvert = new ResultObject(data);
-            self.handleSuccess(operation, dataConvert, alert);
+            self.handleSuccess(operation, URL_API, dataConvert, alert);
             resolve(dataConvert);
           },
           error => {
-            self.handleError(operation, error, alert);
+            self.handleError(operation, URL_API, error, alert);
             reject(error);
           }
         ));
@@ -65,16 +87,17 @@ export class HttpService {
   //Post api
   actionPost(operation = 'operation', api, data, httpOptions, alert = true): Promise<ResultObject> {
     var self = this;
+    let URL_API = new URL(api, self.url).href;
     return new Promise<ResultObject>((resolve, reject) => {
-      self.http.post(new URL(api, self.url).href, data, httpOptions)
+      self.http.post(URL_API, data, httpOptions)
         .subscribe(
           data => {
             let dataConvert = new ResultObject(data);
-            self.handleSuccess(operation, dataConvert, alert);
+            self.handleSuccess(operation, URL_API, dataConvert, alert);
             resolve(dataConvert);
           },
           error => {
-            self.handleError(operation, error, alert);
+            self.handleError(operation, URL_API, error, alert);
             reject(error);
           }
         );
@@ -83,12 +106,12 @@ export class HttpService {
 
   //Post api
   post(operation, api, data, alert = true): Promise<ResultObject> {
-    return this.actionPost(operation, api, data, httpOptionsPost, alert);
+    return this.actionPost(operation, api, data, this.httpOptionsPost(), alert);
   };
 
   //Post api
   postFormData(operation, api, data, alert = true): Promise<ResultObject> {
-    return this.actionPost(operation, api, data, httpOptionsPostFormData, alert);
+    return this.actionPost(operation, api, data, this.httpOptionsPostFormData(), alert);
   };
 
   private log(message: string) {
@@ -100,10 +123,10 @@ export class HttpService {
    * @param operation - name of the operation that failed
    * @param error 
    */
-  private handleError(operation = 'operation', error, alert: boolean) {
+  private handleError(operation = 'operation', url: string, error, alert: boolean) {
     console.log(error); // log to console instead
     // TODO: 
-    this.log(`${operation} failed: ${error.message}`);
+    this.log(`${operation} failed: ${error.message} ${url}`);
     alert && this.alertService.showToastError(error.statusText);
   }
 
@@ -112,11 +135,12 @@ export class HttpService {
  * @param operation - name of the operation that success
  * @param result 
  */
-  private handleSuccess(operation = 'operation', data: ResultObject, alert: boolean) {
-    // 
-    console.log(data); // log to console instead
+  private handleSuccess(operation = 'operation', url: string, data: ResultObject, alert: boolean) {
     // TODO: 
-    this.log(`${operation} success: ${data.message}`);
+    this.log(`${operation} success: ${data.message} ${url}`);
+
+    console.log(data); // log to console instead
+
     //Check result
     if (alert && Utility.isError(data)) {
       this.alertService.showToastError(data.message);

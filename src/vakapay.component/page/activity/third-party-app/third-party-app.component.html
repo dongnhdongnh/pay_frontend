@@ -1,0 +1,52 @@
+<div class="col-xl-12 mg-t-20 pd-10 tab-pane activity-table">
+  <div class="width-half">
+    <h5 class="mg-t-20 tx-green tx-15"><i class="fa fa-check-square-o"></i>
+      Third-Party Applications
+    </h5>
+    <h6 class="grey tx-left tx-14">
+      These applications have access to your account through the VakaPay API
+    </h6>
+    <hr>
+    <h5 class="dont mg-t-20"><i class="fa fa-info-circle tx-medium"></i>
+      You haven't authorized any applications yet.
+    </h5>
+    <h6 class="grey tx-left tx-14">
+      After connecting an application with your account, you can manage or
+      revoke its access here.
+    </h6>
+    <br>
+  </div>
+  <div class="width-half text-right">
+    <app-refresh [service]="service"></app-refresh>
+  </div>
+</div>
+<table class="table table-hover mg-b-0">
+  <thead>
+    <tr>
+      <th>Application</th>
+      <th>Permissions</th>
+      <th>Recent Activity</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="table-add-body">
+    <tr>
+      <td>Read Account</td>
+      <td>- Access your account information</td>
+      <td>Less than 2 hours ago</td>
+      <td><i class="fa fa-times tx-13 tx-grey"></i></td>
+    </tr>
+    <tr>
+      <td>Read Account</td>
+      <td>- Access your account information</td>
+      <td>Less than 2 hours ago</td>
+      <td><i class="fa fa-times tx-13 tx-grey"></i></td>
+    </tr>
+    <tr>
+      <td>Read Account</td>
+      <td>- Access your account information</td>
+      <td>Less than 2 hours ago</td>
+      <td><i class="fa fa-times tx-13 tx-grey"></i></td>
+    </tr>
+  </tbody>
+</table>

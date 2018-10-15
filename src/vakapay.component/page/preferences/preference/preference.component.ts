@@ -88,12 +88,12 @@ export class PreferenceComponent implements OnInit {
     this.isChange = false;
   }
 
-  onChangeCurrency() {
+  onChangeCurrency(event) {
     this.isChange = true;
     this.validate();
   }
 
-  onChangeTimezone() {
+  onChangeTimezone(event) {
     this.isChange = true;
     this.validate();
   }

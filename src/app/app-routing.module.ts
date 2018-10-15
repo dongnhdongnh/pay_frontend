@@ -16,6 +16,8 @@ import { LandingComponent } from 'component/landing/landing.component';
 import { ProfileComponent } from 'component/page/profile/profile.component';
 import { PagenotfoundComponent } from 'component/page/pagenotfound/pagenotfound.component';
 import { PreferencesComponent } from 'component/page/preferences/preferences.component';
+import { SecurityComponent } from 'component/page/security/security.component';
+import { ActivityComponent } from 'component/page/activity/activity.component';
 
 //Init routes
 const routes: Routes = [
@@ -75,6 +77,16 @@ const routes: Routes = [
 				path: 'preferences',
 				component: PreferencesComponent,
 				data: { title: 'Preferences' }
+			},
+			{
+				path: 'security',
+				component: SecurityComponent,
+				data: { title: 'Security' }
+			},
+			{
+				path: 'activity',
+				component: ActivityComponent,
+				data: { title: 'Activity' }
 			},
 		]
 	},

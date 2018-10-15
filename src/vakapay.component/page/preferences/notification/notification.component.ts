@@ -1,4 +1,4 @@
-import { ResultObject } from './../../../../vakapay.model/result/ResultObject';
+import { ResultObject } from 'model/result/ResultObject';
 import { Component, OnInit, Input } from '@angular/core';
 import { Account } from 'model/account/Account';
 import { AccountService } from 'services/account/account.service';

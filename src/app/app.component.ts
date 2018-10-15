@@ -7,7 +7,7 @@ import { AccountService } from 'services/account/account.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: []
 })
 export class AppComponent {
   title = 'vakapay';
@@ -18,7 +18,8 @@ export class AppComponent {
     @Inject(PLATFORM_ID) private platformId: Object,
     oauthService: OAuthService,
     accountService: AccountService
-  ) {
+  ) {   
+
     accountService.getInfo();
 
     if (!isPlatformBrowser(this.platformId)) return;

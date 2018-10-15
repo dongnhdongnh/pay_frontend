@@ -21,8 +21,7 @@
   <div class="col-sm-8 mg-l-auto">
     <div class="form-layout-footer">
       <button (click)="onUpdate()" [disabled]="!isChange||isLoading||!isValid" class="btn bg-green" type="button">
-        Save
-        <i [hidden]="!isLoading" class="fa fa-spinner fa-spin" style="font-size:15px"></i>
+        Save <loading-button [isLoading]='isLoading'></loading-button>
       </button>
     </div><!-- form-layout-footer -->
   </div><!-- col-8 -->

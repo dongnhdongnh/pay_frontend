@@ -221,6 +221,7 @@ a {
   -webkit-text-decoration-skip: objects;
 }
 
+/* 
 a:hover {
   text-decoration: none;
 }
@@ -238,7 +239,7 @@ a:not([href]):not([tabindex]):hover {
 
 a:not([href]):not([tabindex]):focus {
   outline: 0;
-}
+} */
 
 pre,
 code,
@@ -2222,7 +2223,7 @@ fieldset[disabled] a.btn {
 }
 
 .btn-danger {
-  color: #fff;
+  color: #fff !important;
   background-color: #DC3545;
   border-color: #DC3545;
 }
@@ -9320,9 +9321,9 @@ a:active {
   color: rgba(255, 255, 255, 0.6);
 }
 
-.overlay {
+/* .overlay {
   position: relative;
-}
+} */
 
 .overlay-body {
   position: absolute;
@@ -18392,6 +18393,7 @@ textarea.parsley-success:focus {
   outline: none;
 }
 
+.br-menu-item.active .br-menu-link,
 .br-menu-link.active {
   /* background-image: linear-gradient(to right, #1CAF9A 0%, #17A2B8 100%); */
   background: #10a04a;

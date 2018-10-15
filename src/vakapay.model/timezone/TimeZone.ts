@@ -151,6 +151,7 @@ var listTimeZone = [
     ["Samoa", "(GMT+13:00) Samoa"],
     ["Tokelau Is.", "(GMT+13:00) Tokelau Is."]
 ];
+
 export class TimeZone {
     key: string;
     name: string;

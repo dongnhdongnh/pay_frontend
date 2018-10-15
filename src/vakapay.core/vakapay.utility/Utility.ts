@@ -1,5 +1,3 @@
-import { element } from 'protractor';
-
 class utility {
     // http://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
     static sleep(ms) {
@@ -19,9 +17,9 @@ export class Utility extends utility {
 
     static focus(element) { element.nativeElement.focus(); }
 
-    static isSuccess = data => !(data['error'] || (data['status'] && data['status'] === 'error'))
+    static isSuccess = data => !(data['error'] || (data['status'] && data['status'].toLowerCase() === 'error'))
 
-    static isError = data => data['error'] || (data['status'] && data['status'] === 'error')
+    static isError = data => data['error'] || (data['status'] && data['status'].toLowerCase() === 'error')
 
     static isEnter(event: any) { return event.keyCode === 13; }
 }
