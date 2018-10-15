@@ -41,6 +41,9 @@ import { HeaderComponent } from 'component/page/header/header.component';
 import { LeftPanelComponent } from 'component/page/left-panel/left-panel.component';
 import { FooterComponent } from 'component/page/footer/footer.component';
 import { PortfolioComponent } from 'component/page/portfolio/portfolio.component';
+import { PriceComponent } from 'component/page/price/price.component';
+import { PortfolioValueComponent } from 'component/page/portfolio-value/portfolio-value.component';
+import { RecentActivityComponent } from 'component/page/recent-activity/recent-activity.component';
 
 //Chartjs
 import { ChartsModule } from 'ng2-charts';
@@ -80,6 +83,9 @@ import { PreferencesComponent } from 'component/page/preferences/preferences.com
     UploadImageProfileComponent,
     UpdateProfileComponent,
     PreferencesComponent,
+    PriceComponent,
+    PortfolioValueComponent,
+    RecentActivityComponent,
   ],
   imports: [
     BrowserModule,

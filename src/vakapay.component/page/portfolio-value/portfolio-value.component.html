@@ -1,0 +1,46 @@
+<div class="bg-white rounded overflow-hidden no-padding h-fix">
+    <div class="overflow-hidden no-padding">
+      <div class="pos-rel pd-20 d-inline-block">
+        <div class="col-md-5 col-sm-4 col-xs-12">
+          <h6 class="br-section-label mg-b-0">Your Portfolio Value</h6>
+          <h4 class="tx-value">$505,365</h4>
+        </div>
+        <div class="col-md-7 col-sm-8 col-xs-12">
+          <ul class="nav nav-tabs nav-tabs-style-1 nav-justified tx-13" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link pd-y-10 active" data-toggle="tab" href="#tab3a" role="tab">1H</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pd-y-10" data-toggle="tab" href="#tab3b" role="tab">24H</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pd-y-10" data-toggle="tab" href="#tab3c" role="tab">1W</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pd-y-10" data-toggle="tab" href="#tab3d" role="tab">1M</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pd-y-10" data-toggle="tab" href="#tab3e" role="tab">1Y</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pd-y-10" data-toggle="tab" href="#tab3f" role="tab">All</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-12 chart mg-t-20 tab-content">
+            <div style="display: block;">
+              <canvas baseChart width="400%" height="170%"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+              </canvas>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
