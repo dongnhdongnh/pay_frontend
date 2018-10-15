@@ -1602,7 +1602,9 @@ img.mini-icon {
 .col-xl-auto {
   float: left;
 }
-
+.mat-drawer-container {
+  background-color: #E9ECEF !important;
+}
 .fa-pencil {
   color: #fff;
   cursor: pointer;
