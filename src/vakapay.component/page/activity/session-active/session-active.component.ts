@@ -12,8 +12,6 @@ export class SessionActiveComponent {
     'signedInFormat', 'browser', 'ip', 'location', 'current', 'delete'
   ];
 
-
-
   constructor(
     public service: WebSessionService,
     breakpointObserver: BreakpointObserver
@@ -31,7 +29,9 @@ export class SessionActiveComponent {
     this.service.getList();
   }
 
-  delete(id) {
-    alert(id);
+  async delete(id) {
+    let result = await this.service.delete({
+      Id: id
+    })
   }
 }
