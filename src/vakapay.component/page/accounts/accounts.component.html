@@ -18,13 +18,14 @@
           <div class="row row-sm tab-account mg-t-20">
             <div class="col-xl-12 tab-left">
               <div class="tab-left-top nav" role="tablist">
-                <div class="active show d-table-cell" data-toggle="tab" href="#tab1" role="tab" aria-selected="true" (click)="onClickWalletTab($event,'VKCW')">
+                <div class="active show d-table-cell" data-toggle="tab" href="#tab1" role="tab" aria-selected="true"
+                  (click)="onClickWalletTab($event,'VKCW')">
                   <div class="bg-green border p-rl h120">
                     <div class="pd-x-10 pd-t-10 d-flex align-items-center">
                       <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-vkc.svg" alt=""></i>
                       <div class="mg-r-20 width-text">
                         <p class="tx-15 tx-white tx-spacing-1 mg-b-0">VKC Wallet</p>
-                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">0.00005 VKC</p>
+                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("VAKA")}} VKC</p>
                         <div class="pd-t-10 pd-b-10 d-flex align-items-center">
                           <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo3"><i
                               class="fa fa-send mg-r-3"></i>Send</a>
@@ -53,7 +54,7 @@
                       <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-vault.svg" alt=""></i>
                       <div class="mg-r-20 width-text">
                         <p class="tx-15 tx-white tx-spacing-1 mg-b-0">VKC Vault</p>
-                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">0.00005 VKC</p>
+                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("VAKA")}} VKC</p>
                         <div class="pd-t-10 pd-b-10 d-flex align-items-center">
                           <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo7"><i
                               class="fa fa-download mg-r-3"></i>Deposit</a>
@@ -78,13 +79,13 @@
                   </div>
                 </div>
                 <!-- col-3 -->
-                <div class="d-table-cell" data-toggle="tab" href="#tab2" role="tab" (click)="onClickWalletTab($event,'BTC')">
+                <div class="d-table-cell" data-toggle="tab" href="#tab1" role="tab" (click)="onClickWalletTab($event,'BTC')">
                   <div class="bg-btc border p-rl h120">
                     <div class="pd-x-10 pd-t-10 d-flex align-items-center">
                       <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-btc.svg" alt=""></i>
                       <div class="mg-r-20 width-text">
                         <p class="tx-15 tx-white tx-spacing-1 mg-b-0">BitCoin</p>
-                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">0.0000 BTC</p>
+                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("BTC")}} BTC</p>
                         <div class="pd-t-10 pd-b-10 d-flex align-items-center">
                           <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo3"><i
                               class="fa fa-send mg-r-3"></i>Send</a>
@@ -108,13 +109,13 @@
                   </div>
                 </div>
                 <!-- col-3 -->
-                <div class="d-table-cell" data-toggle="tab" href="#tab3" role="tab" (click)="onClickWalletTab($event,'ETH')">
+                <div class="d-table-cell" data-toggle="tab" href="#tab1" role="tab" (click)="onClickWalletTab($event,'ETH')">
                   <div class="bg-eth border p-rl h120">
                     <div class="pd-x-10 pd-t-10 d-flex align-items-center">
                       <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eth.svg" alt=""></i>
                       <div class="mg-r-20 width-text">
                         <p class="tx-15 tx-white tx-spacing-1 mg-b-0">Ethereum</p>
-                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">521,152 ETH</p>
+                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Ethereum")}} ETH </p>
                         <div class="pd-t-10 pd-b-10 d-flex align-items-center">
                           <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo3"><i
                               class="fa fa-send mg-r-3"></i>Send</a>
@@ -138,13 +139,13 @@
                   </div>
                 </div>
                 <!-- col-3 -->
-                <div class="d-table-cell" data-toggle="tab" href="#tab4" role="tab" (click)="onClickWalletTab($event,'EOS')">
+                <div class="d-table-cell" data-toggle="tab" href="#tab1" role="tab" (click)="onClickWalletTab($event,'EOS')">
                   <div class="bg-eos border p-rl h120">
                     <div class="pd-x-10 pd-t-10 d-flex align-items-center">
                       <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eos.svg" alt=""></i>
                       <div class="mg-r-20 width-text">
                         <p class="tx-15 tx-white tx-spacing-1 mg-b-0">EOS</p>
-                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">0.0000 EOS</p>
+                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("EOS")}} EOS</p>
                         <div class="pd-t-10 pd-b-10 d-flex align-items-center">
                           <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo3"><i
                               class="fa fa-send mg-r-3"></i>Send</a>
@@ -169,6 +170,8 @@
                 </div>
               </div>
             </div>
+
+            <!-- History View -->
             <div class="col-xl-12 tab-content tab-right">
               <div class="table-content border tab-pane active show" id="tab1" role="tabpanel">
                 <div class="col-xs-12">
@@ -184,76 +187,107 @@
                 </div>
                 <div class="clear-both"></div>
                 <div class="col-xs-12">
-                  <div class="bd-gray-300 table-responsive table-recent-acc">
-                    <table class="table table-hover mg-b-0 table-fix">
-                      <tbody>
+                  <div *ngIf="searchDatas.length > 0">
+                    <div class="bd-gray-300 table-responsive table-recent-acc">
+                      <table class="table table-hover mg-b-0 table-fix">
+                        <tbody>
 
 
-                        <!-- <div *ngFor="let item of pageOfItems">                  -->
-                        <tr data-toggle="modal" data-target="#modaldemo1" *ngFor="let item of searchDatas | 
+                          <!-- <div *ngFor="let item of pageOfItems">                  -->
+                          <tr data-toggle="modal" data-target="#modaldemo1" *ngFor="let item of searchDatas | 
                           paginate: { id: 'some_id',
                                       itemsPerPage: itemsPerPage,
                                       currentPage: currentPage,
                                       totalItems: totalItems }">
-                          <td width="20%" class="hidden-mob">
-                            <div class="date-month">
-                              {{item.CreatedAt}}
+                            <td width="20%" class="hidden-mob">
+                              <div class="date-month">
+                                {{item.CreatedAt}}
 
 
+                              </div>
+                            </td>
+
+                            <div *ngIf="item.type==0">
+                              <td class="round">
+                                <i class="tx-btc tx-20"><img src="../assets/icons/send.svg" alt=""></i>
+                              </td>
+                              <td width="20%" class="tx-left">
+                                <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Widthrew funds</p>
+                                <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
+                              </td>
+                              <td width="10%" class="tx-left hidden-mob">
+                                <i class="status bg-info">Withdrawn</i>
+                              </td>
+                              <td width="40%" class="tx-right">
+                                <p class="mg-b-0 tx-inverse tx-medium tx-red">{{item.Amount}} {{Coin}}</p>
+                                <span class="d-block tx-13 tx-grey">+₫456,476.00</span>
+                              </td>
                             </div>
-                          </td>
-
-                          <div *ngIf="item.type==0">
-                            <td class="round">
-                              <i class="tx-btc tx-20"><img src="../assets/icons/send.svg" alt=""></i>
-                            </td>
-                            <td width="20%" class="tx-left">
-                              <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Widthrew funds</p>
-                              <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
-                            </td>
-                            <td width="10%" class="tx-left hidden-mob">
-                              <i class="status bg-info">Withdrawn</i>
-                            </td>
-                            <td width="40%" class="tx-right">
-                              <p class="mg-b-0 tx-inverse tx-medium tx-red">{{item.Amount}} {{Coin}}</p>
-                              <span class="d-block tx-13 tx-grey">+₫456,476.00</span>
-                            </td>
-                          </div>
-                          <div *ngIf="item.type==1">
-                            <td class="round">
-                              <i class="tx-btc tx-20"><img src="../assets/icons/receive.svg" alt=""></i>
-                            </td>
-                            <td width="20%" class="tx-left">
-                              <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Deposit VakaCoin</p>
-                              <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
-                            </td>
-                            <td width="10%" class="tx-left hidden-mob">
-                              <i class="status bg-success">Deposit</i>
-                            </td>
-                            <td width="40%" class="tx-right">
-                              <p class="mg-b-0 tx-inverse tx-medium tx-green">{{item.Amount}} {{Coin}}</p>
-                              <span class="d-block tx-13 tx-grey">-₫258,476.00</span>
-                            </td>
-                          </div>
+                            <div *ngIf="item.type==1">
+                              <td class="round">
+                                <i class="tx-btc tx-20"><img src="../assets/icons/receive.svg" alt=""></i>
+                              </td>
+                              <td width="20%" class="tx-left">
+                                <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Deposit VakaCoin</p>
+                                <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
+                              </td>
+                              <td width="10%" class="tx-left hidden-mob">
+                                <i class="status bg-success">Deposit</i>
+                              </td>
+                              <td width="40%" class="tx-right">
+                                <p class="mg-b-0 tx-inverse tx-medium tx-green">{{item.Amount}} {{Coin}}</p>
+                                <span class="d-block tx-13 tx-grey">-₫258,476.00</span>
+                              </td>
+                            </div>
 
 
-                        </tr>
-                        <!-- </div> -->
+                          </tr>
+                          <!-- </div> -->
 
-                      </tbody>
-                    </table>
-                  </div><!-- bd -->
-                  <div class="ht-80 d-flex align-items-center justify-content-center mg-t-20">
+                        </tbody>
+                      </table>
+                    </div><!-- bd -->
+                    <!-- <div class="ht-80 d-flex align-items-center justify-content-center mg-t-20">
 
                     <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
 
+                  </div> -->
+                    <pagination-controls id="some_id" (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
+                      autoHide="true" responsive="true" previousLabel="Previous" nextLabel="Next"
+                      screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+                    </pagination-controls>
                   </div>
-                  <pagination-controls id="some_id" (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
-                    autoHide="true" responsive="true" previousLabel="Previous" nextLabel="Next"
-                    screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
-                  </pagination-controls>
-
                   <!-- page -->
+                  <div *ngIf="searchDatas.length <= 0">
+
+                    <div class="table-content border tab-pane" role="tabpanel">
+                      <!-- <div class="col-xs-12">
+                        <h6 class="br-section-label">Recent Activity</h6>
+                      </div> -->
+                      <div class="col-xs-12">
+                        <div class="no-tran table-recent-acc">
+                          <div class="modal-body pd-x-20 pd-y-5 no-tran-box">
+                            <div [ngSwitch]="tab_current">
+                              <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
+                                *ngSwitchCase="'VKCW'"><img src="../assets/icons/icon-vkc.svg" alt=""></i>
+                              <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
+                                *ngSwitchCase="'VKCV'"><img src="../assets/icons/icon-vault.svg" alt=""></i>
+                              <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
+                                *ngSwitchCase="'BTC'"><img src="../assets/icons/icon-btc.svg" alt=""></i>
+                              <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
+                                *ngSwitchCase="'ETH'"><img src="../assets/icons/icon-eth.svg" alt=""></i>
+                              <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
+                                *ngSwitchCase="'EOS'"><img src="../assets/icons/icon-eos.svg" alt=""></i>
+                            </div>
+
+                            <h6 class="check tx-20 mg-b-0 mg-t-20">No transactions</h6>
+                            <p class="mg-b-20 mg-x-20 tx-center">VakaPay is the easiest place to get started.</p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Tab panes -->
+                    </div>
+                  </div>
                   <!-- <div class="ht-80 d-flex align-items-center justify-content-center mg-t-20">
                         <ul class="pagination pagination-basic pagination-rounded mg-b-0">
                           <li class="page-item hidden-xs-down">
@@ -279,6 +313,9 @@
                 </div>
                 <!-- Tab panes -->
               </div>
+              <!-- History END -->
+
+
               <div class="table-content border tab-pane" id="tab1b" role="tabpanel">
                 <div class="col-xs-12">
                   <h6 class="br-section-label col-md-8 col-sm-12">Transactions</h6>
