@@ -16,6 +16,8 @@ import { LandingComponent } from 'component/landing/landing.component';
 import { ProfileComponent } from 'component/page/profile/profile.component';
 import { PagenotfoundComponent } from 'component/page/pagenotfound/pagenotfound.component';
 import { PreferencesComponent } from 'component/page/preferences/preferences.component';
+import { SecurityComponent } from 'component/page/security/security.component';
+import { ActivityComponent } from 'component/page/activity/activity.component';
 import { AccountsComponent } from 'component/page/accounts/accounts.component';
 //Init routes
 const routes: Routes = [
@@ -77,11 +79,20 @@ const routes: Routes = [
 				data: { title: 'Preferences' }
 			},
 			{
+				path: 'security',
+				component: SecurityComponent,
+				data: { title: 'Security' }
+			},
+			{
+				path: 'activity',
+				component: ActivityComponent,
+				data: { title: 'Activity' }
+			},
+			{
 				path: 'account',
 				component: AccountsComponent,
 				data: { title: 'accounts' }
 			},
-			
 		]
 	},
 	{ path: '404', component: PagenotfoundComponent },

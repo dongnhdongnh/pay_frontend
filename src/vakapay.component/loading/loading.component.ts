@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'load-css',
+    selector: 'loading-component',
     template: `
         <div id="loadinggg">
             <div class="sk-circle">

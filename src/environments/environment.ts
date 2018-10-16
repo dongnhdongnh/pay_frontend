@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //urlApi:'https://api.vakaid.vakaxalab.com'
-  urlApi:'http://localhost:5001'
+  urlApi:'https://api.vakaid.vakaxalab.com'
+ // urlApi:'http://localhost:5001'
 };
 
 /*

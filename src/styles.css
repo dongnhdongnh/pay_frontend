@@ -1,26 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
 @import 'angular2-toaster/toaster.css';
-
 @import "~@ng-select/ng-select/themes/material.theme.css";
+/**modal angular */
+
+@import "~ngx-smart-modal/ngx-smart-modal.css";
+/**custom css */
 
 @import '/assets/css/bracket.css';
 @import '/assets/css/new.css';
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
+[hidden] {
+  display: none !important;
 }
 
 .container .mat-button-wrapper {
   font-size: 13px !important;
+}
+
+#activity .mat-tab-label {
+  height: 100% !important;
+  padding-left: 0 !important;
+}
+
+#activity .mat-tab-header {
+  border: 0;
+}
+
+#activity .mat-tab-group {
+  max-width: 100%;
+}
+
+#activity .mat-tab-list {
+  max-width: 100%;
+}
+
+#activity .mat-ink-bar {
+  visibility: hidden !important;
+}
+
+#activity .mat-tab-label-content {
+  max-width: 100%;
+}
+
+#activity .d-table-cell {
+  max-width: 100%;
 }

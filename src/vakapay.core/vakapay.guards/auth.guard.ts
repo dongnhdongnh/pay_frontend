@@ -1,3 +1,4 @@
+import { AccountService } from 'services/account/account.service';
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { AuthService } from 'services/auth/auth.service';
@@ -7,7 +8,10 @@ import { AuthService } from 'services/auth/auth.service';
 })
 export class AuthGuard implements CanActivate {
 
-    constructor(private auth: AuthService, private router: Router) {
+    constructor(
+        private auth: AuthService,
+        private accountService: AccountService,
+        private router: Router) {
     }
 
     canActivate(): boolean {
@@ -15,6 +19,12 @@ export class AuthGuard implements CanActivate {
             this.router.navigate(['login']);
             return false;
         }
+
+        if (this.accountService.mAccount.isLock !== 0) {
+            this.router.navigate(['account-is-lock']);
+            return false;
+        }
+
         return true;
     }
 }

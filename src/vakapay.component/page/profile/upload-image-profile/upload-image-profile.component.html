@@ -7,6 +7,7 @@
       <span>Choose a file...</span>
     </label>
     <message-error-input [message]='messageErrorFile'></message-error-input>
+    <span class="file-name-selected">{{selectedFile ? selectedFile.name: ""}}</span>
   </div>
 </div>
 <!-- row -->
@@ -14,7 +15,8 @@
   <div class="col-sm-8 mg-l-auto">
     <div class="form-layout-footer">
       <button (click)="onUpload()" [disabled]="!selectedFile||isInvalid||isLoading" class="btn bg-green mg-t-5" type="button">
-        Save <i [hidden]="!isLoading" class="fa fa-spinner fa-spin" style="font-size:15px"></i>
+        Save
+        <loading-button [isLoading]='isLoading'></loading-button>
       </button>
       <button (click)="onReset()" [disabled]="!selectedFile||isLoading" class="btn btn-secondary mg-t-5" type="reset">Reset</button>
     </div><!-- form-layout-footer -->

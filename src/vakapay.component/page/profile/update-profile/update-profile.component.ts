@@ -76,7 +76,6 @@ export class UpdateProfileComponent {
       return;
     } catch (error) {
       console.log(JSON.stringify(error));
-      this.onReset();
     }
   }
 
@@ -85,6 +84,7 @@ export class UpdateProfileComponent {
     // this.selectedFile = null;
     this.isValid = false;
     this.isLoading = false;
+    this.isChange = false;
   }
 
   validate() {

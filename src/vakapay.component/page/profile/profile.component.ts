@@ -13,7 +13,6 @@ import { Account } from 'model/account/Account';
 })
 export class ProfileComponent extends Root implements OnInit {
   mAccount: Account;
-  isLoading = false;
 
   constructor(
     titleService: Title,

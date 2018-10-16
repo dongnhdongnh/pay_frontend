@@ -37,11 +37,11 @@ export class ConfigService {
     }
 
     get returnUrl() {
-        if (this.development === 'localhost') {
-            const ip = `https://${localStorage.getItem('ipLAN')}:4040/`;
-            console.log(`Address web local is ${ip}`)
-            return ip;
-        }
+        // if (this.development === 'localhost') {
+        //     const ip = `https://${localStorage.getItem('ipLAN')}:4040/`;
+        //     console.log(`Address web local is ${ip}`)
+        //     return ip;
+        // }
 
         return `${origin}/`;
     }
