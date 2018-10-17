@@ -21,6 +21,7 @@ import { ActivityComponent } from 'component/page/activity/activity.component';
 import { LockScreenComponent } from 'component/lock-screen/lock-screen.component';
 import { LockGuard } from 'guards/lock.guard';
 
+import { AccountsComponent } from 'component/page/accounts/accounts.component';
 //Init routes
 const routes: Routes = [
 	{
@@ -95,6 +96,11 @@ const routes: Routes = [
 				path: 'activity',
 				component: ActivityComponent,
 				data: { title: 'Activity' }
+			},
+			{
+				path: 'account',
+				component: AccountsComponent,
+				data: { title: 'accounts' }
 			},
 		]
 	},

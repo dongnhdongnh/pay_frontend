@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IpService } from 'services/system/ip.service';
+import { environment } from 'environments/environment.prod';
 const origin = window.location.origin;
 
 @Injectable({
@@ -18,7 +19,8 @@ export class ConfigService {
     constructor() {
         IpService.getIpLAN();
         this.issuer = 'https://vakaid.vakaxalab.com';
-        this.urlApi = 'https://api.vakaid.vakaxalab.com';
+        //this.urlApi = 'https://api.vakaid.vakaxalab.com';
+        this.urlApi = environment.urlApi;
         this.redirectUri = `${origin}/login`;
         this.silentRefreshRedirectUri = `${origin}/silent-refresh.html`;
         this.postLogoutRedirectUri = `${origin}/`;
