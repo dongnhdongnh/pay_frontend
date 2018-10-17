@@ -1,3 +1,4 @@
+import { Utility } from 'utility/Utility';
 import { AccountService } from 'services/account/account.service';
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
@@ -20,11 +21,24 @@ export class AuthGuard implements CanActivate {
             return false;
         }
 
-        if (this.accountService.mAccount.isLock !== 0) {
-            this.router.navigate(['account-is-lock']);
-            return false;
+        this.lockScreen();
+        return true;
+    }
+
+    async lockScreen() {
+        this.router.events.subscribe((res) => {
+            let PATH = this.router.url;
+            this.accountService.currentRouter = PATH;
+        })
+
+        while (this.accountService.isGet === false) {
+            await Utility.sleep(100);
         }
 
-        return true;
+        if (this.accountService.mAccount.isLockScreen === 1) {
+            this.router.navigate(['account-is-lock']);
+        }
+
+        return;
     }
 }

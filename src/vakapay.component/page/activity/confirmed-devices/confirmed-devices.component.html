@@ -65,7 +65,7 @@
     <mat-header-cell *matHeaderCellDef> </mat-header-cell>
     <mat-cell *matCellDef="let element">
       <span class="mobile-label">Delete:</span>
-      <button-delete (click)=delete(element.id)></button-delete>
+      <button-delete [service]="service" [id]="element.id"></button-delete>
     </mat-cell>
   </ng-container>
 

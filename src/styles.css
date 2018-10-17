@@ -11,6 +11,10 @@
 
 @import '/assets/css/bracket.css';
 @import '/assets/css/new.css';
+[disabled] {
+  cursor: not-allowed !important;
+}
+
 [hidden] {
   display: none !important;
 }
@@ -30,6 +34,7 @@
 
 #activity .mat-tab-group {
   max-width: 100%;
+  min-width: 100%;
 }
 
 #activity .mat-tab-list {

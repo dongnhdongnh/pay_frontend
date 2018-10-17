@@ -2,6 +2,11 @@
   color: #cc2243;
 }
 
+.bg-home {
+  background: url('/assets/images/backgrounds/bg-signin.jpg') center no-repeat;
+  background-size: cover;
+}
+
 .resend-sms {
   color: #10a04a;
   cursor: pointer;
@@ -284,6 +289,7 @@
 .logo-home img {
   width: 250px;
   height: auto;
+  border-radius: 100%;
   display: block;
   max-width: 100%;
   margin: 0 auto;

@@ -1,7 +1,8 @@
 import { Component, Input, ElementRef, ViewChild } from '@angular/core';
 import { Utility } from 'utility/Utility';
 import { UtilityValidate } from 'utility/UtilityValidate';
-import { TwofaEnableService } from 'services/twofa/twofa-enable.service';
+import { TwofaService } from 'services/twofa/twofa.service';
+import { SecurityService } from 'services/security/security.service';
 
 @Component({
   selector: 'twofa-verify-code-with-phone',
@@ -24,16 +25,19 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
   messageErrorCode = '';
 
   //service
-  twofaEnableService: TwofaEnableService;
+  twofaService: TwofaService;
   //#endregion init variable
 
-  constructor(accountService: TwofaEnableService) {
-    this.twofaEnableService = accountService;
+  constructor(
+    accountService: TwofaService,
+    public securityService: SecurityService
+  ) {
+    this.twofaService = accountService;
   }
 
-  requireSendCodePhone(){
+  requireSendCodePhone() {
     this.onReset();
-    this.twofaEnableService.requireSendCodePhone();
+    this.twofaService.requireSendCodePhone(!this.securityService.isEnableTwofa);
   }
 
   cancel() {
@@ -57,7 +61,7 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
       };
 
       //send ajax
-      let result = await this.twofaEnableService.update(dataPost);
+      let result = this.securityService.isEnableTwofa ? await this.twofaService.disable(dataPost) : await this.twofaService.enable(dataPost);
 
       //Show message success
       this.isLoading = false;

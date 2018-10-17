@@ -17,10 +17,10 @@ export class AppComponent {
     configService: ConfigService,
     @Inject(PLATFORM_ID) private platformId: Object,
     oauthService: OAuthService,
-    accountService: AccountService
-  ) {   
-
-    accountService.getInfo();
+    private accountService: AccountService
+  ) {
+    //get info of user
+    this.getInfo();
 
     if (!isPlatformBrowser(this.platformId)) return;
     this.oauthService = oauthService;
@@ -36,5 +36,12 @@ export class AppComponent {
     this.oauthService.configure(config);
     this.oauthService.tokenValidationHandler = new JwksValidationHandler();
     this.oauthService.loadDiscoveryDocumentAndTryLogin();
+  }
+
+  async getInfo() {
+    await this.accountService.getInfo();
+
+    
+
   }
 }

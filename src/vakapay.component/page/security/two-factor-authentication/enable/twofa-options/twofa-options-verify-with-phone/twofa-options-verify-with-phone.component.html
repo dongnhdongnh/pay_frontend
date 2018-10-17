@@ -13,8 +13,8 @@
         <div class="input-group sms">
           <span class="input-group-addon"><i class="fa fa-phone tx-16 lh-0
               op-6"></i></span>
-          <input #code (keyup)="onCode($event)" type="text" class="form-control fc-outline-white half" maxlength="7"
-            placeholder="0000000">
+          <input #code (keyup)="onCode($event)" type="text" class="form-control fc-outline-white half" maxlength="6"
+            placeholder="000000">
         </div>
         <span class="resend">
           <message-error-input [message]='messageErrorCode'></message-error-input>
