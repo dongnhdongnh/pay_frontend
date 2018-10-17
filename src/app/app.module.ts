@@ -29,6 +29,9 @@ import { AppRoutingModule } from './app-routing.module';
 //Component parent
 import { AppComponent } from './app.component';
 
+// import pagination component
+import { JwPaginationComponent } from 'jw-angular-pagination';
+import {NgxPaginationModule} from 'ngx-pagination';
 //Component children
 //Authentication
 import { RegisterComponent } from 'component/authenticate/register/register.component';
@@ -66,7 +69,7 @@ import { TwofaOptionsComponent } from 'component/page/security/two-factor-authen
 import { SessionActiveComponent } from 'component/page/activity/session-active/session-active.component';
 import { AccountActivityComponent } from 'component/page/activity/account-activity/account-activity.component';
 import { CloseAccountComponent } from 'component/page/security/close-account/close-account.component';
-
+import { AccountsComponent } from 'component/page/accounts/accounts.component';
 //TwofaVerify
 import { TwofaVerifyCodeComponentWithPhoneComponent }
   from 'component/page/security/two-factor-authentication/enable/enable-twofa-verify-phone/twofa-verify-code-with-phone.component';
@@ -129,6 +132,8 @@ import { WaitingLoadPageComponent } from 'component/waiting-load-page/waiting-lo
     RefreshComponent,
     ButtonDeleteComponent,
     WaitingLoadPageComponent,
+    AccountsComponent,
+    JwPaginationComponent,
   ],
   imports: [
     BrowserModule,
@@ -156,6 +161,7 @@ import { WaitingLoadPageComponent } from 'component/waiting-load-page/waiting-lo
     // HttpClientInMemoryWebApiModule.forRoot(
     //   InMemoryDataService, { dataEncapsulation: false }
     // ),
+    NgxPaginationModule
   ],
   providers: [
     {
