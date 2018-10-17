@@ -11,9 +11,12 @@ export class AccountService {
     private updateProfileUrl = '/api/user/update-profile';
     private updatePreferenceUrl = '/api/user/update-preferences';
     private updateNotificationsUrl = '/api/user/update-notifications';
+    private urlApi: string;
 
     public mAccount: Account;
-    private urlApi: string;
+    public currentRouter = '/';
+    public isGet: boolean = false;
+    public isCheckLock: boolean = false;
 
     constructor(private httpService: HttpService, configService: ConfigService) {
         this.mAccount = new Account();
@@ -55,6 +58,8 @@ export class AccountService {
             if (result.data.avatar || result.data.Avatar) {
                 this.mAccount.avatar = new URL(this.mAccount.avatar, this.urlApi).href;
             }
+            this.isGet = true;
+            return;
         } catch (error) {
             // console.log(JSON.stringify(error));
             await Utility.sleep(5000);

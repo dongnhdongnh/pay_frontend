@@ -144,7 +144,7 @@ export class UtilityValidate extends Validate {
         }
     }
 
-    static validateCodePhone(code, maxLength = 7) {
+    static validateCodePhone(code, maxLength = 6) {
         if (!code) throw new Error('Code is required');
         this.validateString(code, maxLength, maxLength, 'Code');
 

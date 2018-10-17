@@ -13,10 +13,10 @@
           </div>
           <div class="mg-t-10 mg-sm-t-0 hidden-web">
             <ng-select [(ngModel)]="selectedIndex">
-              <ng-option [value]="0">Web Sessions</ng-option>
-              <ng-option [value]="1">Confirmed Devices</ng-option>
-              <ng-option [value]="2">Account Activity</ng-option>
-              <ng-option [value]="3">Third-Party App</ng-option>
+              <!-- <ng-option [value]="0">Web Sessions</ng-option> -->
+              <ng-option [value]="0">Device History</ng-option>
+              <ng-option [value]="1">Account Activity</ng-option>
+              <ng-option [value]="2">Third-Party App</ng-option>
             </ng-select>
             <!-- <select class="form-control select2 select2-hidden-accessible"
               data-placeholder="Buy Widgets" tabindex="-1"
@@ -36,7 +36,7 @@
             [selectedIndex]="selectedIndex"
             (selectedIndexChange)="changeTab($event)"
             [disableRipple]="true">
-            <mat-tab>
+            <!-- <mat-tab>
               <ng-template mat-tab-label>
                 <div class="d-table-cell mg-t-10 hidden-mob">
                   <div class="card">
@@ -67,8 +67,8 @@
               </ng-template>
               <div class="col-xl-12 tab-content tab-right">
                 <app-session-active></app-session-active>
-              </div><!-- br-section-wrapper -->
-            </mat-tab>
+              </div>
+            </mat-tab> -->
 
             <mat-tab>
               <ng-template mat-tab-label>
@@ -81,10 +81,12 @@
                           <p class="tx-10 tx-spacing-1 tx-mont tx-semibold
                             tx-uppercase tx-white-8 mg-b-10">Active
                             Sessions</p>
-                          <p class="tx-20 tx-white tx-lato tx-bold mg-b-0 lh-1">Confirm
-                            Devices</p>
-                          <span class="tx-10 tx-roboto tx-white-8">Currently
-                            Devices allowed to access</span>
+                          <p class="tx-20 tx-white tx-lato tx-bold mg-b-0 lh-1">
+                            Device History
+                          </p>
+                          <span class="tx-10 tx-roboto tx-white-8">
+                            History Devices allowed to access
+                          </span>
                         </div>
                       </div>
                       <div id="ch1" class="ht-50 tr-y-1 rickshaw_graph"><svg

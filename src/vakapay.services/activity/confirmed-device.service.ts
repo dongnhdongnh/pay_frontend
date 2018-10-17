@@ -6,6 +6,7 @@ import { Utility } from 'utility/Utility';
 @Injectable({ providedIn: 'root' })
 export class ConfirmedDeviceService {
     public list: ConfirmedDevice[];
+    public deleteUrl = '/api/activity/device-history/delete';
     private test = true;
     isError: boolean = false;
     isLoading: boolean = false;
@@ -17,7 +18,7 @@ export class ConfirmedDeviceService {
         try {
             this.isLoading = true;
             let operation = 'get list confirmed device';
-            let api = `/api/activity/web-session/get-list?offset=${offset}&limit=${limit}`;
+            let api = `/api/activity/device-history/get-list?offset=${offset}&limit=${limit}`;
             let result = await this.httpService.get(operation, api, false);
             this.isLoading = false;
 
@@ -40,5 +41,11 @@ export class ConfirmedDeviceService {
 
     refresh() {
         this.getList();
+    }
+
+    delete(data: any) {
+        let operation = 'delete web session';
+        let api = this.deleteUrl;
+        return this.httpService.post(operation, api, data);
     }
 }
