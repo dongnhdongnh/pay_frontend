@@ -27,8 +27,8 @@
                         <p class="tx-15 tx-white tx-spacing-1 mg-b-0">VKC Wallet</p>
                         <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("VAKA")}} VKC</p>
                         <div class="pd-t-10 pd-b-10 d-flex align-items-center">
-                          <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo3"><i
-                              class="fa fa-send mg-r-3"></i>Send</a>
+                          <a href="#" (click)="onClickSend('VKCW')" class="btn btn-trans send-receive" data-toggle="modal"
+                            data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
                           <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo2"><i
                               class="fa fa-arrow-circle-down mg-r-3"></i>Receive
                           </a>
@@ -87,8 +87,8 @@
                         <p class="tx-15 tx-white tx-spacing-1 mg-b-0">BitCoin</p>
                         <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("BTC")}} BTC</p>
                         <div class="pd-t-10 pd-b-10 d-flex align-items-center">
-                          <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo3"><i
-                              class="fa fa-send mg-r-3"></i>Send</a>
+                          <a href="#" (click)="onClickSend('BTC')" class="btn btn-trans send-receive" data-toggle="modal"
+                            data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
                           <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo2"><i
                               class="fa fa-cart-arrow-down mg-r-3"></i>Receive
                           </a>
@@ -117,8 +117,8 @@
                         <p class="tx-15 tx-white tx-spacing-1 mg-b-0">Ethereum</p>
                         <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Ethereum")}} ETH </p>
                         <div class="pd-t-10 pd-b-10 d-flex align-items-center">
-                          <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo3"><i
-                              class="fa fa-send mg-r-3"></i>Send</a>
+                          <a href="#" (click)="onClickSend('ETH')" class="btn btn-trans send-receive" data-toggle="modal"
+                            data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
                           <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo2"><i
                               class="fa fa-cart-arrow-down mg-r-3"></i>Receive
                           </a>
@@ -147,8 +147,8 @@
                         <p class="tx-15 tx-white tx-spacing-1 mg-b-0">EOS</p>
                         <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("EOS")}} EOS</p>
                         <div class="pd-t-10 pd-b-10 d-flex align-items-center">
-                          <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo3"><i
-                              class="fa fa-send mg-r-3"></i>Send</a>
+                          <a href="#" class="btn btn-trans send-receive" data-toggle="modal" (click)="onClickSend('EOS')"
+                            data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
                           <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo2"><i
                               class="fa fa-cart-arrow-down mg-r-3"></i>Receive
                           </a>
@@ -198,7 +198,8 @@
                           paginate: { id: 'some_id',
                                       itemsPerPage: itemsPerPage,
                                       currentPage: currentPage,
-                                      totalItems: totalItems }">
+                                      totalItems: totalItems }"
+                            (click)="onClickTransactionDetail(item)">
                             <td width="20%" class="hidden-mob">
                               <div class="date-month">
                                 {{item.CreatedAt}}
@@ -314,6 +315,8 @@
                 <!-- Tab panes -->
               </div>
               <!-- History END -->
+
+
 
 
               <div class="table-content border tab-pane" id="tab1b" role="tabpanel">
@@ -466,18 +469,22 @@
 </div>
 
 
-<div id="modaldemo1" class="modal fade">
+<ngx-smart-modal #transactionDetail [identifier]="'transactionDetail'">
   <div class="modal-dialog modal-dialog-vertical-center" role="document">
     <form class="modal-content bd-0 tx-14">
       <div class="modal-header pd-y-20 pd-x-25">
-        <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Received Ethereum</h6>
+        <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">
+          <label *ngIf="transactionDetail_current?.Amount<0; else elseBlock">Sended</label>
+          <ng-template #elseBlock> Received</ng-template>
+          {{tab_current}}
+        </h6>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body pd-x-20 pd-y-5">
         <i class="icon ion-arrow-down-a tx-60 tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"></i>
-        <h6 class="check tx-20 mg-b-0">+0.1000 ETH</h6>
+        <h6 class="check tx-20 mg-b-0"> {{transactionDetail_current?.Amount}} {{tab_current}}</h6>
         <h6 class="grey tx-16">= đ456,455</h6>
         <div class="col-sm-12 mg-t-30 mg-sm-t-0 mg-b-20">
           <div class="form-layout-6">
@@ -502,7 +509,7 @@
                 Time
               </div><!-- col-4 -->
               <div class="col-8">
-                9/13/2018 3:43 PM
+                {{transactionDetail_current?.CreatedAt}}
               </div><!-- col-8 -->
             </div><!-- row -->
             <div class="row no-gutters">
@@ -510,7 +517,7 @@
                 Status
               </div><!-- col-4 -->
               <div class="col-8">
-                <span class="btn btn-success verified">Completed</span>
+                <span class="btn btn-success verified"> {{transactionDetail_current?.Status}}</span>
               </div><!-- col-8 -->
             </div><!-- row -->
           </div>
@@ -518,7 +525,7 @@
       </div>
     </form>
   </div><!-- modal-dialog -->
-</div><!-- modal -->
+</ngx-smart-modal><!-- modal -->
 
 
 <div id="modaldemo2" class="modal fade">
@@ -575,11 +582,11 @@
   </div><!-- modal-dialog -->
 </div><!-- modal -->
 
-<div id="modaldemo3" class="modal fade">
+<ngx-smart-modal #sendDetail [identifier]="'sendDetail'">
   <div class="modal-dialog modal-dialog-vertical-center" role="document">
-    <form class="modal-content bd-0 tx-14">
+    <form class="modal-content bd-0 tx-14" #sendCoinForm="ngForm" (ngSubmit)="sendCoin(sendCoinForm)">
       <div class="modal-header pd-y-20 pd-x-25">
-        <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Send VakaCoin</h6>
+        <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Send {{sendObject?.name}}</h6>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -610,8 +617,21 @@
                   <div class="input-left"><span color="slate"><img src="../assets/icons/icon-vkc.svg" alt="" class="mini-icon"></span>VKC
                     Wallet
                   </div>
-                  <div class="input-right"><input class="form-control fc-outline-white bg-white" placeholder="0.10000000 VKC"
-                      disabled></div>
+                  <div *ngIf="sendObject?.address?.length>0; else notSend">
+                    <div class="input-right">
+                      <!-- <input class="form-control fc-outline-white bg-white" placeholder="0.10000000 VKC"> -->
+
+                      <!-- DROP -->
+                      <select class="form-control fc-outline-white bg-white">
+                        <option *ngFor='let add of sendObject?.address' [value]="add">
+                          {{add}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <ng-template #notSend>
+                     Not found
+                  </ng-template>
                 </div>
               </div>
             </div><!-- row -->
@@ -681,12 +701,14 @@
       <div class="modal-footer step">
         <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
           data-dismiss="modal">Cancel</button>
-        <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
-          data-dismiss="modal" data-target="#modaldemo3b">Continue</a>
+          <button type="submit" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
+          data-dismiss="modal">Continue</button>
+        <!-- <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
+          data-dismiss="modal" data-target="#modaldemo3b" type="submit">Continue</a> -->
       </div>
     </form>
   </div><!-- modal-dialog -->
-</div><!-- modal -->
+</ngx-smart-modal><!-- modal -->
 
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from 'services/account/account.service';
@@ -8,12 +9,16 @@ import { Root } from 'component/root/root.component';
 import { WalletService } from 'services/wallet/wallet.service';
 import { Jsonp } from '@angular/http';
 import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
+import { NgxSmartModalService } from 'ngx-smart-modal';
+import { send } from 'q';
+
 
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
   styleUrls: ['./accounts.component.css']
 })
+
 export class AccountsComponent extends Root implements OnInit {
   isDataLoaded: boolean;
   mAccount: Account;
@@ -28,7 +33,8 @@ export class AccountsComponent extends Root implements OnInit {
     route: ActivatedRoute,
     router: Router,
     mAccountSerive: AccountService,
-    walletService: WalletService) {
+    walletService: WalletService,
+    public ngxSmartModalService: NgxSmartModalService) {
     super(titleService, route, router);
 
     this.mAccount = mAccountSerive.mAccount;
@@ -81,7 +87,7 @@ export class AccountsComponent extends Root implements OnInit {
       walletSearch.limit = this.itemsPerPage;
       walletSearch.orderBy = ['CreatedAt'];
       var result = await this.walletService.getWalletHistory(walletSearch);
-      console.log("Get history result " + JSON.stringify(result));
+      //   console.log("Get history result " + JSON.stringify(result));
       this.searchDatas = JSON.parse(result.message);
       this.totalItems = Number(result.data);
       this.searchDatas.forEach(element => {
@@ -124,41 +130,114 @@ export class AccountsComponent extends Root implements OnInit {
 
   public onClickWalletTab(event, name) {
     console.log(JSON.stringify(event) + name);
+    if (this.tab_current == name)
+      return;
+    this.currentPage = 1;
     this.tab_current = name;
     switch (name) {
-      case 'VKCW':
-        this.updateCurrentWallet("VAKA");
+      case TabName.VKCW.toString():
+        this.updateCurrentWallet(NetworkName.VAKA);
         break;
-      case 'VKCV':
+      case TabName.VKCV.toString():
 
         break;
-      case 'BTC':
-        this.updateCurrentWallet("BTC");
+      case TabName.BTC.toString():
+
+        this.updateCurrentWallet(NetworkName.BTC);
         break;
-      case 'ETH':
-        this.updateCurrentWallet("Ethereum");
+      case TabName.ETH.toString():
+
+        this.updateCurrentWallet(NetworkName.Ethereum);
         break;
-      case 'EOS':
-        this.updateCurrentWallet("EOS");
+      case TabName.EOS.toString():
+        this.updateCurrentWallet(NetworkName.EOS);
         break;
       default:
         break;
     }
   }
+  transactionDetail_current: any;
+  public onClickTransactionDetail(item) {
+    this.transactionDetail_current = item;
+    console.log(JSON.stringify(item));
+    this.ngxSmartModalService.getModal('transactionDetail').open();
+  }
 
-  async updateCurrentWallet(networkName) {
+
+
+  sendObject: any;
+  public async onClickSend(networkName) {
+    console.log("on cl0ickkkkkkkkkkkkkkkkkkkkkkkkkkk send " + networkName);
+    this.sendObject = {};
+
+
+    switch (networkName) {
+      case TabName.VKCW.toString():
+        this.sendObject.name = "Vakacoin";
+        this.sendObject.sortName = "VKC";
+        this.sendObject.networkName = NetworkName.VAKA.toString();
+        break;
+      case TabName.VKCV.toString():
+
+        break;
+      case TabName.BTC.toString():
+        this.sendObject.name = "Bitcoin";
+        this.sendObject.sortName = "BTC";
+        this.sendObject.networkName = NetworkName.BTC.toString();
+        break;
+      case TabName.ETH.toString():
+        this.sendObject.name = "Ethereum";
+        this.sendObject.sortName = "ETH";
+        this.sendObject.networkName = NetworkName.Ethereum.toString();
+        break;
+      case TabName.EOS.toString():
+        this.sendObject.name = "EOS";
+        this.sendObject.sortName = "VKC";
+        this.sendObject.networkName = NetworkName.EOS.toString();
+        break;
+      default:
+        break;
+    }
+    let sendWallet = this.getWalletByName(this.sendObject.networkName);
+    console.log("sendwallet=========> " + JSON.stringify(sendWallet));
+    if (sendWallet == null)
+      return;
+    var result = await this.walletService.getAddress(sendWallet.Id, sendWallet.Currency);
+    //  console.log("Address =" + result.message);
+    this.sendObject.address = JSON.parse(result.message);
+    this.ngxSmartModalService.getModal('sendDetail').open();
+  }
+
+  sendCoin(form: NgForm) {
+    console.log("HAHAHAHAHA ============>" + JSON.stringify(form.value));
+  }
+
+  async updateCurrentWallet(networkName: NetworkName) {
     this.wallet_current = null;
     //  if (this.walletsData != null && this.walletsData.length >= 0)
+    this.wallet_current = this.getWalletByName(networkName.toString());
+    // this.walletsData.forEach(element => {
+    //   if (element.Currency == networkName) {
+    //     this.wallet_current = element;
+    //     //    this.getHistory(this.wallet_current);
+    //     return;
+    //   }
+    // });
+    console.log("get history of " + JSON.stringify(this.wallet_current));
+    await this.getHistory(this.wallet_current);
+  }
+
+  getWalletByName(networkName) {
+    let _output = null;
     this.walletsData.forEach(element => {
-      if (element.Currency == networkName) {
-        this.wallet_current = element;
+      if (element.Currency == networkName.toString()) {
+        _output = element;
+        console.log("get " + JSON.stringify(element));
+        return element;
         //    this.getHistory(this.wallet_current);
-        console.log(JSON.stringify(this.wallet_current));
-        return;
       }
     });
-
-    await this.getHistory(this.wallet_current);
+    return _output;
   }
 
   // array of all items to be paged
@@ -202,7 +281,7 @@ export class AccountsComponent extends Root implements OnInit {
   }
   //#endregion
   nineNumber(x) {
-  
+
     if (Math.abs(x) < 1.0) {
       var e = parseInt(x.toString().split('e-')[1]);
       if (e) {
@@ -220,4 +299,18 @@ export class AccountsComponent extends Root implements OnInit {
     return x;
   }
 
+}
+enum NetworkName {
+  VAKA = "VAKA",
+  BTC = "BTC",
+  Ethereum = "Ethereum",
+  EOS = "EOS",
+}
+
+enum TabName {
+  VKCW = 'VKCW',
+  VKCV = 'VKCV',
+  BTC = 'BTC',
+  ETH = 'ETH',
+  EOS = 'EOS',
 }

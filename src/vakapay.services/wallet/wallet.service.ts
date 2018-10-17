@@ -10,6 +10,7 @@ export class WalletService {
   url_getAllWalletByUserID = '/api/wallet/all?userID='
   url_getWalletInfor = '/api/wallet/History'
   url_getWalletHistory = '/api/wallet/History'
+  url_getAddress = '/api/wallet/AddressInfor'
   constructor(private httpService: HttpService) { }
   async getAllWallet(mAccount) {
     try {
@@ -45,11 +46,27 @@ export class WalletService {
       console.log(JSON.stringify(error));
     }
   }
+  async getAddress(walletID, networkName) {
+    try {
+      let operation = 'get info user';
+      let api = this.url_getAddress + "?walletId=" + walletID + "&networkName=" + networkName + "";
+      let result = await this.httpService.get(operation, api, false);
+      if (Utility.isError(result)) {
+        console.log(result.message);
+        return;
+      }
+      else {
+        return result;
+      }
+    } catch (error) {
+      console.log(JSON.stringify(error));
+    }
+  }
 
   getWalletHistory(wallet): Promise<ResultObject> {
-      let operation = 'get wallet history';
-      let api = this.url_getWalletHistory;
-      return this.httpService.post(operation, api, wallet, false);
+    let operation = 'get wallet history';
+    let api = this.url_getWalletHistory;
+    return this.httpService.post(operation, api, wallet, false);
   }
 
 }
