@@ -87,6 +87,7 @@ import { ThirdPartyAppComponent } from 'component/page/activity/third-party-app/
 import { RefreshComponent } from 'component/refresh/refresh.component';
 import { ButtonDeleteComponent } from 'component/button-delete/button-delete.component';
 import { WaitingLoadPageComponent } from 'component/waiting-load-page/waiting-load-page.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -137,6 +138,7 @@ import { WaitingLoadPageComponent } from 'component/waiting-load-page/waiting-lo
   ],
   imports: [
     BrowserModule,
+    QRCodeModule,
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,

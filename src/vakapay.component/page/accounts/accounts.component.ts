@@ -11,7 +11,7 @@ import { Jsonp } from '@angular/http';
 import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { send } from 'q';
-
+import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
 
 @Component({
   selector: 'app-accounts',
@@ -20,6 +20,13 @@ import { send } from 'q';
 })
 
 export class AccountsComponent extends Root implements OnInit {
+
+  private toasterService: ToasterService;
+  public config1: ToasterConfig = new ToasterConfig({
+    positionClass: 'toast-top-center',
+    animation: 'fade'
+  });
+
   isDataLoaded: boolean;
   mAccount: Account;
   walletService: WalletService;
@@ -34,9 +41,11 @@ export class AccountsComponent extends Root implements OnInit {
     router: Router,
     mAccountSerive: AccountService,
     walletService: WalletService,
-    public ngxSmartModalService: NgxSmartModalService) {
+    public ngxSmartModalService: NgxSmartModalService,
+    toasterService: ToasterService
+  ) {
     super(titleService, route, router);
-
+    this.toasterService = toasterService;
     this.mAccount = mAccountSerive.mAccount;
     this.mAccount.id = "8377a95b-79b4-4dfb-8e1e-b4833443c306";
     this.Coin = "ETH";
@@ -46,6 +55,17 @@ export class AccountsComponent extends Root implements OnInit {
     this.getUserData();
   }
 
+  popToast() {
+    var toast = {
+      type: 'info',
+      title: 'HELLO BABY',
+      body: 'Here is a Toast Body',
+      positionClass: 'toast-top-left',
+      showCloseButton: false
+    };
+
+    this.toasterService.pop(toast);
+  }
   async getUserData() {
     try {
       var result = await this.walletService.getAllWallet(this.mAccount);
@@ -60,7 +80,7 @@ export class AccountsComponent extends Root implements OnInit {
         // console.log(_w.networkname);
       }
       this.isDataLoaded = true;
-      this.wallet_current = this.walletsData[0];
+      this.wallet_current = this.getWalletByName(NetworkName.VAKA.toString());
       await this.getHistory(this.wallet_current);
     } catch (error) {
       console.log(error);
@@ -166,11 +186,8 @@ export class AccountsComponent extends Root implements OnInit {
 
 
   sendObject: any;
-  public async onClickSend(networkName) {
-    console.log("on cl0ickkkkkkkkkkkkkkkkkkkkkkkkkkk send " + networkName);
+  updateSendObject(networkName) {
     this.sendObject = {};
-
-
     switch (networkName) {
       case TabName.VKCW.toString():
         this.sendObject.name = "Vakacoin";
@@ -192,12 +209,16 @@ export class AccountsComponent extends Root implements OnInit {
         break;
       case TabName.EOS.toString():
         this.sendObject.name = "EOS";
-        this.sendObject.sortName = "VKC";
+        this.sendObject.sortName = "EOS";
         this.sendObject.networkName = NetworkName.EOS.toString();
         break;
       default:
         break;
     }
+  }
+  public async onClickSend(networkName) {
+    console.log("on cl0ickkkkkkkkkkkkkkkkkkkkkkkkkkk send " + networkName);
+    this.updateSendObject(networkName);
     let sendWallet = this.getWalletByName(this.sendObject.networkName);
     console.log("sendwallet=========> " + JSON.stringify(sendWallet));
     if (sendWallet == null)
@@ -205,13 +226,60 @@ export class AccountsComponent extends Root implements OnInit {
     var result = await this.walletService.getAddress(sendWallet.Id, sendWallet.Currency);
     //  console.log("Address =" + result.message);
     this.sendObject.address = JSON.parse(result.message);
+
     this.ngxSmartModalService.getModal('sendDetail').open();
   }
 
-  sendCoin(form: NgForm) {
-    console.log("HAHAHAHAHA ============>" + JSON.stringify(form.value));
+  public async onClickReceive(networkName) {
+    this.popToast();
+    console.log("onClickReceive " + networkName);
+    this.updateSendObject(networkName);
+    let sendWallet = this.getWalletByName(this.sendObject.networkName);
+    console.log("sendwallet=========> " + JSON.stringify(sendWallet));
+    if (sendWallet == null)
+      return;
+    var result = await this.walletService.getAddress(sendWallet.Id, sendWallet.Currency);
+    //  console.log("Address =" + result.message);
+    this.sendObject.address = JSON.parse(result.message);
+    this.ngxSmartModalService.getModal('receiveCoin').open();
   }
+  public onClickReceiveDetail() {
+    this.ngxSmartModalService.getModal('receiveCoin').close();
+    this.ngxSmartModalService.getModal('receiveCoinDetail').open();
+  }
+  async sendCoin(form: NgForm) {
+    try {
+      console.log("FORM CONTROLLLL:" + form.controls.Recipient_EmailAddress.errors.required);
+      console.log("HAHAHAHAHA ============>" + JSON.stringify(form.value));
+      this.sendObject.detail = form.value;
+      var result = await this.walletService.checkSendCoin(this.sendObject.detail.withdrawn_from
+        , this.sendObject.detail.Recipient_WalletAddress, this.sendObject.networkName, this.sendObject.detail.VKCAmount);
+      console.log("RESULT " + result);
+      let _checkObject = JSON.parse(result.message);
+      this.sendObject.checkObject = _checkObject;
+      this.ngxSmartModalService.getModal('sendConfirm').open();
+      console.log("HAHAHAHAHA confirm:checkObject ============>" + JSON.stringify(this.sendObject.checkObject));
+    } catch (error) {
+      console.log(error);
+    }
 
+
+  }
+  async sendCoinConfirm(form: NgForm) {
+    try {
+
+      console.log("HAHAHAHAHA confirm ============>" + JSON.stringify(form.value));
+      this.ngxSmartModalService.getModal('sendDetail').close();
+      this.ngxSmartModalService.getModal('sendConfirm').close();
+      this.ngxSmartModalService.getModal('popup_ok').open();
+    } catch (error) {
+
+    }
+
+  }
+  closePopup(name) {
+    this.ngxSmartModalService.getModal(name).close();
+  }
   async updateCurrentWallet(networkName: NetworkName) {
     this.wallet_current = null;
     //  if (this.walletsData != null && this.walletsData.length >= 0)
