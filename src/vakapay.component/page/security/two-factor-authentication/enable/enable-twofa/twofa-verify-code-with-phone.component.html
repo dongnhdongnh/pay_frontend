@@ -1,0 +1,126 @@
+<form class="modal-content bd-0 tx-14" [hidden]="step !== 1">
+  <div class="modal-header pd-y-20 pd-x-25">
+    <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">
+      <span>Enable</span> Authenticator Support</h6>
+  </div>
+  <div class="modal-body pd-25">
+    <div class="row">
+      <label class="col-sm-12 form-control-label">
+        Enter the 2-step verification code provided by SMS to your phone:
+        <i class="tx-danger">*</i>
+      </label>
+      <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+        <div class="input-group sms">
+          <span class="input-group-addon">
+            <i class="fa fa-phone tx-16 lh-0 op-6"></i></span>
+          <input
+            #code
+            (keyup)="onCode($event)"
+            type="text"
+            class="form-control fc-outline-white half"
+            maxlength="6"
+            placeholder="000000">
+        </div>
+        <span class="resend">
+          <message-error-input [message]='messageErrorCode'></message-error-input>
+          <br>
+          Didn't receive the verification code? <br>
+          <a class="resend-sms" (click)="requireSendCodePhone()">Re-send SMS</a>
+        </span>
+      </div>
+    </div><!-- row -->
+  </div>
+  <div class="modal-footer step">
+    <button
+      (click)="cancel()"
+      type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25
+      tx-mont tx-medium">
+      Cancel
+    </button>
+    <button
+      (click)="verifySms()"
+      [disabled]="!isValid||isLoading"
+      class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">
+      Continue
+      <loading-button [isLoading]='isLoading'></loading-button>
+    </button>
+  </div>
+</form>
+
+<form class="modal-content bd-0 tx-14" [hidden]="step !== 2">
+  <div class="modal-header pd-y-20 pd-x-25">
+    <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Two-Factor
+      Authentication</h6>
+  </div>
+  <div class="modal-body pd-x-20 pd-y-5">
+    <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center">
+      <img src="../assets/icons/qr.png" alt="" class="img-big"></i>
+    <div class="row mg-t-20 mg-b-20">
+      <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+        <label class="form-control-label tx-center"> Authenticator Secret Code:<i
+            class="tx-danger">*</i></label>
+        <div class="input-group">
+          <input #secret type="text" class="form-control tx-center" readonly=""
+            [value]="secret">
+          <span (click)="copySecret(secret)" class="input-group-addon tx-size-sm
+            lh-2 bg-green tx-white
+            secret-code">Copy</span>
+        </div>
+      </div>
+    </div><!-- row -->
+    <div class="intro">
+      <p><b>1.</b> Install an authenticator app on your mobile device if you
+        don't already have one.</p>
+      <p><b>2.</b> Scan QR code with the authenticator (or tap it in mobile
+        browser)</p>
+      <p><b>3.</b> Please write down or print a copy of the 16-digit secret code
+        and put it in a safe place</p>
+      <p><b>4.</b> If your phone gets lost, stolen or erased, you will need this
+        code to link VakaPay to a
+        new authenticator app install once again</p>
+      <p><b>5.</b> Do not share it with anyone. Be aware of phishing scams. We
+        will never ask you for this
+        key</p>
+    </div>
+    <hr>
+    <div class="row">
+      <label class="col-sm-12 form-control-label tx-center">
+        Enter the 2-step verific-ation code provided by your authen app:
+        <i class="tx-danger">*</i></label>
+      <div class="col-sm-12 mg-t-10 mg-sm-t-0 mg-b-20">
+        <div class="input-group sms">
+          <span class="input-group-addon"><i class="fa fa-mobile tx-20 lh-0
+              op-6"></i></span>
+          <input #token (keyup)="onToken($event)"
+            type="text" class="form-control fc-outline-white half" maxlength="6"
+            placeholder="000000">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer step">
+    <button (click)="cancel()" type="button" class="btn btn-secondary tx-11
+      tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">
+      Cancel</button>
+    <button
+      (click)="onUpdate()"
+      [disabled]="!isValid||isLoading"
+      class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">
+      Countinue</button>
+  </div>
+</form>
+
+<form class="modal-content bd-0 tx-14" [hidden]="step !== 3">
+  <div class="modal-body pd-25">
+    <div class="row">
+      <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20
+        d-inline-block tx-center wd100 tx-medium" style="margin:0 auto;"></i>
+      <h5 class="check tx-success tx-15 tx-center wd100">You successfully to
+        active Two-Factor Authentication!</h5>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success tx-11 tx-uppercase pd-y-12
+      pd-x-25 tx-mont tx-medium mg-l-auto mg-r-auto" (click)="cancel()">Close</button>
+  </div>
+</form>

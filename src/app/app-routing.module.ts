@@ -22,6 +22,7 @@ import { LockScreenComponent } from 'component/lock-screen/lock-screen.component
 import { LockGuard } from 'guards/lock.guard';
 
 import { AccountsComponent } from 'component/page/accounts/accounts.component';
+import { ApiAccessComponent } from 'component/page/api-access/api-access.component';
 //Init routes
 const routes: Routes = [
 	{
@@ -96,6 +97,11 @@ const routes: Routes = [
 				path: 'activity',
 				component: ActivityComponent,
 				data: { title: 'Activity' }
+			},
+			{
+				path: 'api',
+				component: ApiAccessComponent,
+				data: { title: 'API Access' }
 			},
 			{
 				path: 'account',

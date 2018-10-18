@@ -8,7 +8,7 @@ import { Utility } from 'utility/Utility';
 
 @Injectable({ providedIn: 'root' })
 export class HttpService {
-  private url = '';
+  public url = '';
   private alertService: AlertService;
   configService: ConfigService;
 
@@ -67,8 +67,12 @@ export class HttpService {
 
   //Get api
   get(operation = 'operation', api, alert = true): Promise<ResultObject> {
+    let URL_API = new URL(api, this.url).href;
+    return this.requestGet(operation, URL_API, alert);
+  };
+
+  requestGet(operation = 'operation', URL_API, alert = true) {
     var self = this;
-    let URL_API = new URL(api, self.url).href;
     return new Promise<ResultObject>(
       (resolve, reject) => self.http.get(URL_API, self.httpOptionsGet())
         .subscribe(
@@ -82,12 +86,11 @@ export class HttpService {
             reject(error);
           }
         ));
-  };
+  }
 
-  //Post api
-  actionPost(operation = 'operation', api, data, httpOptions, alert = true): Promise<ResultObject> {
+
+  requestPost(operation = 'operation', URL_API, data, httpOptions, alert = true) {
     var self = this;
-    let URL_API = new URL(api, self.url).href;
     return new Promise<ResultObject>((resolve, reject) => {
       self.http.post(URL_API, data, httpOptions)
         .subscribe(
@@ -102,6 +105,12 @@ export class HttpService {
           }
         );
     });
+  }
+
+  //Post api
+  actionPost(operation = 'operation', api, data, httpOptions, alert = true): Promise<ResultObject> {
+    let URL_API = new URL(api, this.url).href;
+    return this.requestPost(operation, URL_API, data, httpOptions, alert);
   };
 
   //Post api

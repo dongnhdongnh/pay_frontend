@@ -1,14 +1,16 @@
-import { Component, Input, ElementRef, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input } from '@angular/core';
+import { TwofaService } from 'services/twofa/twofa.service';
 import { Utility } from 'utility/Utility';
 import { UtilityValidate } from 'utility/UtilityValidate';
-import { TwofaService } from 'services/twofa/twofa.service';
 import { SecurityService } from 'services/security/security.service';
 
 @Component({
-  selector: 'twofa-verify-code-with-phone',
-  templateUrl: './twofa-verify-code-with-phone.component.html'
+  selector: 'app-disable-twofa',
+  templateUrl: './disable-twofa.component.html',
+  styleUrls: ['./disable-twofa.component.css']
 })
-export class TwofaVerifyCodeComponentWithPhoneComponent {
+export class DisableTwofaComponent {
+
   @ViewChild('code') codeElement: ElementRef;
   //#region init variable
   @Input() form;
@@ -61,13 +63,13 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
       };
 
       //send ajax
-      let result = this.securityService.isEnableTwofa ? await this.twofaService.disable(dataPost) : await this.twofaService.enable(dataPost);
+      let result = await this.twofaService.disable(dataPost);
 
       //Show message success
       this.isLoading = false;
 
       if (Utility.isError(result)) return;
-
+      this.securityService.isEnableTwofa = !this.securityService.isEnableTwofa;
       this.onReset();
       this.form.modal.close();
 
@@ -104,7 +106,7 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
   onCode(event) {
     try {
       if (Utility.isEnter(event)) {
-        this.onUpdate();
+        // this.onUpdate();
         return;
       }
 
