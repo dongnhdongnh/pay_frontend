@@ -597,10 +597,12 @@
         <div class="row">
           <ul class="nav nav-tabs nav-tabs-style-1 nav-justified tx-13" role="tablist">
             <li class="nav-item width-half">
-              <a class="nav-link pd-y-10 active" data-toggle="tab" href="#taba" role="tab">Wallet Address</a>
+              <a class="nav-link pd-y-10 active" data-toggle="tab" href="#taba" role="tab" (click)="sendObject.sendByAd=true;">Wallet
+                Address</a>
             </li>
             <li class="nav-item width-half">
-              <a class="nav-link pd-y-10" data-toggle="tab" href="#tabb" role="tab">Email Address</a>
+              <a class="nav-link pd-y-10" data-toggle="tab" href="#tabb" role="tab" (click)="sendObject.sendByAd=false;">Email
+                Address</a>
             </li>
           </ul>
         </div><!-- row -->
@@ -611,8 +613,8 @@
               <div class="col-sm-12 mg-t-10 mg-sm-t-0">
                 <input type="text" class="form-control" placeholder="Enter a VKC Address" name="Recipient_WalletAddress"
                   #Recipient_WalletAddress="ngModel" required minlength="1" ngModel>
-                <div class="col alert alert-danger" role="alert" *ngIf="Recipient_WalletAddress?.errors?.required && submitButton?.touched">
-                  Name is required!
+                <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.Recipient_WalletAddress||(Recipient_WalletAddress?.errors?.required && Recipient_WalletAddress?.touched)">
+                  Address is required!
                 </div>
               </div>
             </div><!-- row -->
@@ -645,17 +647,22 @@
                   <!-- <input class="form-control fc-outline-white bg-white" placeholder="0.10000000 VKC"> -->
 
                   <!-- DROP -->
-                  <select class="form-control fc-outline-white bg-white" name="withdrawn_from" ngModel required
+                  <select class="form-control fc-outline-white bg-white" name="withdrawn_from" #withdrawn_from="ngModel" ngModel required
                     minlength="1">
                     <option *ngFor='let add of sendObject?.address' [value]="add">
                       {{add}}
                     </option>
+                    
                   </select>
+                 
                 </div>
               </div>
               <ng-template #notSend>
                 Not found
               </ng-template>
+            </div>
+            <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.withdrawn_from||(withdrawn_from?.errors?.required && withdrawn_from?.touched)">
+              Withdrawn is required!
             </div>
           </div>
         </div><!-- row -->
@@ -665,14 +672,18 @@
             <div class="width-half-mini input-number">
               <div class="input-left bg-green"><span color="slate">VND</span></div>
               <div class="input-right"><input type="number" class="form-control fc-outline-white" placeholder=""
-                  maxlength="15" name="VNDAmount" ngModel required minlength="1"></div>
+                  maxlength="15" name="VNDAmount" #VNDAmount="ngModel" ngModel required minlength="1">              
+              </div>
             </div>
             <div class="transfer"><i class="fa fa-exchange"></i></div>
             <div class="width-half-mini input-number">
               <div class="input-left bg-green"><span color="slate">VKC</span></div>
               <div class="input-right"><input type="number" class="form-control fc-outline-white" placeholder=""
-                  maxlength="15" name="VKCAmount" ngModel required minlength="1"></div>
+                  maxlength="15" name="VKCAmount" #VKCAmount="ngModel" ngModel required minlength="1"></div>
             </div>
+          </div>
+          <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.VNDAmount||(VNDAmount?.errors?.required && VNDAmount?.touched)">
+            Amount is required!
           </div>
         </div><!-- row -->
         <div class="row mg-t-20">

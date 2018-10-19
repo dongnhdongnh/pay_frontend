@@ -4,15 +4,13 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from 'services/account/account.service';
 import { Account } from 'model/account/Account';
-import { Wallet } from 'model/wallet/Wallet';
 import { Root } from 'component/root/root.component';
 import { WalletService } from 'services/wallet/wallet.service';
-import { Jsonp } from '@angular/http';
-import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { send } from 'q';
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
 import { ClipboardService } from 'ngx-clipboard'
+import { UtilityValidate } from 'utility/UtilityValidate';
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
@@ -53,12 +51,12 @@ export class AccountsComponent extends Root implements OnInit {
     this.Coin = "ETH";
     this.walletService = walletService;
     this.isDataLoaded = false;
-    this.clipboardService=_clipboardService;
+    this.clipboardService = _clipboardService;
     // console.log("ACCOUNT ID: " + JSON.stringify(this.mAccount));
     this.getUserData();
   }
 
-  popToast(type,title,body) {
+  popToast(type, title, body) {
     var toast = {
       type: type,
       title: title,
@@ -221,7 +219,9 @@ export class AccountsComponent extends Root implements OnInit {
   }
   public async onClickSend(networkName) {
     console.log("on cl0ickkkkkkkkkkkkkkkkkkkkkkkkkkk send " + networkName);
+    this.errorObject = {};
     this.updateSendObject(networkName);
+    //this.sendObject.sendByAd=true;
     let sendWallet = this.getWalletByName(this.sendObject.networkName);
     console.log("sendwallet=========> " + JSON.stringify(sendWallet));
     if (sendWallet == null)
@@ -229,7 +229,6 @@ export class AccountsComponent extends Root implements OnInit {
     var result = await this.walletService.getAddress(sendWallet.Id, sendWallet.Currency);
     //  console.log("Address =" + result.message);
     this.sendObject.address = JSON.parse(result.message);
-
     this.ngxSmartModalService.getModal('sendDetail').open();
   }
 
@@ -249,15 +248,18 @@ export class AccountsComponent extends Root implements OnInit {
     this.ngxSmartModalService.getModal('receiveCoin').close();
     this.ngxSmartModalService.getModal('receiveCoinDetail').open();
   }
-  public onClickCopyText(text)
-  {
+  public onClickCopyText(text) {
     this._clipboardService.copyFromContent(text);
-    this.popToast('success','',text+' has been copied to clipboard');
+    this.popToast('success', '', text + ' has been copied to clipboard');
   }
   async sendCoin(form: NgForm) {
     try {
-      console.log("FORM CONTROLLLL:" + form.controls.Recipient_EmailAddress.errors.required);
+      // console.log("FORM CONTROLLLL:" + form.controls.Recipient_EmailAddress.errors.required);
       console.log("HAHAHAHAHA ============>" + JSON.stringify(form.value));
+      if (!this.validateSendCoin(form)) {
+        console.log("validateSendCoin false");
+        return;
+      }
       this.sendObject.detail = form.value;
       var result = await this.walletService.checkSendCoin(this.sendObject.detail.withdrawn_from
         , this.sendObject.detail.Recipient_WalletAddress, this.sendObject.networkName, this.sendObject.detail.VKCAmount);
@@ -266,12 +268,30 @@ export class AccountsComponent extends Root implements OnInit {
       this.sendObject.checkObject = _checkObject;
       this.ngxSmartModalService.getModal('sendConfirm').open();
       console.log("HAHAHAHAHA confirm:checkObject ============>" + JSON.stringify(this.sendObject.checkObject));
+      console.log("SEND WITH DATA =" + JSON.stringify(this.sendObject));
     } catch (error) {
       console.log(error);
     }
-
-
   }
+
+  errorObject: any;
+  validateSendCoin(form: NgForm) {
+    this.errorObject = {};
+    if (form.controls.Recipient_WalletAddress.errors && form.controls.Recipient_WalletAddress.errors.required) {
+      this.errorObject.Recipient_WalletAddress = true;
+      return false;
+    }
+    if (form.controls.withdrawn_from.errors && form.controls.withdrawn_from.errors.required ) {
+      this.errorObject.withdrawn_from = true;
+      return false;
+    }
+    if (form.controls.VNDAmount.errors && form.controls.VNDAmount.errors.required ) {
+      this.errorObject.VNDAmount = true;
+      return false;
+    }
+    return true;
+  }
+
   async sendCoinConfirm(form: NgForm) {
     try {
 
