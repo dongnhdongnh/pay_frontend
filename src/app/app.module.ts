@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule, MatTabsModule, MatSidenavModule } from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import { ClipboardModule } from 'ngx-clipboard';
 //ng-select
 import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 
@@ -146,7 +146,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     BrowserAnimationsModule,
     ToasterModule.forRoot(),
     MatTableModule, MatSidenavModule,
-    MatButtonModule, MatTabsModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,
+    MatButtonModule, MatTabsModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,ClipboardModule,
 
     //Font
     AngularFontAwesomeModule,

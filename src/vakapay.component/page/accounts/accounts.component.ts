@@ -12,7 +12,7 @@ import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { send } from 'q';
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
-
+import { ClipboardService } from 'ngx-clipboard'
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
@@ -22,6 +22,7 @@ import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
 export class AccountsComponent extends Root implements OnInit {
 
   private toasterService: ToasterService;
+  private clipboardService: ClipboardService;
   public config1: ToasterConfig = new ToasterConfig({
     positionClass: 'toast-top-center',
     animation: 'fade'
@@ -42,7 +43,8 @@ export class AccountsComponent extends Root implements OnInit {
     mAccountSerive: AccountService,
     walletService: WalletService,
     public ngxSmartModalService: NgxSmartModalService,
-    toasterService: ToasterService
+    toasterService: ToasterService,
+    private _clipboardService: ClipboardService
   ) {
     super(titleService, route, router);
     this.toasterService = toasterService;
@@ -51,15 +53,16 @@ export class AccountsComponent extends Root implements OnInit {
     this.Coin = "ETH";
     this.walletService = walletService;
     this.isDataLoaded = false;
+    this.clipboardService=_clipboardService;
     // console.log("ACCOUNT ID: " + JSON.stringify(this.mAccount));
     this.getUserData();
   }
 
-  popToast() {
+  popToast(type,title,body) {
     var toast = {
-      type: 'info',
-      title: 'HELLO BABY',
-      body: 'Here is a Toast Body',
+      type: type,
+      title: title,
+      body: body,
       positionClass: 'toast-top-left',
       showCloseButton: false
     };
@@ -231,7 +234,6 @@ export class AccountsComponent extends Root implements OnInit {
   }
 
   public async onClickReceive(networkName) {
-    this.popToast();
     console.log("onClickReceive " + networkName);
     this.updateSendObject(networkName);
     let sendWallet = this.getWalletByName(this.sendObject.networkName);
@@ -246,6 +248,11 @@ export class AccountsComponent extends Root implements OnInit {
   public onClickReceiveDetail() {
     this.ngxSmartModalService.getModal('receiveCoin').close();
     this.ngxSmartModalService.getModal('receiveCoinDetail').open();
+  }
+  public onClickCopyText(text)
+  {
+    this._clipboardService.copyFromContent(text);
+    this.popToast('success','',text+' has been copied to clipboard');
   }
   async sendCoin(form: NgForm) {
     try {
@@ -297,14 +304,19 @@ export class AccountsComponent extends Root implements OnInit {
 
   getWalletByName(networkName) {
     let _output = null;
-    this.walletsData.forEach(element => {
-      if (element.Currency == networkName.toString()) {
-        _output = element;
-        console.log("get " + JSON.stringify(element));
-        return element;
-        //    this.getHistory(this.wallet_current);
-      }
-    });
+    try {
+      this.walletsData.forEach(element => {
+        if (element.Currency == networkName.toString()) {
+          _output = element;
+          console.log("get " + JSON.stringify(element));
+          return element;
+          //    this.getHistory(this.wallet_current);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
     return _output;
   }
 
