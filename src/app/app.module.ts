@@ -26,7 +26,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 // Add routing
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app-routing/app-routing.module';
 
 // Component parent
 import { AppComponent } from './app.component';
