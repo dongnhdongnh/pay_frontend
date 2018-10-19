@@ -19,21 +19,21 @@ import { ReportFormComponent } from 'component/report-form/report-form.component
 
 // Init routes
 export const routes: Routes = [
-	{ path: '', component: LandingComponent, data: { title: 'Welcome' } },
-	{ path: 'register', component: RegisterComponent, canActivate: [LoginGuard], data: { title: 'Register' }},
-	{ path: 'login', component: LoginComponent, canActivate: [LoginGuard], data: { title: 'Login' } },
-	{ path: 'signin', redirectTo: 'login' },
-	{ path: 'signup', redirectTo: 'register' },
-	{ path: 'verify', component: VerifyComponent, canActivate: [LoginGuard], data: { title: 'Verify'} },
-	{ path: 'logout', component: LogoutComponent, data: { title: 'Logout' } },
-	{ path: 'addresses', component: AddressesComponent, data: { title: 'Addresses' } },
-	{ path: 'reports', component: ReportsComponent, data: { title: 'Reports' } },
-	{ path: 'reportform', component: ReportFormComponent, data: {title: 'Report Form'} },
-	{ path: '', component: DashboardComponent, /* canActivate: [AuthGuard],*/ children: [
-		{ path: 'dashboard', component: IndexComponent, data: { title: 'Index' } },
-		{ path: 'profile', component: ProfileComponent, data: { title: 'Profile' } },
-		{ path: 'preferences', component: PreferencesComponent, data: { title: 'Preferences' } },]
-	},
-	{ path: '404', component: PagenotfoundComponent },
-	{ path: '**', redirectTo: '/404' },
+    { path: '', component: LandingComponent, data: { title: 'Welcome' } },
+    { path: 'register', component: RegisterComponent, canActivate: [LoginGuard], data: { title: 'Register' }},
+    { path: 'login', component: LoginComponent, canActivate: [LoginGuard], data: { title: 'Login' } },
+    { path: 'signin', redirectTo: 'login' },
+    { path: 'signup', redirectTo: 'register' },
+    { path: 'verify', component: VerifyComponent, canActivate: [LoginGuard], data: { title: 'Verify'} },
+    { path: 'logout', component: LogoutComponent, data: { title: 'Logout' } },
+    { path: 'addresses', component: AddressesComponent, data: { title: 'Addresses' } },
+    { path: 'reports', component: ReportsComponent, data: { title: 'Reports' } },
+    { path: 'reportform', component: ReportFormComponent, data: {title: 'Report Form'} },
+    { path: '', component: DashboardComponent, /* canActivate: [AuthGuard],*/ children: [
+        { path: 'dashboard', component: IndexComponent, data: { title: 'Index' } },
+        { path: 'profile', component: ProfileComponent, data: { title: 'Profile' } },
+        { path: 'preferences', component: PreferencesComponent, data: { title: 'Preferences' } }, ]
+    },
+    { path: '404', component: PagenotfoundComponent },
+    { path: '**', redirectTo: '/404' },
 ];

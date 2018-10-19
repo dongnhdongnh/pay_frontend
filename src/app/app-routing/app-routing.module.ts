@@ -5,11 +5,11 @@ import { CommonModule } from '@angular/common';
 import { routes } from './routes';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		RouterModule.forRoot(routes)
-	],
-	exports: [ RouterModule ],
-	declarations: []
+    imports: [
+        CommonModule,
+        RouterModule.forRoot(routes)
+    ],
+    exports: [ RouterModule ],
+    declarations: []
 })
 export class AppRoutingModule { }
