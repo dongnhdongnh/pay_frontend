@@ -3,31 +3,36 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 
 import { HttpClientModule } from '@angular/common/http';
+// Import ReactiveFormsModule
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ReactiveFormsModule } from '@angular/forms';
 
-//Add libriary
+
+// Add libriary
 import { ToasterModule } from 'angular2-toaster';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatMenuModule } from '@angular/material';
-import { MatIconModule } from "@angular/material/icon";
+import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-//ng-select
+// ng-select
 import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 
 // RECOMMENDED (doesn't work with system.js)
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
-//Add libriary font
+// Add libriary font
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
-//Add routing
+// Add routing
 import { AppRoutingModule } from './app-routing.module';
 
-//Component parent
+// Component parent
 import { AppComponent } from './app.component';
 
-//Component children
-//Authentication
+// Component children
+// Authentication
 import { RegisterComponent } from 'component/authenticate/register/register.component';
 import { LoginComponent } from 'component/authenticate/login/login.component';
 import { HeaderAuthenticateComponent } from 'component/authenticate/header-authenticate/header-authenticate.component';
@@ -42,7 +47,7 @@ import { LeftPanelComponent } from 'component/page/left-panel/left-panel.compone
 import { FooterComponent } from 'component/page/footer/footer.component';
 import { PortfolioComponent } from 'component/page/portfolio/portfolio.component';
 
-//VakaId Login
+// VakaId Login
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { LandingComponent } from 'component/landing/landing.component';
 import { LogoutComponent } from 'component/authenticate/logout/logout.component';
@@ -53,8 +58,9 @@ import { UpdateProfileComponent } from 'component/page/profile/update-profile/up
 import { ProfileComponent } from 'component/page/profile/profile.component';
 import { PreferencesComponent } from 'component/page/preferences/preferences.component';
 import { ObjectivesComponent } from './objectives/objectives.component';
-import { AddressesComponent } from "../vakapay.component/addresses/addresses.component";
+import { AddressesComponent } from '../vakapay.component/addresses/addresses.component';
 import { ReportsComponent } from '../vakapay.component/reports/reports.component';
+import { ReportFormComponent } from '../vakapay.component/report-form/report-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,6 +88,7 @@ import { ReportsComponent } from '../vakapay.component/reports/reports.component
     ObjectivesComponent,
     AddressesComponent,
     ReportsComponent,
+    ReportFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,14 +98,18 @@ import { ReportsComponent } from '../vakapay.component/reports/reports.component
     BrowserAnimationsModule,
     ToasterModule.forRoot(),
     MatButtonModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,
+    // Reactive Forms Module
+    MatSelectModule,
+    MatSlideToggleModule,
+    ReactiveFormsModule,
 
-    //Font
+    // Font
     AngularFontAwesomeModule,
 
-    //Redirect VakaId
+    // Redirect VakaId
     OAuthModule.forRoot(),
 
-    //Bootstrap dropdow module
+    // Bootstrap dropdow module
     BsDropdownModule.forRoot(),
 
     HttpClientModule,
