@@ -7,10 +7,10 @@ import { Account } from 'model/account/Account';
 import { Root } from 'component/root/root.component';
 import { WalletService } from 'services/wallet/wallet.service';
 import { NgxSmartModalService } from 'ngx-smart-modal';
-import { send } from 'q';
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
 import { ClipboardService } from 'ngx-clipboard'
 import { UtilityValidate } from 'utility/UtilityValidate';
+
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
@@ -27,7 +27,7 @@ export class AccountsComponent extends Root implements OnInit {
   });
 
   isDataLoaded: boolean;
-  sendByAd:boolean;
+  sendByAd: boolean;
   mAccount: Account;
   walletService: WalletService;
   walletsData: any;
@@ -55,7 +55,7 @@ export class AccountsComponent extends Root implements OnInit {
     this.clipboardService = _clipboardService;
     // console.log("ACCOUNT ID: " + JSON.stringify(this.mAccount));
     this.getUserData();
- 
+
     this.sendByAd = true;
   }
 
@@ -232,7 +232,28 @@ export class AccountsComponent extends Root implements OnInit {
     var result = await this.walletService.getAddress(sendWallet.Id, sendWallet.Currency);
     //  console.log("Address =" + result.message);
     this.sendObject.address = JSON.parse(result.message);
+    var result_exchangeRate = await this.walletService.getExchangeRate(sendWallet.Currency);
+    this.sendObject.exchangeRate = result_exchangeRate.message;
     this.ngxSmartModalService.getModal('sendDetail').open();
+  }
+  vndValue = 0;
+  vkcValue = 0;
+  ExchangeRateInput(typeName) {
+    if (!this.sendObject.exchangeRate)
+      return;
+    console.log("WHAT " + typeName);
+    switch (typeName) {
+      case "VKC":
+        this.vndValue = this.vkcValue/this.sendObject.exchangeRate;
+        break;
+      case "VND":
+        this.vkcValue = this.vndValue*this.sendObject.exchangeRate;
+        break;
+      default:
+        break;
+    }
+
+    // this.VKCAmount=this.sendObject.detail.VNDAmount;
   }
 
   public async onClickReceive(networkName) {
@@ -269,7 +290,7 @@ export class AccountsComponent extends Root implements OnInit {
       console.log("RESULT " + result);
       let _checkObject = JSON.parse(result.message);
       this.sendObject.checkObject = _checkObject;
-      this.walletService.sendCoinMakeSMSCode();
+      this.requestSMSCode();
       this.ngxSmartModalService.getModal('sendConfirm').open();
       console.log("HAHAHAHAHA confirm:checkObject ============>" + JSON.stringify(this.sendObject.checkObject));
       console.log("SEND WITH DATA =" + JSON.stringify(this.sendObject));
@@ -278,9 +299,13 @@ export class AccountsComponent extends Root implements OnInit {
     }
   }
 
+  requestSMSCode() {
+    this.walletService.sendCoinMakeSMSCode();
+  }
+
   errorObject: any;
   validateSendCoin(form: NgForm) {
-    console.log("send by ad=" + this.sendByAd);
+    //console.log("send by ad=" + this.sendByAd);
     this.errorObject = {};
     if (this.sendByAd) {
       if (form.controls.Recipient_WalletAddress.errors && form.controls.Recipient_WalletAddress.errors.required) {
@@ -313,8 +338,8 @@ export class AccountsComponent extends Root implements OnInit {
 
   async sendCoinConfirm(form: NgForm) {
     try {
-      this.sendObject.SMScode=form.value.VKCSMS;
-      this.sendObject.detail.sendByAd=this.sendByAd;
+      this.sendObject.SMScode = form.value.VKCSMS;
+      this.sendObject.detail.sendByAd = this.sendByAd;
       this.walletService.sendCoinConfirm(this.sendObject);
 
       console.log("HAHAHAHAHA confirm ============>" + JSON.stringify(form.value));

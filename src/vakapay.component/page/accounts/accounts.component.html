@@ -208,17 +208,36 @@
 
                               </div>
                             </td>
-
                             <div *ngIf="item.type==0">
                               <td class="round">
-                                <i class="tx-btc tx-20"><img src="../assets/icons/send.svg" alt=""></i>
+                                <div [ngSwitch]="item.Status">
+                                  <div *ngSwitchCase="'Pending'">
+                                    <i class="tx-btc tx-20"><img src="../assets/icons/pending.svg" alt=""></i>
+                                  </div>
+                                  <div *ngSwitchCase="'Error'">
+                                    <i class="tx-btc tx-20"><img src="../assets/icons/decline.svg" alt=""></i>
+                                  </div>
+                                  <div *ngSwitchDefault>
+                                    <i class="tx-btc tx-20"><img src="../assets/icons/send.svg" alt=""></i>
+                                  </div>
+                                </div>
                               </td>
                               <td width="20%" class="tx-left">
                                 <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Widthrew funds</p>
                                 <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
                               </td>
                               <td width="10%" class="tx-left hidden-mob">
-                                <i class="status bg-info">Withdrawn</i>
+                                <div [ngSwitch]="item.Status">
+                                  <div *ngSwitchCase="'Completed'">
+                                    <i class="status bg-success">Sent</i>
+                                  </div>
+                                  <div *ngSwitchCase="'Pending'">
+                                    <i class="status btn-warning">Pending</i>
+                                  </div>
+                                  <div *ngSwitchCase="'Error'">
+                                    <i class="status bg-danger">Error</i>
+                                  </div>
+                                </div>
                               </td>
                               <td width="40%" class="tx-right">
                                 <p class="mg-b-0 tx-inverse tx-medium tx-red">{{item.Amount}} {{Coin}}</p>
@@ -227,19 +246,41 @@
                             </div>
                             <div *ngIf="item.type==1">
                               <td class="round">
-                                <i class="tx-btc tx-20"><img src="../assets/icons/receive.svg" alt=""></i>
+                                <div [ngSwitch]="item.Status">
+                                  <div *ngSwitchCase="'Pending'">
+                                    <i class="tx-btc tx-20"><img src="../assets/icons/pending.svg" alt=""></i>
+                                  </div>
+                                  <div *ngSwitchCase="'Error'">
+                                    <i class="tx-btc tx-20"><img src="../assets/icons/decline.svg" alt=""></i>
+                                  </div>
+                                  <div *ngSwitchDefault>
+                                    <i class="tx-btc tx-20"><img src="../assets/icons/receive.svg" alt=""></i>
+                                  </div>
+                                </div>
                               </td>
                               <td width="20%" class="tx-left">
                                 <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Deposit VakaCoin</p>
                                 <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
                               </td>
                               <td width="10%" class="tx-left hidden-mob">
-                                <i class="status bg-success">Deposit</i>
+                                <div [ngSwitch]="item.Status">
+                                  <div *ngSwitchCase="'Completed'">
+                                    <i class="status bg-success">Received</i>
+                                  </div>
+                                  <div *ngSwitchCase="'Pending'">
+                                    <i class="status btn-warning">Pending</i>
+                                  </div>
+                                  <div *ngSwitchCase="'Error'">
+                                    <i class="status bg-danger">Error</i>
+                                  </div>
+                                </div>
                               </td>
                               <td width="40%" class="tx-right">
                                 <p class="mg-b-0 tx-inverse tx-medium tx-green">{{item.Amount}} {{Coin}}</p>
                                 <span class="d-block tx-13 tx-grey">-₫258,476.00</span>
                               </td>
+
+
                             </div>
 
 
@@ -443,31 +484,7 @@
 </div><!-- br-mainpanel -->
 <div class="clear-both"></div>
 <!-- ########## END: MAIN PANEL ########## -->
-<div class="br-profile">
-  <footer class="br-footer">
-    <div class="footer-left">
-      <div class="mg-b-2">Copyright &copy; 2018 VakaPay. All Rights Reserved.</div>
-      <div>Attentively and carefully made by <a href="#" style="color:rgb(28, 175, 154);">VakaGroup</a>.</div>
-    </div>
-    <div class="footer-right">
-      <div class="dropdown">
-        <a href="" class="tx-gray-800 d-inline-block" data-toggle="dropdown">
-          <div class="ht-45 pd-x-20 bd d-flex align-items-center justify-content-center">
-            <span class="mg-r-10 tx-13 tx-medium">English</span>
-            <i class="fa fa-angle-down mg-l-10"></i>
-          </div>
-        </a>
-        <div class="dropdown-menu pd-10">
-          <nav class="nav nav-style-1 flex-column">
-            <a href="" class="nav-link"> English</a>
-            <a href="" class="nav-link"> Tieng Viet</a>
-            <a href="" class="nav-link"> Japan</a>
-          </nav>
-        </div><!-- dropdown-menu -->
-      </div><!-- dropdown -->
-    </div>
-  </footer>
-</div>
+
 
 
 <ngx-smart-modal #transactionDetail [identifier]="'transactionDetail'">
@@ -479,9 +496,7 @@
           <ng-template #elseBlock> Received</ng-template>
           {{tab_current}}
         </h6>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+
       </div>
       <div class="modal-body pd-x-20 pd-y-5">
         <i class="icon ion-arrow-down-a tx-60 tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"></i>
@@ -499,10 +514,15 @@
             </div><!-- row -->
             <div class="row no-gutters">
               <div class="col-4">
-                From ethereum address
+                <label *ngIf="transactionDetail_current?.Amount>0;else showTo"> From {{tab_current}} address </label>
+                <ng-template #showTo>To {{tab_current}} address </ng-template>
               </div><!-- col-4 -->
               <div class="col-8">
-                <a href="#" data-dismiss="modal">View transaction</a>
+                <div *ngIf="transactionDetail_current?.Amount>0;else showAddTo">{{transactionDetail_current?.ToAddress}}
+                </div>
+                <ng-template #showAddTo>{{transactionDetail_current?.FromAddress}}</ng-template>
+                <!-- From {{transactionDetail_current?.FromAddress}} to {{transactionDetail_current?.ToAddress}}
+                <a href="#" data-dismiss="modal">View transaction</a> -->
               </div><!-- col-8 -->
             </div><!-- row -->
             <div class="row no-gutters">
@@ -586,7 +606,7 @@
 <ngx-smart-modal #sendDetail [identifier]="'sendDetail'">
   <div class="modal-dialog modal-dialog-vertical-center" role="document">
     <form class="modal-content bd-0 tx-14" #sendCoinForm="ngForm" (ngSubmit)="sendCoin(sendCoinForm)" novalidate>
-
+      {{errorObject|json}}
       <div class="modal-header pd-y-20 pd-x-25">
         <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Send {{sendObject?.name}}</h6>
         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -597,11 +617,11 @@
         <div class="row">
           <ul class="nav nav-tabs nav-tabs-style-1 nav-justified tx-13" role="tablist">
             <li class="nav-item width-half">
-              <a class="nav-link pd-y-10 active" data-toggle="tab" href="#taba" role="tab" (click)="sendByAd=true;">Wallet
+              <a class="nav-link pd-y-10 active" data-toggle="tab" href="#taba" role="tab" (click)="sendByAd=true;errorObject = {};">Wallet
                 Address</a>
             </li>
             <li class="nav-item width-half">
-              <a class="nav-link pd-y-10" data-toggle="tab" href="#tabb" role="tab" (click)="sendByAd=false;">Email
+              <a class="nav-link pd-y-10" data-toggle="tab" href="#tabb" role="tab" (click)="sendByAd=false;errorObject = {};">Email
                 Address</a>
             </li>
           </ul>
@@ -626,11 +646,11 @@
             <div class="row mg-t-10">
               <label class="col-sm-12 form-control-label"> Recipient:<i class="tx-danger">*</i></label>
               <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-                <input type="text" class="form-control" name="Recipient_EmailAddress" #Recipient_EmailAddress="ngModel" id="Recipient_EmailAddress"
-                  placeholder="Enter an email Address" required ngModel (keyup)="validateSendCoin(sendCoinForm)">
-                  <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.Recipient_EmailAddress||(Recipient_EmailAddress?.errors?.required && Recipient_EmailAddress?.touched)">
-                    Address is required!
-                  </div>
+                <input type="text" class="form-control" name="Recipient_EmailAddress" #Recipient_EmailAddress="ngModel"
+                  id="Recipient_EmailAddress" placeholder="Enter an email Address" required ngModel (keyup)="validateSendCoin(sendCoinForm)">
+                <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.Recipient_EmailAddress||(Recipient_EmailAddress?.errors?.required && Recipient_EmailAddress?.touched)">
+                  Address is required!
+                </div>
               </div>
             </div><!-- row -->
 
@@ -650,14 +670,14 @@
                   <!-- <input class="form-control fc-outline-white bg-white" placeholder="0.10000000 VKC"> -->
 
                   <!-- DROP -->
-                  <select class="form-control fc-outline-white bg-white" name="withdrawn_from" #withdrawn_from="ngModel" ngModel required
-                    minlength="1" (click)="validateSendCoin(sendCoinForm)">
+                  <select class="form-control fc-outline-white bg-white" name="withdrawn_from" #withdrawn_from="ngModel"
+                    ngModel required minlength="1" (click)="validateSendCoin(sendCoinForm)">
                     <option *ngFor='let add of sendObject?.address' [value]="add">
                       {{add}}
                     </option>
-                    
+
                   </select>
-                 
+
                 </div>
               </div>
               <ng-template #notSend>
@@ -675,14 +695,16 @@
             <div class="width-half-mini input-number">
               <div class="input-left bg-green"><span color="slate">VND</span></div>
               <div class="input-right"><input type="number" class="form-control fc-outline-white" placeholder=""
-                  maxlength="15" name="VNDAmount" #VNDAmount="ngModel" ngModel required minlength="1" (keyup)="validateSendCoin(sendCoinForm)">              
+                  [(ngModel)]="vndValue" maxlength="15" name="VNDAmount" #VNDAmount="ngModel" ngModel required
+                  minlength="1" (change)="ExchangeRateInput('VND');" (keyup)="validateSendCoin(sendCoinForm);">
               </div>
             </div>
             <div class="transfer"><i class="fa fa-exchange"></i></div>
             <div class="width-half-mini input-number">
               <div class="input-left bg-green"><span color="slate">VKC</span></div>
               <div class="input-right"><input type="number" class="form-control fc-outline-white" placeholder=""
-                  maxlength="15" name="VKCAmount" #VKCAmount="ngModel" ngModel required minlength="1" (keyup)="validateSendCoin(sendCoinForm)"></div>
+                  [(ngModel)]="vkcValue" maxlength="15" name="VKCAmount" #VKCAmount="ngModel" ngModel required
+                  minlength="1" (change)="ExchangeRateInput('VKC');" (keyup)="validateSendCoin(sendCoinForm);"></div>
             </div>
           </div>
           <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.VNDAmount||(VNDAmount?.errors?.required && VNDAmount?.touched)">
@@ -694,10 +716,10 @@
           <div class="col-sm-12 mg-t-10 mg-sm-t-0">
             <textarea rows="3" class="form-control" placeholder="Write an optional message" name="VKCnote" ngModel
               required minlength="1" (keyup)="validateSendCoin(sendCoinForm)" #VKCnote="ngModel"></textarea>
-              <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.VKCnote||(VKCnote?.errors?.required && VKCnote?.touched)">
-                Note is required!
-              </div>
+            <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.VKCnote||(VKCnote?.errors?.required && VKCnote?.touched)">
+              Note is required!
             </div>
+          </div>
         </div><!-- row -->
       </div>
       <div class="modal-footer step">
@@ -719,9 +741,7 @@
     <form class="modal-content bd-0 tx-14" #sendCoinConfirmForm="ngForm" (ngSubmit)="sendCoinConfirm(sendCoinConfirmForm)">
       <div class="modal-header pd-y-20 pd-x-25">
         <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Confirm {{sendObject?.sortName}} Send</h6>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+
       </div>
       <div class="modal-body pd-25">
         <div class="row">
@@ -733,7 +753,11 @@
                   To
                 </div><!-- col-4 -->
                 <div class="col-9 col-sm-9 break">
-                  {{sendObject?.detail?.Recipient_WalletAddress}}
+                  <div *ngIf="sendByAd; else showEmail">
+                    {{sendObject?.detail?.Recipient_WalletAddress}}
+                  </div>
+                  <ng-template #showEmail> {{sendObject?.detail?.Recipient_EmailAddress}}</ng-template>
+
 
                 </div><!-- col-8 -->
               </div><!-- row -->
@@ -780,7 +804,8 @@
                   <input id="phoneMask" type="text" class="form-control fc-outline-white half" maxlength="7"
                     placeholder="0000000" name="VKCSMS" ngModel>
                 </div>
-                <span class="resend">Didn't receive the verification code? <br> <a href="#">Re-send SMS</a></span>
+                <span class="resend">Didn't receive the verification code? <br> <a (click)="requestSMSCode()">Re-send
+                    SMS</a></span>
               </div>
             </div><!-- row -->
           </div>
@@ -803,13 +828,12 @@
   <div class="modal-dialog modal-dialog-vertical-center" role="document">
     <div class="modal-content">
       <div class="modal-body tx-center pd-y-20 pd-x-20">
-
         <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
         <h4 class="tx-success mg-b-20">Your transaction is on the way!</h4>
-        <p class="mg-b-20 mg-x-20">You sent {{sendObject?.detail?.VKCAmount}} {{sendObject?.sortName}} (₫0.00) to an
+        <p class="mg-b-20 mg-x-20">You sent {{sendObject?.detail?.VKCAmount}} {{sendObject?.sortName}} (₫{{sendObject?.detail?.VNDAmount}}) to an
           external address.</p>
         <a href="#" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-toggle="modal"
-          data-dismiss="modal" data-target="#modaldemo3d"> View Details
+          data-dismiss="modal" (click)="closePopup('popup_ok')" data-target="#modaldemo3d"> View Details
         </a>
       </div><!-- modal-body -->
     </div>
