@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule, MatTabsModule, MatSidenavModule } from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { QRCodeModule } from 'angularx-qrcode';
 
 //ng-select
 import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
@@ -98,6 +99,8 @@ import { BuyWidgetsComponent } from 'component/page/api-access/buy-widgets/buy-w
 import { ApiKeysComponent } from 'component/page/api-access/api-keys/api-keys.component';
 import { Oauth2AppComponent } from 'component/page/api-access/oauth2-app/oauth2-app.component';
 import { ApiAccessNotificationComponent } from 'component/page/api-access/api-access-notification/api-access-notification.component';
+import { ListApiKeysComponent } from 'component/page/api-access/api-keys/list-api-keys/list-api-keys.component';
+import { NewApiKeyComponent } from 'component/page/api-access/api-keys/new-api-key/new-api-key.component';
 
 @NgModule({
   declarations: [
@@ -154,6 +157,8 @@ import { ApiAccessNotificationComponent } from 'component/page/api-access/api-ac
     ApiKeysComponent,
     Oauth2AppComponent,
     ApiAccessNotificationComponent,
+    ListApiKeysComponent,
+    NewApiKeyComponent,
   ],
   imports: [
     BrowserModule,
@@ -164,6 +169,7 @@ import { ApiAccessNotificationComponent } from 'component/page/api-access/api-ac
     ToasterModule.forRoot(),
     MatTableModule, MatSidenavModule,
     MatButtonModule, MatTabsModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,
+    QRCodeModule,
 
     //Font
     AngularFontAwesomeModule,

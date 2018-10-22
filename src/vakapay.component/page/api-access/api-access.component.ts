@@ -13,4 +13,8 @@ export class ApiAccessComponent implements OnInit {
   ngOnInit() {
   }
 
+  changeTab(value) {
+    this.selectedIndex = value;
+  }
+
 }

@@ -34,6 +34,7 @@
     "angular2-jwt-simple": "^0.5.5",
     "angular2-toaster": "^6.1.0",
     "angularic-ionicon": "^1.1.1",
+    "angularx-qrcode": "^1.2.4",
     "body-parser": "^1.18.3",
     "core-js": "^2.5.4",
     "es6-shim": "^0.35.3",

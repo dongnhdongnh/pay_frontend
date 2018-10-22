@@ -11,6 +11,40 @@
 
 @import '/assets/css/bracket.css';
 @import '/assets/css/new.css';
+.card:hover {
+  -webkit-transform: translateY(-5px);
+  -ms-transform: translateY(-5px);
+  transform: translateY(-5px);
+  -webkit-box-shadow: 0 3px 38px rgba(170, 176, 177, .98);
+  box-shadow: 0 3px 38px rgba(170, 176, 177, .98);
+}
+
+.br-profile-page .card:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.rickshaw_graph {
+  overflow: hidden;
+}
+
+.card2 {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.active>.card2 {
+  opacity: 1;
+}
+
+.active>.card {
+  border-top: 5px solid #0ba9d7;
+}
+
+.nsm-content {
+  margin: 1.75rem 0 !important;
+}
+
 [disabled] {
   cursor: not-allowed !important;
 }

@@ -153,6 +153,15 @@ export class UtilityValidate extends Validate {
         }
     }
 
+    static validateToken(token, maxLength = 6) {
+        if (!token) throw new Error('Token is required');
+        this.validateString(token, maxLength, maxLength, 'Code');
+
+        if (this.isNumericCharacter(token) === false) {
+            throw new Error('Token is only numeric chatacters.');
+        }
+    }
+
     static validatePassword(password) {
         this.validateString(password, 6, 50, 'Password')
     }

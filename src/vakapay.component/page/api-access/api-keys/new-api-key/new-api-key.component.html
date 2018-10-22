@@ -1,0 +1,145 @@
+<a class="btn addnew bg-green" (click)="onShowModal()">
+  + New API Key
+</a>
+
+<ngx-smart-modal #modal [identifier]="'modal'">
+  <form class="modal-content bd-0 tx-14">
+    <div class="modal-header pd-y-20 pd-x-25">
+      <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">New API Key</h6>
+    </div>
+    <div class="modal-body pd-x-20 pd-y-5">
+      <div class="row mg-t-20">
+        <span class="btn btn-success label mg-b-20"><i class="fa fa-user
+            mg-r-5"></i>Account</span>
+        <div class="col-sm-12">
+          <label class="ckbox">
+            <input type="checkbox"><span>All</span>
+          </label>
+        </div>
+        <div class="col-sm-4">
+          <label class="ckbox">
+            <input type="checkbox"><span>BTC Wallet (Primary)</span>
+          </label>
+        </div>
+        <div class="col-sm-4">
+          <label class="ckbox">
+            <input type="checkbox"><span>VKC Wallet (Primary)</span>
+          </label>
+        </div>
+        <div class="col-sm-4">
+          <label class="ckbox">
+            <input type="checkbox"><span>ETH Wallet (Primary)</span>
+          </label>
+        </div>
+        <div class="col-sm-4">
+          <label class="ckbox">
+            <input type="checkbox"><span>EOS Wallet (Primary)</span>
+          </label>
+        </div>
+        <div class="col-sm-4">
+          <label class="ckbox">
+            <input type="checkbox"><span>VKC Vault</span>
+          </label>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <hr>
+      <div class="row mg-t-20">
+        <span class="btn btn-success label mg-b-20"><i class="fa fa-shield
+            mg-r-5"></i>Permissions</span>
+        <div class="col-sm-12">
+          <h6>API v2 permissions</h6>
+        </div>
+        <div class="col-sm-6">
+          <label class="ckbox">
+            <input type="checkbox"><span>wallet:accounts:create</span>
+          </label>
+        </div>
+        <div class="col-sm-6">
+          <label class="ckbox">
+            <input type="checkbox"><span>wallet:accounts:create</span>
+          </label>
+        </div>
+        <div class="col-sm-6">
+          <label class="ckbox">
+            <input type="checkbox"><span>wallet:accounts:create</span>
+          </label>
+        </div>
+        <div class="col-sm-6">
+          <label class="ckbox">
+            <input type="checkbox"><span>wallet:accounts:create</span>
+          </label>
+        </div>
+        <div class="col-sm-6">
+          <label class="ckbox">
+            <input type="checkbox"><span>wallet:accounts:create</span>
+          </label>
+        </div>
+        <div class="col-sm-6">
+          <label class="ckbox">
+            <input type="checkbox"><span>wallet:accounts:create</span>
+          </label>
+        </div>
+        <div class="col-sm-6">
+          <label class="ckbox">
+            <input type="checkbox"><span>wallet:accounts:create</span>
+          </label>
+        </div>
+        <div class="clear"></div>
+        <div class="col-sm-12 mg-t-10">
+          <h6>API v1 permissions (legacy)</h6>
+        </div>
+        <div class="col-sm-12">
+          <label class="ckbox">
+            <input type="checkbox"><span>All</span>
+          </label>
+        </div>
+        <div class="col-sm-6">
+          <label class="ckbox">
+            <input type="checkbox"><span>wallet:accounts:create</span>
+          </label>
+        </div>
+        <div class="col-sm-6">
+          <label class="ckbox">
+            <input type="checkbox"><span>wallet:accounts:create</span>
+          </label>
+        </div>
+        <div class="col-sm-6">
+          <label class="ckbox">
+            <input type="checkbox"><span>wallet:accounts:create</span>
+          </label>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <hr>
+      <div class="row mg-t-20">
+        <span class="btn btn-success label mg-b-20"><i class="fa fa-bell
+            mg-r-5"></i>Notification</span>
+        <div class="col-12 mg-b-10">
+          <label class="col-sm-4 form-control-label">Notification URL:</label>
+          <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+            <input type="text" class="form-control" placeholder="">
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row mg-t-20">
+        <span class="btn btn-success label mg-b-20"><i class="fa fa-lock
+            mg-r-5"></i>Security settings</span>
+        <div class="col-12 mg-b-10">
+          <label class="col-sm-4 form-control-label">Allowed IP Addresses:</label>
+          <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+            <input type="text" class="form-control" placeholder="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer step">
+      <button type="button" class="btn btn-secondary tx-11 tx-uppercase
+        pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
+      <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25
+        tx-mont tx-medium" data-dismiss="modal" data-toggle="modal"
+        data-target="#modaldemo2">Creat</a>
+    </div>
+  </form>
+</ngx-smart-modal>

@@ -7,7 +7,7 @@
   <div class="modal-body pd-25">
     <div class="row">
       <label class="col-sm-12 form-control-label">
-        Enter the 2-step verification code provided by SMS to your phone:
+        Enter the 2-step verification code provided by your authen app:
         <i class="tx-danger">*</i>
       </label>
       <div class="col-sm-12 mg-t-10 mg-sm-t-0">
@@ -19,9 +19,7 @@
         </div>
         <span class="resend">
           <message-error-input [message]='messageErrorCode'></message-error-input>
-          <br>
-          Didn't receive the verification code? <br>
-          <a class="resend-sms" (click)="requireSendCodePhone()">Re-send SMS</a>
+          <br>        
         </span>
       </div>
     </div><!-- row -->

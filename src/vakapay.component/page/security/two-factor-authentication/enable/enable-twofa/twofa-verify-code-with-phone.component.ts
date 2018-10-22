@@ -28,10 +28,13 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
 
   //message error
   messageErrorCode = '';
+  messageErrorToken = '';
 
   //service
   twofaService: TwofaService;
   //#endregion init variable
+
+  public qrdata: string = null;
 
   constructor(
     accountService: TwofaService,
@@ -39,6 +42,7 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
   ) {
     this.step = 1;
     this.twofaService = accountService;
+    this.qrdata = 'Your QR code data string';
   }
 
   requireSendCodePhone() {
@@ -48,6 +52,7 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
 
   cancel() {
     this.form.modal.close();
+     this.step = 1;
     this.onReset();
   }
 
@@ -74,7 +79,11 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
 
       if (Utility.isError(result)) return;
 
-      this.securityService.isEnableTwofa = !this.securityService.isEnableTwofa;
+      //Get data
+      this.secret = result.data;
+      this.qrdata = `otpauth://totp/SecretKey?secret=${this.secret}`
+
+      // this.securityService.isEnableTwofa = !this.securityService.isEnableTwofa;
       this.step++;
       this.onReset();
       // this.form.modal.close();
@@ -111,12 +120,10 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
 
       if (Utility.isError(result)) return;
 
-      //Get data
-      this.secret = result.data['secret'] || result.data['Secret'];
-      // this.securityService.isEnableTwofa = !this.securityService.isEnableTwofa;
       this.step++;
-      // this.onReset();
-      // this.form.modal.close();
+      this.securityService.isEnableTwofa = !this.securityService.isEnableTwofa;
+      this.onReset();
+      this.form.modal.close();
 
       return;
     } catch (error) {
@@ -148,7 +155,7 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
       UtilityValidate.validateCodePhone(this.code);
 
       if (this.step > 1) {
-        UtilityValidate.validateCode(this.token);
+        UtilityValidate.validateToken(this.token);
       }
 
       this.isValid = true;
@@ -175,6 +182,28 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
       this.validate();
     } catch (error) {
       this.messageErrorCode = error.message;
+      this.isValid = false;
+    }
+  }
+
+  onToken(event) {
+    try {
+      if (Utility.isEnter(event)) {
+        // this.onUpdate();
+        return false;
+      }
+
+      //Get value
+      this.token = Utility.getValueEventInput(event);
+
+      UtilityValidate.validateToken(this.token);
+
+      this.messageErrorToken = '';
+
+      //Validate form
+      this.validate();
+    } catch (error) {
+      this.messageErrorToken = error.message;
       this.isValid = false;
     }
   }

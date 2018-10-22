@@ -37,11 +37,6 @@ export class DisableTwofaComponent {
     this.twofaService = accountService;
   }
 
-  requireSendCodePhone() {
-    this.onReset();
-    this.twofaService.requireSendCodePhone(!this.securityService.isEnableTwofa);
-  }
-
   cancel() {
     this.form.modal.close();
     this.onReset();
