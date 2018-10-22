@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ConfirmedDeviceService } from 'services/activity/confirmed-device.service';
+import { Utility } from 'utility/Utility';
 
 @Component({
   selector: 'app-confirmed-devices',
@@ -28,10 +29,6 @@ export class ConfirmedDevicesComponent {
 
   refresh() {
     this.service.getList();
-  }
-
-  delete(id) {
-    alert(id);
-  }
+  } 
 
 }

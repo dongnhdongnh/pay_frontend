@@ -69,6 +69,8 @@ import { TwofaOptionsComponent } from 'component/page/security/two-factor-authen
 import { SessionActiveComponent } from 'component/page/activity/session-active/session-active.component';
 import { AccountActivityComponent } from 'component/page/activity/account-activity/account-activity.component';
 import { CloseAccountComponent } from 'component/page/security/close-account/close-account.component';
+import { LockScreenConfigComponent } from 'component/page/security/lock-screen/lock-screen.component';
+
 import { AccountsComponent } from 'component/page/accounts/accounts.component';
 //TwofaVerify
 import { TwofaVerifyCodeComponentWithPhoneComponent }
@@ -87,8 +89,9 @@ import { ThirdPartyAppComponent } from 'component/page/activity/third-party-app/
 import { RefreshComponent } from 'component/refresh/refresh.component';
 import { ButtonDeleteComponent } from 'component/button-delete/button-delete.component';
 import { WaitingLoadPageComponent } from 'component/waiting-load-page/waiting-load-page.component';
+import { ResendSmsComponent } from 'component/resend-sms/resend-sms.component';
+import { LockScreenComponent } from 'component/lock-screen/lock-screen.component';
 import { QRCodeModule } from 'angularx-qrcode';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -133,6 +136,9 @@ import { QRCodeModule } from 'angularx-qrcode';
     RefreshComponent,
     ButtonDeleteComponent,
     WaitingLoadPageComponent,
+    LockScreenConfigComponent,
+    ResendSmsComponent,
+    LockScreenComponent,
     AccountsComponent,
     JwPaginationComponent,
   ],

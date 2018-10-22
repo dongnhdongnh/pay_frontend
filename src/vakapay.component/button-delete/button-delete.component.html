@@ -1,3 +1,4 @@
-<button class="button-delete">
-  <i class="fa fa-times tx-13 tx-grey" style="font-size: 17px;"></i>
+<button class="button-delete" (click)="delete()" [disabled]="isLoading">
+  <i [hidden]="isLoading" class="fa fa-times tx-13 tx-grey" style="font-size: 17px;"></i>
+  <i [hidden]="!isLoading" class="fa fa-spinner fa-spin" style="font-size:17px"></i>
 </button>

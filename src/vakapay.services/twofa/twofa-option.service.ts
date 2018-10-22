@@ -17,14 +17,12 @@ export class TwofaOptionService {
     requireSendCodePhone() {
         let operation = 'require server to send code to phone to verify change option twofa';
         let api = this.requireSendCodePhoneUrl;
-        if (this.test) return this.resultTest(operation);
         return this.httpService.post(operation, api, null, false);
     }
 
     update(data: any) {
         let operation = 'twofa - update options verify';
         let api = this.updateTwofaVerifyOptionsUrl;
-        if (this.test) return this.resultTest(operation);
         return this.httpService.post(operation, api, data);
     }
 }

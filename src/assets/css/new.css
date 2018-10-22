@@ -1,6 +1,12 @@
 .error {
     color: #cc2243;
 }
+
+.bg-home {
+  background: url('/assets/images/backgrounds/bg-signin.jpg') center no-repeat;
+  background-size: cover;
+}
+
 .resend-sms {
     color: #10a04a;
     cursor: pointer;
@@ -204,12 +210,13 @@
     display: flex;
 }
 .logo-home img {
-    width: 250px;
-    height: auto;
-    display: block;
-    max-width: 100%;
-    margin: 0 auto;
-    margin-bottom: 10px;
+  width: 250px;
+  height: auto;
+  border-radius: 100%;
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+  margin-bottom: 10px;
 }
 .bg-home {
     background: url('../images/backgrounds/bg-signin.jpg') center no-repeat;
@@ -1294,7 +1301,9 @@ img.mini-icon {
 .col-xl-auto {
     float: left;
 }
-
+.mat-drawer-container {
+  background-color: #E9ECEF !important;
+}
 .fa-pencil {
     color: #fff;
     cursor: pointer;

@@ -18,7 +18,7 @@ export class Account extends Model {
     currencyKey: string;
     timezoneKey: string;
     notifications: string[];
-    isLock: number;
+    isLockScreen: number;
 
     constructor() {
         super();
@@ -39,7 +39,7 @@ export class Account extends Model {
         this.currencyKey = null;
         this.timezoneKey = null;
         this.notifications = [];
-        this.isLock = 0;
+        this.isLockScreen = 0;
     }
 
     get fullName() {
