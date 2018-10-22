@@ -27,6 +27,7 @@ export class AccountsComponent extends Root implements OnInit {
   });
 
   isDataLoaded: boolean;
+  sendByAd:boolean;
   mAccount: Account;
   walletService: WalletService;
   walletsData: any;
@@ -54,6 +55,8 @@ export class AccountsComponent extends Root implements OnInit {
     this.clipboardService = _clipboardService;
     // console.log("ACCOUNT ID: " + JSON.stringify(this.mAccount));
     this.getUserData();
+ 
+    this.sendByAd = true;
   }
 
   popToast(type, title, body) {
@@ -116,6 +119,7 @@ export class AccountsComponent extends Root implements OnInit {
         //element.Amount=Math.abs(element.Amount);
         element.CreatedAt = this.getTime(element.CreatedAt);
       });
+
     } catch (error) {
       console.log(error);
     }
@@ -221,7 +225,6 @@ export class AccountsComponent extends Root implements OnInit {
     console.log("on cl0ickkkkkkkkkkkkkkkkkkkkkkkkkkk send " + networkName);
     this.errorObject = {};
     this.updateSendObject(networkName);
-    //this.sendObject.sendByAd=true;
     let sendWallet = this.getWalletByName(this.sendObject.networkName);
     console.log("sendwallet=========> " + JSON.stringify(sendWallet));
     if (sendWallet == null)
@@ -266,6 +269,7 @@ export class AccountsComponent extends Root implements OnInit {
       console.log("RESULT " + result);
       let _checkObject = JSON.parse(result.message);
       this.sendObject.checkObject = _checkObject;
+      this.walletService.sendCoinMakeSMSCode();
       this.ngxSmartModalService.getModal('sendConfirm').open();
       console.log("HAHAHAHAHA confirm:checkObject ============>" + JSON.stringify(this.sendObject.checkObject));
       console.log("SEND WITH DATA =" + JSON.stringify(this.sendObject));
@@ -276,17 +280,32 @@ export class AccountsComponent extends Root implements OnInit {
 
   errorObject: any;
   validateSendCoin(form: NgForm) {
+    console.log("send by ad=" + this.sendByAd);
     this.errorObject = {};
-    if (form.controls.Recipient_WalletAddress.errors && form.controls.Recipient_WalletAddress.errors.required) {
-      this.errorObject.Recipient_WalletAddress = true;
-      return false;
+    if (this.sendByAd) {
+      if (form.controls.Recipient_WalletAddress.errors && form.controls.Recipient_WalletAddress.errors.required) {
+        this.errorObject.Recipient_WalletAddress = true;
+        return false;
+      }
     }
-    if (form.controls.withdrawn_from.errors && form.controls.withdrawn_from.errors.required ) {
+    else {
+      if (form.controls.Recipient_EmailAddress.errors && form.controls.Recipient_EmailAddress.errors.required) {
+        this.errorObject.Recipient_EmailAddress = true;
+        return false;
+      }
+    }
+
+
+    if (form.controls.withdrawn_from.errors && form.controls.withdrawn_from.errors.required) {
       this.errorObject.withdrawn_from = true;
       return false;
     }
-    if (form.controls.VNDAmount.errors && form.controls.VNDAmount.errors.required ) {
+    if (form.controls.VNDAmount.errors && form.controls.VNDAmount.errors.required) {
       this.errorObject.VNDAmount = true;
+      return false;
+    }
+    if (form.controls.VKCnote.errors && form.controls.VKCnote.errors.required) {
+      this.errorObject.VKCnote = true;
       return false;
     }
     return true;
@@ -294,6 +313,9 @@ export class AccountsComponent extends Root implements OnInit {
 
   async sendCoinConfirm(form: NgForm) {
     try {
+      this.sendObject.SMScode=form.value.VKCSMS;
+      this.sendObject.detail.sendByAd=this.sendByAd;
+      this.walletService.sendCoinConfirm(this.sendObject);
 
       console.log("HAHAHAHAHA confirm ============>" + JSON.stringify(form.value));
       this.ngxSmartModalService.getModal('sendDetail').close();

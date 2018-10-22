@@ -12,6 +12,8 @@ export class WalletService {
   url_getWalletHistory = '/api/wallet/History'
   url_getAddress = '/api/wallet/AddressInfor'
   url_checkSendCoin = '/api/wallet/CheckSendCoin'
+  url_requiteSMSCode = '/api/twofa/transaction/require-send-code-phone'
+  url_verifyCode = 'api/twofa/transaction/verify-code'
   constructor(private httpService: HttpService) { }
   async getAllWallet(mAccount) {
     try {
@@ -64,10 +66,10 @@ export class WalletService {
     }
   }
 
-  async checkSendCoin(fromAddress,toAddress,networkName,amount) {
+  async checkSendCoin(fromAddress, toAddress, networkName, amount) {
     try {
       let operation = 'checkSendCoin';
-      let api = this.url_checkSendCoin + "?fromAddress=" + fromAddress+"&toAddress="+toAddress + "&networkName=" + networkName +"&amount="+amount;
+      let api = this.url_checkSendCoin + "?fromAddress=" + fromAddress + "&toAddress=" + toAddress + "&networkName=" + networkName + "&amount=" + amount;
       let result = await this.httpService.get(operation, api, false);
       if (Utility.isError(result)) {
         console.log(result.message);
@@ -79,6 +81,19 @@ export class WalletService {
     } catch (error) {
       console.log(JSON.stringify(error));
     }
+  }
+
+  //CALL SMS CODE
+  sendCoinMakeSMSCode(): Promise<ResultObject> {
+    let operation = 'get wallet history';
+    let api = this.url_requiteSMSCode;
+    return this.httpService.post(operation, api, null, false);
+  }
+  //SEND DATA WITH SMSCODE:
+  sendCoinConfirm(sendObject): Promise<ResultObject> {
+    let operation = 'get wallet history';
+    let api = this.url_getWalletHistory;
+    return this.httpService.post(operation, api, sendObject, false);
   }
 
   getWalletHistory(wallet): Promise<ResultObject> {
