@@ -33,7 +33,7 @@ export class AccountsComponent extends Root implements OnInit {
   walletsData: any;
   wallets = new Map<string, any>();
   wallet_current: any;
-  tab_current;
+  tab_current:any;
   Coin;
   constructor(
     titleService: Title,
@@ -77,7 +77,7 @@ export class AccountsComponent extends Root implements OnInit {
       this.walletsData = JSON.parse(result.message);
       for (var i = 0; i < this.walletsData.length; i++) {
         console.log(this.walletsData[i]);
-        this.walletsData[i].Balance=this.nineNumber(this.walletsData[i].Balance);
+        this.walletsData[i].Balance = this.nineNumber(this.walletsData[i].Balance);
         this.wallets.set(this.walletsData[i].Currency, this.walletsData[i]);
         // var _w = new Wallet();
         // _w.attributesLower = this.walletsData[i];
@@ -115,11 +115,12 @@ export class AccountsComponent extends Root implements OnInit {
       //   console.log("Get history result " + JSON.stringify(result));
       this.searchDatas = JSON.parse(result.message);
       this.totalItems = Number(result.data);
-      this.searchDatas.forEach(element => {
-        element.type = element.Amount < 0 ? 0 : 1;//0:withdran,1:deposit
-        //element.Amount=Math.abs(element.Amount);
-        element.CreatedAt = this.getTime(element.CreatedAt);
-      });
+      if (this.searchDatas)
+        this.searchDatas.forEach(element => {
+          element.type = element.Amount < 0 ? 0 : 1;//0:withdran,1:deposit
+          //element.Amount=Math.abs(element.Amount);
+          element.CreatedAt = this.getTime(element.CreatedAt);
+        });
 
     } catch (error) {
       console.log(error);
@@ -156,13 +157,15 @@ export class AccountsComponent extends Root implements OnInit {
 
   public onClickWalletTab(event, name) {
     console.log(JSON.stringify(event) + name);
-    if (this.tab_current == name)
+    if (this.tab_current && this.tab_current.sortName == name)
       return;
     this.currentPage = 1;
-    this.tab_current = name;
+    this.tab_current={};
+    this.tab_current.sortName = name;
     switch (name) {
       case TabName.VKCW.toString():
         this.updateCurrentWallet(NetworkName.VAKA);
+        this.tab_current.fullName="VakaCoin";
         break;
       case TabName.VKCV.toString():
 
@@ -170,13 +173,16 @@ export class AccountsComponent extends Root implements OnInit {
       case TabName.BTC.toString():
 
         this.updateCurrentWallet(NetworkName.BTC);
+        this.tab_current.fullName="Bitcoin";
         break;
       case TabName.ETH.toString():
 
         this.updateCurrentWallet(NetworkName.Ethereum);
+        this.tab_current.fullName="Ethereum";
         break;
       case TabName.EOS.toString():
         this.updateCurrentWallet(NetworkName.EOS);
+        this.tab_current.fullName="EOS";
         break;
       default:
         break;
@@ -245,10 +251,10 @@ export class AccountsComponent extends Root implements OnInit {
     console.log("WHAT " + typeName);
     switch (typeName) {
       case "VKC":
-        this.vndValue = this.vkcValue/this.sendObject.exchangeRate;
+        this.vndValue = this.vkcValue / this.sendObject.exchangeRate;
         break;
       case "VND":
-        this.vkcValue = this.vndValue*this.sendObject.exchangeRate;
+        this.vkcValue = this.vndValue * this.sendObject.exchangeRate;
         break;
       default:
         break;

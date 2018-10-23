@@ -219,7 +219,7 @@
                 </div>
                 <div class="clear-both"></div>
                 <div class="col-xs-12">
-                  <div *ngIf="searchDatas.length > 0">
+                  <div *ngIf="searchDatas?.length > 0">
                     <div class="bd-gray-300 table-responsive table-recent-acc">
                       <table class="table table-hover mg-b-0 table-fix">
                         <tbody>
@@ -254,8 +254,8 @@
                                 </div>
                               </td>
                               <td width="20%" class="tx-left">
-                                <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Widthrew funds</p>
-                                <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
+                                <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Withdraw funds</p>
+                                <span class="d-block tx-13 hidden-mob">From {{tab_current?.fullName}} address</span>
                               </td>
                               <td width="10%" class="tx-left hidden-mob">
                                 <div [ngSwitch]="item.Status">
@@ -290,8 +290,8 @@
                                 </div>
                               </td>
                               <td width="20%" class="tx-left">
-                                <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Deposit VakaCoin</p>
-                                <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
+                                <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Deposit {{tab_current?.fullName}}</p>
+                                <span class="d-block tx-13 hidden-mob">From {{tab_current?.fullName}} address</span>
                               </td>
                               <td width="10%" class="tx-left hidden-mob">
                                 <div [ngSwitch]="item.Status">
@@ -332,7 +332,7 @@
                     </pagination-controls>
                   </div>
                   <!-- page -->
-                  <div *ngIf="searchDatas.length <= 0">
+                  <div *ngIf="searchDatas?.length <= 0">
 
                     <div class="table-content border tab-pane" role="tabpanel">
                       <!-- <div class="col-xs-12">
@@ -341,7 +341,7 @@
                       <div class="col-xs-12">
                         <div class="no-tran table-recent-acc">
                           <div class="modal-body pd-x-20 pd-y-5 no-tran-box">
-                            <div [ngSwitch]="tab_current">
+                            <div [ngSwitch]="tab_current?.sortName">
                               <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
                                 *ngSwitchCase="'VKCW'"><img src="../assets/icons/icon-vkc.svg" alt=""></i>
                               <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
@@ -419,7 +419,7 @@
                             <i class="tx-btc tx-20"><img src="../assets/icons/send.svg" alt=""></i>
                           </td>
                           <td width="20%" class="tx-left">
-                            <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Widthrew funds</p>
+                            <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Withdraw funds</p>
                             <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
                           </td>
                           <td width="10%" class="tx-left hidden-mob">
@@ -525,13 +525,13 @@
         <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">
           <label *ngIf="transactionDetail_current?.Amount<0; else elseBlock">Sended</label>
           <ng-template #elseBlock> Received</ng-template>
-          {{tab_current}}
+          {{tab_current?.sortName}}
         </h6>
 
       </div>
       <div class="modal-body pd-x-20 pd-y-5">
         <i class="icon ion-arrow-down-a tx-60 tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"></i>
-        <h6 class="check tx-20 mg-b-0"> {{transactionDetail_current?.Amount}} {{tab_current}}</h6>
+        <h6 class="check tx-20 mg-b-0"> {{transactionDetail_current?.Amount}} {{tab_current?.sortName}}</h6>
         <h6 class="grey tx-16">= đ456,455</h6>
         <div class="col-sm-12 mg-t-30 mg-sm-t-0 mg-b-20">
           <div class="form-layout-6">
@@ -545,13 +545,14 @@
             </div><!-- row -->
             <div class="row no-gutters">
               <div class="col-4">
-                <label *ngIf="transactionDetail_current?.Amount>0;else showTo"> From {{tab_current}} address </label>
-                <ng-template #showTo>To {{tab_current}} address </ng-template>
+                <label *ngIf="transactionDetail_current?.Amount>0;else showTo"> From {{tab_current?.sortName}} address
+                </label>
+                <ng-template #showTo>To {{tab_current?.sortName}} address </ng-template>
               </div><!-- col-4 -->
               <div class="col-8">
-                <div *ngIf="transactionDetail_current?.Amount>0;else showAddTo">{{transactionDetail_current?.ToAddress}}
+                <div *ngIf="transactionDetail_current?.Amount>0;else showAddTo">{{transactionDetail_current?.FromAddress}}
                 </div>
-                <ng-template #showAddTo>{{transactionDetail_current?.FromAddress}}</ng-template>
+                <ng-template #showAddTo>{{transactionDetail_current?.ToAddress}}</ng-template>
                 <!-- From {{transactionDetail_current?.FromAddress}} to {{transactionDetail_current?.ToAddress}}
                 <a href="#" data-dismiss="modal">View transaction</a> -->
               </div><!-- col-8 -->
@@ -570,6 +571,14 @@
               </div><!-- col-4 -->
               <div class="col-8">
                 <span class="btn btn-success verified"> {{transactionDetail_current?.Status}}</span>
+              </div><!-- col-8 -->
+            </div><!-- row -->
+            <div class="row no-gutters">
+              <div class="col-4">
+                Note
+              </div><!-- col-4 -->
+              <div class="col-8">
+                Hello
               </div><!-- col-8 -->
             </div><!-- row -->
           </div>
