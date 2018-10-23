@@ -26,10 +26,16 @@
                       <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-vkc.svg" alt=""></i>
                       <div class="mg-r-20 width-text">
                         <p class="tx-15 tx-white tx-spacing-1 mg-b-0">VKC Wallet</p>
-                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("VAKA")}} VKC</p>
+                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("VAKA")?.Balance}} VKC</p>
                         <div class="pd-t-10 pd-b-10 d-flex align-items-center">
-                          <a href="#" (click)="onClickSend('VKCW')" class="btn btn-trans send-receive" data-toggle="modal"
-                            data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
+                          <div *ngIf="wallets.get('VAKA')?.Balance>0">
+                            <a href="#" (click)="onClickSend('VKCW')" class="btn btn-trans  send-receive" data-toggle="modal"
+                              data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
+                          </div>
+                          <div *ngIf="wallets.get('VAKA')?.Balance<=0">
+                            <a href="#" class="btn disabled btn-trans  send-receive" data-toggle="modal" data-target="#modaldemo3"><i
+                                class="fa fa-send mg-r-3"></i>Send</a>
+                          </div>
                           <a href="#" (click)="onClickReceive('VKCW')" class="btn btn-trans send-receive" data-toggle="modal"
                             data-target="#modaldemo2"><i class="fa fa-arrow-circle-down mg-r-3"></i>Receive
                           </a>
@@ -86,10 +92,18 @@
                       <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-btc.svg" alt=""></i>
                       <div class="mg-r-20 width-text">
                         <p class="tx-15 tx-white tx-spacing-1 mg-b-0">BitCoin</p>
-                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("BTC")}} BTC</p>
+                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("BTC")?.Balance}} BTC</p>
                         <div class="pd-t-10 pd-b-10 d-flex align-items-center">
-                          <a href="#" (click)="onClickSend('BTC')" class="btn btn-trans send-receive" data-toggle="modal"
-                            data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
+                          <div *ngIf="wallets.get('BTC')?.Balance>0">
+                            <a href="#" (click)="onClickSend('BTC')" class="btn btn-trans  send-receive" data-toggle="modal"
+                              data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
+                          </div>
+                          <div *ngIf="wallets.get('BTC')?.Balance<=0">
+                            <a href="#" class="btn disabled btn-trans  send-receive" data-toggle="modal" data-target="#modaldemo3"><i
+                                class="fa fa-send mg-r-3"></i>Send</a>
+                          </div>
+                          <!-- <a href="#" (click)="onClickSend('BTC')" class="btn btn-trans send-receive" data-toggle="modal"
+                            data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a> -->
                           <a href="#" (click)="onClickReceive('BTC')" class="btn btn-trans send-receive" data-toggle="modal"
                             data-target="#modaldemo2"><i class="fa fa-cart-arrow-down mg-r-3"></i>Receive
                           </a>
@@ -116,10 +130,19 @@
                       <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eth.svg" alt=""></i>
                       <div class="mg-r-20 width-text">
                         <p class="tx-15 tx-white tx-spacing-1 mg-b-0">Ethereum</p>
-                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Ethereum")}} ETH </p>
+                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Ethereum")?.Balance}} ETH
+                        </p>
                         <div class="pd-t-10 pd-b-10 d-flex align-items-center">
-                          <a href="#" (click)="onClickSend('ETH')" class="btn btn-trans send-receive" data-toggle="modal"
-                            data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
+                          <div *ngIf="wallets.get('Ethereum')?.Balance>0">
+                            <a href="#" (click)="onClickSend('ETH')" class="btn btn-trans  send-receive" data-toggle="modal"
+                              data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
+                          </div>
+                          <div *ngIf="wallets.get('Ethereum')?.Balance<=0">
+                            <a href="#" class="btn disabled btn-trans  send-receive" data-toggle="modal" data-target="#modaldemo3"><i
+                                class="fa fa-send mg-r-3"></i>Send</a>
+                          </div>
+                          <!-- <a href="#" (click)="onClickSend('ETH')" class="btn btn-trans send-receive" data-toggle="modal"
+                            data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a> -->
                           <a href="#" (click)="onClickReceive('ETH')" class="btn btn-trans send-receive" data-toggle="modal"
                             data-target="#modaldemo2"><i class="fa fa-cart-arrow-down mg-r-3"></i>Receive
                           </a>
@@ -146,10 +169,18 @@
                       <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eos.svg" alt=""></i>
                       <div class="mg-r-20 width-text">
                         <p class="tx-15 tx-white tx-spacing-1 mg-b-0">EOS</p>
-                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("EOS")}} EOS</p>
+                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("EOS")?.Balance}} EOS</p>
                         <div class="pd-t-10 pd-b-10 d-flex align-items-center">
-                          <a href="#" class="btn btn-trans send-receive" data-toggle="modal" (click)="onClickSend('EOS')"
-                            data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
+                          <div *ngIf="wallets.get('EOS')?.Balance>0">
+                            <a href="#" (click)="onClickSend('EOS')" class="btn btn-trans  send-receive" data-toggle="modal"
+                              data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
+                          </div>
+                          <div *ngIf="wallets.get('EOS')?.Balance<=0">
+                            <a href="#" class="btn disabled btn-trans  send-receive" data-toggle="modal" data-target="#modaldemo3"><i
+                                class="fa fa-send mg-r-3"></i>Send</a>
+                          </div>
+                          <!-- <a href="#" class="btn btn-trans send-receive" data-toggle="modal" (click)="onClickSend('EOS')"
+                            data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a> -->
                           <a href="#" class="btn btn-trans send-receive" data-toggle="modal" (click)="onClickReceive('EOS')"
                             data-target="#modaldemo2"><i class="fa fa-cart-arrow-down mg-r-3"></i>Receive
                           </a>
@@ -830,7 +861,8 @@
       <div class="modal-body tx-center pd-y-20 pd-x-20">
         <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
         <h4 class="tx-success mg-b-20">Your transaction is on the way!</h4>
-        <p class="mg-b-20 mg-x-20">You sent {{sendObject?.detail?.VKCAmount}} {{sendObject?.sortName}} (₫{{sendObject?.detail?.VNDAmount}}) to an
+        <p class="mg-b-20 mg-x-20">You sent {{sendObject?.detail?.VKCAmount}} {{sendObject?.sortName}}
+          (₫{{sendObject?.detail?.VNDAmount}}) to an
           external address.</p>
         <a href="#" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-toggle="modal"
           data-dismiss="modal" (click)="closePopup('popup_ok')" data-target="#modaldemo3d"> View Details

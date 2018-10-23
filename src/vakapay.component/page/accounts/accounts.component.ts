@@ -31,7 +31,7 @@ export class AccountsComponent extends Root implements OnInit {
   mAccount: Account;
   walletService: WalletService;
   walletsData: any;
-  wallets = new Map<string, string>();
+  wallets = new Map<string, any>();
   wallet_current: any;
   tab_current;
   Coin;
@@ -77,7 +77,8 @@ export class AccountsComponent extends Root implements OnInit {
       this.walletsData = JSON.parse(result.message);
       for (var i = 0; i < this.walletsData.length; i++) {
         console.log(this.walletsData[i]);
-        this.wallets.set(this.walletsData[i].Currency, this.nineNumber(this.walletsData[i].Balance));
+        this.walletsData[i].Balance=this.nineNumber(this.walletsData[i].Balance);
+        this.wallets.set(this.walletsData[i].Currency, this.walletsData[i]);
         // var _w = new Wallet();
         // _w.attributesLower = this.walletsData[i];
         // this.wallets.push(_w);
