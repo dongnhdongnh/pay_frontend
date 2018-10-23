@@ -7,12 +7,12 @@ export class Report {
     account: string;
     timerange: string;
     email: string;
-    repeat: string;
-    start: string;
-    callbackurl: string;
+    // repeat: string;
+    // start: string;
+    // callbackurl: string;
 }
 
-export const types = ['transactions',
+export const ReportTypes = ['Transaction history',
                      'orders',
                      'mispayments',
                      'subscriptions',
@@ -23,13 +23,13 @@ export const types = ['transactions',
                      'exchange',
                     ];
 
-export const accounts = ['BTC',
+export const Accounts = ['BTC',
                         'ETH',
                         'EOS',
                         'VKC',
                         ];
 
-export const timeranges = ['today',
+export const Timeranges = ['today',
                           'yesterday',
                           'past_7',
                           'selected',
