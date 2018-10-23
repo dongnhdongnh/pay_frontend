@@ -7,7 +7,7 @@ import { AccountService } from 'services/account/account.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: []
 })
 export class AppComponent {
   title = 'vakapay';
@@ -17,9 +17,10 @@ export class AppComponent {
     configService: ConfigService,
     @Inject(PLATFORM_ID) private platformId: Object,
     oauthService: OAuthService,
-    accountService: AccountService
+    private accountService: AccountService
   ) {
-    accountService.getInfo();
+    //get info of user
+    this.getInfo();
 
     if (!isPlatformBrowser(this.platformId)) return;
     this.oauthService = oauthService;
@@ -35,5 +36,12 @@ export class AppComponent {
     this.oauthService.configure(config);
     this.oauthService.tokenValidationHandler = new JwksValidationHandler();
     this.oauthService.loadDiscoveryDocumentAndTryLogin();
+  }
+
+  async getInfo() {
+    await this.accountService.getInfo();
+
+    
+
   }
 }

@@ -1,0 +1,21 @@
+<h6 class="br-section-label tx-green"><i class="fa fa-mobile"></i> Two-Factor Authentication</h6>
+<hr>
+<div class="row mg-x-0">
+  <label class="col-sm-4 form-control-label"> Your two-factor method is: SMS</label>
+  <div class="col-sm-8 mg-l-auto">
+    <div class="form-layout-footer">
+      <a [hidden]="securityService.isEnableTwofa" (click)="openModal()" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">
+        +Enable Authenticator
+      </a>
+      <a [hidden]="!securityService.isEnableTwofa" (click)="openModal()" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">
+        -Disable Authenticator
+      </a>
+    </div><!-- form-layout-footer -->
+  </div><!-- col-8 -->
+</div><!-- row -->
+
+<ngx-smart-modal #modalTwoFA [identifier]="'modalTwoFA'">
+  <twofa-verify-code-with-phone [form]="form"></twofa-verify-code-with-phone>
+</ngx-smart-modal>
+<twofa-options [hidden]="!securityService.isEnableTwofa"></twofa-options>
+

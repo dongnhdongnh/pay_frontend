@@ -51,28 +51,30 @@ class Validate {
 
     static validateString(str, lengthMin, lengthMax, name = 'String') {
         if (typeof str !== 'string') throw new Error(`${name} is not string.`);
+        if (lengthMin === lengthMax && str.length !== lengthMin)
+            throw new Error(`${name} is required with length ${lengthMin}`);
         if (lengthMax && str.length > lengthMax) throw new Error(`${name} is required with max-length ${lengthMax}`);
         if (lengthMin && str.length < lengthMin) throw new Error(`${name} is required with min-length ${lengthMin}`);
     }
 
-    static isPostalCode(str){
-        return /^[a-z0-9-]+$/i.test(str); 
+    static isPostalCode(str) {
+        return /^[a-z0-9-]+$/i.test(str);
     }
 }
 
 export class UtilityValidate extends Validate {
 
-    static validateStreet(str){
+    static validateStreet(str) {
         this.validateString(str, 0, 300, 'Street Address');
     }
 
-    static validateCity(str){
+    static validateCity(str) {
         this.validateString(str, 0, 300, 'City');
     }
 
-    static validatePostalCode(str){
+    static validatePostalCode(str) {
         this.validateString(str, 0, 50, 'Postal code');
-        if(this.isPostalCode(str) === false)
+        if (this.isPostalCode(str) === false)
             throw new Error(`Postal code ${str} is invalid`);
     }
 
@@ -142,8 +144,17 @@ export class UtilityValidate extends Validate {
         }
     }
 
+    static validateCodePhone(code, maxLength = 6) {
+        if (!code) throw new Error('Code is required');
+        this.validateString(code, maxLength, maxLength, 'Code');
+
+        if (this.isNumericCharacter(code) === false) {
+            throw new Error('Code is only numeric chatacters.');
+        }
+    }
+
     static validatePassword(password) {
-        this.validateString(password, 0, 50, 'Password')
+        this.validateString(password, 6, 50, 'Password')
     }
 
     static validateFullName(fullName) {

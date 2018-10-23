@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
     this.configService = configService;
     let urlVakaid = this.configService.issuer;
     let returnUrl = this.configService.returnUrl;
-    window.location.href = `${urlVakaid}/account/register?returlUrl=${returnUrl}`;
+    window.location.href = `${urlVakaid}/account/register?returnUrl=${returnUrl}`;
   }
 
   ngOnInit() {
