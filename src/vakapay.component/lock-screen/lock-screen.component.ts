@@ -26,7 +26,7 @@ export class LockScreenComponent {
   //Loading
   isLoading = false;
 
-  mAccount: Acount;
+  mAccount: Account;
 
   constructor(
     private accountService: AccountService,

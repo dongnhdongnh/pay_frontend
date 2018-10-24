@@ -85,9 +85,13 @@ export class HttpService {
   };
 
   //Post api
-  actionPost(operation = 'operation', api, data, httpOptions, alert = true): Promise<ResultObject> {
+  actionPost(operation = 'operation', api, data, httpOptions, alert = true,debug=false): Promise<ResultObject> {
     var self = this;
     let URL_API = new URL(api, self.url).href;
+    if(debug)
+    {
+      URL_API = new URL(api, 'https://api.vakaid.vakaxalab.com').href;
+    }
     return new Promise<ResultObject>((resolve, reject) => {
       self.http.post(URL_API, data, httpOptions)
         .subscribe(
@@ -105,8 +109,8 @@ export class HttpService {
   };
 
   //Post api
-  post(operation, api, data, alert = true): Promise<ResultObject> {
-    return this.actionPost(operation, api, data, this.httpOptionsPost(), alert);
+  post(operation, api, data, alert = true,debug = false): Promise<ResultObject> {
+    return this.actionPost(operation, api, data, this.httpOptionsPost(), alert,debug);
   };
 
   //Post api
