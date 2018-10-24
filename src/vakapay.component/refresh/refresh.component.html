@@ -1,0 +1,11 @@
+<!--Loading-->
+<loading-component [hidden]="service.isLoading !== true">
+</loading-component>
+<!--Warning-->
+<i class="icon icon ion-android-warning tx-30 tx-danger lh-1 mg-t-20
+      d-inline-block" [hidden]="!service.isError || service.isLoading"></i>
+<!--Refresh-->
+<i class="icon icon ion-android-refresh tx-30 lh-1 mg-t-20 d-inline-block"
+      [hidden]="service.isLoading"
+      (click)="service.refresh()">
+</i>

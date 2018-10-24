@@ -221,6 +221,7 @@ a {
   -webkit-text-decoration-skip: objects;
 }
 
+/* 
 a:hover {
   text-decoration: none;
 }
@@ -238,7 +239,7 @@ a:not([href]):not([tabindex]):hover {
 
 a:not([href]):not([tabindex]):focus {
   outline: 0;
-}
+} */
 
 pre,
 code,
@@ -2222,7 +2223,7 @@ fieldset[disabled] a.btn {
 }
 
 .btn-danger {
-  color: #fff;
+  color: #fff !important;
   background-color: #DC3545;
   border-color: #DC3545;
 }
@@ -9320,9 +9321,9 @@ a:active {
   color: rgba(255, 255, 255, 0.6);
 }
 
-.overlay {
+/* .overlay {
   position: relative;
-}
+} */
 
 .overlay-body {
   position: absolute;
@@ -14002,7 +14003,9 @@ textarea.parsley-error:active {
 }
 
 .widget-4 .card-body {
-  background-color: #f8f9fa;
+  background: url('../images/backgrounds/bg-signin.jpg') center no-repeat;
+  background-size: cover;
+  background-color: #064975;
   text-align: center;
   padding-top: 70px;
   padding-bottom: 25px;
@@ -17631,7 +17634,7 @@ textarea.parsley-success:focus {
 }
 
 .toggle-light .toggle-on+.toggle-blob {
-  border: 3px solid #d0d4e7;
+  border: 3px solid #0866C6;
 }
 
 .toggle-light .toggle-on.active {
@@ -17644,7 +17647,7 @@ textarea.parsley-success:focus {
 
 .toggle-light .toggle-off {
   color: #fff;
-  background-color: #d0d4e7;
+  background-color: #0866C6;
   background-image: none;
   text-indent: 5px !important;
 }
@@ -17942,7 +17945,8 @@ textarea.parsley-success:focus {
 
 .br-header-right a:hover,
 .br-header-right a:focus {
-  color: #56d097;
+  color: #10a04a;
+  font-weight: bold;
 }
 
 @media (max-width: 479px) {
@@ -18389,6 +18393,7 @@ textarea.parsley-success:focus {
   outline: none;
 }
 
+.br-menu-item.active .br-menu-link,
 .br-menu-link.active {
   /* background-image: linear-gradient(to right, #1CAF9A 0%, #17A2B8 100%); */
   background: #10a04a;
