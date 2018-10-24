@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiAccessService } from 'services/api-access/apiAccess.service';
 
 @Component({
   selector: 'app-api-access',
@@ -6,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./api-access.component.css']
 })
 export class ApiAccessComponent implements OnInit {
-  selectedIndex: number = 0;
+  selectedIndex: number = 1;
 
-  constructor() { }
+  constructor(apiAccessService: ApiAccessService) {
+    apiAccessService.getInfo();
+  }
 
   ngOnInit() {
   }

@@ -24,6 +24,10 @@
   box-shadow: none;
 }
 
+.btn {
+  margin-right: 5px;
+}
+
 .rickshaw_graph {
   overflow: hidden;
 }

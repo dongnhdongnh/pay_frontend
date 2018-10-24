@@ -13,100 +13,100 @@
             mg-r-5"></i>Account</span>
         <div class="col-sm-12">
           <label class="ckbox">
-            <input type="checkbox"><span>All</span>
+            <input type="checkbox" [checked]="isAll"
+              (change)="changeWallet(walletType.IS_ALL)"
+              /> <span>All</span>
           </label>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" [hidden]="!apiAccess.hasBtc">
           <label class="ckbox">
-            <input type="checkbox"><span>BTC Wallet (Primary)</span>
+            <input type="checkbox" [checked]="isBtcWallet"
+              (change)="changeWallet(walletType.IS_BTC_WALLET)"><span>BTC Wallet
+              (Primary)</span>
           </label>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" [hidden]="!apiAccess.hasVkc">
           <label class="ckbox">
-            <input type="checkbox"><span>VKC Wallet (Primary)</span>
+            <input type="checkbox" [checked]="isVkcWallet"
+              (change)="changeWallet(walletType.IS_VKC_WALLET)"><span>VKC Wallet
+              (Primary)</span>
           </label>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" [hidden]="!apiAccess.hasEth">
           <label class="ckbox">
-            <input type="checkbox"><span>ETH Wallet (Primary)</span>
+            <input type="checkbox" [checked]="isEthWallet"
+              (change)="changeWallet(walletType.IS_ETH_WALLET)" /><span>ETH
+              Wallet (Primary)</span>
           </label>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" [hidden]="!apiAccess.hasEos">
           <label class="ckbox">
-            <input type="checkbox"><span>EOS Wallet (Primary)</span>
+            <input type="checkbox" [checked]="isEosWallet"
+              (change)="changeWallet(walletType.IS_EOS_WALLET)"><span>EOS Wallet
+              (Primary)</span>
           </label>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" [hidden]="!apiAccess.hasVkc_Vault">
           <label class="ckbox">
-            <input type="checkbox"><span>VKC Vault</span>
+            <input type="checkbox" [checked]="isVkcVault"
+              (change)="changeWallet(walletType.IS_VKC_VAULT)"><span>VKC Vault</span>
           </label>
         </div>
+        <div class="col-sm-4" [hidden]="!apiAccess.hasVaka">
+          <label class="ckbox">
+            <input type="checkbox" [checked]="isVakaWallet"
+              (change)="changeWallet(walletType.IS_VAKA_WALLET)"><span>
+              Vaka Wallet</span>
+          </label>
+        </div>
+        <message-error-input [message]='messageErrorWalletType'></message-error-input>
         <div class="clear"></div>
       </div>
       <hr>
-      <div class="row mg-t-20">
-        <span class="btn btn-success label mg-b-20"><i class="fa fa-shield
-            mg-r-5"></i>Permissions</span>
+      <div class="row mg-t-20" [hidden]="">
+        <span class="btn btn-success label mg-b-20">
+          <i class="fa fa-shield mg-r-5"></i>Permissions</span>
         <div class="col-sm-12">
-          <h6>API v2 permissions</h6>
+          <h6>API permissions</h6>
         </div>
         <div class="col-sm-6">
           <label class="ckbox">
-            <input type="checkbox"><span>wallet:accounts:create</span>
+            <input type="checkbox"><span>wallet:addresses:create</span>
           </label>
         </div>
         <div class="col-sm-6">
           <label class="ckbox">
-            <input type="checkbox"><span>wallet:accounts:create</span>
+            <input type="checkbox"><span>wallet:deposits:create</span>
           </label>
         </div>
         <div class="col-sm-6">
           <label class="ckbox">
-            <input type="checkbox"><span>wallet:accounts:create</span>
+            <input type="checkbox"><span>wallet:addresses:read</span>
           </label>
         </div>
         <div class="col-sm-6">
           <label class="ckbox">
-            <input type="checkbox"><span>wallet:accounts:create</span>
+            <input type="checkbox"><span>wallet:deposits:read</span>
           </label>
         </div>
         <div class="col-sm-6">
           <label class="ckbox">
-            <input type="checkbox"><span>wallet:accounts:create</span>
+            <input type="checkbox"><span>wallet:transactions:read</span>
           </label>
         </div>
         <div class="col-sm-6">
           <label class="ckbox">
-            <input type="checkbox"><span>wallet:accounts:create</span>
+            <input type="checkbox"><span>wallet:transactions:send</span>
           </label>
         </div>
         <div class="col-sm-6">
           <label class="ckbox">
-            <input type="checkbox"><span>wallet:accounts:create</span>
-          </label>
-        </div>
-        <div class="clear"></div>
-        <div class="col-sm-12 mg-t-10">
-          <h6>API v1 permissions (legacy)</h6>
-        </div>
-        <div class="col-sm-12">
-          <label class="ckbox">
-            <input type="checkbox"><span>All</span>
+            <input type="checkbox"><span>wallet:user:email</span>
           </label>
         </div>
         <div class="col-sm-6">
           <label class="ckbox">
-            <input type="checkbox"><span>wallet:accounts:create</span>
-          </label>
-        </div>
-        <div class="col-sm-6">
-          <label class="ckbox">
-            <input type="checkbox"><span>wallet:accounts:create</span>
-          </label>
-        </div>
-        <div class="col-sm-6">
-          <label class="ckbox">
-            <input type="checkbox"><span>wallet:accounts:create</span>
+            <input type="checkbox"><span>wallet:user:read</span>
           </label>
         </div>
         <div class="clear"></div>
@@ -135,11 +135,16 @@
       </div>
     </div>
     <div class="modal-footer step">
-      <button type="button" class="btn btn-secondary tx-11 tx-uppercase
-        pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
-      <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25
-        tx-mont tx-medium" data-dismiss="modal" data-toggle="modal"
-        data-target="#modaldemo2">Creat</a>
+      <button type="button" (click)="cancel()"
+        class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
+        tx-medium">
+        Cancel
+      </button>
+      <button (click)="onUpdate()" [disabled]="!isValid||isLoading"
+        class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
+        tx-medium">
+        Creat <loading-button [isLoading]='isLoading'></loading-button>
+      </button>
     </div>
   </form>
 </ngx-smart-modal>
