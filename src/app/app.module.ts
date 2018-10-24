@@ -5,6 +5,7 @@ import {ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 //Add libriary
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { ToasterModule } from 'angular2-toaster';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule, MatTabsModule, MatSidenavModule } from '@angular/material';
@@ -145,6 +146,7 @@ import { QRCodeModule } from 'angularx-qrcode';
   imports: [
     BrowserModule,
     QRCodeModule,
+    SlickCarouselModule,
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
