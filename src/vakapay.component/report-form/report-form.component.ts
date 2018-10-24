@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Report, ReportTypes, Accounts, Timeranges } from '../../app/shared/report';
 
@@ -26,10 +26,11 @@ export class ReportFormComponent implements OnInit {
       account: 'BTC',
       timerange: 'today',
       email: ''
+      // TODO: Add more field
     });
   }
 
-  // TODO: Temporarily log to console, connect to backend later.
+  // TODO: Temporarily log to console, connect to backend later
   onSubmit() {
     this.report = this.reportForm.value;
     console.log(this.report);
