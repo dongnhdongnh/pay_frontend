@@ -11,6 +11,7 @@ import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
 import { ClipboardService } from 'ngx-clipboard'
 import { UtilityValidate } from 'utility/UtilityValidate';
 
+
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
@@ -33,7 +34,7 @@ export class AccountsComponent extends Root implements OnInit {
   walletsData: any;
   wallets = new Map<string, any>();
   wallet_current: any;
-  tab_current:any;
+  tab_current: any;
   Coin;
   constructor(
     titleService: Title,
@@ -111,6 +112,7 @@ export class AccountsComponent extends Root implements OnInit {
       walletSearch.offset = (this.currentPage - 1) * this.itemsPerPage;
       walletSearch.limit = this.itemsPerPage;
       walletSearch.orderBy = ['CreatedAt'];
+      walletSearch.search = this.vkcSearchValue;
       var result = await this.walletService.getWalletHistory(walletSearch);
       //   console.log("Get history result " + JSON.stringify(result));
       this.searchDatas = JSON.parse(result.message);
@@ -128,6 +130,14 @@ export class AccountsComponent extends Root implements OnInit {
 
     // this.totalItems=100;
     //  console.log('get history:' + JSON.stringify(result));
+  }
+
+  searchHistory(valueThing) {
+    console.log("SEARCH====== " + valueThing);
+    if(valueThing==this.vkcSearchValue)
+    return;
+    this.vkcSearchValue=valueThing;
+    this.getHistory(this.wallet_current);
   }
 
   ngOnInit() {
@@ -160,12 +170,12 @@ export class AccountsComponent extends Root implements OnInit {
     if (this.tab_current && this.tab_current.sortName == name)
       return;
     this.currentPage = 1;
-    this.tab_current={};
+    this.tab_current = {};
     this.tab_current.sortName = name;
     switch (name) {
       case TabName.VKCW.toString():
         this.updateCurrentWallet(NetworkName.VAKA);
-        this.tab_current.fullName="VakaCoin";
+        this.tab_current.fullName = "VakaCoin";
         break;
       case TabName.VKCV.toString():
 
@@ -173,16 +183,16 @@ export class AccountsComponent extends Root implements OnInit {
       case TabName.BTC.toString():
 
         this.updateCurrentWallet(NetworkName.BTC);
-        this.tab_current.fullName="Bitcoin";
+        this.tab_current.fullName = "Bitcoin";
         break;
       case TabName.ETH.toString():
 
         this.updateCurrentWallet(NetworkName.Ethereum);
-        this.tab_current.fullName="Ethereum";
+        this.tab_current.fullName = "Ethereum";
         break;
       case TabName.EOS.toString():
         this.updateCurrentWallet(NetworkName.EOS);
-        this.tab_current.fullName="EOS";
+        this.tab_current.fullName = "EOS";
         break;
       default:
         break;
@@ -245,6 +255,7 @@ export class AccountsComponent extends Root implements OnInit {
   }
   vndValue = 0;
   vkcValue = 0;
+  vkcSearchValue = "";
   ExchangeRateInput(typeName) {
     if (!this.sendObject.exchangeRate)
       return;
