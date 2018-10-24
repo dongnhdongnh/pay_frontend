@@ -20,8 +20,10 @@ export class ConfigService {
     constructor() {
         IpService.getIpLAN();
         this.issuer = 'https://vakaid.vakaxalab.com';
-        //this.urlApi = 'https://api.vakaid.vakaxalab.com';
-        this.urlApi = environment.urlApi;
+        
+        // this.urlApi = 'https://api.vakaid.vakaxalab.com';
+        this.urlApi = 'https://localhost:5001';
+        
         this.redirectUri = `${origin}/login`;
         this.silentRefreshRedirectUri = `${origin}/silent-refresh.html`;
         this.postLogoutRedirectUri = `${origin}/`;

@@ -6,19 +6,19 @@
     <div class="col-md-8 col-sm-8 col-xs-12">
       <ul class="nav nav-tabs nav-tabs-style-1 nav-justified tx-13" role="tablist">
         <li class="nav-item">
-          <a class="nav-link pd-y-10 active" data-toggle="tab" href="#tab1e" role="tab">Day</a>
+          <a [class]="isDay ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('day')">Day</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link pd-y-10" data-toggle="tab" href="#tab1d" role="tab">Week</a>
+          <a [class]="isWeek ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('week')">Week</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link pd-y-10" data-toggle="tab" href="#tab1c" role="tab">Month</a>
+          <a [class]="isMonth ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('month')">Month</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link pd-y-10" data-toggle="tab" href="#tab1b" role="tab">Year</a>
+          <a [class]="isYear ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('year')">Year</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link pd-y-10" data-toggle="tab" href="#tab1a" role="tab">All</a>
+          <a [class]="isAll ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('all')">All</a>
         </li>
       </ul>
     </div>
@@ -27,8 +27,8 @@
         <mat-tab label="Vakacoin">
             <div style="display: block;">
               <canvas baseChart width="400%" height="170%"
-                [datasets]="lineChartData"
-                [labels]="lineChartLabels"
+                [datasets]="Data_VKC"
+                [labels]="Labels_VKC"
                 [options]="lineChartOptions"
                 [colors]="lineChartColors"
                 [legend]="lineChartLegend"
@@ -41,8 +41,8 @@
         <mat-tab label="Bitcoin">
             <div style="display: block;">
               <canvas baseChart width="400%" height="170%"
-                [datasets]="lineChartData"
-                [labels]="lineChartLabels"
+                [datasets]="Data_BTC"
+                [labels]="Labels_BTC"
                 [options]="lineChartOptions"
                 [colors]="lineChartColors"
                 [legend]="lineChartLegend"
@@ -55,8 +55,8 @@
         <mat-tab label="Ethereum">
             <div style="display: block;">
               <canvas baseChart width="400%" height="170%"
-                [datasets]="lineChartData"
-                [labels]="lineChartLabels"
+                [datasets]="Data_ETH"
+                [labels]="Labels_ETH"
                 [options]="lineChartOptions"
                 [colors]="lineChartColors"
                 [legend]="lineChartLegend"
@@ -69,8 +69,8 @@
         <mat-tab label="Eosio">
             <div style="display: block;">
               <canvas baseChart width="400%" height="170%"
-                [datasets]="lineChartData"
-                [labels]="lineChartLabels"
+                [datasets]="Data_EOS"
+                [labels]="Labels_EOS"
                 [options]="lineChartOptions"
                 [colors]="lineChartColors"
                 [legend]="lineChartLegend"
@@ -82,58 +82,5 @@
         </mat-tab>
       </mat-tab-group>
     </div>
-    <!-- <div class="col-12 chart mg-t-20 tab-content">
-      <div class="tab-pane active" id="tab1a" role="tabpanel">
-        <img src="assets/images/backgrounds/chart1.png" alt="">
-      </div>
-      <div class="tab-pane" id="tab1b" role="tabpanel">
-        <img src="assets/images/backgrounds/chart2.png" alt="">
-      </div>
-      <div class="tab-pane" id="tab1c" role="tabpanel">
-        <img src="assets/images/backgrounds/chart1.png" alt="">
-      </div>
-      <div class="tab-pane" id="tab1d" role="tabpanel">
-        <img src="assets/images/backgrounds/chart2.png" alt="">
-      </div>
-      <div class="tab-pane" id="tab1e" role="tabpanel">
-        <img src="assets/images/backgrounds/chart1.png" alt="">
-      </div>
-      <div class="tab-pane" id="tab2a" role="tabpanel">
-        <img src="assets/images/backgrounds/chart2.png" alt="">
-      </div>
-      <div class="tab-pane" id="tab2b" role="tabpanel">
-        <img src="assets/images/backgrounds/chart1.png" alt="">
-      </div>
-      <div class="tab-pane" id="tab2c" role="tabpanel">
-        <img src="assets/images/backgrounds/chart2.png" alt="">
-      </div>
-      <div class="tab-pane" id="tab2d" role="tabpanel">
-        <img src="assets/images/backgrounds/chart1.png" alt="">
-      </div>
-    </div>
-    <div class="col-12 mg-t-20">
-      <ul class="nav nav-tabs nav-tabs-style-1 nav-justified tx-13" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active pd-0" data-toggle="tab" href="#tab2a" role="tab">
-            <p class="coin-top">1 EOS = đ150,094,974</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link pd-0" data-toggle="tab" href="#tab2b" role="tab">
-            <p class="coin-top">1 VKC = đ254,974</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link pd-0" data-toggle="tab" href="#tab2c" role="tab">
-            <p class="coin-top">1 BTC = đ150,094,974</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link pd-0" data-toggle="tab" href="#tab2d" role="tab">
-            <p class="coin-top">1 ETH = đ254,974</p>
-          </a>
-        </li>
-      </ul>
-    </div> -->
   </div>
 </div>

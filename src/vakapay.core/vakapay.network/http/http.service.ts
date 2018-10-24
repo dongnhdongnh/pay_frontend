@@ -104,6 +104,23 @@ export class HttpService {
     });
   };
 
+  //Get api
+  getFrom(operation = 'operation', api, alert = true): Promise<ResultObject> {
+    var self = this;
+    return new Promise<ResultObject>((resolve, reject) => self.http.get(api, self.httpOptionsGet())
+      .subscribe(
+        data => {
+          let dataConvert = new ResultObject(data);
+          // self.handleSuccess(operation, dataConvert, alert);
+          resolve(dataConvert);
+        },
+        error => {
+          self.handleError(operation, api, error, alert);
+          reject(error);
+        }
+      ));
+  };
+
   //Post api
   post(operation, api, data, alert = true): Promise<ResultObject> {
     return this.actionPost(operation, api, data, this.httpOptionsPost(), alert);

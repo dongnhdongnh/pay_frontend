@@ -13,19 +13,19 @@ export class Portfolio{
         switch(networkName){
             case 'Ethereum':
                 this.amount = amount + ' ETH';
-                this.iconUrl = '';
+                this.iconUrl = 'assets/images/icons/icon-eth.svg';
                 break;
             case 'Bitcoin':
                 this.amount = amount+' BTC';
-                this.iconUrl = '';
+                this.iconUrl = 'assets/images/icons/icon-btc.svg';
                 break;
             case 'Vakacoin':
                 this.amount = amount+' VKC';
-                this.iconUrl = '';
+                this.iconUrl = 'assets/images/icons/icon-vkc.svg';
                 break;
             case 'Eosio':
                 this.amount = amount+' EOS';
-                this.iconUrl = '';
+                this.iconUrl = 'assets/images/icons/icon-eos.svg';
                 break;
             default:
                 this.amount = '';
