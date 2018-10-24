@@ -134,9 +134,10 @@ export class AccountsComponent extends Root implements OnInit {
 
   searchHistory(valueThing) {
     console.log("SEARCH====== " + valueThing);
-    if(valueThing==this.vkcSearchValue)
-    return;
-    this.vkcSearchValue=valueThing;
+    if (valueThing == this.vkcSearchValue)
+      return;
+    this.vkcSearchValue = valueThing;
+    this.currentPage=0;
     this.getHistory(this.wallet_current);
   }
 
