@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule, MatTabsModule, MatSidenavModule } from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import { ClipboardModule } from 'ngx-clipboard';
 //ng-select
 import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 
@@ -97,7 +97,7 @@ import { ButtonDeleteComponent } from 'component/button-delete/button-delete.com
 import { WaitingLoadPageComponent } from 'component/waiting-load-page/waiting-load-page.component';
 import { ResendSmsComponent } from 'component/resend-sms/resend-sms.component';
 import { LockScreenComponent } from 'component/lock-screen/lock-screen.component';
-
+import { QRCodeModule } from 'angularx-qrcode';
 @NgModule({
   declarations: [
     AppComponent,
@@ -153,13 +153,15 @@ import { LockScreenComponent } from 'component/lock-screen/lock-screen.component
   ],
   imports: [
     BrowserModule,
+    QRCodeModule,
     FormsModule,
+    ReactiveFormsModule,
     NgSelectModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ToasterModule.forRoot(),
     MatTableModule, MatSidenavModule,
-    MatButtonModule, MatTabsModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,
+    MatButtonModule, MatTabsModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,ClipboardModule,
 
     //Font
     AngularFontAwesomeModule,
