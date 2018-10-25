@@ -49,12 +49,11 @@
     "ngx-bootstrap": "^3.0.1",
     "ngx-clipboard": "^11.1.9",
     "ngx-pagination": "^3.2.1",
-    "ngx-slick-carousel": "^0.4.4",
     "ngx-smart-modal": "^7.1.0",
+    "ngx-swiper-wrapper": "^6.4.1",
     "path": "^0.12.7",
     "reflect-metadata": "^0.1.12",
     "rxjs": "~6.2.0",
-    "slick-carousel": "^1.8.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

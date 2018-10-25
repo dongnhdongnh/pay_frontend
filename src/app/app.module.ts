@@ -1,11 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 
 //Add libriary
-import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 'auto'
+};
+
 import { ToasterModule } from 'angular2-toaster';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule, MatTabsModule, MatSidenavModule } from '@angular/material';
@@ -32,7 +39,7 @@ import { AppComponent } from './app.component';
 
 // import pagination component
 import { JwPaginationComponent } from 'jw-angular-pagination';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 //Component children
 //Authentication
 import { RegisterComponent } from 'component/authenticate/register/register.component';
@@ -145,8 +152,8 @@ import { QRCodeModule } from 'angularx-qrcode';
   ],
   imports: [
     BrowserModule,
+    SwiperModule,
     QRCodeModule,
-    SlickCarouselModule,
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
@@ -154,7 +161,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     BrowserAnimationsModule,
     ToasterModule.forRoot(),
     MatTableModule, MatSidenavModule,
-    MatButtonModule, MatTabsModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,ClipboardModule,
+    MatButtonModule, MatTabsModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule, ClipboardModule,
 
     //Font
     AngularFontAwesomeModule,
@@ -176,9 +183,10 @@ import { QRCodeModule } from 'angularx-qrcode';
   ],
   providers: [
     {
-      provide: NG_SELECT_DEFAULT_CONFIG,
+      provide: { NG_SELECT_DEFAULT_CONFIG, SWIPER_CONFIG },
       useValue: {
-        notFoundText: 'Custom not found'
+        notFoundText: 'Custom not found',
+        DEFAULT_SWIPER_CONFIG
       }
     }
   ],

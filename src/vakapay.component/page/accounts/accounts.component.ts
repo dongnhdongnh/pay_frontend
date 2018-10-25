@@ -10,7 +10,10 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
 import { ClipboardService } from 'ngx-clipboard'
 import { UtilityValidate } from 'utility/UtilityValidate';
-
+import {
+  SwiperComponent, SwiperDirective, SwiperConfigInterface,
+  SwiperScrollbarInterface, SwiperPaginationInterface
+} from 'ngx-swiper-wrapper';
 
 @Component({
   selector: 'app-accounts',
@@ -137,19 +140,11 @@ export class AccountsComponent extends Root implements OnInit {
     if (valueThing == this.vkcSearchValue)
       return;
     this.vkcSearchValue = valueThing;
-    this.currentPage=0;
+    this.currentPage = 0;
     this.getHistory(this.wallet_current);
   }
 
-  slides = [
-    {img: "http://placehold.it/350x150/000000"},
-    {img: "http://placehold.it/350x150/111111"},
-    {img: "http://placehold.it/350x150/333333"},
-    {img: "http://placehold.it/350x150/666666"},
-    {img: "http://placehold.it/350x150/666666"},
-    {img: "http://placehold.it/350x150/666666"}
-  ];
-  slideConfig = {"slidesToShow": 4, "slidesToScroll": 4};
+
   ngOnInit() {
 
   }
@@ -256,9 +251,8 @@ export class AccountsComponent extends Root implements OnInit {
     console.log("sendwallet=========> " + JSON.stringify(sendWallet));
     if (sendWallet == null)
       return;
-    var result = await this.walletService.getAddress(sendWallet.Id, sendWallet.Currency);
-    //  console.log("Address =" + result.message);
-    this.sendObject.address = JSON.parse(result.message);
+    // var result = await this.walletService.getAddress(sendWallet.Id, sendWallet.Currency);
+    // this.sendObject.address = JSON.parse(result.message);
     var result_exchangeRate = await this.walletService.getExchangeRate(sendWallet.Currency);
     this.sendObject.exchangeRate = result_exchangeRate.message;
     this.ngxSmartModalService.getModal('sendDetail').open();
@@ -314,7 +308,7 @@ export class AccountsComponent extends Root implements OnInit {
       }
       this.sendObject.detail = form.value;
       var result = await this.walletService.checkSendCoin(this.sendObject.detail.withdrawn_from
-        , this.sendObject.detail.Recipient_WalletAddress, this.sendObject.networkName, this.sendObject.detail.VKCAmount);
+        , this.sendObject.detail.recipientWalletAddress, this.sendObject.networkName, this.sendObject.detail.VKCAmount);
       console.log("RESULT " + result);
       let _checkObject = JSON.parse(result.message);
       this.sendObject.checkObject = _checkObject;
@@ -336,25 +330,28 @@ export class AccountsComponent extends Root implements OnInit {
     //console.log("send by ad=" + this.sendByAd);
     this.errorObject = {};
     if (this.sendByAd) {
-      if (form.controls.Recipient_WalletAddress.errors && form.controls.Recipient_WalletAddress.errors.required) {
-        this.errorObject.Recipient_WalletAddress = true;
+      if (form.controls.recipientWalletAddress.errors && form.controls.recipientWalletAddress.errors.required) {
+        this.errorObject.recipientWalletAddress = true;
         return false;
       }
     }
     else {
-      if (form.controls.Recipient_EmailAddress.errors && form.controls.Recipient_EmailAddress.errors.required) {
-        this.errorObject.Recipient_EmailAddress = true;
+      if (form.controls.recipientEmailAddress.errors && form.controls.recipientEmailAddress.errors.required) {
+        this.errorObject.recipientEmailAddress = true;
         return false;
       }
     }
 
 
-    if (form.controls.withdrawn_from.errors && form.controls.withdrawn_from.errors.required) {
-      this.errorObject.withdrawn_from = true;
-      return false;
-    }
+    // if (form.controls.withdrawn_from.errors && form.controls.withdrawn_from.errors.required) {
+    //   this.errorObject.withdrawn_from = true;
+    //   return false;
+    // }
     if (form.controls.VNDAmount.errors && form.controls.VNDAmount.errors.required) {
       this.errorObject.VNDAmount = true;
+      return false;
+    }
+    if (form.value.VNDAmount <= 0) {
       return false;
     }
     if (form.controls.VKCnote.errors && form.controls.VKCnote.errors.required) {
@@ -368,9 +365,11 @@ export class AccountsComponent extends Root implements OnInit {
     try {
       this.sendObject.SMScode = form.value.VKCSMS;
       this.sendObject.detail.sendByAd = this.sendByAd;
+      delete this.sendObject.checkObject;
+      delete this.sendObject.exchangeRate;
       this.walletService.sendCoinConfirm(this.sendObject);
 
-      console.log("HAHAHAHAHA confirm ============>" + JSON.stringify(form.value));
+      console.log("HAHAHAHAHA confirm ============>" + JSON.stringify(this.sendObject));
       this.ngxSmartModalService.getModal('sendDetail').close();
       this.ngxSmartModalService.getModal('sendConfirm').close();
       this.ngxSmartModalService.getModal('popup_ok').open();
@@ -400,6 +399,8 @@ export class AccountsComponent extends Root implements OnInit {
   getWalletByName(networkName) {
     let _output = null;
     try {
+      if (!this.walletsData)
+        return null;
       this.walletsData.forEach(element => {
         if (element.Currency == networkName.toString()) {
           _output = element;
@@ -474,10 +475,23 @@ export class AccountsComponent extends Root implements OnInit {
     return x;
   }
 
+  slideConfig: SwiperConfigInterface = {
+    speed: 300,
+    centeredSlides: false,
+    slidesPerView: 4,
+    spaceBetween: 10,
+    navigation: true,
+    pagination: true,
+    scrollbar: false,
+    mousewheel: false
+  }
+  // slideConfig1 = {"speed": 300, "centeredSlides": false,"slidesPerView":4,"spaceBetween":100,"loop":false};
+
+
 }
 enum NetworkName {
-  VAKA = "VAKA",
-  BTC = "BTC",
+  VAKA = "Vakacoin",
+  BTC = "Bitcoin",
   Ethereum = "Ethereum",
   EOS = "EOS",
 }
