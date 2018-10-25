@@ -5,6 +5,7 @@ import { ResultObject } from 'model/result/ResultObject';
 import { ConfigService } from 'network/config/config.service';
 import { AlertService } from 'services/system/alert.service';
 import { Utility } from 'utility/Utility';
+import { environment } from 'environments/environment.prod';
 
 @Injectable({ providedIn: 'root' })
 export class HttpService {
@@ -90,7 +91,7 @@ export class HttpService {
     let URL_API = new URL(api, self.url).href;
     if(debug)
     {
-      URL_API = new URL(api, 'https://api.vakaid.vakaxalab.com').href;
+      URL_API = new URL(api, environment.urlApi).href;
     }
     return new Promise<ResultObject>((resolve, reject) => {
       self.http.post(URL_API, data, httpOptions)
