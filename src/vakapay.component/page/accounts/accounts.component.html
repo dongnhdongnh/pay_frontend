@@ -15,9 +15,9 @@
               <p class="br-section-text">You can send, receive or make some vault to save your current coin more
                 safely!</p>
             </div>
-            <div class="width-half">
+            <!-- <div class="width-half">
               <a href="#" class="btn addnew bg-green" data-toggle="modal" data-target="#modaldemo5"> + New Account</a>
-            </div>
+            </div> -->
           </div>
           <div class="clear-both"></div>
           <div class="row row-sm tab-account mg-t-20">
@@ -686,9 +686,9 @@
 <ngx-smart-modal #sendDetail [identifier]="'sendDetail'">
   <div class="modal-dialog modal-dialog-vertical-center" role="document">
     <form class="modal-content bd-0 tx-14" #sendCoinForm="ngForm" (ngSubmit)="sendCoin(sendCoinForm)" novalidate>
-      {{errorObject|json}}
       <div class="modal-header pd-y-20 pd-x-25">
         <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Send {{sendObject?.name}}</h6>
+    
         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button> -->
@@ -697,11 +697,11 @@
         <div class="row">
           <ul class="nav nav-tabs nav-tabs-style-1 nav-justified tx-13" role="tablist">
             <li class="nav-item width-half">
-              <a class="nav-link pd-y-10 active" data-toggle="tab" href="#taba" role="tab" (click)="sendByAd=true;errorObject = {};">Wallet
+              <a class="nav-link pd-y-10 active" data-toggle="tab" href="#taba" role="tab" (click)="sendByAd=true;validateSendCoin(sendCoinForm);">Wallet
                 Address</a>
             </li>
             <li class="nav-item width-half">
-              <a class="nav-link pd-y-10" data-toggle="tab" href="#tabb" role="tab" (click)="sendByAd=false;errorObject = {};">Email
+              <a class="nav-link pd-y-10" data-toggle="tab" href="#tabb" role="tab" (click)="sendByAd=false;validateSendCoin(sendCoinForm);">Email
                 Address</a>
             </li>
           </ul>
@@ -713,8 +713,8 @@
               <div class="col-sm-12 mg-t-10 mg-sm-t-0">
                 <input type="text" class="form-control" placeholder="Enter a VKC Address" name="recipientWalletAddress"
                   #recipientWalletAddress="ngModel" required minlength="1" ngModel (keyup)="validateSendCoin(sendCoinForm)">
-                <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.recipientWalletAddress||(recipientWalletAddress?.errors?.required && recipientWalletAddress?.touched)">
-                  Address is required!
+                <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.recipientWalletAddress">
+                 {{errorObject.recipientWalletAddress}} 
                 </div>
               </div>
             </div><!-- row -->
@@ -728,8 +728,8 @@
               <div class="col-sm-12 mg-t-10 mg-sm-t-0">
                 <input type="text" class="form-control" name="recipientEmailAddress" #recipientEmailAddress="ngModel"
                   id="recipientEmailAddress" placeholder="Enter an email Address" required ngModel (keyup)="validateSendCoin(sendCoinForm)">
-                <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.recipientEmailAddress||(recipientEmailAddress?.errors?.required && recipientEmailAddress?.touched)">
-                  Address is required!
+                <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.recipientEmailAddress">
+                  {{errorObject.recipientEmailAddress}} 
                 </div>
               </div>
             </div><!-- row -->
@@ -746,7 +746,7 @@
               <div class="input-left bg-green"><span color="slate">VND</span></div>
               <div class="input-right"><input type="number" class="form-control fc-outline-white" placeholder=""
                   [(ngModel)]="vndValue" maxlength="15" name="VNDAmount" #VNDAmount="ngModel" ngModel required
-                  minlength="1" (change)="ExchangeRateInput('VND');" (keyup)="validateSendCoin(sendCoinForm);">
+                  minlength="1" (change)="ExchangeRateInput('VND');" (change)="validateSendCoin(sendCoinForm);">
               </div>
             </div>
             <div class="transfer"><i class="fa fa-exchange"></i></div>
@@ -754,28 +754,28 @@
               <div class="input-left bg-green"><span color="slate">VKC</span></div>
               <div class="input-right"><input type="number" class="form-control fc-outline-white" placeholder=""
                   [(ngModel)]="vkcValue" maxlength="15" name="VKCAmount" #VKCAmount="ngModel" ngModel required
-                  minlength="1" (change)="ExchangeRateInput('VKC');" (keyup)="validateSendCoin(sendCoinForm);"></div>
+                  minlength="1" (change)="ExchangeRateInput('VKC');" (change)="validateSendCoin(sendCoinForm);"></div>
             </div>
           </div>
-          <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.VNDAmount||(VNDAmount?.errors?.required && VNDAmount?.touched)">
-            Amount is required!
+          <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.VNDAmount">
+            {{errorObject.VNDAmount}}
           </div>
         </div><!-- row -->
         <div class="row mg-t-20">
-          <label class="col-sm-12 form-control-label"> Note:<i class="tx-danger">*</i></label>
+          <label class="col-sm-12 form-control-label"> Note:</label>
           <div class="col-sm-12 mg-t-10 mg-sm-t-0">
             <textarea rows="3" class="form-control" placeholder="Write an optional message" name="VKCnote" ngModel
-              required minlength="1" (keyup)="validateSendCoin(sendCoinForm)" #VKCnote="ngModel"></textarea>
-            <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.VKCnote||(VKCnote?.errors?.required && VKCnote?.touched)">
-              Note is required!
-            </div>
+               (keyup)="validateSendCoin(sendCoinForm)" #VKCnote="ngModel"></textarea>
+            <!-- <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.VKCnote">
+              {{errorObject.VKCnote}}
+            </div> -->
           </div>
         </div><!-- row -->
       </div>
       <div class="modal-footer step">
         <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
-          data-dismiss="modal" (click)="closePopup('sendDetail')">Cancel</button>
-        <button type="submit" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Continue</button>
+          data-dismiss="modal" (click)="closePopup('sendDetail')">Cancel</button>    
+        <button type="submit" [disabled]="!errorObject?.canNext" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Continue</button>
         <!-- <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
           data-dismiss="modal" data-target="#modaldemo3b" type="submit">Continue</a> -->
       </div>

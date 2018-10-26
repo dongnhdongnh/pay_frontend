@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,6 +14,7 @@ import {
   SwiperComponent, SwiperDirective, SwiperConfigInterface,
   SwiperScrollbarInterface, SwiperPaginationInterface
 } from 'ngx-swiper-wrapper';
+import { Utility } from 'utility/Utility';
 
 @Component({
   selector: 'app-accounts',
@@ -22,7 +23,7 @@ import {
 })
 
 export class AccountsComponent extends Root implements OnInit {
-
+  @ViewChild('sendCoinForm') sendCoinForm: NgForm;
   private toasterService: ToasterService;
   private clipboardService: ClipboardService;
   public config1: ToasterConfig = new ToasterConfig({
@@ -38,7 +39,7 @@ export class AccountsComponent extends Root implements OnInit {
   wallets = new Map<string, any>();
   wallet_current: any;
   tab_current: any;
-  Coin;
+
   constructor(
     titleService: Title,
     route: ActivatedRoute,
@@ -53,7 +54,6 @@ export class AccountsComponent extends Root implements OnInit {
     this.toasterService = toasterService;
     this.mAccount = mAccountSerive.mAccount;
     this.mAccount.id = "8377a95b-79b4-4dfb-8e1e-b4833443c306";
-    this.Coin = "ETH";
     this.walletService = walletService;
     this.isDataLoaded = false;
     this.clipboardService = _clipboardService;
@@ -74,7 +74,7 @@ export class AccountsComponent extends Root implements OnInit {
 
     this.toasterService.pop(toast);
   }
-  async getUserData() {
+  async getUserData(loadDefault=true) {
     try {
       var result = await this.walletService.getAllWallet(this.mAccount);
       console.log(result);
@@ -89,7 +89,11 @@ export class AccountsComponent extends Root implements OnInit {
         // console.log(_w.networkname);
       }
       this.isDataLoaded = true;
-      this.wallet_current = this.getWalletByName(NetworkName.VAKA.toString());
+      if (loadDefault)
+        this.wallet_current = this.getWalletByName(NetworkName.VAKA.toString());
+        this.tab_current={};
+        this.tab_current.sortName="VKCW";
+        this.tab_current.fullName = "VakaCoin";
       await this.getHistory(this.wallet_current);
     } catch (error) {
       console.log(error);
@@ -114,7 +118,7 @@ export class AccountsComponent extends Root implements OnInit {
       walletSearch.networkName = this.wallet_current.Currency;
       walletSearch.offset = (this.currentPage - 1) * this.itemsPerPage;
       walletSearch.limit = this.itemsPerPage;
-      walletSearch.orderBy = ['CreatedAt'];
+      walletSearch.orderBy = ['-CreatedAt'];
       walletSearch.search = this.vkcSearchValue;
       var result = await this.walletService.getWalletHistory(walletSearch);
       //   console.log("Get history result " + JSON.stringify(result));
@@ -174,9 +178,11 @@ export class AccountsComponent extends Root implements OnInit {
     console.log(JSON.stringify(event) + name);
     if (this.tab_current && this.tab_current.sortName == name)
       return;
-    this.currentPage = 1;
     this.tab_current = {};
     this.tab_current.sortName = name;
+    this.searchDatas = new Array();
+    this.currentPage = 1;
+    this.totalItems = 0;
     switch (name) {
       case TabName.VKCW.toString():
         this.updateCurrentWallet(NetworkName.VAKA);
@@ -245,7 +251,9 @@ export class AccountsComponent extends Root implements OnInit {
   }
   public async onClickSend(networkName) {
     console.log("on cl0ickkkkkkkkkkkkkkkkkkkkkkkkkkk send " + networkName);
+
     this.errorObject = {};
+    this.sendCoinForm.reset();
     this.updateSendObject(networkName);
     let sendWallet = this.getWalletByName(this.sendObject.networkName);
     console.log("sendwallet=========> " + JSON.stringify(sendWallet));
@@ -256,6 +264,7 @@ export class AccountsComponent extends Root implements OnInit {
     var result_exchangeRate = await this.walletService.getExchangeRate(sendWallet.Currency);
     this.sendObject.exchangeRate = result_exchangeRate.message;
     this.ngxSmartModalService.getModal('sendDetail').open();
+    this.validateSendCoin(this.sendCoinForm);
   }
   vndValue = 0;
   vkcValue = 0;
@@ -327,38 +336,51 @@ export class AccountsComponent extends Root implements OnInit {
 
   errorObject: any;
   validateSendCoin(form: NgForm) {
-    //console.log("send by ad=" + this.sendByAd);
+
     this.errorObject = {};
+    this.errorObject.canNext = true;
     if (this.sendByAd) {
       if (form.controls.recipientWalletAddress.errors && form.controls.recipientWalletAddress.errors.required) {
-        this.errorObject.recipientWalletAddress = true;
-        return false;
+        this.errorObject.recipientWalletAddress = 'Address is required';
+        //  return false;
+        this.errorObject.canNext = false;
       }
+      else {
+        if (!this.walletService.validateAddress(form.value.recipientWalletAddress, this.tab_current.fullName)) {
+          this.errorObject.recipientWalletAddress = 'Address is not valid';
+          this.errorObject.canNext = false;
+        }
+
+      }
+
     }
     else {
       if (form.controls.recipientEmailAddress.errors && form.controls.recipientEmailAddress.errors.required) {
-        this.errorObject.recipientEmailAddress = true;
-        return false;
+        this.errorObject.recipientEmailAddress = 'Email is required';
+        this.errorObject.canNext = false;
+        //   return false;
       }
     }
-
-
     // if (form.controls.withdrawn_from.errors && form.controls.withdrawn_from.errors.required) {
     //   this.errorObject.withdrawn_from = true;
     //   return false;
     // }
     if (form.controls.VNDAmount.errors && form.controls.VNDAmount.errors.required) {
-      this.errorObject.VNDAmount = true;
-      return false;
+      this.errorObject.VNDAmount = 'Amount is required';
+      this.errorObject.canNext = false;
+      //  return false;
     }
     if (form.value.VNDAmount <= 0) {
-      return false;
+      this.errorObject.VNDAmount = 'Amount must be greater than 0';
+      this.errorObject.canNext = false;
+      //  return false;
     }
-    if (form.controls.VKCnote.errors && form.controls.VKCnote.errors.required) {
-      this.errorObject.VKCnote = true;
-      return false;
-    }
-    return true;
+    // if (form.controls.VKCnote.errors && form.controls.VKCnote.errors.required) {
+    //   this.errorObject.VKCnote = 'Note is required';
+    //  // return false;
+    // }
+    return this.errorObject.canNext;
+
   }
 
   async sendCoinConfirm(form: NgForm) {
@@ -367,12 +389,23 @@ export class AccountsComponent extends Root implements OnInit {
       this.sendObject.detail.sendByAd = this.sendByAd;
       delete this.sendObject.checkObject;
       delete this.sendObject.exchangeRate;
-      this.walletService.sendCoinConfirm(this.sendObject);
+
 
       console.log("HAHAHAHAHA confirm ============>" + JSON.stringify(this.sendObject));
       this.ngxSmartModalService.getModal('sendDetail').close();
       this.ngxSmartModalService.getModal('sendConfirm').close();
       this.ngxSmartModalService.getModal('popup_ok').open();
+      let result = await this.walletService.sendCoinConfirm(this.sendObject);
+      console.log("result:========== " + JSON.stringify(result));
+      if (Utility.isError(result)) {
+        console.log(result.message);
+        return;
+      }
+      else {
+        //this.getHistory(this.wallet_current);
+        this.getUserData(false);
+      }
+
     } catch (error) {
 
     }
