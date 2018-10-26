@@ -26,7 +26,7 @@ export class DisableApiKeyComponent {
 
   constructor(
     public ngxSmartModalService: NgxSmartModalService,
-    private service: ApiKeyService
+    public service: ApiKeyService
   ) {
   }
 

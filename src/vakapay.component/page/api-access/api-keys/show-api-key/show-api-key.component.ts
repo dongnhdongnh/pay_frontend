@@ -26,7 +26,7 @@ export class ShowApiKeyComponent {
 
   constructor(
     public ngxSmartModalService: NgxSmartModalService,
-    private service: ApiKeyService) { }
+    public service: ApiKeyService) { }
 
   onShowModal() {
     this.apiKey = new ApiKey();

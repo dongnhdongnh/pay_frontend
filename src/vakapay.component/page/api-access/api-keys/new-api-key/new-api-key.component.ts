@@ -59,7 +59,7 @@ export class NewApiKeyComponent {
   constructor(
     public ngxSmartModalService: NgxSmartModalService,
     public apiAccessService: ApiAccessService,
-    private apiKeyService: ApiKeyService,
+    public apiKeyService: ApiKeyService,
   ) {
     this.apiAccess = apiAccessService.apiAccess;
   }

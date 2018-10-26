@@ -25,7 +25,7 @@ export class DeleteApiKeyComponent {
 
   constructor(
     public ngxSmartModalService: NgxSmartModalService,
-    private service: ApiKeyService
+    public service: ApiKeyService
   ) {
   }
 
