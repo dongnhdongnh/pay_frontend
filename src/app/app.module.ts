@@ -101,6 +101,11 @@ import { Oauth2AppComponent } from 'component/page/api-access/oauth2-app/oauth2-
 import { ApiAccessNotificationComponent } from 'component/page/api-access/api-access-notification/api-access-notification.component';
 import { ListApiKeysComponent } from 'component/page/api-access/api-keys/list-api-keys/list-api-keys.component';
 import { NewApiKeyComponent } from 'component/page/api-access/api-keys/new-api-key/new-api-key.component';
+import { ShowApiKeyComponent } from 'component/page/api-access/api-keys/show-api-key/show-api-key.component';
+import { DeleteApiKeyComponent } from 'component/page/api-access/api-keys/delete-api-key/delete-api-key.component';
+import { EnableApiKeyComponent } from 'component/page/api-access/api-keys/enable-api-key/enable-api-key.component';
+import { DisableApiKeyComponent } from 'component/page/api-access/api-keys/disable-api-key/disable-api-key.component';
+import { EditApiKeyComponent } from 'component/page/api-access/api-keys/edit-api-key/edit-api-key.component';
 
 @NgModule({
   declarations: [
@@ -159,6 +164,11 @@ import { NewApiKeyComponent } from 'component/page/api-access/api-keys/new-api-k
     ApiAccessNotificationComponent,
     ListApiKeysComponent,
     NewApiKeyComponent,
+    ShowApiKeyComponent,
+    DeleteApiKeyComponent,
+    EnableApiKeyComponent,
+    DisableApiKeyComponent,
+    EditApiKeyComponent,
   ],
   imports: [
     BrowserModule,

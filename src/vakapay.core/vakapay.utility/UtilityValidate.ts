@@ -137,7 +137,7 @@ export class UtilityValidate extends Validate {
     }
 
     static validateCode(code) {
-        this.validateString(code, 0, 100, 'Code');
+        this.validateString(code, 6, 100, 'Code');
 
         if (this.isAlphaNumericCharacter(code) === false) {
             throw new Error('Code is only alpha chatacters and numeric.');

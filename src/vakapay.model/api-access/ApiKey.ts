@@ -1,13 +1,49 @@
 import { Model } from "model/Model";
+import { UtilityFormat } from "utility/utilityFormat";
 import { WalletType } from "model/wallet/WalletType";
 
-export class ApiAccess extends Model {
-    listApi: any;
-    listWallet: any[];
+export class ApiKey extends Model {
+    id: string;
+    apiAllow: string;
+    keyApi: string;
+    wallets: string;
+    permissions: string;
+    callbackUrl: string;
+    secret: string;
+    userId: string;
+    status: number;
+    createdAt: number;
+    updatedAt: number;
+
     constructor() {
         super();
-        this.listApi = {};
-        this.listWallet = [];
+        this.id = '';
+        this.apiAllow = '';
+        this.keyApi = '';
+        this.wallets = '';
+        this.permissions = '';
+        this.callbackUrl = '';
+        this.secret = '';
+        this.userId = '';
+        this.status = 0;
+        this.createdAt = 0;
+        this.updatedAt = 0;
+    }
+
+    get _createdAt() {
+        return UtilityFormat.formatDateText(this.createdAt * 1000);
+    }
+
+    get _updatedAt() {
+        return UtilityFormat.formatDateText(this.updatedAt * 1000);
+    }
+
+    get listWallet() {
+        return this.wallets.split(',').map(x => x.trim());
+    }
+
+    get listPermission() {
+        return this.permissions.split(',').map(x => x.trim());
     }
 
     hasWallet(_wallet) { return this.listWallet.includes(_wallet); }
@@ -20,9 +56,7 @@ export class ApiAccess extends Model {
     get hasVkc_Vault() { return this.hasWallet(WalletType.VKC_VAULT); }
 
     hasApi(_api) {
-        return this.listApi[_api] !== null &&
-            this.listApi[_api] !== undefined &&
-            this.listApi[_api] !== '';
+        return this.listPermission.includes(_api);
     }
 
     get has_CREATED_ADDRESSES() { return this.hasApi('CREATED_ADDRESSES'); }

@@ -1,4 +1,4 @@
-import { ApiAccess } from './../../vakapay.model/api-access/ApiAccess';
+import { ApiAccess } from 'model/api-access/ApiAccess';
 import { Utility } from 'utility/Utility';
 import { Injectable } from '@angular/core';
 import { HttpService } from 'network/http/http.service';

@@ -1,25 +1,29 @@
+import { ApiKey } from 'model/api-access/ApiKey';
 import { ApiKeyService } from 'services/api-access/api-key/apiKey.service';
+import { Component, ViewChild, ElementRef, Input } from '@angular/core';
 import { ApiAccess } from 'model/api-access/ApiAccess';
-import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { ApiAccessService } from 'services/api-access/apiAccess.service';
-import { Model } from 'model/Model';
 import { Utility } from 'utility/Utility';
 import { UtilityValidate } from 'utility/UtilityValidate';
 import { WalletType } from 'model/wallet/WalletType';
 import { ApiType } from 'model/api-access/ApiType';
 
 @Component({
-  selector: 'app-new-api-key',
-  templateUrl: './new-api-key.component.html',
-  styleUrls: ['./new-api-key.component.css']
+  selector: 'app-edit-api-key',
+  templateUrl: './edit-api-key.component.html',
+  styleUrls: ['./edit-api-key.component.css']
 })
-
-export class NewApiKeyComponent {
+export class EditApiKeyComponent {
   @ViewChild('code') codeElement: ElementRef;
+  @ViewChild('code1') code1Element: ElementRef;
+
+  apiKey: ApiKey = new ApiKey();
+
+  idEdit: string = '';
 
   //step
-  step: number = 1;
+  step: number = 0;
 
   //input
   code: string = '';
@@ -59,12 +63,82 @@ export class NewApiKeyComponent {
   constructor(
     public ngxSmartModalService: NgxSmartModalService,
     public apiAccessService: ApiAccessService,
-    private apiKeyService: ApiKeyService,
+    private service: ApiKeyService,
   ) {
     this.apiAccess = apiAccessService.apiAccess;
   }
 
+  show(data: any = {}) {
+    this.apiKey.attributes = data;
+    //set data
+    // this.isAll = false;
+    this.isBtcWallet = this.apiKey.hasBtc;
+    this.isEosWallet = this.apiKey.hasEos;
+    this.isVkcWallet = this.apiKey.hasVkc;
+    this.isVkcVault = this.apiKey.hasVkc_Vault;
+    this.isEthWallet = this.apiKey.hasEth;
+    this.isVakaWallet = this.apiKey.hasVaka;
+
+    //api
+    this.is_CREATED_ADDRESSES = this.apiKey.has_CREATED_ADDRESSES;
+    this.is_CREATED_DEPOSITS = this.apiKey.has_CREATED_DEPOSITS;
+    this.is_READ_ADDRESSES = this.apiKey.has_READ_ADDRESSES;
+    this.is_READ_DEPOSITS = this.apiKey.has_READ_DEPOSITS;
+    this.is_READ_TRANSACTIONS = this.apiKey.has_READ_TRANSACTIONS;
+    this.is_SEND_TRANSACTIONS = this.apiKey.has_SEND_TRANSACTIONS;
+    this.is_USER_MAIL = this.apiKey.has_USER_MAIL;
+    this.is_USER_READ = this.apiKey.has_USER_READ;
+
+    this.onShowModalMain();
+  }
+
+  async verify() {
+    try {
+      this.apiKey = new ApiKey();
+      this.isLoading = true;
+      this.idEdit = this.service.currentId;
+      this.service.currentId = '';
+      this.validate();
+
+      if (this.isValid === false) {
+        this.isLoading = false;
+        return;
+      }
+
+      var dataPost = {
+        id: this.idEdit,
+        code: this.code,
+      };
+
+      //get api key by id
+      let result = await this.service.get(dataPost);
+
+      //Show message success
+      this.isLoading = false;
+
+      if (Utility.isError(result)) return;
+      if (result.data === null) {
+        this.messageErrorCode = result.message || 'Not find api-key';
+        return;
+      }
+
+
+      //valid
+      this.isValid = false;
+
+      this.show(result.data);
+
+      return;
+    } catch (error) {
+      //Show message success
+      this.isLoading = false;
+      console.log(JSON.stringify(error));
+    }
+
+  }
+
   onCode(event) {
+
     try {
       if (Utility.isEnter(event)) {
         // this.onUpdate();
@@ -89,6 +163,11 @@ export class NewApiKeyComponent {
   validate() {
     try {
       this.isValid = false;
+      if (this.step === 0) {
+        UtilityValidate.validateToken(this.code);
+        this.isValid = true;
+        return;
+      }
       this.wallets = [];
       this.apis = [];
 
@@ -121,7 +200,7 @@ export class NewApiKeyComponent {
       }
 
       if (this.step > 1) {
-        UtilityValidate.validateCode(this.code);
+        UtilityValidate.validateToken(this.code);
       }
 
       this.messageErrorApiType = '';
@@ -134,14 +213,37 @@ export class NewApiKeyComponent {
   }
 
   onShowModal() {
-    this.ngxSmartModalService.getModal('modalCreate').open();
+    this.onReset();
+    this.ngxSmartModalService.getModal('modalEdit').open();//refresh list of api key    
   }
 
   onCloseModal() {
-    this.ngxSmartModalService.getModal('modalCreate').close();
+    this.ngxSmartModalService.getModal('modalEdit').close();
+  }
+
+  onShowModalMain() {
+    this.step = 1;
+    this.ngxSmartModalService.getModal('modalEdit').close();
+    this.ngxSmartModalService.getModal('modalMain').open();
   }
 
   onReset() {
+    this.step = 0;
+    this.code = '';
+    this.idEdit = '';
+
+    //valid
+    this.isValid = false;
+
+    //input
+    this.codeElement.nativeElement.value = '';
+    this.code1Element.nativeElement.value = '';
+
+    //message
+    this.messageErrorApiType = '';
+    this.messageErrorCode = '';
+    this.messageErrorWalletType = '';
+
     //wallet
     this.isAll = false;
     this.isBtcWallet = false;
@@ -149,6 +251,7 @@ export class NewApiKeyComponent {
     this.isVkcWallet = false;
     this.isVkcVault = false;
     this.isEthWallet = false;
+    this.isVakaWallet = false;
 
     //api
     this.is_CREATED_ADDRESSES = false;
@@ -159,20 +262,6 @@ export class NewApiKeyComponent {
     this.is_SEND_TRANSACTIONS = false;
     this.is_USER_MAIL = false;
     this.is_USER_READ = false;
-
-    //step
-    this.step = 1;
-
-    //valid
-    this.isValid = false;
-
-    //input
-    this.codeElement.nativeElement.value = '';
-
-    //message
-    this.messageErrorApiType = '';
-    this.messageErrorCode = '';
-    this.messageErrorWalletType = '';
   }
 
   cancel() {
@@ -199,12 +288,17 @@ export class NewApiKeyComponent {
 
       var dataPost = {
         code: this.code,
-        wallets: this.wallets.join(','),
-        apis: this.apis.join(',')
+        data: {
+          wallets: this.wallets.join(','),
+          apis: this.apis.join(','),
+          notificationUrl: '',
+          allowedIp: '',
+          id: this.idEdit
+        }
       };
 
       //send ajax
-      let result = await this.apiKeyService.create(dataPost);
+      let result = await this.service.edit(dataPost);
 
       //Show message success
       this.isLoading = false;
@@ -214,7 +308,7 @@ export class NewApiKeyComponent {
       this.onReset();
 
       //refresh list of api key
-      this.apiKeyService.refresh();
+      this.service.refresh();
 
       return;
     } catch (error) {
@@ -252,5 +346,4 @@ export class NewApiKeyComponent {
   hasWallet(_wallet) {
     return this.apiAccess.listWallet.includes(_wallet);
   }
-
 }
