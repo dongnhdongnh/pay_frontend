@@ -3,27 +3,27 @@
       <div class="pos-rel pd-20 d-inline-block">
         <div class="col-md-5 col-sm-4 col-xs-12">
           <h6 class="br-section-label mg-b-0">Your Portfolio Value</h6>
-          <h4 class="tx-value">$505,365</h4>
+          <h4 class="tx-value">{{portfolioValue}}</h4>
         </div>
         <div class="col-md-7 col-sm-8 col-xs-12">
           <ul class="nav nav-tabs nav-tabs-style-1 nav-justified tx-13" role="tablist">
             <li class="nav-item">
-              <a class="nav-link pd-y-10 active" data-toggle="tab" href="#tab3a" role="tab">1H</a>
+              <a [class]="isHour ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('hour')">1H</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link pd-y-10" data-toggle="tab" href="#tab3b" role="tab">24H</a>
+              <a [class]="isDay ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('day')">24H</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link pd-y-10" data-toggle="tab" href="#tab3c" role="tab">1W</a>
+              <a [class]="isWeek ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('week')">1W</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link pd-y-10" data-toggle="tab" href="#tab3d" role="tab">1M</a>
+              <a [class]="isMonth ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('month')">1M</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link pd-y-10" data-toggle="tab" href="#tab3e" role="tab">1Y</a>
+              <a [class]="isYear ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('year')">1Y</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link pd-y-10" data-toggle="tab" href="#tab3f" role="tab">All</a>
+              <a [class]="isAll ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('all')">All</a>
             </li>
           </ul>
         </div>

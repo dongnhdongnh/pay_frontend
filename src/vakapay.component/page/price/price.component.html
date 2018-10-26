@@ -66,20 +66,6 @@
               </canvas>
             </div>
         </mat-tab>
-        <mat-tab label="Eosio">
-            <div style="display: block;">
-              <canvas baseChart width="400%" height="170%"
-                [datasets]="Data_EOS"
-                [labels]="Labels_EOS"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)">
-              </canvas>
-            </div>
-        </mat-tab>
       </mat-tab-group>
     </div>
   </div>

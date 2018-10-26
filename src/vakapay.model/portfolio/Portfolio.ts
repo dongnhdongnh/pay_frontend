@@ -7,9 +7,9 @@ export class Portfolio{
     amount: string;
     value: string;
 
-    constructor(networkName = '', percent = '', amount = '', value = ''){
+    constructor(networkName = '', total = 1, amount = '', value = ''){
         this.networkName = networkName;
-        this.percent = percent;
+        this.percent = (parseFloat(value)/total*100).toFixed(3).toString();
         switch(networkName){
             case 'Ethereum':
                 this.amount = amount + ' ETH';
@@ -31,7 +31,7 @@ export class Portfolio{
                 this.amount = '';
                 this.iconUrl = '';
         }
-        this.value = value;
+        this.value = "$" + value;
     }
 
 }

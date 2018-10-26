@@ -78,44 +78,35 @@ export class PriceComponent implements OnInit {
   public lineChartData_ETH = [];
   public lineChartLabels_ETH = [];
 
-  //eosio
-  public lineChartData_EOS = [];
-  public lineChartLabels_EOS = [];
-
   //init data by day for loading dashboard
   public getDataByDay() {
     this.getData('vakacoin/day');
     this.getData('bitcoin/day');
     this.getData('ethereum/day');
-    this.getData('eos/day');
   }
 
   public getDataByWeek() {
     this.getData('vakacoin/week');
     this.getData('bitcoin/week');
     this.getData('ethereum/week');
-    this.getData('eos/week');
   }
 
   public getDataByMonth() {
     this.getData('vakacoin/month');
     this.getData('bitcoin/month');
     this.getData('ethereum/month');
-    this.getData('eos/month');
   }
 
   public getDataByYear() {
     this.getData('vakacoin/year');
     this.getData('bitcoin/year');
     this.getData('ethereum/year');
-    this.getData('eos/year');
   }
 
   public getAllData() {
     this.getData('vakacoin/all');
     this.getData('bitcoin/all');
     this.getData('ethereum/all');
-    this.getData('eos/all');
   }
 
   private resetData(): void {
@@ -130,11 +121,6 @@ export class PriceComponent implements OnInit {
     //ethereum
     this.lineChartData_ETH.length = 0;
     this.lineChartLabels_ETH.length = 0;
-
-    //eosio
-    this.lineChartData_EOS.length = 0;
-    this.lineChartLabels_EOS.length = 0;
-    console.log("reset data done");
   }
 
   public async getData(apiString = '') {
@@ -152,10 +138,6 @@ export class PriceComponent implements OnInit {
 
       case "ethereum":
         this.getDataETH(apiData, timeOption);
-        break;
-
-      case "eos":
-        this.getDataEOS(apiData, timeOption);
         break;
 
       default:
@@ -211,22 +193,6 @@ export class PriceComponent implements OnInit {
     this.Labels_ETH = this.lineChartLabels_ETH;
   }
 
-  public getDataEOS(apiData, timeOption) {
-    var stringtData = apiData.data.toString();
-    var arrData = stringtData.split(",");
-    arrData.forEach((element, index) => {
-      if (index % 2 == 1) {
-        this.lineChartData_EOS.push(element);
-      } else {
-        this.lineChartLabels_EOS.push(this.timeBy(element, timeOption));
-      }
-    });
-    this.Data_EOS = [
-      { data: this.lineChartData_EOS, fill: true, label: 'price' }
-    ];
-    this.Labels_EOS = this.lineChartLabels_EOS;
-  }
-
   public timeBy(timestamp: string, timeOption: string) {
     return new Date(parseInt(timestamp));
   }
@@ -249,12 +215,6 @@ export class PriceComponent implements OnInit {
     { data: this.lineChartData_ETH, fill: true, label: 'price' }
   ];
   public Labels_ETH: Array<any> = this.lineChartLabels_ETH;
-
-  //eosio
-  public Data_EOS: Array<any> = [
-    { data: this.lineChartData_EOS, fill: true, label: 'price' }
-  ];
-  public Labels_EOS: Array<any> = this.lineChartLabels_EOS;
 
   //chart options
   public lineChartType: string = 'line';
@@ -285,33 +245,29 @@ export class PriceComponent implements OnInit {
   //click time options
   public timeOption(option: string): void {
     this.resetData();
+    this.resetToFalse();
     switch (option) {
       case 'day':
-        this.resetToFalse();
         this.isDay = true;
         this.getDataByDay();
         break;
 
       case 'week':
-        this.resetToFalse();
         this.isWeek = true;
         this.getDataByWeek();
         break;
 
       case 'month':
-        this.resetToFalse();
         this.isMonth = true;
         this.getDataByMonth();
         break;
 
       case 'year':
-        this.resetToFalse();
         this.isYear = true;
         this.getDataByYear();
         break;
 
       case 'all':
-        this.resetToFalse();
         this.isAll = true;
         this.getAllData();
         break;
