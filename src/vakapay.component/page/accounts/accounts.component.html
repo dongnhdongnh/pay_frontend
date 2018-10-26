@@ -27,24 +27,25 @@
               <div class="swiper-container" [swiper]="slideConfig" [(index)]="index">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
-                    <div [ngClass]="tab_current?.sortName=='VKCW' ? 'd-table-cell border border-primary':'d-table-cell'"  href="#tab1" role="tab" aria-selected="true"
-                      (click)="onClickWalletTab($event,'VKCW')">
+                    <div [ngClass]="tab_current?.sortName=='VKC' ? 'd-table-cell border border-primary':'d-table-cell'"
+                      href="#tab1" role="tab" aria-selected="true" (click)="onClickWalletTab($event,'VKC')">
                       <div class="bg-green border p-rl h120">
                         <div class="pd-x-10 pd-t-10 d-flex align-items-center">
                           <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-vkc.svg" alt=""></i>
                           <div class="mg-r-20 width-text">
                             <p class="tx-15 tx-white tx-spacing-1 mg-b-0">VKC Wallet</p>
-                            <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Vakacoin")?.Balance}} VKC</p>
+                            <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Vakacoin")?.Balance}}
+                              VKC</p>
                             <div class="pd-t-10 pd-b-10 d-flex align-items-center">
                               <div *ngIf="wallets.get('Vakacoin')?.Balance>0">
-                                <a href="#" (click)="onClickSend('VKCW')" class="btn btn-trans  send-receive"
+                                <a href="#" (click)="onClickSend('VKC')" class="btn btn-trans  send-receive"
                                   data-toggle="modal" data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
                               </div>
                               <div *ngIf="wallets.get('Vakacoin')?.Balance<=0">
                                 <a href="#" class="btn disabled btn-trans  send-receive" data-toggle="modal"
                                   data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
                               </div>
-                              <a href="#" (click)="onClickReceive('VKCW')" class="btn btn-trans send-receive"
+                              <a href="#" (click)="onClickReceive('VKC')" class="btn btn-trans send-receive"
                                 data-toggle="modal" data-target="#modaldemo2"><i class="fa fa-arrow-circle-down mg-r-3"></i>Receive
                               </a>
                               <div class="dropdown">
@@ -64,7 +65,7 @@
                       </div>
                     </div>
 
-                
+
 
 
                   </div>
@@ -100,13 +101,15 @@
                             </div> -->
                   <!-- col-3 -->
                   <div class="swiper-slide">
-                    <div  [ngClass]="tab_current?.sortName=='BTC' ? 'd-table-cell border border-primary':'d-table-cell'"  href="#tab1" role="tab" (click)="onClickWalletTab($event,'BTC')">
+                    <div [ngClass]="tab_current?.sortName=='BTC' ? 'd-table-cell border border-primary':'d-table-cell'"
+                      href="#tab1" role="tab" (click)="onClickWalletTab($event,'BTC')">
                       <div class="bg-btc border p-rl h120">
                         <div class="pd-x-10 pd-t-10 d-flex align-items-center">
                           <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-btc.svg" alt=""></i>
                           <div class="mg-r-20 width-text">
                             <p class="tx-15 tx-white tx-spacing-1 mg-b-0">BitCoin</p>
-                            <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Bitcoin")?.Balance}} BTC</p>
+                            <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Bitcoin")?.Balance}}
+                              BTC</p>
                             <div class="pd-t-10 pd-b-10 d-flex align-items-center">
                               <div *ngIf="wallets.get('Bitcoin')?.Balance>0">
                                 <a href="#" (click)="onClickSend('BTC')" class="btn btn-trans  send-receive"
@@ -140,7 +143,8 @@
                   </div>
                   <!-- col-3 -->
                   <div class="swiper-slide">
-                    <div [ngClass]="tab_current?.sortName=='ETH' ? 'd-table-cell border border-primary':'d-table-cell'"  href="#tab1" role="tab" (click)="onClickWalletTab($event,'ETH')">
+                    <div [ngClass]="tab_current?.sortName=='ETH' ? 'd-table-cell border border-primary':'d-table-cell'"
+                      href="#tab1" role="tab" (click)="onClickWalletTab($event,'ETH')">
                       <div class="bg-eth border p-rl h120">
                         <div class="pd-x-10 pd-t-10 d-flex align-items-center">
                           <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eth.svg" alt=""></i>
@@ -182,7 +186,8 @@
                   </div>
                   <!-- col-3 -->
                   <div class="swiper-slide">
-                    <div [ngClass]="tab_current?.sortName=='EOS' ? 'd-table-cell border border-primary':'d-table-cell'"  href="#tab1" role="tab" (click)="onClickWalletTab($event,'EOS')">
+                    <div [ngClass]="tab_current?.sortName=='EOS' ? 'd-table-cell border border-primary':'d-table-cell'"
+                      href="#tab1" role="tab" (click)="onClickWalletTab($event,'EOS')">
                       <div class="bg-eos border p-rl h120">
                         <div class="pd-x-10 pd-t-10 d-flex align-items-center">
                           <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eos.svg" alt=""></i>
@@ -220,21 +225,21 @@
                       </div>
                     </div>
                   </div>
-                 
+
 
 
 
                 </div>
                 <div class="swiper-scrollbar"></div>
                 <div class="swiper-pagination"></div>
-    
+
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
               </div>
 
-             
+
             </div>
-        
+
           </div>
 
           <!-- History View -->
@@ -383,7 +388,7 @@
                         <div class="modal-body pd-x-20 pd-y-5 no-tran-box">
                           <div [ngSwitch]="tab_current?.sortName">
                             <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
-                              *ngSwitchCase="'VKCW'"><img src="../assets/icons/icon-vkc.svg" alt=""></i>
+                              *ngSwitchCase="'VKC'"><img src="../assets/icons/icon-vkc.svg" alt=""></i>
                             <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
                               *ngSwitchCase="'VKCV'"><img src="../assets/icons/icon-vault.svg" alt=""></i>
                             <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
@@ -546,12 +551,12 @@
               <!-- Tab panes -->
             </div>
           </div><!-- br-section-wrapper -->
-     
-      <!-- row -->
-      </form>
-    </div><!-- col-12 -->
-  </div><!-- row -->
-</div><!-- br-section-wrapper -->
+
+          <!-- row -->
+        </form>
+      </div><!-- col-12 -->
+    </div><!-- row -->
+  </div><!-- br-section-wrapper -->
 </div><!-- br-mainpanel -->
 <div class="clear-both"></div>
 <!-- ########## END: MAIN PANEL ########## -->
@@ -688,7 +693,7 @@
     <form class="modal-content bd-0 tx-14" #sendCoinForm="ngForm" (ngSubmit)="sendCoin(sendCoinForm)" novalidate>
       <div class="modal-header pd-y-20 pd-x-25">
         <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Send {{sendObject?.name}}</h6>
-    
+
         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button> -->
@@ -714,7 +719,7 @@
                 <input type="text" class="form-control" placeholder="Enter a VKC Address" name="recipientWalletAddress"
                   #recipientWalletAddress="ngModel" required minlength="1" ngModel (keyup)="validateSendCoin(sendCoinForm)">
                 <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.recipientWalletAddress">
-                 {{errorObject.recipientWalletAddress}} 
+                  {{errorObject.recipientWalletAddress}}
                 </div>
               </div>
             </div><!-- row -->
@@ -729,7 +734,7 @@
                 <input type="text" class="form-control" name="recipientEmailAddress" #recipientEmailAddress="ngModel"
                   id="recipientEmailAddress" placeholder="Enter an email Address" required ngModel (keyup)="validateSendCoin(sendCoinForm)">
                 <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.recipientEmailAddress">
-                  {{errorObject.recipientEmailAddress}} 
+                  {{errorObject.recipientEmailAddress}}
                 </div>
               </div>
             </div><!-- row -->
@@ -738,7 +743,7 @@
 
           </div>
         </div>
-      
+
         <div class="row mg-t-20">
           <label class="col-sm-12 form-control-label"> Amount:<i class="tx-danger">*</i></label>
           <div class="col-sm-12 mg-t-10 mg-sm-t-0">
@@ -751,10 +756,10 @@
             </div>
             <div class="transfer"><i class="fa fa-exchange"></i></div>
             <div class="width-half-mini input-number">
-              <div class="input-left bg-green"><span color="slate">VKC</span></div>
+              <div class="input-left bg-green"><span color="slate">{{tab_current?.sortName}}</span></div>
               <div class="input-right"><input type="number" class="form-control fc-outline-white" placeholder=""
                   [(ngModel)]="vkcValue" maxlength="15" name="VKCAmount" #VKCAmount="ngModel" ngModel required
-                  minlength="1" (change)="ExchangeRateInput('VKC');" (change)="validateSendCoin(sendCoinForm);"></div>
+                  minlength="1" (change)="ExchangeRateInput('VKC');validateSendCoin(sendCoinForm);"></div>
             </div>
           </div>
           <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.VNDAmount">
@@ -765,7 +770,7 @@
           <label class="col-sm-12 form-control-label"> Note:</label>
           <div class="col-sm-12 mg-t-10 mg-sm-t-0">
             <textarea rows="3" class="form-control" placeholder="Write an optional message" name="VKCnote" ngModel
-               (keyup)="validateSendCoin(sendCoinForm)" #VKCnote="ngModel"></textarea>
+              (keyup)="validateSendCoin(sendCoinForm)" #VKCnote="ngModel"></textarea>
             <!-- <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.VKCnote">
               {{errorObject.VKCnote}}
             </div> -->
@@ -774,8 +779,9 @@
       </div>
       <div class="modal-footer step">
         <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
-          data-dismiss="modal" (click)="closePopup('sendDetail')">Cancel</button>    
-        <button type="submit" [disabled]="!errorObject?.canNext" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Continue</button>
+          data-dismiss="modal" (click)="closePopup('sendDetail')">Cancel</button>
+        <button type="submit" [disabled]="!errorObject?.canNext" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
+          data-dismiss="modal">Continue</button>
         <!-- <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
           data-dismiss="modal" data-target="#modaldemo3b" type="submit">Continue</a> -->
       </div>
@@ -879,13 +885,20 @@
     <div class="modal-content">
       <div class="modal-body tx-center pd-y-20 pd-x-20">
         <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
-        <h4 class="tx-success mg-b-20">Your transaction is on the way!</h4>
-        <p class="mg-b-20 mg-x-20">You sent {{sendObject?.detail?.VKCAmount}} {{sendObject?.sortName}}
-          (₫{{sendObject?.detail?.VNDAmount}}) to an
-          external address.</p>
-        <a href="#" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-toggle="modal"
-          data-dismiss="modal" (click)="closePopup('popup_ok')" data-target="#modaldemo3d"> View Details
-        </a>
+        <div *ngIf="errorObject?.sendTransactions ;else sendDone">
+          <h4 class="tx-success mg-b-20"><font color="red">Error</font></h4>
+          <p class="mg-b-20 mg-x-20"><font color="red">{{errorObject?.sendTransactions}}</font></p>
+        </div>
+        <ng-template #sendDone>
+          <h4 class="tx-success mg-b-20">Your transaction is on the way!</h4>
+          <p class="mg-b-20 mg-x-20">You sent {{sendObject?.detail?.VKCAmount}} {{sendObject?.sortName}}
+            (₫{{sendObject?.detail?.VNDAmount}}) to an
+            external address.</p>
+          <a href="#" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-toggle="modal"
+            data-dismiss="modal" (click)="closePopup('popup_ok')" data-target="#modaldemo3d"> View Details
+          </a>
+        </ng-template>
+
       </div><!-- modal-body -->
     </div>
   </div>

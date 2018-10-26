@@ -53,7 +53,7 @@ export class AccountsComponent extends Root implements OnInit {
     super(titleService, route, router);
     this.toasterService = toasterService;
     this.mAccount = mAccountSerive.mAccount;
-    this.mAccount.id = "8377a95b-79b4-4dfb-8e1e-b4833443c306";
+    //this.mAccount.id = "8377a95b-79b4-4dfb-8e1e-b4833443c306";
     this.walletService = walletService;
     this.isDataLoaded = false;
     this.clipboardService = _clipboardService;
@@ -74,7 +74,7 @@ export class AccountsComponent extends Root implements OnInit {
 
     this.toasterService.pop(toast);
   }
-  async getUserData(loadDefault=true) {
+  async getUserData(loadDefault = true) {
     try {
       var result = await this.walletService.getAllWallet(this.mAccount);
       console.log(result);
@@ -91,9 +91,9 @@ export class AccountsComponent extends Root implements OnInit {
       this.isDataLoaded = true;
       if (loadDefault)
         this.wallet_current = this.getWalletByName(NetworkName.VAKA.toString());
-        this.tab_current={};
-        this.tab_current.sortName="VKCW";
-        this.tab_current.fullName = "VakaCoin";
+      this.tab_current = {};
+      this.tab_current.sortName = "VKC";
+      this.tab_current.fullName = "VakaCoin";
       await this.getHistory(this.wallet_current);
     } catch (error) {
       console.log(error);
@@ -184,7 +184,7 @@ export class AccountsComponent extends Root implements OnInit {
     this.currentPage = 1;
     this.totalItems = 0;
     switch (name) {
-      case TabName.VKCW.toString():
+      case TabName.VKC.toString():
         this.updateCurrentWallet(NetworkName.VAKA);
         this.tab_current.fullName = "VakaCoin";
         break;
@@ -222,7 +222,7 @@ export class AccountsComponent extends Root implements OnInit {
   updateSendObject(networkName) {
     this.sendObject = {};
     switch (networkName) {
-      case TabName.VKCW.toString():
+      case TabName.VKC.toString():
         this.sendObject.name = "Vakacoin";
         this.sendObject.sortName = "VKC";
         this.sendObject.networkName = NetworkName.VAKA.toString();
@@ -276,9 +276,11 @@ export class AccountsComponent extends Root implements OnInit {
     switch (typeName) {
       case "VKC":
         this.vndValue = this.vkcValue / this.sendObject.exchangeRate;
+        this.validateSendCoin(this.sendCoinForm);
         break;
       case "VND":
         this.vkcValue = this.vndValue * this.sendObject.exchangeRate;
+        this.validateSendCoin(this.sendCoinForm);
         break;
       default:
         break;
@@ -365,16 +367,27 @@ export class AccountsComponent extends Root implements OnInit {
     //   this.errorObject.withdrawn_from = true;
     //   return false;
     // }
-    if (form.controls.VNDAmount.errors && form.controls.VNDAmount.errors.required) {
+    if (form.controls.VNDAmount.errors && form.controls.VNDAmount.errors.required && !this.vndValue) {
       this.errorObject.VNDAmount = 'Amount is required';
       this.errorObject.canNext = false;
       //  return false;
     }
-    if (form.value.VNDAmount <= 0) {
-      this.errorObject.VNDAmount = 'Amount must be greater than 0';
-      this.errorObject.canNext = false;
-      //  return false;
+    else {
+      if (this.vndValue <= 0) {
+        this.errorObject.VNDAmount = 'Amount must be greater than 0';
+        this.errorObject.canNext = false;
+        //  return false;
+      }
+      else
+        if (this.vkcValue > this.wallet_current.Balance) {
+          this.errorObject.VNDAmount = 'Amount cannot be greater than balance';
+         // +form.value.VKCAmount +"___"+this.vkcValue+"____"+this.wallet_current.Balance;
+          this.errorObject.canNext = false;
+          //  return false;
+        }
+
     }
+
     // if (form.controls.VKCnote.errors && form.controls.VKCnote.errors.required) {
     //   this.errorObject.VKCnote = 'Note is required';
     //  // return false;
@@ -385,26 +398,29 @@ export class AccountsComponent extends Root implements OnInit {
 
   async sendCoinConfirm(form: NgForm) {
     try {
+      this.errorObject = {};
       this.sendObject.SMScode = form.value.VKCSMS;
       this.sendObject.detail.sendByAd = this.sendByAd;
       delete this.sendObject.checkObject;
       delete this.sendObject.exchangeRate;
-
+    
 
       console.log("HAHAHAHAHA confirm ============>" + JSON.stringify(this.sendObject));
       this.ngxSmartModalService.getModal('sendDetail').close();
       this.ngxSmartModalService.getModal('sendConfirm').close();
-      this.ngxSmartModalService.getModal('popup_ok').open();
+   
       let result = await this.walletService.sendCoinConfirm(this.sendObject);
       console.log("result:========== " + JSON.stringify(result));
       if (Utility.isError(result)) {
         console.log(result.message);
-        return;
+        this.errorObject.sendTransactions=result.message;
+      
       }
       else {
         //this.getHistory(this.wallet_current);
         this.getUserData(false);
       }
+      this.ngxSmartModalService.getModal('popup_ok').open();
 
     } catch (error) {
 
@@ -530,7 +546,7 @@ enum NetworkName {
 }
 
 enum TabName {
-  VKCW = 'VKCW',
+  VKC = 'VKC',
   VKCV = 'VKCV',
   BTC = 'BTC',
   ETH = 'ETH',
