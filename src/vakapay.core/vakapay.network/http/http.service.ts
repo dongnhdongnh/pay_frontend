@@ -88,7 +88,6 @@ export class HttpService {
         ));
   }
 
-
   requestPost(operation = 'operation', URL_API, data, httpOptions, alert = true) {
     var self = this;
     return new Promise<ResultObject>((resolve, reject) => {
@@ -114,7 +113,7 @@ export class HttpService {
   };
 
   //Post api
-  post(operation, api, data, alert = true): Promise<ResultObject> {
+  post(operation, api, data, alert = true, debug = false): Promise<ResultObject> {
     return this.actionPost(operation, api, data, this.httpOptionsPost(), alert);
   };
 

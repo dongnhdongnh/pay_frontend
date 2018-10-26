@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -10,8 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule, MatTabsModule, MatSidenavModule } from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { QRCodeModule } from 'angularx-qrcode';
-
+import { ClipboardModule } from 'ngx-clipboard';
 //ng-select
 import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 
@@ -106,7 +105,7 @@ import { DeleteApiKeyComponent } from 'component/page/api-access/api-keys/delete
 import { EnableApiKeyComponent } from 'component/page/api-access/api-keys/enable-api-key/enable-api-key.component';
 import { DisableApiKeyComponent } from 'component/page/api-access/api-keys/disable-api-key/disable-api-key.component';
 import { EditApiKeyComponent } from 'component/page/api-access/api-keys/edit-api-key/edit-api-key.component';
-
+import { QRCodeModule } from 'angularx-qrcode';
 @NgModule({
   declarations: [
     AppComponent,
@@ -172,7 +171,9 @@ import { EditApiKeyComponent } from 'component/page/api-access/api-keys/edit-api
   ],
   imports: [
     BrowserModule,
+    QRCodeModule,
     FormsModule,
+    ReactiveFormsModule,
     NgSelectModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -180,6 +181,7 @@ import { EditApiKeyComponent } from 'component/page/api-access/api-keys/edit-api
     MatTableModule, MatSidenavModule,
     MatButtonModule, MatTabsModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,
     QRCodeModule,
+    ClipboardModule,
 
     //Font
     AngularFontAwesomeModule,
