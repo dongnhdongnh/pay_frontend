@@ -33,6 +33,16 @@ export class HttpService {
     };
   }
 
+  httpOptionsPostImgur() {
+    return {
+      headers: new HttpHeaders({
+        //'Content-Type': 'application/json',
+        // 'Authorization': `Client-ID be5056dfe342377`
+      }),
+      withCredentials: true
+    };
+  }
+
   httpOptionsPostFormData() {
     return {
       headers: new HttpHeaders({
@@ -120,6 +130,12 @@ export class HttpService {
   //Post api
   postFormData(operation, api, data, alert = true): Promise<ResultObject> {
     return this.actionPost(operation, api, data, this.httpOptionsPostFormData(), alert);
+  };
+
+  //Send image to imgur.com
+  postImgur(operation, api, data, alert = true): Promise<ResultObject> {
+    let URL_API = `${window.location.origin}/upload-profile`;
+    return this.requestPost(operation, URL_API, data, this.httpOptionsPostImgur(), alert);
   };
 
   private log(message: string) {

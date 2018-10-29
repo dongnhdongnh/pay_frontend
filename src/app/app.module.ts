@@ -7,7 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 //Add libriary
 import { ToasterModule } from 'angular2-toaster';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule, MatTabsModule, MatSidenavModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule, MatTabsModule, MatSidenavModule, MatExpansionModule }
+  from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ClipboardModule } from 'ngx-clipboard';
@@ -180,6 +181,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     ToasterModule.forRoot(),
     MatTableModule, MatSidenavModule,
     MatButtonModule, MatTabsModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,
+    MatExpansionModule,
     QRCodeModule,
     ClipboardModule,
 

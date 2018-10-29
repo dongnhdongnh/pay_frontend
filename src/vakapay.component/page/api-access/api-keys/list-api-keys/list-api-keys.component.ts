@@ -9,6 +9,7 @@ import { ApiKeyService } from 'services/api-access/api-key/apiKey.service';
 })
 export class ListApiKeysComponent {
   displayedColumns: string[] = ['keyApi', 'status', 'wallets', 'permissions', 'action'];
+  showPermission: any = {};
 
   constructor(
     public service: ApiKeyService,

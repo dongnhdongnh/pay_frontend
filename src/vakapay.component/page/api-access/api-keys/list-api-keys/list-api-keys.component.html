@@ -50,12 +50,25 @@
     <mat-header-cell *matHeaderCellDef> permissions </mat-header-cell>
     <mat-cell *matCellDef="let element">
       <div>
-        <span class="mobile-label">permissions:</span>
-        <div class="dropbtn btn btn-trans tx-11
-          tx-uppercase pd-y-7 pd-x-10 tx-mont mg-t-10 tx-green bd-green"
-          *ngFor="let permission of element.listPermission">
-          <span>{{apiAccessService.apiAccess.listApi[permission]}}</span>
-        </div>
+        <span class="mobile-label">Permissions</span>
+
+        <mat-expansion-panel (opened)="showPermission[element.id] = true"
+          (closed)="showPermission[element.id] = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div class="dropbtn btn btn-trans tx-11
+                tx-uppercase pd-y-7 pd-x-10 tx-mont mg-t-10 tx-green bd-green">
+                <span>{{showPermission[element.id] ? 'Hidden' : 'Show'}}</span>
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="dropbtn btn btn-trans tx-11
+            tx-uppercase pd-y-7 pd-x-10 tx-mont mg-t-10 tx-green bd-green"
+            *ngFor="let permission of element.listPermission">
+            <span>{{apiAccessService.apiAccess.listApi[permission]}}</span>
+          </div>
+        </mat-expansion-panel>
+
       </div>
     </mat-cell>
   </ng-container>
