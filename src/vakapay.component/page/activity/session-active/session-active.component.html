@@ -1,0 +1,63 @@
+<div class="col-xl-12 mg-t-20 pd-10 tab-pane activity-table">
+  <div class="width-half">
+    <h5 class="mg-t-20 tx-green tx-15">Web Sessions</h5>
+    <h6 class="grey tx-left tx-14">
+      These sessions are currently signed in to your account.
+      Sign out all other sessions
+    </h6>
+  </div>
+  <div class="width-half text-right">
+    <app-refresh [service]="service"></app-refresh>
+  </div>
+</div>
+<br>
+<mat-table #table [dataSource]="this.service.list"
+  style="width: 100%;">
+
+  <ng-container matColumnDef="signedInFormat">
+    <mat-header-cell *matHeaderCellDef> Signed In </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span class="mobile-label">Signed In:</span> {{element.signedInFormat}}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="browser">
+    <mat-header-cell fxFlex="300px" *matHeaderCellDef> Browser
+    </mat-header-cell>
+    <mat-cell fxFlex="300px" *matCellDef="let element">
+      <span class="mobile-label">Browser:</span> {{element.browser}}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="ip">
+    <mat-header-cell *matHeaderCellDef> IP location </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span class="mobile-label">IP location:</span> {{element.ip}}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="location">
+    <mat-header-cell *matHeaderCellDef> Near </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span class="mobile-label">Near:</span> {{element.location}}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="current">
+    <mat-header-cell *matHeaderCellDef> Current </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span class="mobile-label">Current:</span>
+      <i class="fa fa-check tx-13 tx-grey"></i> </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span class="mobile-label">Delete:</span>
+      <button-delete (click)=delete(element.id)></button-delete>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

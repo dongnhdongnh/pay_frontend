@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IpService } from 'services/system/ip.service';
+import { environment } from 'environments/environment.prod';
 const origin = window.location.origin;
 
 @Injectable({
@@ -14,14 +15,17 @@ export class ConfigService {
     silentRefreshRedirectUri: string;
     postLogoutRedirectUri: string;
     clientId: string;
+    imageUrl: string;
 
     constructor() {
         IpService.getIpLAN();
         this.issuer = 'https://vakaid.vakaxalab.com';
-        this.urlApi = 'https://api.vakaid.vakaxalab.com';
+        this.urlApi = environment.urlApi;
+        
         this.redirectUri = `${origin}/login`;
         this.silentRefreshRedirectUri = `${origin}/silent-refresh.html`;
         this.postLogoutRedirectUri = `${origin}/`;
+        this.imageUrl = './src/assets/images';
 
         //localhost
         if (origin === 'https://localhost:4040') {
@@ -35,11 +39,11 @@ export class ConfigService {
     }
 
     get returnUrl() {
-        if (this.development === 'localhost') {
-            const ip = `https://${localStorage.getItem('ipLAN')}:4040/`;
-            console.log(`Address web local is ${ip}`)
-            return ip;
-        }
+        // if (this.development === 'localhost') {
+        //     const ip = `https://${localStorage.getItem('ipLAN')}:4040/`;
+        //     console.log(`Address web local is ${ip}`)
+        //     return ip;
+        // }
 
         return `${origin}/`;
     }

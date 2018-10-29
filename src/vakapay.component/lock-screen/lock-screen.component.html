@@ -1,0 +1,41 @@
+<div class="d-flex align-items-center justify-content-center ht-100v bg-home">
+  <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a id="main_nav_btn" class="btn btn-navbar" data-toggle="collapse"
+          data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a href="#" class="brand" onclick="">
+          <img src="/assets/images/logo/logo2.svg" alt="">
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="logo-home">
+    <div class="login-wrapper wd-480 wd-xs-350 pd-25 pd-xs-40 pd-t-20 rounded bd
+      bd-white-2 bg-white p-rl mg-x-auto mw">
+      <img [src]="mAccount.avatar" alt="" class="ava-lock">
+      <div class="signin-logo tx-center tx-24 tx-bold tx-grey mg-b-20">
+        {{mAccount.fullName}}
+      </div>
+      <form>
+        <div class="form-group">
+          <input #password (keyup)="onPassword($event)" type="password"
+            class="form-control fc-outline-white"
+            placeholder="Your Password">
+            <span class="error">{{messageErrorPassword}}</span>
+        </div>
+        <button
+          [disabled]="!isValid||isLoading" (click)="onUnlock()"
+          type="button"
+          class="btn btn-green btn-block">
+          <i class="fa fa-lock"></i>
+          Unlock <loading-button [isLoading]='isLoading'></loading-button>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

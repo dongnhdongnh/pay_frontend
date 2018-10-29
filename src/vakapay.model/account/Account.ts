@@ -15,6 +15,10 @@ export class Account extends Model {
     postalCode: string;
     streetAddress1: string;
     streetAddress2: string;
+    currencyKey: string;
+    timezoneKey: string;
+    notifications: string[];
+    isLockScreen: number;
 
     constructor() {
         super();
@@ -32,6 +36,10 @@ export class Account extends Model {
         this.postalCode = '';
         this.streetAddress1 = '';
         this.streetAddress2 = '';
+        this.currencyKey = null;
+        this.timezoneKey = null;
+        this.notifications = [];
+        this.isLockScreen = 0;
     }
 
     get fullName() {

@@ -9,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
   mAccount: any;
   mAccountSerive: any;
+  device = {
+    isMobile: false
+  }
   constructor(mAccountSerive: AccountService) {
     this.mAccountSerive = mAccountSerive;
   }
