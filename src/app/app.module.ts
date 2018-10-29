@@ -55,6 +55,12 @@ import { HeaderComponent } from 'component/page/header/header.component';
 import { LeftPanelComponent } from 'component/page/left-panel/left-panel.component';
 import { FooterComponent } from 'component/page/footer/footer.component';
 import { PortfolioComponent } from 'component/page/portfolio/portfolio.component';
+import { PriceComponent } from 'component/page/price/price.component';
+import { PortfolioValueComponent } from 'component/page/portfolio-value/portfolio-value.component';
+import { RecentActivityComponent } from 'component/page/recent-activity/recent-activity.component';
+
+//Chartjs
+import { ChartsModule } from 'ng2-charts';
 
 //VakaId Login
 import { OAuthModule } from 'angular-oauth2-oidc';
@@ -124,6 +130,9 @@ import { QRCodeModule } from 'angularx-qrcode';
     UploadImageProfileComponent,
     UpdateProfileComponent,
     PreferencesComponent,
+    PriceComponent,
+    PortfolioValueComponent,
+    RecentActivityComponent,
     NotificationComponent,
     PreferenceComponent,
     SecurityComponent,
@@ -165,6 +174,9 @@ import { QRCodeModule } from 'angularx-qrcode';
 
     //Font
     AngularFontAwesomeModule,
+
+    //Chartjs
+    ChartsModule,
 
     //Redirect VakaId
     OAuthModule.forRoot(),
