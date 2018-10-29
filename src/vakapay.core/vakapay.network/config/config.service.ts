@@ -15,15 +15,17 @@ export class ConfigService {
     silentRefreshRedirectUri: string;
     postLogoutRedirectUri: string;
     clientId: string;
+    imageUrl: string;
 
     constructor() {
         IpService.getIpLAN();
         this.issuer = 'https://vakaid.vakaxalab.com';
-        this.urlApi = 'https://api.vakaid.vakaxalab.com';
-        // this.urlApi = environment.urlApi;
+        this.urlApi = environment.urlApi;
+        
         this.redirectUri = `${origin}/login`;
         this.silentRefreshRedirectUri = `${origin}/silent-refresh.html`;
         this.postLogoutRedirectUri = `${origin}/`;
+        this.imageUrl = './src/assets/images';
 
         //localhost
         if (origin === 'https://localhost:4040') {

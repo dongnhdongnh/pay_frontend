@@ -5,6 +5,14 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 //Add libriary
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 'auto'
+};
+
 import { ToasterModule } from 'angular2-toaster';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule, MatTabsModule, MatSidenavModule, MatExpansionModule }
@@ -48,6 +56,12 @@ import { HeaderComponent } from 'component/page/header/header.component';
 import { LeftPanelComponent } from 'component/page/left-panel/left-panel.component';
 import { FooterComponent } from 'component/page/footer/footer.component';
 import { PortfolioComponent } from 'component/page/portfolio/portfolio.component';
+import { PriceComponent } from 'component/page/price/price.component';
+import { PortfolioValueComponent } from 'component/page/portfolio-value/portfolio-value.component';
+import { RecentActivityComponent } from 'component/page/recent-activity/recent-activity.component';
+
+//Chartjs
+import { ChartsModule } from 'ng2-charts';
 
 //VakaId Login
 import { OAuthModule } from 'angular-oauth2-oidc';
@@ -131,6 +145,9 @@ import { QRCodeModule } from 'angularx-qrcode';
     UploadImageProfileComponent,
     UpdateProfileComponent,
     PreferencesComponent,
+    PriceComponent,
+    PortfolioValueComponent,
+    RecentActivityComponent,
     NotificationComponent,
     PreferenceComponent,
     SecurityComponent,
@@ -172,6 +189,7 @@ import { QRCodeModule } from 'angularx-qrcode';
   ],
   imports: [
     BrowserModule,
+    SwiperModule,
     QRCodeModule,
     FormsModule,
     ReactiveFormsModule,
@@ -180,6 +198,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     BrowserAnimationsModule,
     ToasterModule.forRoot(),
     MatTableModule, MatSidenavModule,
+
     MatButtonModule, MatTabsModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,
     MatExpansionModule,
     QRCodeModule,
@@ -187,6 +206,9 @@ import { QRCodeModule } from 'angularx-qrcode';
 
     //Font
     AngularFontAwesomeModule,
+
+    //Chartjs
+    ChartsModule,
 
     //Redirect VakaId
     OAuthModule.forRoot(),
@@ -205,9 +227,10 @@ import { QRCodeModule } from 'angularx-qrcode';
   ],
   providers: [
     {
-      provide: NG_SELECT_DEFAULT_CONFIG,
+      provide: { NG_SELECT_DEFAULT_CONFIG, SWIPER_CONFIG },
       useValue: {
-        notFoundText: 'Custom not found'
+        notFoundText: 'Custom not found',
+        DEFAULT_SWIPER_CONFIG
       }
     }
   ],

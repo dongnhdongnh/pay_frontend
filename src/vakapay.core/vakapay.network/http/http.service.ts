@@ -5,6 +5,7 @@ import { ResultObject } from 'model/result/ResultObject';
 import { ConfigService } from 'network/config/config.service';
 import { AlertService } from 'services/system/alert.service';
 import { Utility } from 'utility/Utility';
+import { environment } from 'environments/environment.prod';
 
 @Injectable({ providedIn: 'root' })
 export class HttpService {
@@ -120,6 +121,23 @@ export class HttpService {
   actionPost(operation = 'operation', api, data, httpOptions, alert = true): Promise<ResultObject> {
     let URL_API = new URL(api, this.url).href;
     return this.requestPost(operation, URL_API, data, httpOptions, alert);
+  };
+
+  //Get api
+  getFrom(operation = 'operation', api, alert = true): Promise<ResultObject> {
+    var self = this;
+    return new Promise<ResultObject>((resolve, reject) => self.http.get(api, self.httpOptionsGet())
+      .subscribe(
+        data => {
+          let dataConvert = new ResultObject(data);
+          // self.handleSuccess(operation, dataConvert, alert);
+          resolve(dataConvert);
+        },
+        error => {
+          self.handleError(operation, api, error, alert);
+          reject(error);
+        }
+      ));
   };
 
   //Post api

@@ -1,6 +1,10 @@
 <!-- ########## START: MAIN PANEL ########## -->
 <div class="br-mainpanel">
 
+
+
+
+
   <div class="br-pagebody">
     <div class="row row-sm mg-t-20">
       <div class="col-xl-12 bg-white mg-t-20">
@@ -11,363 +15,399 @@
               <p class="br-section-text">You can send, receive or make some vault to save your current coin more
                 safely!</p>
             </div>
-            <div class="width-half">
+            <!-- <div class="width-half">
               <a href="#" class="btn addnew bg-green" data-toggle="modal" data-target="#modaldemo5"> + New Account</a>
-            </div>
+            </div> -->
           </div>
           <div class="clear-both"></div>
           <div class="row row-sm tab-account mg-t-20">
             <div class="col-xl-12 tab-left">
-              <div class="tab-left-top nav" role="tablist">
-                <div class="active show d-table-cell" data-toggle="tab" href="#tab1" role="tab" aria-selected="true"
-                  (click)="onClickWalletTab($event,'VKCW')">
-                  <div class="bg-green border p-rl h120">
-                    <div class="pd-x-10 pd-t-10 d-flex align-items-center">
-                      <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-vkc.svg" alt=""></i>
-                      <div class="mg-r-20 width-text">
-                        <p class="tx-15 tx-white tx-spacing-1 mg-b-0">VKC Wallet</p>
-                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("VAKA")?.Balance}} VKC</p>
-                        <div class="pd-t-10 pd-b-10 d-flex align-items-center">
-                          <div *ngIf="wallets.get('VAKA')?.Balance>0">
-                            <a href="#" (click)="onClickSend('VKCW')" class="btn btn-trans  send-receive" data-toggle="modal"
-                              data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
-                          </div>
-                          <div *ngIf="wallets.get('VAKA')?.Balance<=0">
-                            <a href="#" class="btn disabled btn-trans  send-receive" data-toggle="modal" data-target="#modaldemo3"><i
-                                class="fa fa-send mg-r-3"></i>Send</a>
-                          </div>
-                          <a href="#" (click)="onClickReceive('VKCW')" class="btn btn-trans send-receive" data-toggle="modal"
-                            data-target="#modaldemo2"><i class="fa fa-arrow-circle-down mg-r-3"></i>Receive
-                          </a>
-                          <div class="dropdown">
-                            <a href="#" onclick="myFunction1()" class="dropbtn btn btn-trans send-receive"><i class="fa fa-cog"></i>
-                            </a>
-                            <div id="myDropdown1" class="dropdown-content2 rounded">
-                              <a href="#" data-toggle="modal" data-target="#modaldemo9"><i class="fa fa-exchange tx-13 mg-r-5"></i>Transfer</a>
-                              <a href="#" data-toggle="modal" data-target="#modaldemo10"><i class="fa fa-ban tx-13 mg-r-5"></i>Delete</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <span class="wallet__bg-img">
-                      <img src="../assets/icons/wallet-bg-img-2.png" alt="">
-                    </span>
-                  </div>
-                </div>
-                <!-- <div class="d-table-cell" data-toggle="tab" href="#tab1b" role="tab" aria-selected="false" (click)="onClickWalletTab($event,'VKCV')">
-                  <div class="bg-green border p-rl h120">
-                    <div class="pd-x-10 pd-t-10 d-flex align-items-center">
-                      <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-vault.svg" alt=""></i>
-                      <div class="mg-r-20 width-text">
-                        <p class="tx-15 tx-white tx-spacing-1 mg-b-0">VKC Vault</p>
-                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("VAKA")}} VKC</p>
-                        <div class="pd-t-10 pd-b-10 d-flex align-items-center">
-                          <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo7"><i
-                              class="fa fa-download mg-r-3"></i>Deposit</a>
-                          <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo8"><i
-                              class="fa fa-upload mg-r-3"></i>Withdraw
-                          </a>
-                          <div class="dropdown">
-                            <a href="#" onclick="myFunction2()" class="dropbtn btn btn-trans send-receive"><i class="fa fa-cog"></i>
-                            </a>
-                            <div id="myDropdown2" class="dropdown-content2 rounded">
-                              <a href="#" data-toggle="modal" data-target="#modaldemo12"><i class="fa fa-info-circle tx-13 mg-r-5"></i>Vault
-                                Details
+
+
+              <div class="swiper-container" [swiper]="slideConfig" [(index)]="index">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div [ngClass]="tab_current?.sortName=='VKC' ? 'd-table-cell border border-primary':'d-table-cell'"
+                      href="#tab1" role="tab" aria-selected="true" (click)="onClickWalletTab($event,'VKC')">
+                      <div class="bg-green border p-rl h120">
+                        <div class="pd-x-10 pd-t-10 d-flex align-items-center">
+                          <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-vkc.svg" alt=""></i>
+                          <div class="mg-r-20 width-text">
+                            <p class="tx-15 tx-white tx-spacing-1 mg-b-0">VKC Wallet</p>
+                            <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Vakacoin")?.Balance}}
+                              VKC</p>
+                            <div class="pd-t-10 pd-b-10 d-flex align-items-center">
+                              <div *ngIf="wallets.get('Vakacoin')?.Balance>0">
+                                <a href="#" (click)="onClickSend('VKC')" class="btn btn-trans  send-receive"
+                                  data-toggle="modal" data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
+                              </div>
+                              <div *ngIf="wallets.get('Vakacoin')?.Balance<=0">
+                                <a href="#" class="btn disabled btn-trans  send-receive" data-toggle="modal"
+                                  data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
+                              </div>
+                              <a href="#" (click)="onClickReceive('VKC')" class="btn btn-trans send-receive"
+                                data-toggle="modal" data-target="#modaldemo2"><i class="fa fa-arrow-circle-down mg-r-3"></i>Receive
                               </a>
+                              <div class="dropdown">
+                                <a href="#" onclick="myFunction1()" class="dropbtn btn btn-trans send-receive"><i class="fa fa-cog"></i>
+                                </a>
+                                <div id="myDropdown1" class="dropdown-content2 rounded">
+                                  <a href="#" data-toggle="modal" data-target="#modaldemo9"><i class="fa fa-exchange tx-13 mg-r-5"></i>Transfer</a>
+                                  <a href="#" data-toggle="modal" data-target="#modaldemo10"><i class="fa fa-ban tx-13 mg-r-5"></i>Delete</a>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
+                        <span class="wallet__bg-img">
+                          <img src="../assets/icons/wallet-bg-img-2.png" alt="">
+                        </span>
                       </div>
                     </div>
-                    <span class="wallet__bg-img">
-                      <img src="../assets/icons/wallet-bg-img-2.png" alt="">
-                    </span>
+
+
+
+
                   </div>
-                </div> -->
-                <!-- col-3 -->
-                <div class="d-table-cell" data-toggle="tab" href="#tab1" role="tab" (click)="onClickWalletTab($event,'BTC')">
-                  <div class="bg-btc border p-rl h120">
-                    <div class="pd-x-10 pd-t-10 d-flex align-items-center">
-                      <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-btc.svg" alt=""></i>
-                      <div class="mg-r-20 width-text">
-                        <p class="tx-15 tx-white tx-spacing-1 mg-b-0">BitCoin</p>
-                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("BTC")?.Balance}} BTC</p>
-                        <div class="pd-t-10 pd-b-10 d-flex align-items-center">
-                          <div *ngIf="wallets.get('BTC')?.Balance>0">
-                            <a href="#" (click)="onClickSend('BTC')" class="btn btn-trans  send-receive" data-toggle="modal"
-                              data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
-                          </div>
-                          <div *ngIf="wallets.get('BTC')?.Balance<=0">
-                            <a href="#" class="btn disabled btn-trans  send-receive" data-toggle="modal" data-target="#modaldemo3"><i
-                                class="fa fa-send mg-r-3"></i>Send</a>
-                          </div>
-                          <!-- <a href="#" (click)="onClickSend('BTC')" class="btn btn-trans send-receive" data-toggle="modal"
-                            data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a> -->
-                          <a href="#" (click)="onClickReceive('BTC')" class="btn btn-trans send-receive" data-toggle="modal"
-                            data-target="#modaldemo2"><i class="fa fa-cart-arrow-down mg-r-3"></i>Receive
-                          </a>
-                          <div class="dropdown">
-                            <a href="#" onclick="myFunction3()" class="dropbtn btn btn-trans send-receive"><i class="fa fa-cog"></i>
-                            </a>
-                            <div id="myDropdown3" class="dropdown-content2 rounded">
-                              <a href="#" data-toggle="modal" data-target="#modaldemo9"><i class="fa fa-exchange tx-13 mg-r-5"></i>Transfer</a>
-                              <a href="#" data-toggle="modal" data-target="#modaldemo10"><i class="fa fa-ban tx-13 mg-r-5"></i>Delete</a>
+                  <!-- <div class="d-table-cell" data-toggle="tab" href="#tab1b" role="tab" aria-selected="false" (click)="onClickWalletTab($event,'VKCV')">
+                              <div class="bg-green border p-rl h120">
+                                <div class="pd-x-10 pd-t-10 d-flex align-items-center">
+                                  <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-vault.svg" alt=""></i>
+                                  <div class="mg-r-20 width-text">
+                                    <p class="tx-15 tx-white tx-spacing-1 mg-b-0">VKC Vault</p>
+                                    <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("VAKA")}} VKC</p>
+                                    <div class="pd-t-10 pd-b-10 d-flex align-items-center">
+                                      <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo7"><i
+                                          class="fa fa-download mg-r-3"></i>Deposit</a>
+                                      <a href="#" class="btn btn-trans send-receive" data-toggle="modal" data-target="#modaldemo8"><i
+                                          class="fa fa-upload mg-r-3"></i>Withdraw
+                                      </a>
+                                      <div class="dropdown">
+                                        <a href="#" onclick="myFunction2()" class="dropbtn btn btn-trans send-receive"><i class="fa fa-cog"></i>
+                                        </a>
+                                        <div id="myDropdown2" class="dropdown-content2 rounded">
+                                          <a href="#" data-toggle="modal" data-target="#modaldemo12"><i class="fa fa-info-circle tx-13 mg-r-5"></i>Vault
+                                            Details
+                                          </a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <span class="wallet__bg-img">
+                                  <img src="../assets/icons/wallet-bg-img-2.png" alt="">
+                                </span>
+                              </div>
+                            </div> -->
+                  <!-- col-3 -->
+                  <div class="swiper-slide">
+                    <div [ngClass]="tab_current?.sortName=='BTC' ? 'd-table-cell border border-primary':'d-table-cell'"
+                      href="#tab1" role="tab" (click)="onClickWalletTab($event,'BTC')">
+                      <div class="bg-btc border p-rl h120">
+                        <div class="pd-x-10 pd-t-10 d-flex align-items-center">
+                          <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-btc.svg" alt=""></i>
+                          <div class="mg-r-20 width-text">
+                            <p class="tx-15 tx-white tx-spacing-1 mg-b-0">BitCoin</p>
+                            <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Bitcoin")?.Balance}}
+                              BTC</p>
+                            <div class="pd-t-10 pd-b-10 d-flex align-items-center">
+                              <div *ngIf="wallets.get('Bitcoin')?.Balance>0">
+                                <a href="#" (click)="onClickSend('BTC')" class="btn btn-trans  send-receive"
+                                  data-toggle="modal" data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
+                              </div>
+                              <div *ngIf="wallets.get('Bitcoin')?.Balance<=0">
+                                <a href="#" class="btn disabled btn-trans  send-receive" data-toggle="modal"
+                                  data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
+                              </div>
+                              <!-- <a href="#" (click)="onClickSend('BTC')" class="btn btn-trans send-receive" data-toggle="modal"
+                                        data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a> -->
+                              <a href="#" (click)="onClickReceive('BTC')" class="btn btn-trans send-receive"
+                                data-toggle="modal" data-target="#modaldemo2"><i class="fa fa-cart-arrow-down mg-r-3"></i>Receive
+                              </a>
+                              <div class="dropdown">
+                                <a href="#" onclick="myFunction3()" class="dropbtn btn btn-trans send-receive"><i class="fa fa-cog"></i>
+                                </a>
+                                <div id="myDropdown3" class="dropdown-content2 rounded">
+                                  <a href="#" data-toggle="modal" data-target="#modaldemo9"><i class="fa fa-exchange tx-13 mg-r-5"></i>Transfer</a>
+                                  <a href="#" data-toggle="modal" data-target="#modaldemo10"><i class="fa fa-ban tx-13 mg-r-5"></i>Delete</a>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
+                        <span class="wallet__bg-img">
+                          <img src="../assets/icons/wallet-bg-img-1.png" alt="">
+                        </span>
                       </div>
                     </div>
-                    <span class="wallet__bg-img">
-                      <img src="../assets/icons/wallet-bg-img-1.png" alt="">
-                    </span>
                   </div>
+                  <!-- col-3 -->
+                  <div class="swiper-slide">
+                    <div [ngClass]="tab_current?.sortName=='ETH' ? 'd-table-cell border border-primary':'d-table-cell'"
+                      href="#tab1" role="tab" (click)="onClickWalletTab($event,'ETH')">
+                      <div class="bg-eth border p-rl h120">
+                        <div class="pd-x-10 pd-t-10 d-flex align-items-center">
+                          <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eth.svg" alt=""></i>
+                          <div class="mg-r-20 width-text">
+                            <p class="tx-15 tx-white tx-spacing-1 mg-b-0">Ethereum</p>
+                            <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Ethereum")?.Balance}}
+                              ETH
+                            </p>
+                            <div class="pd-t-10 pd-b-10 d-flex align-items-center">
+                              <div *ngIf="wallets.get('Ethereum')?.Balance>0">
+                                <a href="#" (click)="onClickSend('ETH')" class="btn btn-trans  send-receive"
+                                  data-toggle="modal" data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
+                              </div>
+                              <div *ngIf="wallets.get('Ethereum')?.Balance<=0">
+                                <a href="#" class="btn disabled btn-trans  send-receive" data-toggle="modal"
+                                  data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
+                              </div>
+                              <!-- <a href="#" (click)="onClickSend('ETH')" class="btn btn-trans send-receive" data-toggle="modal"
+                                        data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a> -->
+                              <a href="#" (click)="onClickReceive('ETH')" class="btn btn-trans send-receive"
+                                data-toggle="modal" data-target="#modaldemo2"><i class="fa fa-cart-arrow-down mg-r-3"></i>Receive
+                              </a>
+                              <div class="dropdown">
+                                <a href="#" onclick="myFunction4()" class="dropbtn btn btn-trans send-receive"><i class="fa fa-cog"></i>
+                                </a>
+                                <div id="myDropdown4" class="dropdown-content2 rounded">
+                                  <a href="#" data-toggle="modal" data-target="#modaldemo9"><i class="fa fa-exchange tx-13 mg-r-5"></i>Transfer</a>
+                                  <a href="#" data-toggle="modal" data-target="#modaldemo10"><i class="fa fa-ban tx-13 mg-r-5"></i>Delete</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <span class="wallet__bg-img">
+                          <img src="../assets/icons/wallet-bg-img-3.png" alt="">
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- col-3 -->
+                  <div class="swiper-slide">
+                    <div [ngClass]="tab_current?.sortName=='EOS' ? 'd-table-cell border border-primary':'d-table-cell'"
+                      href="#tab1" role="tab" (click)="onClickWalletTab($event,'EOS')">
+                      <div class="bg-eos border p-rl h120">
+                        <div class="pd-x-10 pd-t-10 d-flex align-items-center">
+                          <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eos.svg" alt=""></i>
+                          <div class="mg-r-20 width-text">
+                            <p class="tx-15 tx-white tx-spacing-1 mg-b-0">EOS</p>
+                            <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("EOS")?.Balance}} EOS</p>
+                            <div class="pd-t-10 pd-b-10 d-flex align-items-center">
+                              <div *ngIf="wallets.get('EOS')?.Balance>0">
+                                <a href="#" (click)="onClickSend('EOS')" class="btn btn-trans  send-receive"
+                                  data-toggle="modal" data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
+                              </div>
+                              <div *ngIf="wallets.get('EOS')?.Balance<=0">
+                                <a href="#" class="btn disabled btn-trans  send-receive" data-toggle="modal"
+                                  data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
+                              </div>
+                              <!-- <a href="#" class="btn btn-trans send-receive" data-toggle="modal" (click)="onClickSend('EOS')"
+                                        data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a> -->
+                              <a href="#" class="btn btn-trans send-receive" data-toggle="modal" (click)="onClickReceive('EOS')"
+                                data-target="#modaldemo2"><i class="fa fa-cart-arrow-down mg-r-3"></i>Receive
+                              </a>
+                              <div class="dropdown">
+                                <a href="#" onclick="myFunction5()" class="dropbtn btn btn-trans send-receive"><i class="fa fa-cog"></i>
+                                </a>
+                                <div id="myDropdown5" class="dropdown-content2 rounded">
+                                  <a href="#" data-toggle="modal" data-target="#modaldemo9"><i class="fa fa-exchange tx-13 mg-r-5"></i>Transfer</a>
+                                  <a href="#" data-toggle="modal" data-target="#modaldemo10"><i class="fa fa-ban tx-13 mg-r-5"></i>Delete</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <span class="wallet__bg-img">
+                          <img src="../assets/icons/wallet-bg-img-4.png" alt="">
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
                 </div>
-                <!-- col-3 -->
-                <div class="d-table-cell" data-toggle="tab" href="#tab1" role="tab" (click)="onClickWalletTab($event,'ETH')">
-                  <div class="bg-eth border p-rl h120">
-                    <div class="pd-x-10 pd-t-10 d-flex align-items-center">
-                      <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eth.svg" alt=""></i>
-                      <div class="mg-r-20 width-text">
-                        <p class="tx-15 tx-white tx-spacing-1 mg-b-0">Ethereum</p>
-                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Ethereum")?.Balance}} ETH
-                        </p>
-                        <div class="pd-t-10 pd-b-10 d-flex align-items-center">
-                          <div *ngIf="wallets.get('Ethereum')?.Balance>0">
-                            <a href="#" (click)="onClickSend('ETH')" class="btn btn-trans  send-receive" data-toggle="modal"
-                              data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
-                          </div>
-                          <div *ngIf="wallets.get('Ethereum')?.Balance<=0">
-                            <a href="#" class="btn disabled btn-trans  send-receive" data-toggle="modal" data-target="#modaldemo3"><i
-                                class="fa fa-send mg-r-3"></i>Send</a>
-                          </div>
-                          <!-- <a href="#" (click)="onClickSend('ETH')" class="btn btn-trans send-receive" data-toggle="modal"
-                            data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a> -->
-                          <a href="#" (click)="onClickReceive('ETH')" class="btn btn-trans send-receive" data-toggle="modal"
-                            data-target="#modaldemo2"><i class="fa fa-cart-arrow-down mg-r-3"></i>Receive
-                          </a>
-                          <div class="dropdown">
-                            <a href="#" onclick="myFunction4()" class="dropbtn btn btn-trans send-receive"><i class="fa fa-cog"></i>
-                            </a>
-                            <div id="myDropdown4" class="dropdown-content2 rounded">
-                              <a href="#" data-toggle="modal" data-target="#modaldemo9"><i class="fa fa-exchange tx-13 mg-r-5"></i>Transfer</a>
-                              <a href="#" data-toggle="modal" data-target="#modaldemo10"><i class="fa fa-ban tx-13 mg-r-5"></i>Delete</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <span class="wallet__bg-img">
-                      <img src="../assets/icons/wallet-bg-img-3.png" alt="">
-                    </span>
-                  </div>
-                </div>
-                <!-- col-3 -->
-                <div class="d-table-cell" data-toggle="tab" href="#tab1" role="tab" (click)="onClickWalletTab($event,'EOS')">
-                  <div class="bg-eos border p-rl h120">
-                    <div class="pd-x-10 pd-t-10 d-flex align-items-center">
-                      <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eos.svg" alt=""></i>
-                      <div class="mg-r-20 width-text">
-                        <p class="tx-15 tx-white tx-spacing-1 mg-b-0">EOS</p>
-                        <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("EOS")?.Balance}} EOS</p>
-                        <div class="pd-t-10 pd-b-10 d-flex align-items-center">
-                          <div *ngIf="wallets.get('EOS')?.Balance>0">
-                            <a href="#" (click)="onClickSend('EOS')" class="btn btn-trans  send-receive" data-toggle="modal"
-                              data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
-                          </div>
-                          <div *ngIf="wallets.get('EOS')?.Balance<=0">
-                            <a href="#" class="btn disabled btn-trans  send-receive" data-toggle="modal" data-target="#modaldemo3"><i
-                                class="fa fa-send mg-r-3"></i>Send</a>
-                          </div>
-                          <!-- <a href="#" class="btn btn-trans send-receive" data-toggle="modal" (click)="onClickSend('EOS')"
-                            data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a> -->
-                          <a href="#" class="btn btn-trans send-receive" data-toggle="modal" (click)="onClickReceive('EOS')"
-                            data-target="#modaldemo2"><i class="fa fa-cart-arrow-down mg-r-3"></i>Receive
-                          </a>
-                          <div class="dropdown">
-                            <a href="#" onclick="myFunction5()" class="dropbtn btn btn-trans send-receive"><i class="fa fa-cog"></i>
-                            </a>
-                            <div id="myDropdown5" class="dropdown-content2 rounded">
-                              <a href="#" data-toggle="modal" data-target="#modaldemo9"><i class="fa fa-exchange tx-13 mg-r-5"></i>Transfer</a>
-                              <a href="#" data-toggle="modal" data-target="#modaldemo10"><i class="fa fa-ban tx-13 mg-r-5"></i>Delete</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <span class="wallet__bg-img">
-                      <img src="../assets/icons/wallet-bg-img-4.png" alt="">
-                    </span>
-                  </div>
-                </div>
+                <div class="swiper-scrollbar"></div>
+                <div class="swiper-pagination"></div>
+
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
               </div>
+
+
             </div>
 
-            <!-- History View -->
-            <div class="col-xl-12 tab-content tab-right">
-              <div class="table-content border tab-pane active show" id="tab1" role="tabpanel">
-                <div class="col-xs-12">
-                  <h6 class="br-section-label col-md-8 col-sm-12">Transactions</h6>
-                  <div class="col-md-4 col-sm-12 pd-r-0">
-                    <form ng-submit="searchHistory()">
-                      <div class="input-group">
+          </div>
 
-                        <input type="text" class="form-control" #vkcSearchValue (keyup.enter)="searchHistory(vkcSearchValue.value)"
-                          placeholder="Search...">
-                        <span class="input-group-btn">
-                          <button class="btn bd bg-white tx-gray-600" type="submit" (click)="searchHistory(vkcSearchValue.value)"><i class="fa fa-search"></i></button>
-                        </span>
+          <!-- History View -->
+          <div class="col-xl-12 tab-content tab-right">
+            <div class="table-content border tab-pane active show" id="tab1" role="tabpanel">
+              <div class="col-xs-12">
+                <h6 class="br-section-label col-md-8 col-sm-12">Transactions</h6>
+                <div class="col-md-4 col-sm-12 pd-r-0">
+                  <form ng-submit="searchHistory()">
+                    <div class="input-group">
 
-                      </div>
-                    </form>
-                  </div>
+                      <input type="text" class="form-control" #vkcSearchValue (keyup.enter)="searchHistory(vkcSearchValue.value)"
+                        placeholder="Search...">
+                      <span class="input-group-btn">
+                        <button class="btn bd bg-white tx-gray-600" type="submit" (click)="searchHistory(vkcSearchValue.value)"><i
+                            class="fa fa-search"></i></button>
+                      </span>
+
+                    </div>
+                  </form>
                 </div>
-                <div class="clear-both"></div>
-                <div class="col-xs-12">
-                  <div *ngIf="searchDatas?.length > 0">
-                    <div class="bd-gray-300 table-responsive table-recent-acc">
-                      <table class="table table-hover mg-b-0 table-fix">
-                        <tbody>
+              </div>
+              <div class="clear-both"></div>
+              <div class="col-xs-12">
+                <div *ngIf="searchDatas?.length > 0">
+                  <div class="bd-gray-300 table-responsive table-recent-acc">
+                    <table class="table table-hover mg-b-0 table-fix">
+                      <tbody>
 
 
-                          <!-- <div *ngFor="let item of pageOfItems">                  -->
-                          <tr data-toggle="modal" data-target="#modaldemo1" *ngFor="let item of searchDatas | 
+                        <!-- <div *ngFor="let item of pageOfItems">                  -->
+                        <tr data-toggle="modal" data-target="#modaldemo1" *ngFor="let item of searchDatas | 
                           paginate: { id: 'some_id',
                                       itemsPerPage: itemsPerPage,
                                       currentPage: currentPage,
                                       totalItems: totalItems }"
-                            (click)="onClickTransactionDetail(item)">
-                            <td width="20%" class="hidden-mob">
-                              <div class="date-month">
-                                {{item.CreatedAt}}
+                          (click)="onClickTransactionDetail(item)">
+                          <td width="20%" class="hidden-mob">
+                            <div class="date-month">
+                              {{item.CreatedAt}}
 
 
+                            </div>
+                          </td>
+                          <div *ngIf="item.type==0">
+                            <td class="round">
+                              <div [ngSwitch]="item.Status">
+                                <div *ngSwitchCase="'Pending'">
+                                  <i class="tx-btc tx-20"><img src="../assets/icons/pending.svg" alt=""></i>
+                                </div>
+                                <div *ngSwitchCase="'Error'">
+                                  <i class="tx-btc tx-20"><img src="../assets/icons/decline.svg" alt=""></i>
+                                </div>
+                                <div *ngSwitchDefault>
+                                  <i class="tx-btc tx-20"><img src="../assets/icons/send.svg" alt=""></i>
+                                </div>
                               </div>
                             </td>
-                            <div *ngIf="item.type==0">
-                              <td class="round">
-                                <div [ngSwitch]="item.Status">
-                                  <div *ngSwitchCase="'Pending'">
-                                    <i class="tx-btc tx-20"><img src="../assets/icons/pending.svg" alt=""></i>
-                                  </div>
-                                  <div *ngSwitchCase="'Error'">
-                                    <i class="tx-btc tx-20"><img src="../assets/icons/decline.svg" alt=""></i>
-                                  </div>
-                                  <div *ngSwitchDefault>
-                                    <i class="tx-btc tx-20"><img src="../assets/icons/send.svg" alt=""></i>
-                                  </div>
+                            <td width="20%" class="tx-left">
+                              <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Withdraw funds</p>
+                              <span class="d-block tx-13 hidden-mob">From {{tab_current?.fullName}} address</span>
+                            </td>
+                            <td width="10%" class="tx-left hidden-mob">
+                              <div [ngSwitch]="item.Status">
+                                <div *ngSwitchCase="'Completed'">
+                                  <i class="status bg-success">Sent</i>
                                 </div>
-                              </td>
-                              <td width="20%" class="tx-left">
-                                <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Withdraw funds</p>
-                                <span class="d-block tx-13 hidden-mob">From {{tab_current?.fullName}} address</span>
-                              </td>
-                              <td width="10%" class="tx-left hidden-mob">
-                                <div [ngSwitch]="item.Status">
-                                  <div *ngSwitchCase="'Completed'">
-                                    <i class="status bg-success">Sent</i>
-                                  </div>
-                                  <div *ngSwitchCase="'Pending'">
-                                    <i class="status btn-warning">Pending</i>
-                                  </div>
-                                  <div *ngSwitchCase="'Error'">
-                                    <i class="status bg-danger">Error</i>
-                                  </div>
+                                <div *ngSwitchCase="'Pending'">
+                                  <i class="status btn-warning">Pending</i>
                                 </div>
-                              </td>
-                              <td width="40%" class="tx-right">
-                                <p class="mg-b-0 tx-inverse tx-medium tx-red">{{item.Amount}} {{Coin}}</p>
-                                <span class="d-block tx-13 tx-grey">+₫456,476.00</span>
-                              </td>
-                            </div>
-                            <div *ngIf="item.type==1">
-                              <td class="round">
-                                <div [ngSwitch]="item.Status">
-                                  <div *ngSwitchCase="'Pending'">
-                                    <i class="tx-btc tx-20"><img src="../assets/icons/pending.svg" alt=""></i>
-                                  </div>
-                                  <div *ngSwitchCase="'Error'">
-                                    <i class="tx-btc tx-20"><img src="../assets/icons/decline.svg" alt=""></i>
-                                  </div>
-                                  <div *ngSwitchDefault>
-                                    <i class="tx-btc tx-20"><img src="../assets/icons/receive.svg" alt=""></i>
-                                  </div>
+                                <div *ngSwitchCase="'Error'">
+                                  <i class="status bg-danger">Error</i>
                                 </div>
-                              </td>
-                              <td width="20%" class="tx-left">
-                                <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Deposit {{tab_current?.fullName}}</p>
-                                <span class="d-block tx-13 hidden-mob">From {{tab_current?.fullName}} address</span>
-                              </td>
-                              <td width="10%" class="tx-left hidden-mob">
-                                <div [ngSwitch]="item.Status">
-                                  <div *ngSwitchCase="'Completed'">
-                                    <i class="status bg-success">Received</i>
-                                  </div>
-                                  <div *ngSwitchCase="'Pending'">
-                                    <i class="status btn-warning">Pending</i>
-                                  </div>
-                                  <div *ngSwitchCase="'Error'">
-                                    <i class="status bg-danger">Error</i>
-                                  </div>
+                              </div>
+                            </td>
+                            <td width="40%" class="tx-right">
+                              <p class="mg-b-0 tx-inverse tx-medium tx-red">{{item.Amount}} {{Coin}}</p>
+                              <span class="d-block tx-13 tx-grey">+₫456,476.00</span>
+                            </td>
+                          </div>
+                          <div *ngIf="item.type==1">
+                            <td class="round">
+                              <div [ngSwitch]="item.Status">
+                                <div *ngSwitchCase="'Pending'">
+                                  <i class="tx-btc tx-20"><img src="../assets/icons/pending.svg" alt=""></i>
                                 </div>
-                              </td>
-                              <td width="40%" class="tx-right">
-                                <p class="mg-b-0 tx-inverse tx-medium tx-green">{{item.Amount}} {{Coin}}</p>
-                                <span class="d-block tx-13 tx-grey">-₫258,476.00</span>
-                              </td>
+                                <div *ngSwitchCase="'Error'">
+                                  <i class="tx-btc tx-20"><img src="../assets/icons/decline.svg" alt=""></i>
+                                </div>
+                                <div *ngSwitchDefault>
+                                  <i class="tx-btc tx-20"><img src="../assets/icons/receive.svg" alt=""></i>
+                                </div>
+                              </div>
+                            </td>
+                            <td width="20%" class="tx-left">
+                              <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Deposit {{tab_current?.fullName}}</p>
+                              <span class="d-block tx-13 hidden-mob">From {{tab_current?.fullName}} address</span>
+                            </td>
+                            <td width="10%" class="tx-left hidden-mob">
+                              <div [ngSwitch]="item.Status">
+                                <div *ngSwitchCase="'Completed'">
+                                  <i class="status bg-success">Received</i>
+                                </div>
+                                <div *ngSwitchCase="'Pending'">
+                                  <i class="status btn-warning">Pending</i>
+                                </div>
+                                <div *ngSwitchCase="'Error'">
+                                  <i class="status bg-danger">Error</i>
+                                </div>
+                              </div>
+                            </td>
+                            <td width="40%" class="tx-right">
+                              <p class="mg-b-0 tx-inverse tx-medium tx-green">{{item.Amount}} {{Coin}}</p>
+                              <span class="d-block tx-13 tx-grey">-₫258,476.00</span>
+                            </td>
 
 
-                            </div>
+                          </div>
 
 
-                          </tr>
-                          <!-- </div> -->
+                        </tr>
+                        <!-- </div> -->
 
-                        </tbody>
-                      </table>
-                    </div><!-- bd -->
-                    <!-- <div class="ht-80 d-flex align-items-center justify-content-center mg-t-20">
+                      </tbody>
+                    </table>
+                  </div><!-- bd -->
+                  <!-- <div class="ht-80 d-flex align-items-center justify-content-center mg-t-20">
 
                     <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
 
                   </div> -->
-                    <pagination-controls id="some_id" (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
-                      autoHide="true" responsive="true" previousLabel="Previous" nextLabel="Next"
-                      screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
-                    </pagination-controls>
-                  </div>
-                  <!-- page -->
-                  <div *ngIf="searchDatas?.length <= 0">
+                  <pagination-controls id="some_id" (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
+                    autoHide="true" responsive="true" previousLabel="Previous" nextLabel="Next"
+                    screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+                  </pagination-controls>
+                </div>
+                <!-- page -->
+                <div *ngIf="searchDatas?.length <= 0">
 
-                    <div class="table-content border tab-pane" role="tabpanel">
-                      <!-- <div class="col-xs-12">
+                  <div class="table-content border tab-pane" role="tabpanel">
+                    <!-- <div class="col-xs-12">
                         <h6 class="br-section-label">Recent Activity</h6>
                       </div> -->
-                      <div class="col-xs-12">
-                        <div class="no-tran table-recent-acc">
-                          <div class="modal-body pd-x-20 pd-y-5 no-tran-box">
-                            <div [ngSwitch]="tab_current?.sortName">
-                              <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
-                                *ngSwitchCase="'VKCW'"><img src="../assets/icons/icon-vkc.svg" alt=""></i>
-                              <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
-                                *ngSwitchCase="'VKCV'"><img src="../assets/icons/icon-vault.svg" alt=""></i>
-                              <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
-                                *ngSwitchCase="'BTC'"><img src="../assets/icons/icon-btc.svg" alt=""></i>
-                              <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
-                                *ngSwitchCase="'ETH'"><img src="../assets/icons/icon-eth.svg" alt=""></i>
-                              <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
-                                *ngSwitchCase="'EOS'"><img src="../assets/icons/icon-eos.svg" alt=""></i>
-                            </div>
-
-                            <h6 class="check tx-20 mg-b-0 mg-t-20">No transactions</h6>
-                            <p class="mg-b-20 mg-x-20 tx-center">VakaPay is the easiest place to get started.</p>
+                    <div class="col-xs-12">
+                      <div class="no-tran table-recent-acc">
+                        <div class="modal-body pd-x-20 pd-y-5 no-tran-box">
+                          <div [ngSwitch]="tab_current?.sortName">
+                            <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
+                              *ngSwitchCase="'VKC'"><img src="../assets/icons/icon-vkc.svg" alt=""></i>
+                            <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
+                              *ngSwitchCase="'VKCV'"><img src="../assets/icons/icon-vault.svg" alt=""></i>
+                            <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
+                              *ngSwitchCase="'BTC'"><img src="../assets/icons/icon-btc.svg" alt=""></i>
+                            <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
+                              *ngSwitchCase="'ETH'"><img src="../assets/icons/icon-eth.svg" alt=""></i>
+                            <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
+                              *ngSwitchCase="'EOS'"><img src="../assets/icons/icon-eos.svg" alt=""></i>
                           </div>
+
+                          <h6 class="check tx-20 mg-b-0 mg-t-20">No transactions</h6>
+                          <p class="mg-b-20 mg-x-20 tx-center">VakaPay is the easiest place to get started.</p>
                         </div>
                       </div>
-                      <!-- Tab panes -->
                     </div>
+                    <!-- Tab panes -->
                   </div>
-                  <!-- <div class="ht-80 d-flex align-items-center justify-content-center mg-t-20">
+                </div>
+                <!-- <div class="ht-80 d-flex align-items-center justify-content-center mg-t-20">
                         <ul class="pagination pagination-basic pagination-rounded mg-b-0">
                           <li class="page-item hidden-xs-down">
                             <a class="page-link" href="#" aria-label="First"><i class="fa fa-angle-double-left"></i></a>
@@ -389,129 +429,129 @@
                           </li>
                         </ul>
                       </div> -->
-                </div>
-                <!-- Tab panes -->
               </div>
-              <!-- History END -->
+              <!-- Tab panes -->
+            </div>
+            <!-- History END -->
 
 
 
 
-              <div class="table-content border tab-pane" id="tab1b" role="tabpanel">
-                <div class="col-xs-12">
-                  <h6 class="br-section-label col-md-8 col-sm-12">Transactions</h6>
-                  <div class="col-md-4 col-sm-12 pd-r-0">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Search...">
-                      <span class="input-group-btn">
-                        <button class="btn bd bg-white tx-gray-600" type="button"><i class="fa fa-search"></i></button>
-                      </span>
-                    </div>
+            <div class="table-content border tab-pane" id="tab1b" role="tabpanel">
+              <div class="col-xs-12">
+                <h6 class="br-section-label col-md-8 col-sm-12">Transactions</h6>
+                <div class="col-md-4 col-sm-12 pd-r-0">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                      <button class="btn bd bg-white tx-gray-600" type="button"><i class="fa fa-search"></i></button>
+                    </span>
                   </div>
                 </div>
-                <div class="clear-both"></div>
-                <div class="col-xs-12">
-                  <div class="bd-gray-300 table-responsive table-recent-acc">
-                    <table class="table table-hover mg-b-0 table-fix">
-                      <tbody>
-                        <tr data-toggle="modal" data-target="#modaldemo1">
-                          <td width="20%" class="hidden-mob">
-                            <div class="date-month">
-                              June 26, 2017 5:59 AM
-                            </div>
-                          </td>
-                          <td class="round">
-                            <i class="tx-btc tx-20"><img src="../assets/icons/send.svg" alt=""></i>
-                          </td>
-                          <td width="20%" class="tx-left">
-                            <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Withdraw funds</p>
-                            <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
-                          </td>
-                          <td width="10%" class="tx-left hidden-mob">
-                            <i class="status bg-info">Widthdrew</i>
-                          </td>
-                          <td width="40%" class="tx-right">
-                            <p class="mg-b-0 tx-inverse tx-medium tx-red">+0.1000 VKC</p>
-                            <span class="d-block tx-13 tx-grey">+₫456,476.00</span>
-                          </td>
-                        </tr>
-                        <tr data-toggle="modal" data-target="#modaldemo1">
-                          <td width="20%" class="hidden-mob">
-                            <div class="date-month">
-                              June 26, 2017 5:59 AM
-                            </div>
-                          </td>
-                          <td class="round">
-                            <i class="tx-btc tx-20"><img src="../assets/icons/receive.svg" alt=""></i>
-                          </td>
-                          <td width="20%" class="tx-left">
-                            <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Deposit VakaCoin</p>
-                            <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
-                          </td>
-                          <td width="10%" class="tx-left hidden-mob">
-                            <i class="status bg-success">Deposit</i>
-                          </td>
-                          <td width="40%" class="tx-right">
-                            <p class="mg-b-0 tx-inverse tx-medium tx-green">-0.1800 VKC</p>
-                            <span class="d-block tx-13 tx-grey">-₫258,476.00</span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div><!-- bd -->
-                </div>
-                <!-- Tab panes -->
               </div>
-              <div class="table-content border tab-pane" id="tab2" role="tabpanel">
-                <div class="col-xs-12">
-                  <h6 class="br-section-label">Recent Activity</h6>
-                </div>
-                <div class="col-xs-12">
-                  <div class="no-tran table-recent-acc">
-                    <div class="modal-body pd-x-20 pd-y-5 no-tran-box">
-                      <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/icon-btc.svg"
-                          alt=""></i>
-                      <h6 class="check tx-20 mg-b-0 mg-t-20">No transactions</h6>
-                      <p class="mg-b-20 mg-x-20 tx-center">VakaPay is the easiest place to get started.</p>
-                    </div>
+              <div class="clear-both"></div>
+              <div class="col-xs-12">
+                <div class="bd-gray-300 table-responsive table-recent-acc">
+                  <table class="table table-hover mg-b-0 table-fix">
+                    <tbody>
+                      <tr data-toggle="modal" data-target="#modaldemo1">
+                        <td width="20%" class="hidden-mob">
+                          <div class="date-month">
+                            June 26, 2017 5:59 AM
+                          </div>
+                        </td>
+                        <td class="round">
+                          <i class="tx-btc tx-20"><img src="../assets/icons/send.svg" alt=""></i>
+                        </td>
+                        <td width="20%" class="tx-left">
+                          <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Withdraw funds</p>
+                          <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
+                        </td>
+                        <td width="10%" class="tx-left hidden-mob">
+                          <i class="status bg-info">Widthdrew</i>
+                        </td>
+                        <td width="40%" class="tx-right">
+                          <p class="mg-b-0 tx-inverse tx-medium tx-red">+0.1000 VKC</p>
+                          <span class="d-block tx-13 tx-grey">+₫456,476.00</span>
+                        </td>
+                      </tr>
+                      <tr data-toggle="modal" data-target="#modaldemo1">
+                        <td width="20%" class="hidden-mob">
+                          <div class="date-month">
+                            June 26, 2017 5:59 AM
+                          </div>
+                        </td>
+                        <td class="round">
+                          <i class="tx-btc tx-20"><img src="../assets/icons/receive.svg" alt=""></i>
+                        </td>
+                        <td width="20%" class="tx-left">
+                          <p class="mg-b-0 tx-inverse tx-medium tx-vkc">Deposit VakaCoin</p>
+                          <span class="d-block tx-13 hidden-mob">From VakaCoin address</span>
+                        </td>
+                        <td width="10%" class="tx-left hidden-mob">
+                          <i class="status bg-success">Deposit</i>
+                        </td>
+                        <td width="40%" class="tx-right">
+                          <p class="mg-b-0 tx-inverse tx-medium tx-green">-0.1800 VKC</p>
+                          <span class="d-block tx-13 tx-grey">-₫258,476.00</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div><!-- bd -->
+              </div>
+              <!-- Tab panes -->
+            </div>
+            <div class="table-content border tab-pane" id="tab2" role="tabpanel">
+              <div class="col-xs-12">
+                <h6 class="br-section-label">Recent Activity</h6>
+              </div>
+              <div class="col-xs-12">
+                <div class="no-tran table-recent-acc">
+                  <div class="modal-body pd-x-20 pd-y-5 no-tran-box">
+                    <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/icon-btc.svg"
+                        alt=""></i>
+                    <h6 class="check tx-20 mg-b-0 mg-t-20">No transactions</h6>
+                    <p class="mg-b-20 mg-x-20 tx-center">VakaPay is the easiest place to get started.</p>
                   </div>
                 </div>
-                <!-- Tab panes -->
               </div>
-              <div class="table-content border tab-pane" id="tab3" role="tabpanel">
-                <div class="col-xs-12">
-                  <h6 class="br-section-label">Recent Activity</h6>
-                </div>
-                <div class="col-xs-12">
-                  <div class="no-tran table-recent-acc">
-                    <div class="modal-body pd-x-20 pd-y-5 no-tran-box">
-                      <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/icon-eth.svg"
-                          alt=""></i>
-                      <h6 class="check tx-20 mg-b-0 mg-t-20">No transactions</h6>
-                      <p class="mg-b-20 mg-x-20 tx-center">VakaPay is the easiest place to get started.</p>
-                    </div>
+              <!-- Tab panes -->
+            </div>
+            <div class="table-content border tab-pane" id="tab3" role="tabpanel">
+              <div class="col-xs-12">
+                <h6 class="br-section-label">Recent Activity</h6>
+              </div>
+              <div class="col-xs-12">
+                <div class="no-tran table-recent-acc">
+                  <div class="modal-body pd-x-20 pd-y-5 no-tran-box">
+                    <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/icon-eth.svg"
+                        alt=""></i>
+                    <h6 class="check tx-20 mg-b-0 mg-t-20">No transactions</h6>
+                    <p class="mg-b-20 mg-x-20 tx-center">VakaPay is the easiest place to get started.</p>
                   </div>
                 </div>
-                <!-- Tab panes -->
               </div>
-              <div class="table-content border tab-pane" id="tab4" role="tabpanel">
-                <div class="col-xs-12">
-                  <h6 class="br-section-label">Recent Activity</h6>
-                </div>
-                <div class="col-xs-12">
-                  <div class="no-tran table-recent-acc">
-                    <div class="modal-body pd-x-20 pd-y-5 no-tran-box">
-                      <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/icon-eos.svg"
-                          alt=""></i>
-                      <h6 class="check tx-20 mg-b-0 mg-t-20">No transactions</h6>
-                      <p class="mg-b-20 mg-x-20 tx-center">VakaPay is the easiest place to get started.</p>
-                    </div>
+              <!-- Tab panes -->
+            </div>
+            <div class="table-content border tab-pane" id="tab4" role="tabpanel">
+              <div class="col-xs-12">
+                <h6 class="br-section-label">Recent Activity</h6>
+              </div>
+              <div class="col-xs-12">
+                <div class="no-tran table-recent-acc">
+                  <div class="modal-body pd-x-20 pd-y-5 no-tran-box">
+                    <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/icon-eos.svg"
+                        alt=""></i>
+                    <h6 class="check tx-20 mg-b-0 mg-t-20">No transactions</h6>
+                    <p class="mg-b-20 mg-x-20 tx-center">VakaPay is the easiest place to get started.</p>
                   </div>
                 </div>
-                <!-- Tab panes -->
               </div>
-            </div><!-- br-section-wrapper -->
-          </div>
+              <!-- Tab panes -->
+            </div>
+          </div><!-- br-section-wrapper -->
+
           <!-- row -->
         </form>
       </div><!-- col-12 -->
@@ -651,9 +691,9 @@
 <ngx-smart-modal #sendDetail [identifier]="'sendDetail'">
   <div class="modal-dialog modal-dialog-vertical-center" role="document">
     <form class="modal-content bd-0 tx-14" #sendCoinForm="ngForm" (ngSubmit)="sendCoin(sendCoinForm)" novalidate>
-      {{errorObject|json}}
       <div class="modal-header pd-y-20 pd-x-25">
         <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Send {{sendObject?.name}}</h6>
+
         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button> -->
@@ -662,11 +702,11 @@
         <div class="row">
           <ul class="nav nav-tabs nav-tabs-style-1 nav-justified tx-13" role="tablist">
             <li class="nav-item width-half">
-              <a class="nav-link pd-y-10 active" data-toggle="tab" href="#taba" role="tab" (click)="sendByAd=true;errorObject = {};">Wallet
+              <a class="nav-link pd-y-10 active" data-toggle="tab" href="#taba" role="tab" (click)="sendByAd=true;validateSendCoin(sendCoinForm);">Wallet
                 Address</a>
             </li>
             <li class="nav-item width-half">
-              <a class="nav-link pd-y-10" data-toggle="tab" href="#tabb" role="tab" (click)="sendByAd=false;errorObject = {};">Email
+              <a class="nav-link pd-y-10" data-toggle="tab" href="#tabb" role="tab" (click)="sendByAd=false;validateSendCoin(sendCoinForm);">Email
                 Address</a>
             </li>
           </ul>
@@ -676,10 +716,10 @@
             <div class="row mg-t-10">
               <label class="col-sm-12 form-control-label"> Recipient:<i class="tx-danger">*</i></label>
               <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-                <input type="text" class="form-control" placeholder="Enter a VKC Address" name="Recipient_WalletAddress"
-                  #Recipient_WalletAddress="ngModel" required minlength="1" ngModel (keyup)="validateSendCoin(sendCoinForm)">
-                <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.Recipient_WalletAddress||(Recipient_WalletAddress?.errors?.required && Recipient_WalletAddress?.touched)">
-                  Address is required!
+                <input type="text" class="form-control" placeholder="Enter a VKC Address" name="recipientWalletAddress"
+                  #recipientWalletAddress="ngModel" required minlength="1" ngModel (keyup)="validateSendCoin(sendCoinForm)">
+                <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.recipientWalletAddress">
+                  {{errorObject.recipientWalletAddress}}
                 </div>
               </div>
             </div><!-- row -->
@@ -691,10 +731,10 @@
             <div class="row mg-t-10">
               <label class="col-sm-12 form-control-label"> Recipient:<i class="tx-danger">*</i></label>
               <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-                <input type="text" class="form-control" name="Recipient_EmailAddress" #Recipient_EmailAddress="ngModel"
-                  id="Recipient_EmailAddress" placeholder="Enter an email Address" required ngModel (keyup)="validateSendCoin(sendCoinForm)">
-                <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.Recipient_EmailAddress||(Recipient_EmailAddress?.errors?.required && Recipient_EmailAddress?.touched)">
-                  Address is required!
+                <input type="text" class="form-control" name="recipientEmailAddress" #recipientEmailAddress="ngModel"
+                  id="recipientEmailAddress" placeholder="Enter an email Address" required ngModel (keyup)="validateSendCoin(sendCoinForm)">
+                <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.recipientEmailAddress">
+                  {{errorObject.recipientEmailAddress}}
                 </div>
               </div>
             </div><!-- row -->
@@ -703,37 +743,7 @@
 
           </div>
         </div>
-        <div class="row mg-t-20">
-          <label class="col-sm-12 form-control-label"> Withdraw From:<i class="tx-danger">*</i></label>
-          <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-            <div class="input-number">
-              <div class="input-left"><span color="slate"><img src="../assets/icons/icon-vkc.svg" alt="" class="mini-icon"></span>VKC
-                Wallet
-              </div>
-              <div *ngIf="sendObject?.address?.length>0; else notSend">
-                <div class="input-right">
-                  <!-- <input class="form-control fc-outline-white bg-white" placeholder="0.10000000 VKC"> -->
 
-                  <!-- DROP -->
-                  <select class="form-control fc-outline-white bg-white" name="withdrawn_from" #withdrawn_from="ngModel"
-                    ngModel required minlength="1" (click)="validateSendCoin(sendCoinForm)">
-                    <option *ngFor='let add of sendObject?.address' [value]="add">
-                      {{add}}
-                    </option>
-
-                  </select>
-
-                </div>
-              </div>
-              <ng-template #notSend>
-                Not found
-              </ng-template>
-            </div>
-            <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.withdrawn_from||(withdrawn_from?.errors?.required && withdrawn_from?.touched)">
-              Withdrawn is required!
-            </div>
-          </div>
-        </div><!-- row -->
         <div class="row mg-t-20">
           <label class="col-sm-12 form-control-label"> Amount:<i class="tx-danger">*</i></label>
           <div class="col-sm-12 mg-t-10 mg-sm-t-0">
@@ -741,36 +751,37 @@
               <div class="input-left bg-green"><span color="slate">VND</span></div>
               <div class="input-right"><input type="number" class="form-control fc-outline-white" placeholder=""
                   [(ngModel)]="vndValue" maxlength="15" name="VNDAmount" #VNDAmount="ngModel" ngModel required
-                  minlength="1" (change)="ExchangeRateInput('VND');" (keyup)="validateSendCoin(sendCoinForm);">
+                  minlength="1" (change)="ExchangeRateInput('VND');" (change)="validateSendCoin(sendCoinForm);">
               </div>
             </div>
             <div class="transfer"><i class="fa fa-exchange"></i></div>
             <div class="width-half-mini input-number">
-              <div class="input-left bg-green"><span color="slate">VKC</span></div>
+              <div class="input-left bg-green"><span color="slate">{{tab_current?.sortName}}</span></div>
               <div class="input-right"><input type="number" class="form-control fc-outline-white" placeholder=""
                   [(ngModel)]="vkcValue" maxlength="15" name="VKCAmount" #VKCAmount="ngModel" ngModel required
-                  minlength="1" (change)="ExchangeRateInput('VKC');" (keyup)="validateSendCoin(sendCoinForm);"></div>
+                  minlength="1" (change)="ExchangeRateInput('VKC');validateSendCoin(sendCoinForm);"></div>
             </div>
           </div>
-          <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.VNDAmount||(VNDAmount?.errors?.required && VNDAmount?.touched)">
-            Amount is required!
+          <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.VNDAmount">
+            {{errorObject.VNDAmount}}
           </div>
         </div><!-- row -->
         <div class="row mg-t-20">
-          <label class="col-sm-12 form-control-label"> Note:<i class="tx-danger">*</i></label>
+          <label class="col-sm-12 form-control-label"> Note:</label>
           <div class="col-sm-12 mg-t-10 mg-sm-t-0">
             <textarea rows="3" class="form-control" placeholder="Write an optional message" name="VKCnote" ngModel
-              required minlength="1" (keyup)="validateSendCoin(sendCoinForm)" #VKCnote="ngModel"></textarea>
-            <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.VKCnote||(VKCnote?.errors?.required && VKCnote?.touched)">
-              Note is required!
-            </div>
+              (keyup)="validateSendCoin(sendCoinForm)" #VKCnote="ngModel"></textarea>
+            <!-- <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.VKCnote">
+              {{errorObject.VKCnote}}
+            </div> -->
           </div>
         </div><!-- row -->
       </div>
       <div class="modal-footer step">
         <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
           data-dismiss="modal" (click)="closePopup('sendDetail')">Cancel</button>
-        <button type="submit" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Continue</button>
+        <button type="submit" [disabled]="!errorObject?.canNext" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
+          data-dismiss="modal">Continue</button>
         <!-- <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
           data-dismiss="modal" data-target="#modaldemo3b" type="submit">Continue</a> -->
       </div>
@@ -799,9 +810,9 @@
                 </div><!-- col-4 -->
                 <div class="col-9 col-sm-9 break">
                   <div *ngIf="sendByAd; else showEmail">
-                    {{sendObject?.detail?.Recipient_WalletAddress}}
+                    {{sendObject?.detail?.recipientWalletAddress}}
                   </div>
-                  <ng-template #showEmail> {{sendObject?.detail?.Recipient_EmailAddress}}</ng-template>
+                  <ng-template #showEmail> {{sendObject?.detail?.recipientEmailAddress}}</ng-template>
 
 
                 </div><!-- col-8 -->
@@ -874,13 +885,20 @@
     <div class="modal-content">
       <div class="modal-body tx-center pd-y-20 pd-x-20">
         <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
-        <h4 class="tx-success mg-b-20">Your transaction is on the way!</h4>
-        <p class="mg-b-20 mg-x-20">You sent {{sendObject?.detail?.VKCAmount}} {{sendObject?.sortName}}
-          (₫{{sendObject?.detail?.VNDAmount}}) to an
-          external address.</p>
-        <a href="#" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-toggle="modal"
-          data-dismiss="modal" (click)="closePopup('popup_ok')" data-target="#modaldemo3d"> View Details
-        </a>
+        <div *ngIf="errorObject?.sendTransactions ;else sendDone">
+          <h4 class="tx-success mg-b-20"><font color="red">Error</font></h4>
+          <p class="mg-b-20 mg-x-20"><font color="red">{{errorObject?.sendTransactions}}</font></p>
+        </div>
+        <ng-template #sendDone>
+          <h4 class="tx-success mg-b-20">Your transaction is on the way!</h4>
+          <p class="mg-b-20 mg-x-20">You sent {{sendObject?.detail?.VKCAmount}} {{sendObject?.sortName}}
+            (₫{{sendObject?.detail?.VNDAmount}}) to an
+            external address.</p>
+          <a href="#" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-toggle="modal"
+            data-dismiss="modal" (click)="closePopup('popup_ok')" data-target="#modaldemo3d"> View Details
+          </a>
+        </ng-template>
+
       </div><!-- modal-body -->
     </div>
   </div>
