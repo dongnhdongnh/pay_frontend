@@ -4,7 +4,7 @@
 @import 'angular2-toaster/toaster.css';
 @import "~@ng-select/ng-select/themes/material.theme.css";
 /**modal angular */
-
+@import '~swiper/dist/css/swiper.min.css';
 @import "~ngx-smart-modal/ngx-smart-modal.css";
 /**custom css */
 
