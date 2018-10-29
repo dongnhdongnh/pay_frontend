@@ -14,6 +14,9 @@ export class PortfolioValueComponent implements OnInit {
   public chartData = [];
   public chartLabel = [];
 
+  // public lineChartColors: any;
+  // public lineChartLegend: any;
+
   constructor(private httpService: HttpService, configService: ConfigService) {
     this.configService = configService;
     this.apiUrl = this.configService.urlApi + '/api/portfolio/value/';
@@ -30,14 +33,14 @@ export class PortfolioValueComponent implements OnInit {
     var objectData = apiData.data;
 
     objectData.forEach(element => {
-      var value = (Number(element["BitcoinValue"]) +  Number(element["EthereumValue"]) + Number(element["VakacoinValue"])).toFixed(3);
-      var time = new Date(parseInt(element["Timestamp"]+"000"));
+      var value = (Number(element["BitcoinValue"]) + Number(element["EthereumValue"]) + Number(element["VakacoinValue"])).toFixed(3);
+      var time = new Date(parseInt(element["Timestamp"] + "000"));
       this.chartData.push(value);
       this.chartLabel.push(time);
       this.portfolioValue = "$ " + value;
     });
 
-    this.lineChartData = [{data: this.chartData, label: 'Portfolio Value'}];
+    this.lineChartData = [{ data: this.chartData, label: 'Portfolio Value' }];
     this.lineChartLabels = this.chartLabel;
   }
 
@@ -48,11 +51,11 @@ export class PortfolioValueComponent implements OnInit {
   isYear = false;
   isAll = false;
 
-  public lineChartData:Array<any> = [
-    {data: this.chartData, label: 'Portfolio Value'}
+  public lineChartData: Array<any> = [
+    { data: this.chartData, label: 'Portfolio Value' }
   ];
-  public lineChartLabels:Array<any> = this.chartLabel;
-  public lineChartType:string = 'line';
+  public lineChartLabels: Array<any> = this.chartLabel;
+  public lineChartType: string = 'line';
 
   public lineChartOptions: any = {
     scales: {
@@ -62,11 +65,11 @@ export class PortfolioValueComponent implements OnInit {
     }
   }
 
-  public chartClicked(e:any):void {
+  public chartClicked(e: any): void {
     console.log(e);
   }
- 
-  public chartHovered(e:any):void {
+
+  public chartHovered(e: any): void {
     console.log(e);
   }
 
@@ -117,7 +120,7 @@ export class PortfolioValueComponent implements OnInit {
         this.isAll = true;
         this.getData(option);
         break;
-    
+
       default:
         break;
     }

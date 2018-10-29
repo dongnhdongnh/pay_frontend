@@ -17,9 +17,9 @@ export class Utility extends utility {
 
     static focus(element) { element.nativeElement.focus(); }
 
-    static isSuccess = data => !(data['error'] || (data['status'] && data['status'].toLowerCase() === 'error'))
+    static isSuccess = data => !(data['error'] || (data['status'] && String(data['status']).toLowerCase() === 'error'))
 
-    static isError = data => data['error'] || (data['status'] && data['status'].toLowerCase() === 'error')
+    static isError = data => data['error'] || (data['status'] && String(data['status']).toLowerCase() === 'error')
 
     static isEnter(event: any) { return event.keyCode === 13; }
 }

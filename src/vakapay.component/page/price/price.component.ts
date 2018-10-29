@@ -8,6 +8,8 @@ import { ConfigService } from 'network/config/config.service';
   styleUrls: ['./price.component.css']
 })
 export class PriceComponent implements OnInit {
+  lineChartLegend: any;
+  
 
   constructor(private httpService: HttpService, configService: ConfigService) {
     this.configService = configService;

@@ -37,13 +37,12 @@
     <li class="br-menu-item"
       [routerLinkActive]="['active']"
       [routerLinkActiveOptions]="{exact:true}">
-      <a class="br-menu-link with-sub"
-        (click)="isOpenSetting= !isOpenSetting">
+      <a class="br-menu-link with-sub">
         <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
         <span class="menu-item-label">Setting</span>
       </a>
       <!-- br-menu-link -->
-      <ul class="br-menu-sub" [@openClose]="isOpenSetting ? 'open' : 'closed'">
+      <ul class="br-menu-sub">
         <li class="sub-item"><a routerLink="/profile" routerLinkActive="active"
             class="sub-link">My Profile</a></li>
         <li class="sub-item"><a routerLink="/preferences"

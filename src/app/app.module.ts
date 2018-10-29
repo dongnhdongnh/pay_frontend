@@ -15,7 +15,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 
 import { ToasterModule } from 'angular2-toaster';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule, MatTabsModule, MatSidenavModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule, MatTabsModule, MatSidenavModule, MatExpansionModule }
+  from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ClipboardModule } from 'ngx-clipboard';
@@ -84,13 +85,16 @@ import { SessionActiveComponent } from 'component/page/activity/session-active/s
 import { AccountActivityComponent } from 'component/page/activity/account-activity/account-activity.component';
 import { CloseAccountComponent } from 'component/page/security/close-account/close-account.component';
 import { LockScreenConfigComponent } from 'component/page/security/lock-screen/lock-screen.component';
+import { ApiAccessComponent } from 'component/page/api-access/api-access.component';
 
 import { AccountsComponent } from 'component/page/accounts/accounts.component';
 //TwofaVerify
 import { TwofaVerifyCodeComponentWithPhoneComponent }
-  from 'component/page/security/two-factor-authentication/enable/enable-twofa-verify-phone/twofa-verify-code-with-phone.component';
+  from 'component/page/security/two-factor-authentication/enable/enable-twofa/twofa-verify-code-with-phone.component';
 import { TwofaOptionsVerifyWithPhoneComponent }
   from 'component/page/security/two-factor-authentication/enable/twofa-options/twofa-options-verify-with-phone/twofa-options-verify-with-phone.component';
+import { DisableTwofaComponent }
+  from 'component/page/security/two-factor-authentication/disable-twofa/disable-twofa.component';
 
 import { CloseAccountVerifyPasswordComponent }
   from 'component/page/security/close-account/close-account-verify-password/close-account-verify-password.component';
@@ -105,6 +109,17 @@ import { ButtonDeleteComponent } from 'component/button-delete/button-delete.com
 import { WaitingLoadPageComponent } from 'component/waiting-load-page/waiting-load-page.component';
 import { ResendSmsComponent } from 'component/resend-sms/resend-sms.component';
 import { LockScreenComponent } from 'component/lock-screen/lock-screen.component';
+import { BuyWidgetsComponent } from 'component/page/api-access/buy-widgets/buy-widgets.component';
+import { ApiKeysComponent } from 'component/page/api-access/api-keys/api-keys.component';
+import { Oauth2AppComponent } from 'component/page/api-access/oauth2-app/oauth2-app.component';
+import { ApiAccessNotificationComponent } from 'component/page/api-access/api-access-notification/api-access-notification.component';
+import { ListApiKeysComponent } from 'component/page/api-access/api-keys/list-api-keys/list-api-keys.component';
+import { NewApiKeyComponent } from 'component/page/api-access/api-keys/new-api-key/new-api-key.component';
+import { ShowApiKeyComponent } from 'component/page/api-access/api-keys/show-api-key/show-api-key.component';
+import { DeleteApiKeyComponent } from 'component/page/api-access/api-keys/delete-api-key/delete-api-key.component';
+import { EnableApiKeyComponent } from 'component/page/api-access/api-keys/enable-api-key/enable-api-key.component';
+import { DisableApiKeyComponent } from 'component/page/api-access/api-keys/disable-api-key/disable-api-key.component';
+import { EditApiKeyComponent } from 'component/page/api-access/api-keys/edit-api-key/edit-api-key.component';
 import { QRCodeModule } from 'angularx-qrcode';
 @NgModule({
   declarations: [
@@ -158,6 +173,19 @@ import { QRCodeModule } from 'angularx-qrcode';
     LockScreenComponent,
     AccountsComponent,
     JwPaginationComponent,
+    DisableTwofaComponent,
+    ApiAccessComponent,
+    BuyWidgetsComponent,
+    ApiKeysComponent,
+    Oauth2AppComponent,
+    ApiAccessNotificationComponent,
+    ListApiKeysComponent,
+    NewApiKeyComponent,
+    ShowApiKeyComponent,
+    DeleteApiKeyComponent,
+    EnableApiKeyComponent,
+    DisableApiKeyComponent,
+    EditApiKeyComponent,
   ],
   imports: [
     BrowserModule,
@@ -170,7 +198,11 @@ import { QRCodeModule } from 'angularx-qrcode';
     BrowserAnimationsModule,
     ToasterModule.forRoot(),
     MatTableModule, MatSidenavModule,
-    MatButtonModule, MatTabsModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule, ClipboardModule,
+
+    MatButtonModule, MatTabsModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,
+    MatExpansionModule,
+    QRCodeModule,
+    ClipboardModule,
 
     //Font
     AngularFontAwesomeModule,
@@ -195,10 +227,9 @@ import { QRCodeModule } from 'angularx-qrcode';
   ],
   providers: [
     {
-      provide: { NG_SELECT_DEFAULT_CONFIG, SWIPER_CONFIG },
+      provide: NG_SELECT_DEFAULT_CONFIG,
       useValue: {
-        notFoundText: 'Custom not found',
-        DEFAULT_SWIPER_CONFIG
+        notFoundText: 'Custom not found'
       }
     }
   ],
