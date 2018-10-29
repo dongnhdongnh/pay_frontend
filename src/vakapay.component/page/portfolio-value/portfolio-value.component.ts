@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Portfolio } from 'model/portfolio/Portfolio';
-import { Account } from 'model/account/Account';
-import { AccountService } from 'services/account/account.service';
 import { HttpService } from 'network/http/http.service';
 import { ConfigService } from 'network/config/config.service';
 @Component({
@@ -10,7 +7,6 @@ import { ConfigService } from 'network/config/config.service';
   styleUrls: ['./portfolio-value.component.css']
 })
 export class PortfolioValueComponent implements OnInit {
-  account: Account;
   configService: ConfigService;
   private apiUrl = '';
   portfolioValue = '';
@@ -18,10 +14,9 @@ export class PortfolioValueComponent implements OnInit {
   public chartData = [];
   public chartLabel = [];
 
-  constructor(accountService: AccountService, private httpService: HttpService, configService: ConfigService) {
+  constructor(private httpService: HttpService, configService: ConfigService) {
     this.configService = configService;
     this.apiUrl = this.configService.urlApi + '/api/portfolio/value/';
-    this.account = accountService.mAccount;
   }
 
   ngOnInit() {
