@@ -23,6 +23,27 @@ export class PortfolioValueComponent implements OnInit {
   }
 
   ngOnInit() {
+    var self = this;
+    setInterval(function(){
+      if (self.isHour){
+        self.getData('hour');
+      }
+      if (self.isDay){
+        self.getData('day');
+      }
+      if (self.isWeek){
+        self.getData('week');
+      }
+      if (self.isMonth){
+        self.getData('month');
+      }
+      if (self.isYear){
+        self.getData('year');
+      }
+      if (self.isAll){
+        self.getData('all');
+      }
+    }, 5 * 60 * 1000);
     this.getData('hour');
   }
 
@@ -83,8 +104,8 @@ export class PortfolioValueComponent implements OnInit {
   }
 
   public resetData(): void {
-    this.chartData = [];
-    this.chartLabel = [];
+    this.chartData.length = 0;
+    this.chartLabel.length = 0;
   }
 
   public timeOption(option: string): void {

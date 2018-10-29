@@ -35,10 +35,15 @@ export class RecentActivityComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    var self = this;
     this.getData('10');
+    setInterval(function(){
+      self.getData('10');
+    }, 5 * 60 * 1000);
   }
 
   public async getData(apiString = '') {
+    this.activities.length = 0;
     var apiData = await this.httpService.getFrom("get coinmarket data", this.apiUrl + apiString);
 
     // if (Utility.isError) throw new Error(apiData.message);

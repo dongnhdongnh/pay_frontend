@@ -18,44 +18,23 @@ export class PriceComponent implements OnInit {
   }
 
   ngOnInit() {
-    var refreshDay = setInterval(function(){
-      if (!this.isDay){
-        clearInterval(refreshDay);
+    var self = this;
+    setInterval(function(){
+      if (self.isDay){
+        self.timeOption("day");
       }
-      console.log("refreshDay");
-      this.timeOption("day");
-    }, 5*60*1000);
-
-    var refreshWeek = setInterval(function(){
-      if (!this.isWeek){
-        clearInterval(refreshWeek);
+      if (self.isWeek){
+        self.timeOption("week");
       }
-      console.log("refreshWeek");
-      this.timeOption("week");
-    }, 5*60*1000);
-
-    var refreshMonth = setInterval(function(){
-      if (!this.isMonth){
-        clearInterval(refreshMonth);
+      if (self.isMonth){
+        self.timeOption("month");
       }
-      console.log("refreshMonth");
-      this.timeOption("month");
-    }, 5*60*1000);
-
-    var refreshYear = setInterval(function(){
-      if (!this.isYear){
-        clearInterval(refreshYear);
+      if (self.isYear){
+        self.timeOption("year");
       }
-      console.log("refreshYear");
-      this.timeOption("year");
-    }, 5*60*1000);
-
-    var refreshAll = setInterval(function(){
-      if (!this.isAll){
-        clearInterval(refreshAll);
+      if (self.isAll){
+        self.timeOption("all");
       }
-      console.log("refreshAll");
-      this.timeOption("all");
     }, 5*60*1000);
   }
   

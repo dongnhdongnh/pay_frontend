@@ -24,6 +24,10 @@ export class PortfolioComponent implements OnInit {
 
   ngOnInit() {
     this.getData('/api/portfolio/value/current');
+    var self = this;
+    setInterval(function(){
+      self.getData('/api/portfolio/value/current');
+    }, 5 * 60 * 1000);
   }
 
   portfolio: Portfolio[] = [];
@@ -32,6 +36,7 @@ export class PortfolioComponent implements OnInit {
   ethValue: number = 0;
 
   public async getData(apiString = '') {
+    this.portfolio.length = 0;
     var apiData = await this.httpService.getFrom("get coinmarket data", this.apiUrl + apiString);
 
     // if (Utility.isError) throw new Error(apiData.message);
@@ -56,7 +61,7 @@ export class PortfolioComponent implements OnInit {
   
   // Doughnut
   public doughnutChartLabels: string[] = ['Vakacoin', 'Bitcoin', 'Ethereum'];
-  public doughnutChartData: number[] = [1, 1, 1];
+  public doughnutChartData: number[] = [0, 0, 0];
   public doughnutChartType: string = 'doughnut';
 
   // events
