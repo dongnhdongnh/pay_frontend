@@ -6,7 +6,6 @@ import { Utility } from 'utility/Utility';
 @Injectable({ providedIn: 'root' })
 export class AccountActivityService {
     public list: AccountActivity[];
-    private test = true;
     isError: boolean = false;
     isLoading: boolean = false;
 

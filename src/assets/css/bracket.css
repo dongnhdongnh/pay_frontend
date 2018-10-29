@@ -18583,7 +18583,7 @@ textarea.parsley-success:focus {
   visibility: hidden;
 }
 
-@media (max-width: 991px) {
+/* @media (max-width: 991px) {
   .show-left .br-header,
   .show-left .br-mainpanel {
     transform: translateX(230px);
@@ -18600,7 +18600,7 @@ textarea.parsley-success:focus {
   .show-left .br-contentpanel {
     transform: translateX(230px);
   }
-}
+} */
 
 .show-right .br-logo,
 .show-right .br-sideleft,
@@ -18618,18 +18618,6 @@ textarea.parsley-success:focus {
 .show-left,
 .show-right {
   overflow: hidden;
-}
-
-.show-left::before,
-.show-right::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 2000;
-  background-color: rgba(29, 41, 57, 0.25);
 }
 
 @media (min-width: 992px) {

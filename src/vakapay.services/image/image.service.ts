@@ -24,4 +24,15 @@ export class ImageService {
         return this.httpService.postFormData(operation, api, data);
     }
 
+    uploadImgur(file: any): Promise<ResultObject> {
+
+        const uploadData = new FormData();
+        uploadData.append('image', file, file.name);
+
+        let operation = 'image';
+        let api = '';
+        let data = uploadData;
+        return this.httpService.postImgur(operation, api, data);
+    }
+
 }

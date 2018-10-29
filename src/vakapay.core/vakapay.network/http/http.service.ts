@@ -9,7 +9,7 @@ import { environment } from 'environments/environment.prod';
 
 @Injectable({ providedIn: 'root' })
 export class HttpService {
-  private url = '';
+  public url = '';
   private alertService: AlertService;
   configService: ConfigService;
 
@@ -29,6 +29,16 @@ export class HttpService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }),
+      withCredentials: true
+    };
+  }
+
+  httpOptionsPostImgur() {
+    return {
+      headers: new HttpHeaders({
+        //'Content-Type': 'application/json',
+        // 'Authorization': `Client-ID be5056dfe342377`
       }),
       withCredentials: true
     };
@@ -68,8 +78,12 @@ export class HttpService {
 
   //Get api
   get(operation = 'operation', api, alert = true): Promise<ResultObject> {
+    let URL_API = new URL(api, this.url).href;
+    return this.requestGet(operation, URL_API, alert);
+  };
+
+  requestGet(operation = 'operation', URL_API, alert = true) {
     var self = this;
-    let URL_API = new URL(api, self.url).href;
     return new Promise<ResultObject>(
       (resolve, reject) => self.http.get(URL_API, self.httpOptionsGet())
         .subscribe(
@@ -83,16 +97,10 @@ export class HttpService {
             reject(error);
           }
         ));
-  };
+  }
 
-  //Post api
-  actionPost(operation = 'operation', api, data, httpOptions, alert = true,debug=false): Promise<ResultObject> {
+  requestPost(operation = 'operation', URL_API, data, httpOptions, alert = true) {
     var self = this;
-    let URL_API = new URL(api, self.url).href;
-    if(debug)
-    {
-      URL_API = new URL(api, environment.urlApi).href;
-    }
     return new Promise<ResultObject>((resolve, reject) => {
       self.http.post(URL_API, data, httpOptions)
         .subscribe(
@@ -107,6 +115,12 @@ export class HttpService {
           }
         );
     });
+  }
+
+  //Post api
+  actionPost(operation = 'operation', api, data, httpOptions, alert = true): Promise<ResultObject> {
+    let URL_API = new URL(api, this.url).href;
+    return this.requestPost(operation, URL_API, data, httpOptions, alert);
   };
 
   //Get api
@@ -127,13 +141,19 @@ export class HttpService {
   };
 
   //Post api
-  post(operation, api, data, alert = true,debug = false): Promise<ResultObject> {
-    return this.actionPost(operation, api, data, this.httpOptionsPost(), alert,debug);
+  post(operation, api, data, alert = true, debug = false): Promise<ResultObject> {
+    return this.actionPost(operation, api, data, this.httpOptionsPost(), alert);
   };
 
   //Post api
   postFormData(operation, api, data, alert = true): Promise<ResultObject> {
     return this.actionPost(operation, api, data, this.httpOptionsPostFormData(), alert);
+  };
+
+  //Send image to imgur.com
+  postImgur(operation, api, data, alert = true): Promise<ResultObject> {
+    let URL_API = `${window.location.origin}/upload-profile`;
+    return this.requestPost(operation, URL_API, data, this.httpOptionsPostImgur(), alert);
   };
 
   private log(message: string) {
