@@ -250,7 +250,7 @@
     background: #0a7937 !important;
 }
 .icon img {
-    width: 50px;
+    /* width: 50px; */
     margin: 0 auto;
     display: block;
     padding: 10px;

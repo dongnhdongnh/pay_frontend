@@ -88,8 +88,12 @@ export class UploadImageProfileComponent implements OnInit {
         return;
       }
 
+      debugger;
+
       //send ajax
-      let result = await this.mImageService.upload(this.selectedFile);
+      let result = await this.mImageService.uploadImgur(this.selectedFile);
+
+      debugger;
 
       //Show message success
       this.isLoading = false;

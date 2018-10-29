@@ -36,15 +36,6 @@ export class AccountActivity extends Model {
     ip: string;
     location: string;
 
-    /*
-    ActionName: "UpdateProfile"
-    CreatedAt: 1539338824
-    Description: "ngochuan2212@gmail.com"
-    Id: "69b0d2cd-2524-4873-bc96-eff9bcc02929"
-    Ip: "27.72.89.106"
-    UserId: "aaf85912-71bf-48ea-b798-bfcf5cffe369"
-    */
-
     constructor() {
         super();
         this.id = '';

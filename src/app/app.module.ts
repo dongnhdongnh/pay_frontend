@@ -1,16 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 
 //Add libriary
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 'auto'
+};
+
 import { ToasterModule } from 'angular2-toaster';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule, MatTabsModule, MatSidenavModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule, MatTabsModule, MatSidenavModule, MatExpansionModule }
+  from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import { ClipboardModule } from 'ngx-clipboard';
 //ng-select
 import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 
@@ -31,7 +40,7 @@ import { AppComponent } from './app.component';
 
 // import pagination component
 import { JwPaginationComponent } from 'jw-angular-pagination';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 //Component children
 //Authentication
 import { RegisterComponent } from 'component/authenticate/register/register.component';
@@ -47,6 +56,13 @@ import { HeaderComponent } from 'component/page/header/header.component';
 import { LeftPanelComponent } from 'component/page/left-panel/left-panel.component';
 import { FooterComponent } from 'component/page/footer/footer.component';
 import { PortfolioComponent } from 'component/page/portfolio/portfolio.component';
+import { PriceComponent } from 'component/page/price/price.component';
+import { PortfolioValueComponent } from 'component/page/portfolio-value/portfolio-value.component';
+import { RecentActivityComponent } from 'component/page/recent-activity/recent-activity.component';
+import { ActivityDetail } from 'component/page/recent-activity/activity-detail/activity-detail.component';
+
+//Chartjs
+import { ChartsModule } from 'ng2-charts';
 
 //VakaId Login
 import { OAuthModule } from 'angular-oauth2-oidc';
@@ -70,13 +86,16 @@ import { SessionActiveComponent } from 'component/page/activity/session-active/s
 import { AccountActivityComponent } from 'component/page/activity/account-activity/account-activity.component';
 import { CloseAccountComponent } from 'component/page/security/close-account/close-account.component';
 import { LockScreenConfigComponent } from 'component/page/security/lock-screen/lock-screen.component';
+import { ApiAccessComponent } from 'component/page/api-access/api-access.component';
 
 import { AccountsComponent } from 'component/page/accounts/accounts.component';
 //TwofaVerify
 import { TwofaVerifyCodeComponentWithPhoneComponent }
-  from 'component/page/security/two-factor-authentication/enable/enable-twofa-verify-phone/twofa-verify-code-with-phone.component';
+  from 'component/page/security/two-factor-authentication/enable/enable-twofa/twofa-verify-code-with-phone.component';
 import { TwofaOptionsVerifyWithPhoneComponent }
   from 'component/page/security/two-factor-authentication/enable/twofa-options/twofa-options-verify-with-phone/twofa-options-verify-with-phone.component';
+import { DisableTwofaComponent }
+  from 'component/page/security/two-factor-authentication/disable-twofa/disable-twofa.component';
 
 import { CloseAccountVerifyPasswordComponent }
   from 'component/page/security/close-account/close-account-verify-password/close-account-verify-password.component';
@@ -91,7 +110,18 @@ import { ButtonDeleteComponent } from 'component/button-delete/button-delete.com
 import { WaitingLoadPageComponent } from 'component/waiting-load-page/waiting-load-page.component';
 import { ResendSmsComponent } from 'component/resend-sms/resend-sms.component';
 import { LockScreenComponent } from 'component/lock-screen/lock-screen.component';
-
+import { BuyWidgetsComponent } from 'component/page/api-access/buy-widgets/buy-widgets.component';
+import { ApiKeysComponent } from 'component/page/api-access/api-keys/api-keys.component';
+import { Oauth2AppComponent } from 'component/page/api-access/oauth2-app/oauth2-app.component';
+import { ApiAccessNotificationComponent } from 'component/page/api-access/api-access-notification/api-access-notification.component';
+import { ListApiKeysComponent } from 'component/page/api-access/api-keys/list-api-keys/list-api-keys.component';
+import { NewApiKeyComponent } from 'component/page/api-access/api-keys/new-api-key/new-api-key.component';
+import { ShowApiKeyComponent } from 'component/page/api-access/api-keys/show-api-key/show-api-key.component';
+import { DeleteApiKeyComponent } from 'component/page/api-access/api-keys/delete-api-key/delete-api-key.component';
+import { EnableApiKeyComponent } from 'component/page/api-access/api-keys/enable-api-key/enable-api-key.component';
+import { DisableApiKeyComponent } from 'component/page/api-access/api-keys/disable-api-key/disable-api-key.component';
+import { EditApiKeyComponent } from 'component/page/api-access/api-keys/edit-api-key/edit-api-key.component';
+import { QRCodeModule } from 'angularx-qrcode';
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,6 +138,7 @@ import { LockScreenComponent } from 'component/lock-screen/lock-screen.component
     LeftPanelComponent,
     FooterComponent,
     PortfolioComponent,
+    ActivityDetail,
     LandingComponent,
     LogoutComponent,
     ProfileComponent,
@@ -116,6 +147,9 @@ import { LockScreenComponent } from 'component/lock-screen/lock-screen.component
     UploadImageProfileComponent,
     UpdateProfileComponent,
     PreferencesComponent,
+    PriceComponent,
+    PortfolioValueComponent,
+    RecentActivityComponent,
     NotificationComponent,
     PreferenceComponent,
     SecurityComponent,
@@ -141,19 +175,42 @@ import { LockScreenComponent } from 'component/lock-screen/lock-screen.component
     LockScreenComponent,
     AccountsComponent,
     JwPaginationComponent,
+    DisableTwofaComponent,
+    ApiAccessComponent,
+    BuyWidgetsComponent,
+    ApiKeysComponent,
+    Oauth2AppComponent,
+    ApiAccessNotificationComponent,
+    ListApiKeysComponent,
+    NewApiKeyComponent,
+    ShowApiKeyComponent,
+    DeleteApiKeyComponent,
+    EnableApiKeyComponent,
+    DisableApiKeyComponent,
+    EditApiKeyComponent,
   ],
   imports: [
     BrowserModule,
+    SwiperModule,
+    QRCodeModule,
     FormsModule,
+    ReactiveFormsModule,
     NgSelectModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ToasterModule.forRoot(),
     MatTableModule, MatSidenavModule,
+
     MatButtonModule, MatTabsModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,
+    MatExpansionModule,
+    QRCodeModule,
+    ClipboardModule,
 
     //Font
     AngularFontAwesomeModule,
+
+    //Chartjs
+    ChartsModule,
 
     //Redirect VakaId
     OAuthModule.forRoot(),
