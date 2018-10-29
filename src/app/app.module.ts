@@ -227,10 +227,9 @@ import { QRCodeModule } from 'angularx-qrcode';
   ],
   providers: [
     {
-      provide: { NG_SELECT_DEFAULT_CONFIG, SWIPER_CONFIG },
+      provide: NG_SELECT_DEFAULT_CONFIG,
       useValue: {
-        notFoundText: 'Custom not found',
-        DEFAULT_SWIPER_CONFIG
+        notFoundText: 'Custom not found'
       }
     }
   ],

@@ -30,6 +30,8 @@ export class AccountsComponent extends Root implements OnInit {
     positionClass: 'toast-top-center',
     animation: 'fade'
   });
+  index: any;
+  Coin: any;
   withdrawn_from: any;
   isDataLoaded: boolean;
   sendByAd: boolean;
