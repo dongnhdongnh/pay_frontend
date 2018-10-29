@@ -58,6 +58,7 @@ import { PortfolioComponent } from 'component/page/portfolio/portfolio.component
 import { PriceComponent } from 'component/page/price/price.component';
 import { PortfolioValueComponent } from 'component/page/portfolio-value/portfolio-value.component';
 import { RecentActivityComponent } from 'component/page/recent-activity/recent-activity.component';
+import { ActivityDetail } from 'component/page/recent-activity/activity-detail/activity-detail.component';
 
 //Chartjs
 import { ChartsModule } from 'ng2-charts';
@@ -122,6 +123,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     LeftPanelComponent,
     FooterComponent,
     PortfolioComponent,
+    ActivityDetail,
     LandingComponent,
     LogoutComponent,
     ProfileComponent,

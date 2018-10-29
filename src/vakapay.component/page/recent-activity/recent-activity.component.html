@@ -16,7 +16,7 @@
             </td>
             <td width="40%" class="tx-left">
               <p class="mg-b-0 tx-inverse tx-medium tx-btc">
-                {{ activity.isSend ? 'Send' : 'Received'}} {{activity.networkName}}
+                {{ activity.isSend ? 'Sent' : 'Received'}} {{activity.networkName}}
               </p>
               <span class="d-block tx-13 hidden-mob">{{ activity.isSend ? 'To' : 'From'}} {{activity.networkName}} address</span>
             </td>
@@ -35,3 +35,7 @@
     <a href="account.html"><span>View your accounts</span></a>
   </div>
 </div>
+
+<ngx-smart-modal #modalActivityDetail [identifier]="'modalActivityDetail'">
+  <activity-detail [activity]="activity"></activity-detail>
+</ngx-smart-modal>
