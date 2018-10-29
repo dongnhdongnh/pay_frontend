@@ -1,9 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+// Import ReactiveFormsModule
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import { HttpClientModule } from '@angular/common/http';
 
+// Add libriary
+import { ToasterModule } from 'angular2-toaster';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// ng-select
 //Add libriary
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
@@ -13,8 +21,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   slidesPerView: 'auto'
 };
 
-import { ToasterModule } from 'angular2-toaster';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule, MatTabsModule, MatSidenavModule, MatExpansionModule }
   from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
@@ -29,13 +35,13 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
 // RECOMMENDED (doesn't work with system.js)
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
-//Add libriary font
+// Add libriary font
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
-//Add routing
-import { AppRoutingModule } from './app-routing.module';
+// Add routing
+import { AppRoutingModule } from './app-routing/app-routing.module';
 
-//Component parent
+// Component parent
 import { AppComponent } from './app.component';
 
 // import pagination component
@@ -64,7 +70,7 @@ import { ActivityDetail } from 'component/page/recent-activity/activity-detail/a
 //Chartjs
 import { ChartsModule } from 'ng2-charts';
 
-//VakaId Login
+// VakaId Login
 import { OAuthModule } from 'angular-oauth2-oidc';
 
 //Component page
@@ -76,6 +82,10 @@ import { UploadImageProfileComponent } from 'component/page/profile/upload-image
 import { UpdateProfileComponent } from 'component/page/profile/update-profile/update-profile.component';
 import { ProfileComponent } from 'component/page/profile/profile.component';
 import { PreferencesComponent } from 'component/page/preferences/preferences.component';
+import { ObjectivesComponent } from './objectives/objectives.component';
+import { AddressesComponent } from '../vakapay.component/addresses/addresses.component';
+import { ReportsComponent } from '../vakapay.component/reports/reports.component';
+import { ReportFormComponent } from '../vakapay.component/report-form/report-form.component';
 import { NotificationComponent } from 'component/page/preferences/notification/notification.component';
 import { PreferenceComponent } from 'component/page/preferences/preference/preference.component';
 import { SecurityComponent } from 'component/page/security/security.component';
@@ -147,6 +157,10 @@ import { QRCodeModule } from 'angularx-qrcode';
     UploadImageProfileComponent,
     UpdateProfileComponent,
     PreferencesComponent,
+    ObjectivesComponent,
+    AddressesComponent,
+    ReportsComponent,
+    ReportFormComponent,
     PriceComponent,
     PortfolioValueComponent,
     RecentActivityComponent,
@@ -199,23 +213,27 @@ import { QRCodeModule } from 'angularx-qrcode';
     AppRoutingModule,
     BrowserAnimationsModule,
     ToasterModule.forRoot(),
-    MatTableModule, MatSidenavModule,
 
     MatButtonModule, MatTabsModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,
+    // Reactive Forms Module
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatTableModule, MatSidenavModule,
     MatExpansionModule,
     QRCodeModule,
     ClipboardModule,
 
-    //Font
+    // Font
     AngularFontAwesomeModule,
 
+    // Redirect VakaId
     //Chartjs
     ChartsModule,
 
     //Redirect VakaId
     OAuthModule.forRoot(),
 
-    //Bootstrap dropdow module
+    // Bootstrap dropdow module
     BsDropdownModule.forRoot(),
 
     //modal
