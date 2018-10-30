@@ -1,7 +1,11 @@
 <!-- ########## START: MAIN PANEL ########## -->
 <div class="br-mainpanel">
 
-
+  <!-- <p class="text-center text-muted" if-loading>
+    <span class="fa fa-spinner fa-spin fa-4x"></span>
+    <br /><br />
+    Loading, please wait...
+  </p> -->
 
 
 
@@ -31,7 +35,7 @@
                       href="#tab1" role="tab" aria-selected="true" (click)="onClickWalletTab($event,'VKC')">
                       <div class="bg-green border p-rl h120">
                         <div class="pd-x-10 pd-t-10 d-flex align-items-center">
-                          <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-vkc.svg" alt=""></i>
+                          <!-- <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-vkc.svg" alt=""></i> -->
                           <div class="mg-r-20 width-text">
                             <p class="tx-15 tx-white tx-spacing-1 mg-b-0">VKC Wallet</p>
                             <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Vakacoin")?.Balance}}
@@ -39,7 +43,9 @@
                             <div class="pd-t-10 pd-b-10 d-flex align-items-center">
                               <div *ngIf="wallets.get('Vakacoin')?.Balance>0">
                                 <a href="#" (click)="onClickSend('VKC')" class="btn btn-trans  send-receive"
-                                  data-toggle="modal" data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send</a>
+                                  data-toggle="modal" data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send
+                                  <loading-button [isLoading]='loadingObject?.loadClickSend'></loading-button>
+                                </a>
                               </div>
                               <div *ngIf="wallets.get('Vakacoin')?.Balance<=0">
                                 <a href="#" class="btn disabled btn-trans  send-receive" data-toggle="modal"
@@ -105,7 +111,7 @@
                       href="#tab1" role="tab" (click)="onClickWalletTab($event,'BTC')">
                       <div class="bg-btc border p-rl h120">
                         <div class="pd-x-10 pd-t-10 d-flex align-items-center">
-                          <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-btc.svg" alt=""></i>
+                          <!-- <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-btc.svg" alt=""></i> -->
                           <div class="mg-r-20 width-text">
                             <p class="tx-15 tx-white tx-spacing-1 mg-b-0">BitCoin</p>
                             <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Bitcoin")?.Balance}}
@@ -147,7 +153,7 @@
                       href="#tab1" role="tab" (click)="onClickWalletTab($event,'ETH')">
                       <div class="bg-eth border p-rl h120">
                         <div class="pd-x-10 pd-t-10 d-flex align-items-center">
-                          <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eth.svg" alt=""></i>
+                          <!-- <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eth.svg" alt=""></i> -->
                           <div class="mg-r-20 width-text">
                             <p class="tx-15 tx-white tx-spacing-1 mg-b-0">Ethereum</p>
                             <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Ethereum")?.Balance}}
@@ -190,7 +196,7 @@
                       href="#tab1" role="tab" (click)="onClickWalletTab($event,'EOS')">
                       <div class="bg-eos border p-rl h120">
                         <div class="pd-x-10 pd-t-10 d-flex align-items-center">
-                          <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eos.svg" alt=""></i>
+                          <!-- <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eos.svg" alt=""></i> -->
                           <div class="mg-r-20 width-text">
                             <p class="tx-15 tx-white tx-spacing-1 mg-b-0">EOS</p>
                             <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("EOS")?.Balance}} EOS</p>
@@ -653,6 +659,7 @@
       <div class="modal-footer">
         <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium img-center" data-toggle="modal"
           data-dismiss="modal" (click)="onClickReceiveDetail()" data-target="#modaldemo2b"> Show Address
+          <loading-button  [isLoading]='loadingObject?.getAddress'></loading-button>
         </a>
       </div>
     </form>
@@ -748,15 +755,21 @@
           <label class="col-sm-12 form-control-label"> Amount:<i class="tx-danger">*</i></label>
           <div class="col-sm-12 mg-t-10 mg-sm-t-0">
             <div class="width-half-mini input-number">
-              <div class="input-left bg-green"><span color="slate">VND</span></div>
+              <div class="input-left bg-green">
+                  <loading-button style="color:black" [isLoading]='loadingObject?.loadVND'></loading-button>
+                <span color="slate">VND</span>   
+              </div>
               <div class="input-right"><input type="number" class="form-control fc-outline-white" placeholder=""
                   [(ngModel)]="vndValue" maxlength="15" name="VNDAmount" #VNDAmount="ngModel" ngModel required
                   minlength="1" (change)="ExchangeRateInput('VND');" (change)="validateSendCoin(sendCoinForm);">
+                 
               </div>
             </div>
             <div class="transfer"><i class="fa fa-exchange"></i></div>
             <div class="width-half-mini input-number">
-              <div class="input-left bg-green"><span color="slate">{{tab_current?.sortName}}</span></div>
+              <div class="input-left bg-green">
+                  <loading-button style="color:black" [isLoading]='loadingObject?.loadVKC'></loading-button>
+                <span color="slate">{{tab_current?.sortName}}</span></div>
               <div class="input-right"><input type="number" class="form-control fc-outline-white" placeholder=""
                   [(ngModel)]="vkcValue" maxlength="15" name="VKCAmount" #VKCAmount="ngModel" ngModel required
                   minlength="1" (change)="ExchangeRateInput('VKC');validateSendCoin(sendCoinForm);"></div>
@@ -780,8 +793,10 @@
       <div class="modal-footer step">
         <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
           data-dismiss="modal" (click)="closePopup('sendDetail')">Cancel</button>
-        <button type="submit" [disabled]="!errorObject?.canNext" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
-          data-dismiss="modal">Continue</button>
+        <button type="submit" [disabled]="!errorObject?.canNext && !loadingObject?.sendCoin" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
+          data-dismiss="modal">Continue
+          <loading-button [isLoading]='loadingObject?.sendCoin'></loading-button>
+        </button>
         <!-- <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
           data-dismiss="modal" data-target="#modaldemo3b" type="submit">Continue</a> -->
       </div>
@@ -873,7 +888,9 @@
           Back</button>
         <!-- <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-toggle="modal"
             data-dismiss="modal" data-target="#modaldemo3c">Confirm</a> -->
-        <button type="submit" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Confirm</button>
+        <button type="submit" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Confirm
+          <loading-button [isLoading]='loadingObject?.sendCoinConfirm'></loading-button>
+        </button>
       </div>
     </form>
   </div>
@@ -1432,7 +1449,9 @@
             <div class="modal-footer mg-t-20">
               <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium img-center"
                 data-toggle="modal" data-dismiss="modal" data-target="#modaldemo2b"> Show Address
+                
               </a>
+        
             </div>
           </div>
         </div>
@@ -1685,3 +1704,4 @@
 </div>
 <!-- <toaster-container [toasterconfig]="config1"></toaster-container> -->
 <!-- <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination> -->
+
