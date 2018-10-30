@@ -3,7 +3,7 @@
  */
 
 export class Report {
-    type: string;
+    reporttype: string;
     account: string;
     timerange: string;
     email: string;

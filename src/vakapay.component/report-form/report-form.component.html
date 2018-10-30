@@ -12,16 +12,23 @@
     </div>
     <!-- Modal Body -->
     <div class="modal-body pd-25">
+      <!-- Type Mat Select -->
       <div class="form-group mg-md-l--1 bd-t-0-force">
         <label class="form-control-label mg-b-0-force">Type:</label>
-        <select id="select2-a" class="form-control" data-placeholder="Choose country" tabindex="-1" aria-hidden="true">
+        <mat-select placeholder="Type" formControlName="reporttype">
+          <mat-option *ngFor="let rtype of reportType" [value]="rtype">
+            {{ rtype }}
+          </mat-option>
+        </mat-select>
+        <!-- <select id="select2-a" class="form-control" data-placeholder="Choose country" tabindex="-1" aria-hidden="true">
           <option label="Choose country"></option>
           <option value="USA" selected="">Transaction History</option>
           <option value="UK">United Kingdom</option>
           <option value="China">China</option>
           <option value="Japan">Japan</option>
-        </select>
+        </select> -->
       </div>
+      <!-- Account Mat Select -->
       <div class="form-group mg-md-l--1 bd-t-0-force">
         <label class="form-control-label mg-b-0-force">Account:</label>
         <select id="select2-a" class="form-control" data-placeholder="Choose country" tabindex="-1" aria-hidden="true">
@@ -32,6 +39,7 @@
           <option value="Japan">Japan</option>
         </select>
       </div>
+      <!--  -->
       <div class="form-group mg-md-l--1 bd-t-0-force">
         <label class="form-control-label mg-b-0-force">Time Range:</label>
         <select id="select2-a" class="form-control" data-placeholder="Choose country" tabindex="-1" aria-hidden="true">
