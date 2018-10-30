@@ -659,6 +659,7 @@
       <div class="modal-footer">
         <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium img-center" data-toggle="modal"
           data-dismiss="modal" (click)="onClickReceiveDetail()" data-target="#modaldemo2b"> Show Address
+          <loading-button  [isLoading]='loadingObject?.getAddress'></loading-button>
         </a>
       </div>
     </form>
@@ -1448,7 +1449,9 @@
             <div class="modal-footer mg-t-20">
               <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium img-center"
                 data-toggle="modal" data-dismiss="modal" data-target="#modaldemo2b"> Show Address
+                
               </a>
+        
             </div>
           </div>
         </div>

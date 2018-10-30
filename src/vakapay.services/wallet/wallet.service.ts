@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpService } from 'network/http/http.service';
 import { Utility } from 'utility/Utility';
 import { ResultObject } from 'model/result/ResultObject';
-import * as crypto from 'crypto-js';
+import * as priceCrypto from 'crypto-price';
+import * as convertCurrency from 'money';
 import * as WAValidator from 'wallet-address-validator';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,8 +18,8 @@ export class WalletService {
   url_getAddress = '/api/wallet/AddressInfor'
   url_checkSendCoin = '/api/wallet/CheckSendCoin'
   url_requiteSMSCode = '/api/twofa/transaction/require-send-code-phone'
- // url_verifyCode = 'api/twofa/transaction/verify-code'
-  url_sendTransactions='/api/wallet/sendTransactions'
+  // url_verifyCode = 'api/twofa/transaction/verify-code'
+  url_sendTransactions = '/api/wallet/sendTransactions'
   constructor(private httpService: HttpService) { }
   async getAllWallet(mAccount) {
     try {
@@ -40,21 +42,31 @@ export class WalletService {
     }
 
   }
-  async getExchangeRate(networkName) {
-    try {
-      let operation = 'get exchange rate';
-      let api = this.url_getExchangeRate + "?networkName=" + networkName;
-      let result = await this.httpService.get(operation, api, false);
-      if (Utility.isError(result)) {
-        console.log(result.message);
-        return;
-      }
-      else {
-        return result;
-      }
-    } catch (error) {
-      console.log(JSON.stringify(error));
-    }
+  getExchangeRate(networkName) {
+    return priceCrypto.getCryptoPrice('USD', 'ETH').then(obj => { // Base for ex - USD, Crypto for ex - ETH 
+      console.log("get PRICE        " + obj.price)
+      return obj.price;
+      // let money = convertCurrency.convert(1, { from: "USD", to: "VND" });
+      // console.log(money+" VND");
+      //  convertCurrency(obj.price, 'USD', 'BRL').then(response => {console.log(response)});
+    }).catch(err => {
+      console.log(err)
+      return -1;
+    })
+    // try {
+    //   let operation = 'get exchange rate';
+    //   let api = this.url_getExchangeRate + "?networkName=" + networkName;
+    //   let result = await this.httpService.get(operation, api, false);
+    //   if (Utility.isError(result)) {
+    //     console.log(result.message);
+    //     return;
+    //   }
+    //   else {
+    //     return result;
+    //   }
+    // } catch (error) {
+    //   console.log(JSON.stringify(error));
+    // }
   }
   async getWalletInfor() {
     try {
@@ -143,7 +155,7 @@ export class WalletService {
     //  return this.isETHAddress(address);
   }
 
- 
+
 
 
 

@@ -16,6 +16,7 @@ import {
 } from 'ngx-swiper-wrapper';
 import { Utility } from 'utility/Utility';
 
+
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
@@ -279,11 +280,11 @@ export class AccountsComponent extends Root implements OnInit {
   async ExchangeRateInput(typeName) {
     // if (!this.sendObject.exchangeRate)
     //   return;
-    this.loadingObject.loadVND=false;
-    this.loadingObject.loadVKC=false;
+    this.loadingObject.loadVND = false;
+    this.loadingObject.loadVKC = false;
     switch (typeName) {
       case "VKC":
-        this.loadingObject.loadVND = true;   
+        this.loadingObject.loadVND = true;
         break;
       case "VND":
         this.loadingObject.loadVKC = true;
@@ -292,18 +293,20 @@ export class AccountsComponent extends Root implements OnInit {
         break;
     }
     let sendWallet = this.getWalletByName(this.sendObject.networkName);
-    var result_exchangeRate = await this.walletService.getExchangeRate(sendWallet.Currency);
-    this.sendObject.exchangeRate = result_exchangeRate.message;
+    await this.walletService.getExchangeRate(sendWallet.Currency).then((output) => {
+      console.log(output);
+      this.sendObject.exchangeRate = output;
+    });
     console.log("WHAT " + typeName);
     switch (typeName) {
       case "VKC":
         this.loadingObject.loadVND = false;
-        this.vndValue = this.vkcValue / this.sendObject.exchangeRate;
+        this.vndValue = this.vkcValue * this.sendObject.exchangeRate;
         this.validateSendCoin(this.sendCoinForm);
         break;
       case "VND":
         this.loadingObject.loadVKC = false;
-        this.vkcValue = this.vndValue * this.sendObject.exchangeRate;
+        this.vkcValue = this.vndValue / this.sendObject.exchangeRate;
         this.validateSendCoin(this.sendCoinForm);
         break;
       default:
@@ -313,19 +316,25 @@ export class AccountsComponent extends Root implements OnInit {
     // this.VKCAmount=this.sendObject.detail.VNDAmount;
   }
 
-  public async onClickReceive(networkName) {
+  public onClickReceive(networkName) {
     console.log("onClickReceive " + networkName);
     this.updateSendObject(networkName);
     let sendWallet = this.getWalletByName(this.sendObject.networkName);
     console.log("sendwallet=========> " + JSON.stringify(sendWallet));
     if (sendWallet == null)
       return;
+
+    this.ngxSmartModalService.getModal('receiveCoin').open();
+  }
+  public async onClickReceiveDetail() {
+    let sendWallet = this.getWalletByName(this.sendObject.networkName);
+    if (sendWallet == null)
+      return;
+    this.loadingObject.getAddress = true;
     var result = await this.walletService.getAddress(sendWallet.Id, sendWallet.Currency);
     //  console.log("Address =" + result.message);
     this.sendObject.address = JSON.parse(result.message);
-    this.ngxSmartModalService.getModal('receiveCoin').open();
-  }
-  public onClickReceiveDetail() {
+    this.loadingObject.getAddress = false;
     this.ngxSmartModalService.getModal('receiveCoin').close();
     this.ngxSmartModalService.getModal('receiveCoinDetail').open();
   }
