@@ -1,0 +1,106 @@
+<div class="br-pagebody">
+  <div class="mg-t-20">
+    <div class="col-xl-12 tab-left mg-t-20">
+      <div class="row mg-x-0 hidden-web mg-t-10 mg-sm-t-0">
+        <label class="col-sm-4 form-control-label"> Choose your API Access:</label>
+        <div class="col-sm-8">
+          <ng-select [(ngModel)]="selectedIndex">
+            <ng-option [value]="0">Buy Widgets</ng-option>
+            <ng-option [value]="1">API Keys</ng-option>
+            <ng-option [value]="2">OAuth2 App</ng-option>
+          </ng-select>
+        </div>
+      </div>
+      <div class="clear-both"></div>
+      <div class="nav" role="tablist">
+        <div class="d-table-cell col-sm-6 col-lg-4 mg-t-20 hidden-mob" [class.active]="selectedIndex == 0"
+          data-toggle="tab" href="#tab1" role="tab" aria-selected="false">
+          <div class="card card2">
+            <div class="pd-x-20 pd-t-20 d-flex tx-primary align-items-center">
+              <i class="ion ion-card tx-80 lh-0 op-5"></i>
+              <div class="mg-l-20">
+                <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase
+                  mg-b-10">API Access</p>
+                <p class="tx-28 tx-primary mg-b-0 lh-1">Buy Widgets</p>
+                <span class="tx-12 tx-roboto tx-gray-600">You can set-up your
+                  buy widgets</span>
+              </div>
+            </div>
+            <div id="ch5" class="ht-60 tr-y-1 rickshaw_graph tx-green"><svg
+                width="427" height="60">
+                <g>
+                  <path
+                    d="M0,30Q30.838888888888885,25.75,35.58333333333333,26.25C42.699999999999996,27,64.05,37.125,71.16666666666666,37.5S99.63333333333334,31.5,106.75,30S135.21666666666664,22.5,142.33333333333331,22.5S170.8,27.75,177.91666666666669,30S206.38333333333333,42.75,213.5,45S241.96666666666667,52.5,249.08333333333334,52.5S277.54999999999995,46.125,284.66666666666663,45S313.1333333333333,42.375,320.25,41.25S348.7166666666667,33.375,355.83333333333337,33.75S384.29999999999995,45.375,391.41666666666663,45Q396.1611111111111,44.75,427,30L427,60Q396.1611111111111,60,391.41666666666663,60C384.29999999999995,60,362.95000000000005,60,355.83333333333337,60S327.3666666666667,60,320.25,60S291.7833333333333,60,284.66666666666663,60S256.2,60,249.08333333333334,60S220.61666666666667,60,213.5,60S185.03333333333336,60,177.91666666666669,60S149.45,60,142.33333333333331,60S113.86666666666666,60,106.75,60S78.28333333333332,60,71.16666666666666,60S42.699999999999996,60,35.58333333333333,60Q30.838888888888885,60,0,60Z"
+                    class="area" fill="#0866C6"></path>
+                </g>
+              </svg></div>
+          </div>
+        </div>
+        <div class="d-table-cell col-lg-4 col-sm-6 mg-t-20 hidden-mob show" [class.active]="selectedIndex == 1"
+        data-toggle="tab" href="#tab1b" role="tab" aria-selected="false">
+          <div class="card card2">
+            <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+              <i class="ion ion-key tx-80 lh-0 tx-purple op-5"></i>
+              <div class="mg-l-20">
+                <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase
+                  mg-b-10">API Access</p>
+                <p class="tx-28 tx-purple mg-b-0 lh-1">API Keys</p>
+                <span class="tx-12 tx-roboto tx-gray-600">You can perform
+                  automated actions on your account</span>
+              </div>
+            </div>
+            <div id="ch6" class="ht-60 tr-y-1 rickshaw_graph"><svg width="427"
+                height="60">
+                <g>
+                  <path
+                    d="M0,30Q30.838888888888885,25.75,35.58333333333333,26.25C42.699999999999996,27,64.05,37.125,71.16666666666666,37.5S99.63333333333334,31.5,106.75,30S135.21666666666664,22.5,142.33333333333331,22.5S170.8,27.75,177.91666666666669,30S206.38333333333333,42.75,213.5,45S241.96666666666667,52.5,249.08333333333334,52.5S277.54999999999995,46.125,284.66666666666663,45S313.1333333333333,42.375,320.25,41.25S348.7166666666667,33.375,355.83333333333337,33.75S384.29999999999995,45.375,391.41666666666663,45Q396.1611111111111,44.75,427,30L427,60Q396.1611111111111,60,391.41666666666663,60C384.29999999999995,60,362.95000000000005,60,355.83333333333337,60S327.3666666666667,60,320.25,60S291.7833333333333,60,284.66666666666663,60S256.2,60,249.08333333333334,60S220.61666666666667,60,213.5,60S185.03333333333336,60,177.91666666666669,60S149.45,60,142.33333333333331,60S113.86666666666666,60,106.75,60S78.28333333333332,60,71.16666666666666,60S42.699999999999996,60,35.58333333333333,60Q30.838888888888885,60,0,60Z"
+                    class="area" fill="#6F42C1"></path>
+                </g>
+              </svg></div>
+          </div>
+        </div>
+        <div class="d-table-cell col-lg-4 col-sm-6 mg-t-20 hidden-mob" [class.active]="selectedIndex == 2"
+          data-toggle="tab" href="#tab2" role="tab">
+          <div class="card card2">
+            <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+              <i class="ion ion-monitor tx-80 lh-0 tx-teal op-5"></i>
+              <div class="mg-l-20">
+                <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase
+                  mg-b-10">API Access</p>
+                <p class="tx-28 tx-teal mg-b-0 lh-1">OAuth2 App</p>
+                <span class="tx-12 tx-roboto tx-gray-600">Build applications for
+                  others using the VakaPay API</span>
+              </div>
+            </div>
+            <div id="ch7" class="ht-60 tr-y-1 rickshaw_graph"><svg width="427"
+                height="60">
+                <g>
+                  <path
+                    d="M0,30Q30.838888888888885,25.75,35.58333333333333,26.25C42.699999999999996,27,64.05,37.125,71.16666666666666,37.5S99.63333333333334,31.5,106.75,30S135.21666666666664,22.5,142.33333333333331,22.5S170.8,27.75,177.91666666666669,30S206.38333333333333,42.75,213.5,45S241.96666666666667,52.5,249.08333333333334,52.5S277.54999999999995,46.125,284.66666666666663,45S313.1333333333333,42.375,320.25,41.25S348.7166666666667,33.375,355.83333333333337,33.75S384.29999999999995,45.375,391.41666666666663,45Q396.1611111111111,44.75,427,30L427,60Q396.1611111111111,60,391.41666666666663,60C384.29999999999995,60,362.95000000000005,60,355.83333333333337,60S327.3666666666667,60,320.25,60S291.7833333333333,60,284.66666666666663,60S256.2,60,249.08333333333334,60S220.61666666666667,60,213.5,60S185.03333333333336,60,177.91666666666669,60S149.45,60,142.33333333333331,60S113.86666666666666,60,106.75,60S78.28333333333332,60,71.16666666666666,60S42.699999999999996,60,35.58333333333333,60Q30.838888888888885,60,0,60Z"
+                    class="area" fill="#20C997"></path>
+                </g>
+              </svg></div>
+          </div>
+        </div>
+        <div class="col-xl-12 tab-content tab-right">
+          <div class="col-xl-12 bg-white pd-30 rounded mg-t-20 tab-pane" [class.active]="selectedIndex == 0"
+            id="tab1" role="tabpanel">
+            <app-buy-widgets></app-buy-widgets>
+          </div>
+          <div class="col-xl-12 bg-white mg-t-20 pd-30 rounded tab-pane" [class.active]="selectedIndex == 1"
+          id="tab1b" role="tabpanel">
+            <app-api-keys></app-api-keys>
+          </div>
+          <div class="col-xl-12 bg-white pd-30 mg-t-20 rounded tab-pane" [class.active]="selectedIndex == 2"
+            id="tab2" role="tabpanel">
+            <app-oauth2-app></app-oauth2-app>
+          </div>
+        </div>
+      </div>
+      <div class="mg-t-20">
+        <app-api-access-notification></app-api-access-notification>
+      </div>
+    </div>
+  </div>
+  <div class="clear-both"></div>
+</div>

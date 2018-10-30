@@ -30,7 +30,9 @@ export class AccountsComponent extends Root implements OnInit {
     positionClass: 'toast-top-center',
     animation: 'fade'
   });
-
+  index: any;
+  Coin: any;
+  withdrawn_from: any;
   isDataLoaded: boolean;
   sendByAd: boolean;
   mAccount: Account;
@@ -144,6 +146,7 @@ export class AccountsComponent extends Root implements OnInit {
     if (valueThing == this.vkcSearchValue)
       return;
     this.vkcSearchValue = valueThing;
+
     this.currentPage = 0;
     this.getHistory(this.wallet_current);
   }

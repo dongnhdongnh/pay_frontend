@@ -205,11 +205,11 @@ export class UtilityFormat {
         return format.replace(/h+/i, hh).replace(/i+/i, ii).replace(/s+/i, ss).replace(/d+/i, dd).replace(/m+/i, mm).replace(/y+/i, yy);
     }
 
-    static formatDateText(time) {
-        if (time == null)
+    static formatDateText(minisecond) {
+        if (minisecond == null)
             return null;
 
-        var date = new Date(time);
+        var date = new Date(minisecond);
 
         var ss = date.getSeconds();
         var ii = date.getMinutes();

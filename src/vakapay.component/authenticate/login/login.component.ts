@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { OAuthService, OAuthEvent } from "angular-oauth2-oidc";
-import { isPlatformBrowser } from "@angular/common";
-import { Router } from "@angular/router";
+import { OAuthService, OAuthEvent } from 'angular-oauth2-oidc';
+import { isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -26,9 +26,10 @@ export class LoginComponent implements OnInit {
             const idToken = this.oauthService.getIdToken();
             const accessToken = this.oauthService.getAccessToken();
             if (accessToken && idToken) {
-              console.log("AccessToken : " + accessToken);
-              console.log("IdToken : " + idToken);
+              console.log('AccessToken : ' + accessToken);
+              console.log('IdToken : ' + idToken);
 
+              // tslint:disable-next-line:prefer-const
               let isValidToken = this.oauthService.hasValidAccessToken();
               if (isValidToken === false) {
                 this.oauthService.getIdToken();

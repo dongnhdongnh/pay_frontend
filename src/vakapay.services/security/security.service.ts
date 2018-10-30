@@ -6,10 +6,12 @@ import { HttpService } from 'network/http/http.service';
 export class SecurityService {
 
     private getInfoUrl = '/api/security/get-info';
-    public isEnableTwofa = false;
-    public twofaOption = 1;
+    isEnableTwofa: boolean = false;
+    twofaOption: number = 1;
 
     constructor(private httpService: HttpService) {
+        this.isEnableTwofa = false;
+        this.twofaOption = 1;
     }
 
     async getInfo() {

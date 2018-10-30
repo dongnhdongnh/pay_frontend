@@ -1,5 +1,5 @@
-<mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav mode="side" [(opened)]="device.isMobile" class="example-sidenav">
+<!-- <mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" [(opened)]="device.isMobile">
     <app-left-panel></app-left-panel>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -8,5 +8,23 @@
       <router-outlet></router-outlet>
       <app-footer></app-footer>
     </div>
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" [(opened)]="device.isMobile">
+    <div style="min-width: 230px;">
+      <app-left-panel></app-left-panel>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <app-header [device]="device"></app-header>
+
+    <div class="br-mainpanel">
+      <router-outlet></router-outlet>
+      <app-footer></app-footer>
+    </div>
+
   </mat-sidenav-content>
 </mat-sidenav-container>
