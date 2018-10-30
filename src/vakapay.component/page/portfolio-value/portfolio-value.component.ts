@@ -48,6 +48,7 @@ export class PortfolioValueComponent implements OnInit {
   }
 
   public async getData(apiString = '') {
+    this.resetData();
     var apiData = await this.httpService.getFrom("get coinmarket data", this.apiUrl + apiString);
 
     // if (Utility.isError) throw new Error(apiData.message);
@@ -109,7 +110,6 @@ export class PortfolioValueComponent implements OnInit {
   }
 
   public timeOption(option: string): void {
-    this.resetData();
     this.resetToFalse();
     switch (option) {
       case 'hour':
