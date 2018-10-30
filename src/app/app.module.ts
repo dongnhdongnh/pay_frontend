@@ -12,7 +12,7 @@ import { ToasterModule } from 'angular2-toaster';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // ng-select
-//Add libriary
+// Add libriary
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
@@ -21,15 +21,21 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   slidesPerView: 'auto'
 };
 
-import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule, MatTabsModule, MatSidenavModule, MatExpansionModule }
-  from '@angular/material';
-import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule,
+         MatCheckboxModule,
+         MatMenuModule,
+         MatTableModule,
+         MatPaginatorModule,
+         MatTabsModule,
+         MatSidenavModule,
+         MatExpansionModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ClipboardModule } from 'ngx-clipboard';
-//ng-select
+// ng-select
 import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 
-//modal in angular
+// modal in angular
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 // RECOMMENDED (doesn't work with system.js)
@@ -47,8 +53,8 @@ import { AppComponent } from './app.component';
 // import pagination component
 import { JwPaginationComponent } from 'jw-angular-pagination';
 import { NgxPaginationModule } from 'ngx-pagination';
-//Component children
-//Authentication
+// Component children
+// Authentication
 import { RegisterComponent } from 'component/authenticate/register/register.component';
 import { LoginComponent } from 'component/authenticate/login/login.component';
 import { HeaderAuthenticateComponent } from 'component/authenticate/header-authenticate/header-authenticate.component';
@@ -67,13 +73,13 @@ import { PortfolioValueComponent } from 'component/page/portfolio-value/portfoli
 import { RecentActivityComponent } from 'component/page/recent-activity/recent-activity.component';
 import { ActivityDetail } from 'component/page/recent-activity/activity-detail/activity-detail.component';
 
-//Chartjs
+// Chartjs
 import { ChartsModule } from 'ng2-charts';
 
 // VakaId Login
 import { OAuthModule } from 'angular-oauth2-oidc';
 
-//Component page
+// Component page
 import { LandingComponent } from 'component/landing/landing.component';
 import { LogoutComponent } from 'component/authenticate/logout/logout.component';
 import { PagenotfoundComponent } from 'component/page/pagenotfound/pagenotfound.component';
@@ -99,18 +105,13 @@ import { LockScreenConfigComponent } from 'component/page/security/lock-screen/l
 import { ApiAccessComponent } from 'component/page/api-access/api-access.component';
 
 import { AccountsComponent } from 'component/page/accounts/accounts.component';
-//TwofaVerify
-import { TwofaVerifyCodeComponentWithPhoneComponent }
-  from 'component/page/security/two-factor-authentication/enable/enable-twofa/twofa-verify-code-with-phone.component';
-import { TwofaOptionsVerifyWithPhoneComponent }
-  from 'component/page/security/two-factor-authentication/enable/twofa-options/twofa-options-verify-with-phone/twofa-options-verify-with-phone.component';
-import { DisableTwofaComponent }
-  from 'component/page/security/two-factor-authentication/disable-twofa/disable-twofa.component';
-
-import { CloseAccountVerifyPasswordComponent }
-  from 'component/page/security/close-account/close-account-verify-password/close-account-verify-password.component';
-import { CloseAccountVerifyPhoneComponent }
-  from 'component/page/security/close-account/close-account-verify-phone/close-account-verify-phone.component';
+// TwofaVerify
+// tslint:disable-next-line:max-line-length
+import { TwofaVerifyCodeComponentWithPhoneComponent } from 'component/page/security/two-factor-authentication/enable/enable-twofa/twofa-verify-code-with-phone.component';
+import { TwofaOptionsVerifyWithPhoneComponent } from 'component/page/security/two-factor-authentication/enable/twofa-options/twofa-options-verify-with-phone/twofa-options-verify-with-phone.component';
+import { DisableTwofaComponent } from 'component/page/security/two-factor-authentication/disable-twofa/disable-twofa.component';
+import { CloseAccountVerifyPasswordComponent } from 'component/page/security/close-account/close-account-verify-password/close-account-verify-password.component';
+import { CloseAccountVerifyPhoneComponent } from 'component/page/security/close-account/close-account-verify-phone/close-account-verify-phone.component';
 import { LoadingButtonComponent } from 'component/loading-button/loading-button.component';
 import { ActivityComponent } from 'component/page/activity/activity.component';
 import { ConfirmedDevicesComponent } from 'component/page/activity/confirmed-devices/confirmed-devices.component';
@@ -213,12 +214,18 @@ import { QRCodeModule } from 'angularx-qrcode';
     AppRoutingModule,
     BrowserAnimationsModule,
     ToasterModule.forRoot(),
-
-    MatButtonModule, MatTabsModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatProgressSpinnerModule,
+    MatButtonModule,
+    MatTabsModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatMenuModule,
+    MatProgressSpinnerModule,
     // Reactive Forms Module
     MatSelectModule,
     MatSlideToggleModule,
-    MatTableModule, MatSidenavModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSidenavModule,
     MatExpansionModule,
     QRCodeModule,
     ClipboardModule,
@@ -227,16 +234,16 @@ import { QRCodeModule } from 'angularx-qrcode';
     AngularFontAwesomeModule,
 
     // Redirect VakaId
-    //Chartjs
+    // Chartjs
     ChartsModule,
 
-    //Redirect VakaId
+    // Redirect VakaId
     OAuthModule.forRoot(),
 
     // Bootstrap dropdow module
     BsDropdownModule.forRoot(),
 
-    //modal
+    // modal
     NgxSmartModalModule.forRoot(),
 
     HttpClientModule,
