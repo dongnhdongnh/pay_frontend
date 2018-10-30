@@ -38,6 +38,7 @@
                           <!-- <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-vkc.svg" alt=""></i> -->
                           <div class="mg-r-20 width-text">
                             <p class="tx-15 tx-white tx-spacing-1 mg-b-0">VKC Wallet</p>
+                            <loading-button [isLoading]='loadingObject?.loadAllWallet'></loading-button>    
                             <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Vakacoin")?.Balance}}
                               VKC</p>
                             <div class="pd-t-10 pd-b-10 d-flex align-items-center">
@@ -114,6 +115,7 @@
                           <!-- <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-btc.svg" alt=""></i> -->
                           <div class="mg-r-20 width-text">
                             <p class="tx-15 tx-white tx-spacing-1 mg-b-0">BitCoin</p>
+                            <loading-button [isLoading]='loadingObject?.loadAllWallet'></loading-button>                        
                             <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Bitcoin")?.Balance}}
                               BTC</p>
                             <div class="pd-t-10 pd-b-10 d-flex align-items-center">
@@ -156,6 +158,7 @@
                           <!-- <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eth.svg" alt=""></i> -->
                           <div class="mg-r-20 width-text">
                             <p class="tx-15 tx-white tx-spacing-1 mg-b-0">Ethereum</p>
+                            <loading-button [isLoading]='loadingObject?.loadAllWallet'></loading-button>    
                             <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Ethereum")?.Balance}}
                               ETH
                             </p>
@@ -199,6 +202,7 @@
                           <!-- <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eos.svg" alt=""></i> -->
                           <div class="mg-r-20 width-text">
                             <p class="tx-15 tx-white tx-spacing-1 mg-b-0">EOS</p>
+                            <loading-button [isLoading]='loadingObject?.loadAllWallet'></loading-button>    
                             <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("EOS")?.Balance}} EOS</p>
                             <div class="pd-t-10 pd-b-10 d-flex align-items-center">
                               <div *ngIf="wallets.get('EOS')?.Balance>0">
@@ -269,7 +273,26 @@
                 </div>
               </div>
               <div class="clear-both"></div>
+
+
+              <div *ngIf="loadingObject?.loadHistory">
+                <div class="table-content border tab-pane" role="tabpanel">
+                  <!-- <div class="col-xs-12">
+                      <h6 class="br-section-label">Recent Activity</h6>
+                    </div> -->
+                  <div class="col-xs-12">
+                    <div class="no-tran table-recent-acc">
+                      <div class="modal-body pd-x-20 pd-y-5 no-tran-box">
+                       <i class="fa fa-spinner fa-spin"></i> Loading...
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Tab panes -->
+                </div>
+              </div>
+
               <div class="col-xs-12">
+
                 <div *ngIf="searchDatas?.length > 0">
                   <div class="bd-gray-300 table-responsive table-recent-acc">
                     <table class="table table-hover mg-b-0 table-fix">
@@ -659,7 +682,7 @@
       <div class="modal-footer">
         <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium img-center" data-toggle="modal"
           data-dismiss="modal" (click)="onClickReceiveDetail()" data-target="#modaldemo2b"> Show Address
-          <loading-button  [isLoading]='loadingObject?.getAddress'></loading-button>
+          <loading-button [isLoading]='loadingObject?.getAddress'></loading-button>
         </a>
       </div>
     </form>
@@ -756,20 +779,21 @@
           <div class="col-sm-12 mg-t-10 mg-sm-t-0">
             <div class="width-half-mini input-number">
               <div class="input-left bg-green">
-                  <loading-button style="color:black" [isLoading]='loadingObject?.loadVND'></loading-button>
-                <span color="slate">VND</span>   
+                <loading-button style="color:black" [isLoading]='loadingObject?.loadVND'></loading-button>
+                <span color="slate">VND</span>
               </div>
               <div class="input-right"><input type="number" class="form-control fc-outline-white" placeholder=""
                   [(ngModel)]="vndValue" maxlength="15" name="VNDAmount" #VNDAmount="ngModel" ngModel required
                   minlength="1" (change)="ExchangeRateInput('VND');" (change)="validateSendCoin(sendCoinForm);">
-                 
+
               </div>
             </div>
             <div class="transfer"><i class="fa fa-exchange"></i></div>
             <div class="width-half-mini input-number">
               <div class="input-left bg-green">
-                  <loading-button style="color:black" [isLoading]='loadingObject?.loadVKC'></loading-button>
-                <span color="slate">{{tab_current?.sortName}}</span></div>
+                <loading-button style="color:black" [isLoading]='loadingObject?.loadVKC'></loading-button>
+                <span color="slate">{{tab_current?.sortName}}</span>
+              </div>
               <div class="input-right"><input type="number" class="form-control fc-outline-white" placeholder=""
                   [(ngModel)]="vkcValue" maxlength="15" name="VKCAmount" #VKCAmount="ngModel" ngModel required
                   minlength="1" (change)="ExchangeRateInput('VKC');validateSendCoin(sendCoinForm);"></div>
@@ -903,8 +927,12 @@
       <div class="modal-body tx-center pd-y-20 pd-x-20">
         <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
         <div *ngIf="errorObject?.sendTransactions ;else sendDone">
-          <h4 class="tx-success mg-b-20"><font color="red">Error</font></h4>
-          <p class="mg-b-20 mg-x-20"><font color="red">{{errorObject?.sendTransactions}}</font></p>
+          <h4 class="tx-success mg-b-20">
+            <font color="red">Error</font>
+          </h4>
+          <p class="mg-b-20 mg-x-20">
+            <font color="red">{{errorObject?.sendTransactions}}</font>
+          </p>
         </div>
         <ng-template #sendDone>
           <h4 class="tx-success mg-b-20">Your transaction is on the way!</h4>
@@ -1449,9 +1477,9 @@
             <div class="modal-footer mg-t-20">
               <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium img-center"
                 data-toggle="modal" data-dismiss="modal" data-target="#modaldemo2b"> Show Address
-                
+
               </a>
-        
+
             </div>
           </div>
         </div>
@@ -1704,4 +1732,3 @@
 </div>
 <!-- <toaster-container [toasterconfig]="config1"></toaster-container> -->
 <!-- <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination> -->
-

@@ -79,8 +79,10 @@ export class AccountsComponent extends Root implements OnInit {
   }
   async getUserData(loadDefault = true) {
     try {
+      this.loadingObject.loadAllWallet=true;
       var result = await this.walletService.getAllWallet(this.mAccount);
       console.log(result);
+      this.loadingObject.loadAllWallet=false;
       this.walletsData = JSON.parse(result.message);
       for (var i = 0; i < this.walletsData.length; i++) {
         console.log(this.walletsData[i]);
@@ -123,10 +125,12 @@ export class AccountsComponent extends Root implements OnInit {
       walletSearch.limit = this.itemsPerPage;
       walletSearch.orderBy = ['-CreatedAt'];
       walletSearch.search = this.vkcSearchValue;
+      this.loadingObject.loadHistory=true;
       var result = await this.walletService.getWalletHistory(walletSearch);
       //   console.log("Get history result " + JSON.stringify(result));
       this.searchDatas = JSON.parse(result.message);
       this.totalItems = Number(result.data);
+      this.loadingObject.loadHistory=false;
       if (this.searchDatas)
         this.searchDatas.forEach(element => {
           element.type = element.Amount < 0 ? 0 : 1;//0:withdran,1:deposit
