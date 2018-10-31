@@ -11,6 +11,7 @@ import * as WAValidator from 'wallet-address-validator';
 })
 export class WalletService {
 
+  // API endpoints
   url_getAllWalletByUserID = '/api/wallet/all?userID='
   url_getWalletInfor = '/api/wallet/History'
   url_getExchangeRate = '/api/wallet/GetExchangeRate'
@@ -20,7 +21,13 @@ export class WalletService {
   url_requiteSMSCode = '/api/twofa/transaction/require-send-code-phone'
   // url_verifyCode = 'api/twofa/transaction/verify-code'
   url_sendTransactions = '/api/wallet/sendTransactions'
+  url_createWallet = '/api/wallet/create-new'
+
+  // Status
+  isLoading = false;
+
   constructor(private httpService: HttpService) { }
+
   async getAllWallet(mAccount) {
     try {
       let operation = 'get all wallets by info user';
@@ -43,7 +50,7 @@ export class WalletService {
 
   }
   getExchangeRate(networkName) {
-    return priceCrypto.getCryptoPrice('USD', 'ETH').then(obj => { // Base for ex - USD, Crypto for ex - ETH 
+    return priceCrypto.getCryptoPrice('USD', 'ETH').then(obj => { // Base for ex - USD, Crypto for ex - ETH
       console.log("get PRICE        " + obj.price)
       return obj.price;
       // let money = convertCurrency.convert(1, { from: "USD", to: "VND" });
@@ -155,7 +162,13 @@ export class WalletService {
     //  return this.isETHAddress(address);
   }
 
-
+  createWalletAddress(data: any) {
+    console.log('New Wallet created!\n' + data);
+    this.isLoading = true;
+    // const operation = 'create new wallet';
+    // const api = this.url_createWallet;
+    // return this.httpService.post(operation, api, data);
+  }
 
 
 

@@ -277,7 +277,7 @@
 
 
                         <!-- <div *ngFor="let item of pageOfItems">                  -->
-                        <tr data-toggle="modal" data-target="#modaldemo1" *ngFor="let item of searchDatas | 
+                        <tr data-toggle="modal" data-target="#modaldemo1" *ngFor="let item of searchDatas |
                           paginate: { id: 'some_id',
                                       itemsPerPage: itemsPerPage,
                                       currentPage: currentPage,
@@ -757,12 +757,12 @@
             <div class="width-half-mini input-number">
               <div class="input-left bg-green">
                   <loading-button style="color:black" [isLoading]='loadingObject?.loadVND'></loading-button>
-                <span color="slate">VND</span>   
+                <span color="slate">VND</span>
               </div>
               <div class="input-right"><input type="number" class="form-control fc-outline-white" placeholder=""
                   [(ngModel)]="vndValue" maxlength="15" name="VNDAmount" #VNDAmount="ngModel" ngModel required
                   minlength="1" (change)="ExchangeRateInput('VND');" (change)="validateSendCoin(sendCoinForm);">
-                 
+
               </div>
             </div>
             <div class="transfer"><i class="fa fa-exchange"></i></div>
@@ -1449,9 +1449,9 @@
             <div class="modal-footer mg-t-20">
               <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium img-center"
                 data-toggle="modal" data-dismiss="modal" data-target="#modaldemo2b"> Show Address
-                
+
               </a>
-        
+
             </div>
           </div>
         </div>
