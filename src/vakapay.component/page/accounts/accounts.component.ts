@@ -79,10 +79,10 @@ export class AccountsComponent extends Root implements OnInit {
   }
   async getUserData(loadDefault = true) {
     try {
-      this.loadingObject.loadAllWallet=true;
+      this.loadingObject.loadAllWallet = true;
       var result = await this.walletService.getAllWallet(this.mAccount);
       console.log(result);
-      this.loadingObject.loadAllWallet=false;
+      this.loadingObject.loadAllWallet = false;
       this.walletsData = JSON.parse(result.message);
       for (var i = 0; i < this.walletsData.length; i++) {
         console.log(this.walletsData[i]);
@@ -101,6 +101,7 @@ export class AccountsComponent extends Root implements OnInit {
       this.tab_current.fullName = "VakaCoin";
       await this.getHistory(this.wallet_current);
     } catch (error) {
+      this.loadingObject.loadAllWallet = false;
       console.log(error);
     }
 
@@ -125,12 +126,12 @@ export class AccountsComponent extends Root implements OnInit {
       walletSearch.limit = this.itemsPerPage;
       walletSearch.orderBy = ['-CreatedAt'];
       walletSearch.search = this.vkcSearchValue;
-      this.loadingObject.loadHistory=true;
+      this.loadingObject.loadHistory = true;
       var result = await this.walletService.getWalletHistory(walletSearch);
       //   console.log("Get history result " + JSON.stringify(result));
       this.searchDatas = JSON.parse(result.message);
       this.totalItems = Number(result.data);
-      this.loadingObject.loadHistory=false;
+      this.loadingObject.loadHistory = false;
       if (this.searchDatas)
         this.searchDatas.forEach(element => {
           element.type = element.Amount < 0 ? 0 : 1;//0:withdran,1:deposit
@@ -140,6 +141,7 @@ export class AccountsComponent extends Root implements OnInit {
 
     } catch (error) {
       console.log(error);
+      this.loadingObject.loadHistory = false;
     }
 
     // this.totalItems=100;
@@ -282,40 +284,47 @@ export class AccountsComponent extends Root implements OnInit {
   vkcValue = 0;
   vkcSearchValue = "";
   async ExchangeRateInput(typeName) {
-    // if (!this.sendObject.exchangeRate)
-    //   return;
-    this.loadingObject.loadVND = false;
-    this.loadingObject.loadVKC = false;
-    switch (typeName) {
-      case "VKC":
-        this.loadingObject.loadVND = true;
-        break;
-      case "VND":
-        this.loadingObject.loadVKC = true;
-        break;
-      default:
-        break;
+    try {
+      // if (!this.sendObject.exchangeRate)
+      //   return;
+      this.loadingObject.loadVND = false;
+      this.loadingObject.loadVKC = false;
+      switch (typeName) {
+        case "VKC":
+          this.loadingObject.loadVND = true;
+          break;
+        case "VND":
+          this.loadingObject.loadVKC = true;
+          break;
+        default:
+          break;
+      }
+      let sendWallet = this.getWalletByName(this.sendObject.networkName);
+      await this.walletService.getExchangeRate(sendWallet.Currency).then((output) => {
+        console.log(output);
+        this.sendObject.exchangeRate = output;
+      });
+      console.log("WHAT " + typeName);
+      switch (typeName) {
+        case "VKC":
+          this.loadingObject.loadVND = false;
+          this.vndValue = this.vkcValue * this.sendObject.exchangeRate;
+          this.validateSendCoin(this.sendCoinForm);
+          break;
+        case "VND":
+          this.loadingObject.loadVKC = false;
+          this.vkcValue = this.vndValue / this.sendObject.exchangeRate;
+          this.validateSendCoin(this.sendCoinForm);
+          break;
+        default:
+          break;
+      }
+    } catch (error) {
+      this.loadingObject.loadVND = false;
+      this.loadingObject.loadVKC = false;
     }
-    let sendWallet = this.getWalletByName(this.sendObject.networkName);
-    await this.walletService.getExchangeRate(sendWallet.Currency).then((output) => {
-      console.log(output);
-      this.sendObject.exchangeRate = output;
-    });
-    console.log("WHAT " + typeName);
-    switch (typeName) {
-      case "VKC":
-        this.loadingObject.loadVND = false;
-        this.vndValue = this.vkcValue * this.sendObject.exchangeRate;
-        this.validateSendCoin(this.sendCoinForm);
-        break;
-      case "VND":
-        this.loadingObject.loadVKC = false;
-        this.vkcValue = this.vndValue / this.sendObject.exchangeRate;
-        this.validateSendCoin(this.sendCoinForm);
-        break;
-      default:
-        break;
-    }
+
+
 
     // this.VKCAmount=this.sendObject.detail.VNDAmount;
   }
@@ -331,16 +340,21 @@ export class AccountsComponent extends Root implements OnInit {
     this.ngxSmartModalService.getModal('receiveCoin').open();
   }
   public async onClickReceiveDetail() {
-    let sendWallet = this.getWalletByName(this.sendObject.networkName);
-    if (sendWallet == null)
-      return;
-    this.loadingObject.getAddress = true;
-    var result = await this.walletService.getAddress(sendWallet.Id, sendWallet.Currency);
-    //  console.log("Address =" + result.message);
-    this.sendObject.address = JSON.parse(result.message);
-    this.loadingObject.getAddress = false;
-    this.ngxSmartModalService.getModal('receiveCoin').close();
-    this.ngxSmartModalService.getModal('receiveCoinDetail').open();
+    try {
+      let sendWallet = this.getWalletByName(this.sendObject.networkName);
+      if (sendWallet == null)
+        return;
+      this.loadingObject.getAddress = true;
+      var result = await this.walletService.getAddress(sendWallet.Id, sendWallet.Currency);
+      //  console.log("Address =" + result.message);
+      this.sendObject.address = JSON.parse(result.message);
+      this.loadingObject.getAddress = false;
+      this.ngxSmartModalService.getModal('receiveCoin').close();
+      this.ngxSmartModalService.getModal('receiveCoinDetail').open();
+    } catch (error) {
+      this.loadingObject.getAddress = false;
+    }
+
   }
   public onClickCopyText(text) {
     this._clipboardService.copyFromContent(text);
@@ -368,6 +382,7 @@ export class AccountsComponent extends Root implements OnInit {
       console.log("SEND WITH DATA =" + JSON.stringify(this.sendObject));
     } catch (error) {
       console.log(error);
+      this.loadingObject.sendCoin = false;
     }
   }
 
@@ -463,7 +478,7 @@ export class AccountsComponent extends Root implements OnInit {
       this.ngxSmartModalService.getModal('popup_ok').open();
 
     } catch (error) {
-
+      this.loadingObject.sendCoinConfirm = false;
     }
 
   }

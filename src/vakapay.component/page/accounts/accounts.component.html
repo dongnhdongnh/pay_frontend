@@ -38,7 +38,7 @@
                           <!-- <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-vkc.svg" alt=""></i> -->
                           <div class="mg-r-20 width-text">
                             <p class="tx-15 tx-white tx-spacing-1 mg-b-0">VKC Wallet</p>
-                            <loading-button [isLoading]='loadingObject?.loadAllWallet'></loading-button>    
+                            <loading-button [isLoading]='loadingObject?.loadAllWallet'></loading-button>
                             <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Vakacoin")?.Balance}}
                               VKC</p>
                             <div class="pd-t-10 pd-b-10 d-flex align-items-center">
@@ -115,7 +115,7 @@
                           <!-- <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-btc.svg" alt=""></i> -->
                           <div class="mg-r-20 width-text">
                             <p class="tx-15 tx-white tx-spacing-1 mg-b-0">BitCoin</p>
-                            <loading-button [isLoading]='loadingObject?.loadAllWallet'></loading-button>                        
+                            <loading-button [isLoading]='loadingObject?.loadAllWallet'></loading-button>
                             <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Bitcoin")?.Balance}}
                               BTC</p>
                             <div class="pd-t-10 pd-b-10 d-flex align-items-center">
@@ -158,7 +158,7 @@
                           <!-- <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eth.svg" alt=""></i> -->
                           <div class="mg-r-20 width-text">
                             <p class="tx-15 tx-white tx-spacing-1 mg-b-0">Ethereum</p>
-                            <loading-button [isLoading]='loadingObject?.loadAllWallet'></loading-button>    
+                            <loading-button [isLoading]='loadingObject?.loadAllWallet'></loading-button>
                             <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("Ethereum")?.Balance}}
                               ETH
                             </p>
@@ -202,7 +202,7 @@
                           <!-- <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eos.svg" alt=""></i> -->
                           <div class="mg-r-20 width-text">
                             <p class="tx-15 tx-white tx-spacing-1 mg-b-0">EOS</p>
-                            <loading-button [isLoading]='loadingObject?.loadAllWallet'></loading-button>    
+                            <loading-button [isLoading]='loadingObject?.loadAllWallet'></loading-button>
                             <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("EOS")?.Balance}} EOS</p>
                             <div class="pd-t-10 pd-b-10 d-flex align-items-center">
                               <div *ngIf="wallets.get('EOS')?.Balance>0">
@@ -283,7 +283,7 @@
                   <div class="col-xs-12">
                     <div class="no-tran table-recent-acc">
                       <div class="modal-body pd-x-20 pd-y-5 no-tran-box">
-                       <i class="fa fa-spinner fa-spin"></i> Loading...
+                        <i class="fa fa-spinner fa-spin"></i> Loading...
                       </div>
                     </div>
                   </div>
@@ -652,7 +652,8 @@
                 Note
               </div><!-- col-4 -->
               <div class="col-8">
-                Hello
+                {{transactionDetail_current?.Description}}
+
               </div><!-- col-8 -->
             </div><!-- row -->
           </div>
