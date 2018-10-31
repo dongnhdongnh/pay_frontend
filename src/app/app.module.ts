@@ -20,6 +20,15 @@ import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatTableModule, MatT
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ClipboardModule } from 'ngx-clipboard';
+import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
+import stock from 'highcharts/modules/stock.src';
+import more from 'highcharts/highcharts-more.src';
+
+export function highchartsModules() {
+  // apply Highcharts Modules to this array
+  return [stock, more];
+}
+
 //ng-select
 import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 
@@ -190,6 +199,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     EditApiKeyComponent,
   ],
   imports: [
+    ChartModule,
     BrowserModule,
     SwiperModule,
     QRCodeModule,
@@ -222,9 +232,6 @@ import { QRCodeModule } from 'angularx-qrcode';
     NgxSmartModalModule.forRoot(),
 
     HttpClientModule,
-    // HttpClientInMemoryWebApiModule.forRoot(
-    //   InMemoryDataService, { dataEncapsulation: false }
-    // ),
     NgxPaginationModule
   ],
   providers: [
@@ -233,7 +240,8 @@ import { QRCodeModule } from 'angularx-qrcode';
       useValue: {
         notFoundText: 'Custom not found'
       }
-    }
+    },
+    { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules }
   ],
   bootstrap: [AppComponent]
 })

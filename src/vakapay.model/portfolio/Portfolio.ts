@@ -1,5 +1,3 @@
-import { Model } from "model/Model";
-
 export class Portfolio{
     iconUrl: string;
     networkName: string;
@@ -7,9 +5,13 @@ export class Portfolio{
     amount: string;
     value: string;
 
-    constructor(networkName = '', total = 1, amount = '', value = ''){
+    constructor(networkName = '', total = 0, amount = '', value = 0){
         this.networkName = networkName;
-        this.percent = (parseFloat(value)/total*100).toFixed(3).toString();
+        if (total == 0){
+            this.percent = "0";
+        } else {
+            this.percent = (value/total*100).toFixed(3).toString();
+        }
         switch(networkName){
             case 'Ethereum':
                 this.amount = amount + ' ETH';
@@ -22,10 +24,6 @@ export class Portfolio{
             case 'Vakacoin':
                 this.amount = amount+' VKC';
                 this.iconUrl = 'assets/images/icons/icon-vkc.svg';
-                break;
-            case 'Eosio':
-                this.amount = amount+' EOS';
-                this.iconUrl = 'assets/images/icons/icon-eos.svg';
                 break;
             default:
                 this.amount = '';

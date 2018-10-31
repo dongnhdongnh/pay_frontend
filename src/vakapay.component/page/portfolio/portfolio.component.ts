@@ -4,7 +4,6 @@ import { Account } from 'model/account/Account';
 import { AccountService } from 'services/account/account.service';
 import { HttpService } from 'network/http/http.service';
 import { ConfigService } from 'network/config/config.service';
-import { Utility } from 'utility/Utility';
 
 @Component({
   selector: 'app-portfolio',
@@ -25,7 +24,7 @@ export class PortfolioComponent implements OnInit {
   ngOnInit() {
     this.getData('/api/portfolio/value/current');
     var self = this;
-    setInterval(function(){
+    setInterval(function () {
       self.getData('/api/portfolio/value/current');
     }, 5 * 60 * 1000);
   }
@@ -41,24 +40,24 @@ export class PortfolioComponent implements OnInit {
 
     // if (Utility.isError) throw new Error(apiData.message);
     var objectData = apiData.data;
-    this.vakaValue = Number(objectData["VakacoinValue"]);
-    this.btcValue = Number(objectData["BitcoinValue"]);
-    this.ethValue = Number(objectData["EthereumValue"])
+    this.vakaValue = Number(!objectData["VakacoinValue"] ? "0" : objectData["VakacoinValue"]);
+    this.btcValue = Number(!objectData["BitcoinValue"] ? "0" : objectData["BitcoinValue"]);
+    this.ethValue = Number(!objectData["EthereumValue"] ? "0" : objectData["EthereumValue"]);
 
     var total = this.vakaValue + this.btcValue + this.ethValue;
 
-    var vaka = new Portfolio("Vakacoin", total, objectData["VakacoinAmount"], objectData["VakacoinValue"]);
+    var vaka = new Portfolio("Vakacoin", total, !objectData["VakacoinAmount"] ? "0" : objectData["VakacoinAmount"], this.vakaValue);
     this.portfolio.push(vaka);
 
-    var btc = new Portfolio("Bitcoin", total, objectData["BitcoinAmount"], objectData["BitcoinValue"]);
+    var btc = new Portfolio("Bitcoin", total, !objectData["BitcoinAmount"] ? "0" : objectData["BitcoinAmount"], this.btcValue);
     this.portfolio.push(btc);
 
-    var eth = new Portfolio("Ethereum", total, objectData["EthereumAmount"], objectData["EthereumValue"]);
+    var eth = new Portfolio("Ethereum", total, !objectData["EthereumAmount"] ? "0" : objectData["EthereumAmount"], this.ethValue);
     this.portfolio.push(eth);
-    
+
     this.doughnutChartData = [this.vakaValue, this.btcValue, this.ethValue];
   }
-  
+
   // Doughnut
   public doughnutChartLabels: string[] = ['Vakacoin', 'Bitcoin', 'Ethereum'];
   public doughnutChartData: number[] = [0, 0, 0];

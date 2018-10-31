@@ -3,7 +3,8 @@
     <h6 class="br-section-label">Recent Activity</h6>
   </div>
   <div class="col-xs-12">
-    <div class="bd-gray-300 table-responsive table-recent">
+    <div [hidden]="activities && activities.length > 0"> No recent activity</div>
+    <div class="bd-gray-300 table-responsive table-recent" [hidden]="!activities || activities.length === 0">
       <table class="table table-hover mg-b-0 table-fix">
         <tbody>
           <tr *ngFor="let activity of activities" (click)="showModal(activity)">
