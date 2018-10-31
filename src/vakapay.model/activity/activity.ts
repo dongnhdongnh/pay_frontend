@@ -16,6 +16,7 @@ export class Activity {
     blockNumber: string;
     symbol: string;
     status: string;
+    transactionUrl: string;
 
     constructor(timestamp, isSend, networkName, fromAddress, toAddress, amount, value, hash, price, blockNumber, status) {
         var date = new Date(Number(timestamp+'000'));
@@ -37,14 +38,17 @@ export class Activity {
         switch (networkName) {
             case "vakacoin":
                 this.symbol = "VKC";
+                this.transactionUrl = "https://www.blockchain.com/btc/tx/"+hash;
                 break;
             
             case "bitcoin":
                 this.symbol = "BTC";
+                this.transactionUrl = "https://www.blockchain.com/btc/tx/"+hash;
                 break;
 
             case "ethereum":
                 this.symbol = "ETH";
+                this.transactionUrl = "https://etherscan.io/tx/"+hash;
                 break;
         
             default:

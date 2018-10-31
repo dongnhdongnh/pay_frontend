@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 import { HttpService } from 'network/http/http.service';
 import { ConfigService } from 'network/config/config.service';
 import { Activity } from 'model/activity/activity'
@@ -7,24 +8,34 @@ import { Activity } from 'model/activity/activity'
   templateUrl: './recent-activity.component.html',
   styleUrls: ['./recent-activity.component.css']
 })
-export class RecentActivityComponent implements OnInit {
+export class RecentActivityComponent implements OnInit, AfterViewInit {
+  activity = {
+    modal: {}
+  };
+  modalName = 'modalActivityDetail';
+
+  ngAfterViewInit(): void {
+    this.activity = {
+      modal: this.ngxSmartModalService.getModal(this.modalName),
+    }
+  }
+  showModal(activity) {
+    this.activity = activity;
+    this.ngxSmartModalService.getModal(this.modalName).open();
+  }
+
   configService: ConfigService;
   private apiUrl = '';
   portfolioValue = '';
   activities: Activity[] = [];
 
-  constructor(private httpService: HttpService, configService: ConfigService) {
+  constructor(private httpService: HttpService, configService: ConfigService, public ngxSmartModalService: NgxSmartModalService) {
     this.configService = configService;
     this.apiUrl = this.configService.urlApi + '/api/recentActivity/transactions/';
   }
 
   ngOnInit() {
     this.getData('10');
-  }
-
-  showModal(activity) {
-    alert(JSON.stringify(activity));
-    //show any modal
   }
 
   public async getData(apiString = '') {

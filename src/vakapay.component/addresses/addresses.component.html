@@ -1,0 +1,108 @@
+<app-header></app-header>
+
+<!-- ########## START: MAIN PANEL ########## -->
+<div class="br-mainpanel">
+  <div class="br-pagebody">
+    <div class="row row-sm mg-t-20">
+      <div class="col-xl-12 bg-white mg-t-20 pd-30">
+        <h6 class="tx-inverse tx-uppercase tx-bold tx-18 mg-t-10 mg-b-10">Your Address</h6>
+        <p class="br-section-text">Each account on VakaPay is a collection of addresses. New addresses are automatically
+          generated for each payment on VakaPay and stay associated with your account forever (so it is safe to reuse them).</p>
+        <div class="col-12 mg-b-20">
+          <div class="col-md-3 col-sm-12 pd-l-0 pd-r-0 mg-t-10">
+            <select class="form-control select2 select2-hidden-accessible" data-placeholder="BTC Wallet (0.0000 BTC)" tabindex="-1" aria-hidden="true">
+              <option label="Choose Currency"></option>
+              <option value="USA">VKC Wallet (0.0000 VKC)</option>
+              <option value="UK">ETH Wallet (0.0000 ETH)</option>
+              <option value="China">EOS Wallet (0.0000 EOS)</option>
+            </select>
+          </div>
+          <div class="col-md-4 col-sm-12 pd-r-0 mg-t-10">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Bitcoin address or label...">
+              <span class="input-group-btn">
+                <button class="btn bd bg-white tx-gray-600" type="button"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-12 hidden-mob"></div>
+          <div class="col-md-3 col-sm-12 pd-r-0 mg-t-10">
+            <a href="" class="btn bg-green pd-x-30 pd-y-11 tx-uppercase tx-bold tx-14 fl-right tx-white"><i class="fa fa-credit-card mg-r-5"></i>
+              Creat new wallet
+            </a>
+          </div>
+        </div>
+        <div class="clear-both"></div>
+        <!-- Table for address information -->
+        <div class="bd bd-gray-300 table-responsive table-add">
+          <!-- Mat table (start) -->
+          <!-- 1. Write mat-table -->
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+              <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+
+              <!-- Address Column -->
+              <ng-container matColumnDef="address">
+                <th mat-header-cell *matHeaderCellDef> Address </th>
+                <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+              </ng-container>
+
+              <!-- Label Column -->
+              <ng-container matColumnDef="label">
+                <th mat-header-cell *matHeaderCellDef> Label </th>
+                <td mat-cell *matCellDef="let element"> {{element.label}} </td>
+              </ng-container>
+
+              <!-- Created Column -->
+              <ng-container matColumnDef="created">
+                <th mat-header-cell *matHeaderCellDef> Created </th>
+                <td mat-cell *matCellDef="let element"> {{element.created}} </td>
+              </ng-container>
+
+              <!-- Detail Column -->
+              <ng-container matColumnDef="detail">
+                <th mat-header-cell *matHeaderCellDef> Detail </th>
+                <!-- TODO: Change element.symbol to detail button -->
+                <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <!-- Mat table (end) -->
+        </div>
+
+        <!-- Table Pagination (start) -->
+        <div class="ht-80 d-flex align-items-center justify-content-center mg-t-20">
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+          <!-- TODO: OLD PAGINATION - DELETE AFTER REPLACING WITH A NEW ONE -->
+          <!-- <ul class="pagination pagination-basic pagination-rounded mg-b-0">
+            <li class="page-item hidden-xs-down">
+              <a class="page-link" href="#" aria-label="First"><i class="fa fa-angle-double-left"></i></a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous"><i class="fa fa-angle-left"></i></a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item hidden-xs-down"><a class="page-link" href="#">3</a></li>
+            <li class="page-item hidden-xs-down"><a class="page-link" href="#">4</a></li>
+            <li class="page-item disabled"><span class="page-link">...</span></li>
+            <li class="page-item"><a class="page-link" href="#">10</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next"><i class="fa fa-angle-right"></i></a>
+            </li>
+            <li class="page-item hidden-xs-down">
+              <a class="page-link" href="#" aria-label="Last"><i class="fa fa-angle-double-right"></i></a>
+            </li>
+          </ul> -->
+        </div>
+
+      </div><!-- col-6 -->
+    </div><!-- row -->
+  </div><!-- br-section-wrapper -->
+</div><!-- br-mainpanel -->
+<div class="clear-both"></div>
+<!-- ########## END: MAIN PANEL ########## -->
