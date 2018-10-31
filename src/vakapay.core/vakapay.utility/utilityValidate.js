@@ -10,6 +10,7 @@ class ValidateSpecial {
 }
 
 class Validate extends ValidateSpecial {
+
 	static isNumber(num) {
 		return typeof num === 'number';
 	}

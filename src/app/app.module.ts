@@ -126,13 +126,32 @@ import { ApiKeysComponent } from 'component/page/api-access/api-keys/api-keys.co
 import { Oauth2AppComponent } from 'component/page/api-access/oauth2-app/oauth2-app.component';
 import { ApiAccessNotificationComponent } from 'component/page/api-access/api-access-notification/api-access-notification.component';
 import { ListApiKeysComponent } from 'component/page/api-access/api-keys/list-api-keys/list-api-keys.component';
-import { NewApiKeyComponent } from 'component/page/api-access/api-keys/new-api-key/new-api-key.component';
+
 import { ShowApiKeyComponent } from 'component/page/api-access/api-keys/show-api-key/show-api-key.component';
+import { ShowApiKeyWithTwofaComponent }
+  from 'component/page/api-access/api-keys/show-api-key/show-api-key-with-twofa/show-api-key-with-twofa.component';
+import { ShowApiKeyWithoutTwofaComponent }
+  from 'component/page/api-access/api-keys/show-api-key/show-api-key-without-twofa/show-api-key-without-twofa.component';
+
 import { DeleteApiKeyComponent } from 'component/page/api-access/api-keys/delete-api-key/delete-api-key.component';
 import { EnableApiKeyComponent } from 'component/page/api-access/api-keys/enable-api-key/enable-api-key.component';
 import { DisableApiKeyComponent } from 'component/page/api-access/api-keys/disable-api-key/disable-api-key.component';
-import { EditApiKeyComponent } from 'component/page/api-access/api-keys/edit-api-key/edit-api-key.component';
 import { QRCodeModule } from 'angularx-qrcode';
+
+import { EditApiKeyComponent } from 'component/page/api-access/api-keys/edit-api-key/edit-api-key.component';
+import { EditApiKeyWithTwofaComponent }
+  from 'component/page/api-access/api-keys/edit-api-key/edit-api-key-with-twofa/edit-api-key-with-twofa.component';
+import { EditApiKeyWithoutTwofaComponent }
+  from 'component/page/api-access/api-keys/edit-api-key/edit-api-key-without-twofa/edit-api-key-without-twofa.component';
+
+import { PaginationComponent } from 'component/pagination/pagination.component';
+
+import { NewApiKeyComponent } from 'component/page/api-access/api-keys/new-api-key/new-api-key.component';
+import { NewApiKeyWithTwofaComponent }
+  from 'component/page/api-access/api-keys/new-api-key/new-api-key-with-twofa/new-api-key-with-twofa.component';
+import { NewApiKeyWithoutTwofaComponent }
+  from 'component/page/api-access/api-keys/new-api-key/new-api-key-without-twofa/new-api-key-without-twofa.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -203,6 +222,13 @@ import { QRCodeModule } from 'angularx-qrcode';
     EnableApiKeyComponent,
     DisableApiKeyComponent,
     EditApiKeyComponent,
+    ShowApiKeyWithTwofaComponent,
+    ShowApiKeyWithoutTwofaComponent,
+    EditApiKeyWithTwofaComponent,
+    EditApiKeyWithoutTwofaComponent,
+    PaginationComponent,
+    NewApiKeyWithTwofaComponent,
+    NewApiKeyWithoutTwofaComponent,
   ],
   imports: [
     BrowserModule,

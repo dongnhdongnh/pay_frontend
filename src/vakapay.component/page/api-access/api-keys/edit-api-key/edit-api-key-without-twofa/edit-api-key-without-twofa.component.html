@@ -1,0 +1,177 @@
+<button class="btn btn-secondary verified"
+  (click)="onShowModalEditWithoutTwofa()">
+  <i class="fa fa-pencil tx-13 tx-white"></i> Edit
+</button>
+<ngx-smart-modal #modalEditWithoutTwofa [identifier]="'modalEditWithoutTwofa'">
+  <form class="modal-content bd-0 tx-14">
+    <div class="modal-header pd-y-20 pd-x-25">
+      <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Edit API Key</h6>
+    </div>
+    <!--Waiting for get api by id-->
+    <div [hidden]="isGettingApi == false">
+      It is loading... <loading-button [isLoading]='isLoading'></loading-button>
+    </div>
+    <div class="modal-body pd-x-20 pd-y-5"
+      [hidden]="isGettingApi === true || messageError != ''">
+      <div class="row mg-t-20">
+        <span class="btn btn-success label mg-b-20">
+          <i class="fa fa-user mg-r-5"></i>Account
+        </span>
+        <div class="col-sm-12">
+          <label class="ckbox">
+            <input type="checkbox" [checked]="isAll" (change)="isAll= !isAll;
+              changeWallet(true)" /> <span>All</span>
+          </label>
+        </div>
+        <div class="col-sm-4" [hidden]="!apiAccess.hasBtc">
+          <label class="ckbox">
+            <input type="checkbox" [checked]="isBtcWallet"
+              (change)="isBtcWallet= !isBtcWallet; changeWallet(false)">
+            <span>BTC Wallet (Primary)</span>
+          </label>
+        </div>
+        <div class="col-sm-4" [hidden]="!apiAccess.hasVkc">
+          <label class="ckbox">
+            <input type="checkbox" [checked]="isVkcWallet"
+              (change)="isVkcWallet= !isVkcWallet; changeWallet(false)">
+            <span>VKC Wallet (Primary)</span>
+          </label>
+        </div>
+        <div class="col-sm-4" [hidden]="!apiAccess.hasEth">
+          <label class="ckbox">
+            <input type="checkbox" [checked]="isEthWallet"
+              (change)="isEthWallet= !isEthWallet; changeWallet(false)" />
+            <span>ETH Wallet (Primary)</span>
+          </label>
+        </div>
+        <div class="col-sm-4" [hidden]="!apiAccess.hasEos">
+          <label class="ckbox">
+            <input type="checkbox" [checked]="isEosWallet"
+              (change)="isEosWallet= !isEosWallet; changeWallet(false)">
+            <span>EOS Wallet (Primary)</span>
+          </label>
+        </div>
+        <div class="col-sm-4" [hidden]="!apiAccess.hasVkc_Vault">
+          <label class="ckbox">
+            <input type="checkbox" [checked]="isVkcVault" (change)="isVkcVault=
+              !isVkcVault; changeWallet(false)">
+            <span>VKC Vault</span>
+          </label>
+        </div>
+        <div class="col-sm-4" [hidden]="!apiAccess.hasVaka">
+          <label class="ckbox">
+            <input type="checkbox" [checked]="isVakaWallet"
+              (change)="isVakaWallet= !isVakaWallet; changeWallet(false)">
+            <span> Vaka Wallet</span>
+          </label>
+        </div>
+        <message-error-input [message]='messageErrorWalletType'></message-error-input>
+        <div class="clear"></div>
+      </div>
+      <hr>
+      <div class="row mg-t-20">
+        <span class="btn btn-success label mg-b-20">
+          <i class="fa fa-shield mg-r-5"></i>Permissions</span>
+        <div class="col-sm-12">
+          <h6>API permissions</h6>
+        </div>
+        <div class="col-sm-6" [hidden]="!apiAccess.has_CREATED_ADDRESSES">
+          <label class="ckbox">
+            <input type="checkbox" [checked]="is_CREATED_ADDRESSES"
+              (change)="is_CREATED_ADDRESSES= !is_CREATED_ADDRESSES;
+              validate()">
+            <span>wallet:addresses:create</span>
+          </label>
+        </div>
+        <div class="col-sm-6" [hidden]="!apiAccess.has_CREATED_DEPOSITS">
+          <label class="ckbox">
+            <input type="checkbox" [checked]="is_CREATED_DEPOSITS"
+              (change)="is_CREATED_DEPOSITS= !is_CREATED_DEPOSITS; validate()">
+            <span>wallet:deposits:create</span>
+          </label>
+        </div>
+        <div class="col-sm-6" [hidden]="!apiAccess.has_READ_ADDRESSES">
+          <label class="ckbox">
+            <input type="checkbox" [checked]="is_READ_ADDRESSES"
+              (change)="is_READ_ADDRESSES= !is_READ_ADDRESSES;validate()">
+            <span>wallet:addresses:read</span>
+          </label>
+        </div>
+        <div class="col-sm-6" [hidden]="!apiAccess.has_READ_DEPOSITS">
+          <label class="ckbox">
+            <input type="checkbox" [checked]="is_READ_DEPOSITS"
+              (change)="is_READ_DEPOSITS= !is_READ_DEPOSITS; validate()">
+            <span>wallet:deposits:read</span>
+          </label>
+        </div>
+        <div class="col-sm-6" [hidden]="!apiAccess.has_READ_TRANSACTIONS">
+          <label class="ckbox">
+            <input type="checkbox" [checked]="is_READ_TRANSACTIONS"
+              (change)="is_READ_TRANSACTIONS= !is_READ_TRANSACTIONS;
+              validate()">
+            <span>wallet:transactions:read</span>
+          </label>
+        </div>
+        <div class="col-sm-6" [hidden]="!apiAccess.has_SEND_TRANSACTIONS">
+          <label class="ckbox">
+            <input type="checkbox" [checked]="is_SEND_TRANSACTIONS"
+              (change)="is_SEND_TRANSACTIONS= !is_SEND_TRANSACTIONS;
+              validate()">
+            <span>wallet:transactions:send</span>
+          </label>
+        </div>
+        <div class="col-sm-6" [hidden]="!apiAccess.has_USER_MAIL">
+          <label class="ckbox">
+            <input type="checkbox" [checked]="is_USER_MAIL"
+              (change)="is_USER_MAIL= !is_USER_MAIL; validate()">
+            <span>wallet:user:email</span>
+          </label>
+        </div>
+        <div class="col-sm-6" [hidden]="!apiAccess.has_USER_READ">
+          <label class="ckbox">
+            <input type="checkbox" [checked]="is_USER_READ"
+              (change)="is_USER_READ= !is_USER_READ; validate();">
+            <span>wallet:user:read</span>
+          </label>
+        </div>
+        <message-error-input [message]='messageErrorApiType'></message-error-input>
+        <div class="clear"></div>
+      </div>
+      <hr>
+      <div class="row mg-t-20">
+        <span class="btn btn-success label mg-b-20"><i class="fa fa-bell
+            mg-r-5"></i>Notification</span>
+        <div class="col-12 mg-b-10">
+          <label class="col-sm-4 form-control-label">Notification URL:</label>
+          <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+            <input type="text" class="form-control" placeholder="">
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row mg-t-20">
+        <span class="btn btn-success label mg-b-20"><i class="fa fa-lock
+            mg-r-5"></i>Security settings</span>
+        <div class="col-12 mg-b-10">
+          <label class="col-sm-4 form-control-label">Allowed IP Addresses:</label>
+          <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+            <input type="text" class="form-control" placeholder="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer step">
+      <button type="button" (click)="cancel()"
+        class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
+        tx-medium">
+        Cancel
+      </button>
+      <button (click)="onUpdate()" [disabled]="!isValid||isLoading"
+        class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
+        tx-medium">
+        + Save
+        <loading-button [isLoading]='isLoading'></loading-button>
+      </button>
+    </div>
+  </form>
+</ngx-smart-modal>

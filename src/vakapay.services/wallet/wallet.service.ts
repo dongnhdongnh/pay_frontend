@@ -21,6 +21,7 @@ export class WalletService {
   url_requiteSMSCode = '/api/twofa/transaction/require-send-code-phone'
   // url_verifyCode = 'api/twofa/transaction/verify-code'
   url_sendTransactions = '/api/wallet/sendTransactions'
+<<<<<<< HEAD
   url_createWallet = '/api/wallet/create-new'
 
   // Status
@@ -28,6 +29,11 @@ export class WalletService {
 
   constructor(private httpService: HttpService) { }
 
+=======
+
+  constructor(private httpService: HttpService) { }
+  
+>>>>>>> b3e1be58e7f64d3d2746f9e5ff5670f861dc9e35
   async getAllWallet(mAccount) {
     try {
       let operation = 'get all wallets by info user';
@@ -161,6 +167,7 @@ export class WalletService {
 
     //  return this.isETHAddress(address);
   }
+<<<<<<< HEAD
 
   createWalletAddress(data: any) {
     console.log('New Wallet created!\n' + data);
@@ -173,4 +180,6 @@ export class WalletService {
 
 
 
+=======
+>>>>>>> b3e1be58e7f64d3d2746f9e5ff5670f861dc9e35
 }
