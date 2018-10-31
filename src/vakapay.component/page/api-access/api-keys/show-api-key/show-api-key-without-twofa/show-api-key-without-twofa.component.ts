@@ -49,7 +49,6 @@ export class ShowApiKeyWithoutTwofaComponent {
 
       //send ajax
       let result = await this.service.get(dataPost);
-  //validate
 
       //Show message success
       this.isLoading = false;
@@ -58,7 +57,6 @@ export class ShowApiKeyWithoutTwofaComponent {
         this.messageError = result.message;
         return;
       }
-  //validate
 
       if (result.data == null) {
         this.messageError = 'Not find api key';
@@ -66,8 +64,7 @@ export class ShowApiKeyWithoutTwofaComponent {
       }
 
       this.messageError = '';
-      this.onCloseModal();
-
+      this.apiKey.attributes = result.data;
       return;
     } catch (error) {
       //Show message success

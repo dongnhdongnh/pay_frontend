@@ -1,3 +1,4 @@
+import { UtilityValidate } from 'utility/UtilityValidate';
 import { Model } from "model/Model";
 import { UtilityFormat } from "utility/utilityFormat";
 import { WalletType } from "model/wallet/WalletType";
@@ -28,6 +29,14 @@ export class ApiKey extends Model {
         this.status = 0;
         this.createdAt = 0;
         this.updatedAt = 0;
+    }
+
+    get isNew() {
+        return UtilityValidate.isToday(this.createdAt);
+    }
+
+    get isEdited() {
+        return this.createdAt !== this.updatedAt && UtilityValidate.isToday(this.updatedAt);
     }
 
     get _createdAt() {

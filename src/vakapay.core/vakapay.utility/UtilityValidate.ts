@@ -1,6 +1,14 @@
 const PASSWORD_RESET_TOKEN_EXPIRE = 900;
 
 class Validate {
+    static isToday(second): boolean {
+        let today = new Date();
+        let dayCheck = new Date(second * 1000);
+        return dayCheck.getDate() === today.getDate() &&
+            dayCheck.getMonth() === today.getMonth() &&
+            dayCheck.getFullYear() === today.getFullYear();
+    }
+
     static isNumber(num) {
         return typeof num === 'number';
     }

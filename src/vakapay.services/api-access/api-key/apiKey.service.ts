@@ -83,6 +83,7 @@ export class ApiKeyService extends PaginationService {
                 model.attributes = element;
                 return model;
             });
+            this.list = this.list.sort((a, b) => b.updatedAt - a.updatedAt);
             this.total = result.data.Total;
             return;
         } catch (error) {

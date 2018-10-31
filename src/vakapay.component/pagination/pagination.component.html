@@ -34,7 +34,7 @@
     <li class="page-item" (click)="changePage(service.size)">
       <a class="page-link"
         aria-label="Last"
-        [hidden]="service.page === service.size">
+        [hidden]="service.size > 0 && service.page === service.size">
         <i class="fa fa-angle-double-right"></i>
       </a>
     </li>
