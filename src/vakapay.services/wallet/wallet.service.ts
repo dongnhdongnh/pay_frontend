@@ -16,8 +16,11 @@ export class WalletService {
   url_getAddress = '/api/wallet/AddressInfor'
   url_checkSendCoin = '/api/wallet/CheckSendCoin'
   url_requiteSMSCode = '/api/twofa/transaction/require-send-code-phone'
- // url_verifyCode = 'api/twofa/transaction/verify-code'
-  url_sendTransactions='/api/wallet/sendTransactions'
+
+  private url_create_new_wallet = '/api/wallet/create-new'
+
+  // url_verifyCode = 'api/twofa/transaction/verify-code'
+  url_sendTransactions = '/api/wallet/sendTransactions'
   constructor(private httpService: HttpService) { }
   async getAllWallet(mAccount) {
     try {
@@ -143,9 +146,9 @@ export class WalletService {
     //  return this.isETHAddress(address);
   }
 
- 
-
-
-
-
+  create(data: any = { walletType: 'ETH' }) {
+    let operation = 'create new wallet';
+    let api = this.url_create_new_wallet;
+    return this.httpService.post(operation, api, data, false);
+  }
 }

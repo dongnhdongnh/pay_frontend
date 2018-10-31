@@ -1,7 +1,11 @@
 <div class="col-xl-12 mg-t-20 pd-10 tab-pane activity-table">
   <div class="width-half">
-    <h5 class="dont mg-t-20"><i class="fa fa-info-circle tx-medium"></i>
+    <h5 class="dont mg-t-20" [hidden]="service.total> 0"><i class="fa
+        fa-info-circle tx-medium"></i>
       You haven't created any API keys yet.
+    </h5>
+    <h5 class="dont mg-t-20" [hidden]="service.total === 0">
+      You have {{service.total}} API keys.
     </h5>
     <h6 class="grey tx-left tx-14">
       API keys allow you to perform automated actions on your account with your
@@ -49,11 +53,11 @@
   <ng-container matColumnDef="permissions">
     <mat-header-cell *matHeaderCellDef> permissions </mat-header-cell>
     <mat-cell *matCellDef="let element">
-      <div>
+      <div style="min-width: 100%;">
         <span class="mobile-label">Permissions</span>
 
-        <mat-expansion-panel (opened)="showPermission[element.id] = true"
-          (closed)="showPermission[element.id] = false">
+        <mat-expansion-panel (opened)="showPermission[element.id]= true"
+          (closed)="showPermission[element.id]= false">
           <mat-expansion-panel-header>
             <mat-panel-title>
               <div class="dropbtn btn btn-trans tx-11
@@ -92,29 +96,4 @@
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
 
-<div class="ht-80 d-flex align-items-center justify-content-center mg-t-20">
-  <ul class="pagination pagination-basic pagination-rounded mg-b-0">
-    <li class="page-item hidden-xs-down">
-      <a class="page-link" href="#" aria-label="First"><i class="fa
-          fa-angle-double-left"></i></a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous"><i class="fa
-          fa-angle-left"></i></a>
-    </li>
-    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item hidden-xs-down"><a class="page-link" href="#">3</a></li>
-    <li class="page-item hidden-xs-down"><a class="page-link" href="#">4</a></li>
-    <li class="page-item disabled"><span class="page-link">...</span></li>
-    <li class="page-item"><a class="page-link" href="#">10</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next"><i class="fa
-          fa-angle-right"></i></a>
-    </li>
-    <li class="page-item hidden-xs-down">
-      <a class="page-link" href="#" aria-label="Last"><i class="fa
-          fa-angle-double-right"></i></a>
-    </li>
-  </ul>
-</div>
+<app-pagination [service]="service"></app-pagination>

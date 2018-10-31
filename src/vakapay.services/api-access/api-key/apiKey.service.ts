@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpService } from 'network/http/http.service';
 import { ApiKey } from 'model/api-access/ApiKey';
 import { Utility } from 'utility/Utility';
+import { PaginationService } from 'services/pagination.service';
 
 @Injectable({ providedIn: 'root' })
-export class ApiKeyService {
+export class ApiKeyService extends PaginationService {
 
     private createUrl = '/api/api-access/create';
     private getUrl = '/api/api-key/get';
@@ -14,6 +15,7 @@ export class ApiKeyService {
     private editUrl = '/api/api-key/edit';
     private getListUrl = '/api/api-access/get-list-api-access';
     public list: ApiKey[];
+    public total: number = 0;
     public offset: number = 0;
     public limit: number = 8;
 
@@ -23,7 +25,7 @@ export class ApiKeyService {
     isError: boolean = false;
     isLoading: boolean = false;
 
-    constructor(private httpService: HttpService) { }
+    constructor(private httpService: HttpService) { super(); }
 
     create(data: any) {
         let operation = 'create new api key';
@@ -75,12 +77,13 @@ export class ApiKeyService {
             }
 
             this.isError = false;
-            let list = result.data;
+            let list = result.data.List;
             this.list = list.map(element => {
                 let model = new ApiKey();
                 model.attributes = element;
                 return model;
             });
+            this.total = result.data.Total;
             return;
         } catch (error) {
             this.isError = true;
@@ -89,6 +92,6 @@ export class ApiKeyService {
     }
 
     refresh() {
-        this.getList();
+        return this.getList();
     }
 }

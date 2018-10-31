@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'network/http/http.service';
 import { ConfigService } from 'network/config/config.service';
-import { Activity } from 'model/activity/activity.ts'
+import { Activity } from 'model/activity/activity'
 @Component({
   selector: 'app-recent-activity',
   templateUrl: './recent-activity.component.html',

@@ -17,7 +17,7 @@ export class ResultObject {
                 } catch (error) {
                     return;
                 }
-            }            
+            }
 
             if (result == null) {
                 throw new Error(`Data result is NULL.`);

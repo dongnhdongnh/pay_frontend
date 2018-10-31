@@ -8,9 +8,10 @@ import { ConfigService } from 'network/config/config.service';
 })
 export class PortfolioValueComponent implements OnInit {
   configService: ConfigService;
+  portfolioValue: any;
   private apiUrl = '';
-  portfolioValue = '';
 
+  // public lineChartColors: any;
   public chartData = [];
   public chartLabel = [];
 

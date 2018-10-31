@@ -1,4 +1,4 @@
-<div class="full-body">
+<div class="full-body" [hidden]="percent === 100">
   <div class="spinner">
     <div class="bounce1"></div>
     <div class="bounce2"></div>
@@ -6,5 +6,11 @@
     <h5>Please waiting.</h5>
     <h6>It is redirecting page...</h6>
     <h6>{{percent}}%</h6>
+  </div>
+</div>
+<div class="full-body" [hidden]="percent <100">
+  <div class="spinner">
+    <h5>Error occurs. Please refresh page.</h5>
+    <a class="btn bg-green" href="/login">Refresh page</a>
   </div>
 </div>
