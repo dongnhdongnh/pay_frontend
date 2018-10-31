@@ -4,7 +4,8 @@
       <h6 class="br-section-label">Your Portfolio</h6>
     </div>
     <div class="col-md-12 col-sm-4 col-xs-12">
-      <mat-tab-group>
+      <div [hidden]="portfolio && portfolio.length > 0">Data not found</div>
+      <mat-tab-group [hidden]="!portfolio || portfolio.length === 0">
         <h6 class="br-section-label">Your Portfolio</h6>
         <mat-tab label="List" style="float:right!important;">
           <div class="col-xs-12">
