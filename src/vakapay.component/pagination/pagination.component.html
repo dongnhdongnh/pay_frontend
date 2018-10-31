@@ -1,0 +1,42 @@
+<div class="ht-80 d-flex align-items-center justify-content-center mg-t-20">
+  <ul class="pagination pagination-basic pagination-rounded mg-b-0">
+    <li class="page-item" (click)="changePage(1)">
+      <a class="page-link" aria-label="First" [hidden]="service.page === 1">
+        <i class="fa fa-angle-double-left"></i>
+      </a>
+    </li>
+    <li class="page-item" (click)="changePage(service.page - 1)">
+      <a class="page-link" aria-label="Previous"
+        [hidden]="!service.hasPrev">
+        <i class="fa fa-angle-left"></i>
+      </a>
+    </li>
+    <li class="page-item"
+      *ngFor="let page of service.pages"
+      [class.active]="page === service.page"
+      [class.disabled]="page === 0"
+      (click)="changePage(page)">
+      <a class="page-link"
+        [class.isLoading]="page === service.page &&
+        service.isLoading"
+        [hidden]="page === 0">
+        {{ page === service.page && service.isLoading ? '' : page }}
+        <loading-button [isLoading]="service.isLoading"
+          [hidden]="page !== service.page"></loading-button>
+      </a>
+      <span class="page-link" [hidden]="page !== 0">...</span>
+    </li>
+    <li class="page-item" (click)="changePage(service.page + 1)">
+      <a class="page-link" aria-label="Next" [hidden]="!service.hasNext">
+        <i class="fa fa-angle-right"></i>
+      </a>
+    </li>
+    <li class="page-item" (click)="changePage(service.size)">
+      <a class="page-link"
+        aria-label="Last"
+        [hidden]="service.size > 0 && service.page === service.size">
+        <i class="fa fa-angle-double-right"></i>
+      </a>
+    </li>
+  </ul>
+</div>

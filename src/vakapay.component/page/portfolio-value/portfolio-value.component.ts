@@ -9,8 +9,8 @@ import { StockChart } from 'angular-highcharts';
 })
 export class PortfolioValueComponent implements OnInit {
   configService: ConfigService;
+  portfolioValue: any;
   private apiUrl = '';
-  portfolioValue = '';
   data = [];
   stock: StockChart;
 

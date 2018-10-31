@@ -13,9 +13,9 @@ export class WaitingLoadPageComponent {
   }
 
   async setPercent() {
-    while (this.percent < 99) {
+    while (this.percent < 100) {
       this.percent += 1;
-      await Utility.sleep(50);
+      await Utility.sleep(100);
     }
   }
 
