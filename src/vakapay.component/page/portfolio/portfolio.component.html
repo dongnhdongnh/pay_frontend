@@ -1,19 +1,19 @@
 <div class="bg-white rounded overflow-hidden no-padding h-fix pd-b-30">
   <div class="table-content">
     <div class="col-md-4 col-sm-8 col-xs-12">
-      <h6 class="br-section-label">Your Portfolio</h6>
+        <h6 class="br-section-label tx-green"><i class="fa fa-user"></i> Your Portfolio</h6>
     </div>
     <div class="col-md-12 col-sm-4 col-xs-12">
       <div [hidden]="portfolio && portfolio.length > 0">Data not found</div>
-      <mat-tab-group [hidden]="!portfolio || portfolio.length === 0">
+      <mat-tab-group style="height: 100%;" [hidden]="!portfolio || portfolio.length === 0">
         <h6 class="br-section-label">Your Portfolio</h6>
         <mat-tab label="List" style="float:right!important;">
           <div class="col-xs-12">
             <div class="bd-gray-300 table-responsive table-recent">
               <table class="table table-hover mg-b-0 table-fix">
                 <tbody>
-                  <tr *ngFor="let portfolio_ele of portfolio" data-toggle="modal" data-target="#modaldemo1">
-                    <td width="20%" class="hidden-mob">
+                  <tr *ngFor="let portfolio_ele of portfolio">
+                    <!-- <td width="20%" class="hidden-mob">
                       <img src="{{portfolio_ele.iconUrl}}" height="42" width="42">
                     </td>
                     <td width="20%" class="tx-left">
@@ -27,7 +27,16 @@
                     </td>
                     <td width="30%" class="tx-right">
                       <span class="d-block tx-13 tx-grey">{{portfolio_ele.value}}</span>
+                    </td> -->
+                    <td><i><img src="{{portfolio_ele.iconUrl}}" alt=""></i>{{portfolio_ele.networkName}}</td>
+                    <td class="minper">
+                        <div class="progress">
+                            <div class="progress-bar cl-vkc wd-70p" role="progressbar"
+                                aria-valuenow="portfolio_ele.percent" aria-valuemin="0" aria-valuemax="100">{{portfolio_ele.percent}}%</div>
+                        </div>
                     </td>
+                    <td>{{portfolio_ele.amount}}</td>
+                    <td>{{portfolio_ele.value}}</td>
                   </tr>
                 </tbody>
               </table>

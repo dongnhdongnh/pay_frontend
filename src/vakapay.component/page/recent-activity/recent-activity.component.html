@@ -1,6 +1,7 @@
 <div class="table-content rounded h-fix">
   <div class="col-xs-12">
-    <h6 class="br-section-label">Recent Activity</h6>
+    <h6 class="br-section-label tx-green"><i class="fa fa-calendar-check-o"></i> Recent
+      Activity</h6>
   </div>
   <div class="col-xs-12">
     <div [hidden]="activities && activities.length > 0"> No recent activity</div>
@@ -8,12 +9,11 @@
       <table class="table table-hover mg-b-0 table-fix">
         <tbody>
           <tr *ngFor="let activity of activities" (click)="showModal(activity)">
-            <td width="10" class="hidden-mob">
-              {{activity.month}}
-              {{activity.day}}
+            <td width="50%" class="hidden-mob">
+                <div class="date-month">{{activity.fullTime}}</div>
             </td>
             <td class="round">
-              <i [class]="activity.isSend ? 'icon ion-arrow-up-a tx-btc' : 'icon ion-arrow-down-a tx-btc'"></i>
+                <i class="tx-btc tx-20"><img [src]="activity.isSend ? '../assets/icons/send.svg' : '../assets/icons/receive.svg'" alt=""></i>
             </td>
             <td width="40%" class="tx-left">
               <p class="mg-b-0 tx-inverse tx-medium tx-btc">
@@ -22,7 +22,7 @@
               <span class="d-block tx-13 hidden-mob">{{ activity.isSend ? 'To' : 'From'}} {{activity.networkName}} address</span>
             </td>
             <td width="40%" class="tx-right">
-              <p class="mg-b-0 tx-inverse tx-medium">{{ activity.isSend ? '-' : '+'}}{{activity.amount}} {{activity.symbol}}</p>
+              <p [class]="activity.isSend ? 'mg-b-0 tx-inverse tx-medium tx-red' : 'mg-b-0 tx-inverse tx-medium tx-green'">{{ activity.isSend ? '-' : '+'}}{{activity.amount}} {{activity.symbol}}</p>
               <span class="d-block tx-13 tx-grey">{{ activity.isSend ? '-' : '+'}}${{activity.value}}</span>
             </td>
           </tr>
