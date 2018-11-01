@@ -39,47 +39,49 @@ export class PriceComponent implements OnInit {
   public async getData(apiString = '') {
     var apiData = await this.httpService.getFrom("get coinmarket data", this.apiUrl + apiString);
     var network = apiString.split("/")[0];
-    
-    switch (network) {
-      case "vakacoin":
-        this.VkcStock = new StockChart({
-          rangeSelector: {
-            selected: 1
-          },
-          series: [{
-            name: 'Portfolio Price',
-            data: apiData.data
-          }]
-        });
-        break;
-
-      case "bitcoin":
-        this.BtcStock = new StockChart({
-          rangeSelector: {
-            selected: 1
-          },
-          series: [{
-            name: 'Portfolio Price',
-            data: apiData.data
-          }]
-        });
-        break;
-
-      case "ethereum":
-        this.EthStock = new StockChart({
-          rangeSelector: {
-            selected: 1
-          },
-          series: [{
-            name: 'Portfolio Price',
-            data: apiData.data
-          }]
-        });
-        break;
-
-      default:
-        break;
+    if (apiData && apiData.data){
+      switch (network) {
+        case "vakacoin":
+          this.VkcStock = new StockChart({
+            rangeSelector: {
+              selected: 1
+            },
+            series: [{
+              name: 'Portfolio Price',
+              data: apiData.data
+            }]
+          });
+          break;
+  
+        case "bitcoin":
+          this.BtcStock = new StockChart({
+            rangeSelector: {
+              selected: 1
+            },
+            series: [{
+              name: 'Portfolio Price',
+              data: apiData.data
+            }]
+          });
+          break;
+  
+        case "ethereum":
+          this.EthStock = new StockChart({
+            rangeSelector: {
+              selected: 1
+            },
+            series: [{
+              name: 'Portfolio Price',
+              data: apiData.data
+            }]
+          });
+          break;
+  
+        default:
+          break;
+      }
     }
+    
   }
   
 }

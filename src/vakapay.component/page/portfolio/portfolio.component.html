@@ -13,21 +13,6 @@
               <table class="table table-hover mg-b-0 table-fix">
                 <tbody>
                   <tr *ngFor="let portfolio_ele of portfolio">
-                    <!-- <td width="20%" class="hidden-mob">
-                      <img src="{{portfolio_ele.iconUrl}}" height="42" width="42">
-                    </td>
-                    <td width="20%" class="tx-left">
-                      <p class="mg-b-0 tx-inverse tx-medium tx-btc">{{portfolio_ele.networkName}}</p>
-                    </td>
-                    <td width="40%" class="tx-center hidden-mob">
-                      <p class="mg-b-0 tx-inverse tx-medium">{{portfolio_ele.percent}}%</p>
-                    </td>
-                    <td width="40%" class="tx-right">
-                      <p class="mg-b-0 tx-inverse tx-medium">{{portfolio_ele.amount}}</p>
-                    </td>
-                    <td width="30%" class="tx-right">
-                      <span class="d-block tx-13 tx-grey">{{portfolio_ele.value}}</span>
-                    </td> -->
                     <td><i><img src="{{portfolio_ele.iconUrl}}" alt=""></i>{{portfolio_ele.networkName}}</td>
                     <td class="minper">
                         <div class="progress">

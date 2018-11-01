@@ -38,24 +38,25 @@ export class PortfolioComponent implements OnInit {
     this.portfolio.length = 0;
     var apiData = await this.httpService.getFrom("get coinmarket data", this.apiUrl + apiString);
 
-    // if (Utility.isError) throw new Error(apiData.message);
-    var objectData = apiData.data;
-    this.vakaValue = Number(!objectData["VakacoinValue"] ? "0" : objectData["VakacoinValue"]);
-    this.btcValue = Number(!objectData["BitcoinValue"] ? "0" : objectData["BitcoinValue"]);
-    this.ethValue = Number(!objectData["EthereumValue"] ? "0" : objectData["EthereumValue"]);
+    if (apiData && apiData.data){
+      var objectData = apiData.data;
+      this.vakaValue = Number(!objectData["VakacoinValue"] ? "0" : objectData["VakacoinValue"]);
+      this.btcValue = Number(!objectData["BitcoinValue"] ? "0" : objectData["BitcoinValue"]);
+      this.ethValue = Number(!objectData["EthereumValue"] ? "0" : objectData["EthereumValue"]);
 
-    var total = this.vakaValue + this.btcValue + this.ethValue;
+      var total = this.vakaValue + this.btcValue + this.ethValue;
 
-    var vaka = new Portfolio("Vakacoin", total, !objectData["VakacoinAmount"] ? "0" : objectData["VakacoinAmount"], this.vakaValue);
-    this.portfolio.push(vaka);
+      var vaka = new Portfolio("Vakacoin", total, !objectData["VakacoinAmount"] ? "0" : objectData["VakacoinAmount"], this.vakaValue);
+      this.portfolio.push(vaka);
 
-    var btc = new Portfolio("Bitcoin", total, !objectData["BitcoinAmount"] ? "0" : objectData["BitcoinAmount"], this.btcValue);
-    this.portfolio.push(btc);
+      var btc = new Portfolio("Bitcoin", total, !objectData["BitcoinAmount"] ? "0" : objectData["BitcoinAmount"], this.btcValue);
+      this.portfolio.push(btc);
 
-    var eth = new Portfolio("Ethereum", total, !objectData["EthereumAmount"] ? "0" : objectData["EthereumAmount"], this.ethValue);
-    this.portfolio.push(eth);
+      var eth = new Portfolio("Ethereum", total, !objectData["EthereumAmount"] ? "0" : objectData["EthereumAmount"], this.ethValue);
+      this.portfolio.push(eth);
 
-    this.doughnutChartData = [this.vakaValue, this.btcValue, this.ethValue];
+      this.doughnutChartData = [this.vakaValue, this.btcValue, this.ethValue];
+    }
   }
 
   // Doughnut
