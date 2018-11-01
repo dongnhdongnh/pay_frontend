@@ -8,7 +8,14 @@ export class PaginationService {
     public limit: number = 8;
     public step: number = 2;
 
-    constructor() { }
+    constructor() {
+        this.isError = false;
+        this.isLoading = false;
+        this.total = 0;
+        this.offset = 0;
+        this.limit = 8;
+        this.step = 2;
+    }
 
     get size() {
         return Math.ceil(this.total / this.limit);

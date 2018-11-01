@@ -2,14 +2,18 @@
   (click)="onShowModalEditWithoutTwofa()">
   <i class="fa fa-pencil tx-13 tx-white"></i> Edit
 </button>
-<ngx-smart-modal #modalEditWithoutTwofa [identifier]="'modalEditWithoutTwofa'">
+<ngx-smart-modal #modalEditWithoutTwofa [identifier]="'modalEditWithoutTwofa'"
+  (onClose)="service.currentId= ''" (onOpen)="onReset(); getApi()">
   <form class="modal-content bd-0 tx-14">
     <div class="modal-header pd-y-20 pd-x-25">
-      <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Edit API Key</h6>
+      <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Edit API Key
+        Without Twofa </h6>
+      <h6 class="tx-14 mg-b-0 tx-inverse"> {{apiKey.keyApi}}</h6>
     </div>
     <!--Waiting for get api by id-->
     <div [hidden]="isGettingApi == false">
-      It is loading... <loading-button [isLoading]='isLoading'></loading-button>
+      Please waiting for get data...
+      <loading-component></loading-component>
     </div>
     <div class="modal-body pd-x-20 pd-y-5"
       [hidden]="isGettingApi === true || messageError != ''">
@@ -27,28 +31,28 @@
           <label class="ckbox">
             <input type="checkbox" [checked]="isBtcWallet"
               (change)="isBtcWallet= !isBtcWallet; changeWallet(false)">
-            <span>BTC Wallet (Primary)</span>
+            <span>BTC Wallet </span>
           </label>
         </div>
         <div class="col-sm-4" [hidden]="!apiAccess.hasVkc">
           <label class="ckbox">
             <input type="checkbox" [checked]="isVkcWallet"
               (change)="isVkcWallet= !isVkcWallet; changeWallet(false)">
-            <span>VKC Wallet (Primary)</span>
+            <span>VKC Wallet </span>
           </label>
         </div>
         <div class="col-sm-4" [hidden]="!apiAccess.hasEth">
           <label class="ckbox">
             <input type="checkbox" [checked]="isEthWallet"
               (change)="isEthWallet= !isEthWallet; changeWallet(false)" />
-            <span>ETH Wallet (Primary)</span>
+            <span>ETH Wallet </span>
           </label>
         </div>
         <div class="col-sm-4" [hidden]="!apiAccess.hasEos">
           <label class="ckbox">
             <input type="checkbox" [checked]="isEosWallet"
               (change)="isEosWallet= !isEosWallet; changeWallet(false)">
-            <span>EOS Wallet (Primary)</span>
+            <span>EOS Wallet </span>
           </label>
         </div>
         <div class="col-sm-4" [hidden]="!apiAccess.hasVkc_Vault">

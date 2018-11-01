@@ -1,0 +1,33 @@
+<span class="btn btn-secondary verified"
+  (click)="modalDeleteWithoutTwofa.open()">
+  <i class="fa fa-trash tx-13 tx-white"></i> Delete
+</span>
+
+<ngx-smart-modal #modalDeleteWithoutTwofa
+  [identifier]="'modalDeleteWithoutTwofa'"
+  (onClose)="service.currentId= ''">
+  <div class="modal-body tx-center pd-y-20 pd-x-20">
+    <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20
+      d-inline-block"></i>
+    <h4 class="tx-danger tx-semibold mg-b-20">Are You Sure?</h4>
+    <p class="mg-b-20 mg-x-20">
+      This permanently delete your api key, and cannot be undone.
+    </p>
+    <message-error-input [message]='messageError'></message-error-input>
+    <button #cancel
+      (click)="modalDeleteWithoutTwofa.close()"
+      [hidden]="true"
+      type="button"
+      class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
+      tx-medium">
+      Cancel
+    </button>
+
+    <button (click)="verify()" [disabled]="isLoading" type="button"
+      class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium
+      mg-b-20">
+      Delete
+      <loading-button [isLoading]='isLoading'></loading-button>
+    </button>
+  </div>
+</ngx-smart-modal>

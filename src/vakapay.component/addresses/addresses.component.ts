@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';   // Using Material Paginator
+import { WalletService } from 'services/wallet/wallet.service';
 
 export interface AddressElement {
   address: string;
@@ -27,8 +28,11 @@ export class AddressesComponent implements OnInit {
   title = 'angular-mat-table';
   displayedColumns: string[] = ['address', 'label', 'created', 'detail'];
   dataSource = new MatTableDataSource<AddressElement>(ELEMENT_DATA);
+  walletService: WalletService;
 
-  constructor() { }
+  constructor(walletService: WalletService) {
+    this.walletService = walletService;
+   }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -36,6 +40,13 @@ export class AddressesComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  // Create new address button onClick function
-
+  // onClick function of 'Create New Address' button
+  public onClickCreateNewWallet() {
+    try {
+      const tempData = {label: '', address: '3GiLC4weCamfEqaWFrHyoRykMXRfB4W1FP', created: 1 };
+      this.walletService.createWalletAddress(tempData);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }

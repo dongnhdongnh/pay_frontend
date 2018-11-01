@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 
 export class PaginationComponent {
-  @Input() service: any = { pages: [] };
+  @Input() service: any = { pages: [], size: 0 };
 
   changePage(page) {
     if (page === this.service.page && this.service.isLoading) return;

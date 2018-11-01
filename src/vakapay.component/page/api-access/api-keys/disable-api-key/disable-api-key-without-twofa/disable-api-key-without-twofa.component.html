@@ -1,0 +1,23 @@
+<span class="btn btn-secondary verified" (click)="onShowModalDisable()">
+  <i class="fa fa-cog tx-13 tx-white"></i> Disable
+</span>
+
+<ngx-smart-modal #modalVerifyDisableWithoutTwofa
+  [identifier]="'modalVerifyDisableWithoutTwofa'"
+  (onClose)="service.currentId= ''">
+  <div class="modal-body tx-center pd-y-20 pd-x-20">
+    <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20
+      d-inline-block"></i>
+    <h4 class="tx-danger tx-semibold mg-b-20">Are You Sure?</h4>
+    <p class="mg-b-20 mg-x-20">
+      This permanently disable your api key {{service.currentId}}.
+    </p>
+    <button type="button"
+      class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
+      tx-medium mg-b-20"
+      (click)="verify()"
+      [disabled]="isLoading">
+      <loading-button [isLoading]='isLoading'></loading-button>
+      Disable </button>
+  </div>
+</ngx-smart-modal>

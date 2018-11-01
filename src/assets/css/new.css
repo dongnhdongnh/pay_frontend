@@ -6,7 +6,6 @@
   background: url('/assets/images/backgrounds/bg-signin.jpg') center no-repeat;
   background-size: cover;
 }
-
 .resend-sms {
     color: #10a04a;
     cursor: pointer;
@@ -727,6 +726,9 @@ img.mini-icon {
 .bd-last td {
     border-bottom: 1px solid #dee2e6;
 }
+.bd-l {
+    border: 1px solid #868e96;
+}
 .recent {
     border-top: 1px solid #dee2e6;
     border-left: 1px solid #dee2e6;
@@ -1303,6 +1305,7 @@ img.mini-icon {
 }
 .mat-drawer-container {
   background-color: #E9ECEF !important;
+  color: #868ba1
 }
 .fa-pencil {
     color: #fff;

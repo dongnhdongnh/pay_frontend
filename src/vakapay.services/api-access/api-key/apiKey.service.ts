@@ -36,7 +36,7 @@ export class ApiKeyService extends PaginationService {
     get(data: any) {
         let operation = 'get api key by id';
         let api = this.getUrl;
-        return this.httpService.post(operation, api, data);
+        return this.httpService.post(operation, api, data, false);
     }
 
     edit(data: any) {
