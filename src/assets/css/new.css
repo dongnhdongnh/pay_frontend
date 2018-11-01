@@ -683,6 +683,7 @@ hr {
     display: block;
     text-align: center;
     color: #fff;
+    background: #0ba9d7 !important;
 }
 img.icon {
     width: 40px;
