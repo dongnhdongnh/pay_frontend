@@ -1,3 +1,4 @@
+import { UtilityFormat } from 'utility/utilityFormat';
 import { Model } from "model/Model";
 
 export class Account extends Model {
@@ -46,5 +47,11 @@ export class Account extends Model {
 
     get fullName() {
         return `${this.firstName} ${this.lastName}`;
+    }
+
+    set attributes(data: any) {
+        this._attributes = data;
+        let date = new Date(this.birthday);
+        this.birthday = UtilityFormat.formatDateText(date.getTime());
     }
 }

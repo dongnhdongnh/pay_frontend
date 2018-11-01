@@ -169,8 +169,4 @@ export class WalletService {
     // const api = this.url_createWallet;
     // return this.httpService.post(operation, api, data);
   }
-
-
-
-
 }
