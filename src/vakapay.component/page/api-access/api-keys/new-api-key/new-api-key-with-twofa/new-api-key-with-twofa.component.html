@@ -20,27 +20,27 @@
           <label class="ckbox">
             <input type="checkbox" [checked]="isBtcWallet" (change)="isBtcWallet= !isBtcWallet; changeWallet(false)"><span>BTC
               Wallet
-              (Primary)</span>
+              </span>
           </label>
         </div>
         <div class="col-sm-4" [hidden]="!apiAccess.hasVkc">
           <label class="ckbox">
             <input type="checkbox" [checked]="isVkcWallet" (change)="isVkcWallet= !isVkcWallet; changeWallet(false)"><span>VKC
               Wallet
-              (Primary)</span>
+              </span>
           </label>
         </div>
         <div class="col-sm-4" [hidden]="!apiAccess.hasEth">
           <label class="ckbox">
             <input type="checkbox" [checked]="isEthWallet" (change)="isEthWallet= !isEthWallet; changeWallet(false)" /><span>ETH
-              Wallet (Primary)</span>
+              Wallet </span>
           </label>
         </div>
         <div class="col-sm-4" [hidden]="!apiAccess.hasEos">
           <label class="ckbox">
             <input type="checkbox" [checked]="isEosWallet" (change)="isEosWallet= !isEosWallet; changeWallet(false)"><span>EOS
               Wallet
-              (Primary)</span>
+              </span>
           </label>
         </div>
         <div class="col-sm-4" [hidden]="!apiAccess.hasVkc_Vault">

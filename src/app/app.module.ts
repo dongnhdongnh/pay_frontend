@@ -21,14 +21,16 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   slidesPerView: 'auto'
 };
 
-import { MatButtonModule,
-         MatCheckboxModule,
-         MatMenuModule,
-         MatTableModule,
-         MatPaginatorModule,
-         MatTabsModule,
-         MatSidenavModule,
-         MatExpansionModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatMenuModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatTabsModule,
+  MatSidenavModule,
+  MatExpansionModule
+} from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ClipboardModule } from 'ngx-clipboard';
@@ -89,9 +91,9 @@ import { UpdateProfileComponent } from 'component/page/profile/update-profile/up
 import { ProfileComponent } from 'component/page/profile/profile.component';
 import { PreferencesComponent } from 'component/page/preferences/preferences.component';
 import { ObjectivesComponent } from './objectives/objectives.component';
-import { AddressesComponent } from '../vakapay.component/addresses/addresses.component';
-import { ReportsComponent } from '../vakapay.component/reports/reports.component';
-import { ReportFormComponent } from '../vakapay.component/report-form/report-form.component';
+import { AddressesComponent } from 'component/addresses/addresses.component';
+import { ReportsComponent } from 'component/reports/reports.component';
+import { ReportFormComponent } from 'component/report-form/report-form.component';
 import { NotificationComponent } from 'component/page/preferences/notification/notification.component';
 import { PreferenceComponent } from 'component/page/preferences/preference/preference.component';
 import { SecurityComponent } from 'component/page/security/security.component';
@@ -133,9 +135,6 @@ import { ShowApiKeyWithTwofaComponent }
 import { ShowApiKeyWithoutTwofaComponent }
   from 'component/page/api-access/api-keys/show-api-key/show-api-key-without-twofa/show-api-key-without-twofa.component';
 
-import { DeleteApiKeyComponent } from 'component/page/api-access/api-keys/delete-api-key/delete-api-key.component';
-import { EnableApiKeyComponent } from 'component/page/api-access/api-keys/enable-api-key/enable-api-key.component';
-import { DisableApiKeyComponent } from 'component/page/api-access/api-keys/disable-api-key/disable-api-key.component';
 import { QRCodeModule } from 'angularx-qrcode';
 
 import { EditApiKeyComponent } from 'component/page/api-access/api-keys/edit-api-key/edit-api-key.component';
@@ -151,6 +150,24 @@ import { NewApiKeyWithTwofaComponent }
   from 'component/page/api-access/api-keys/new-api-key/new-api-key-with-twofa/new-api-key-with-twofa.component';
 import { NewApiKeyWithoutTwofaComponent }
   from 'component/page/api-access/api-keys/new-api-key/new-api-key-without-twofa/new-api-key-without-twofa.component';
+
+import { DisableApiKeyComponent } from 'component/page/api-access/api-keys/disable-api-key/disable-api-key.component';
+import { DisableApiKeyWithTwofaComponent }
+  from 'component/page/api-access/api-keys/disable-api-key/disable-api-key-with-twofa/disable-api-key-with-twofa.component';
+import { DisableApiKeyWithoutTwofaComponent }
+  from 'component/page/api-access/api-keys/disable-api-key/disable-api-key-without-twofa/disable-api-key-without-twofa.component';
+
+import { EnableApiKeyComponent } from 'component/page/api-access/api-keys/enable-api-key/enable-api-key.component';
+import { EnableApiKeyWithTwofaComponent }
+  from 'component/page/api-access/api-keys/enable-api-key/enable-api-key-with-twofa/enable-api-key-with-twofa.component';
+import { EnableApiKeyWithoutTwofaComponent }
+  from 'component/page/api-access/api-keys/enable-api-key/enable-api-key-without-twofa/enable-api-key-without-twofa.component';
+
+import { DeleteApiKeyComponent } from 'component/page/api-access/api-keys/delete-api-key/delete-api-key.component';
+import { DeleteApiKeyWithTwofaComponent }
+  from 'component/page/api-access/api-keys/delete-api-key/delete-api-key-with-twofa/delete-api-key-with-twofa.component';
+import { DeleteApiKeyWithoutTwofaComponent }
+  from 'component/page/api-access/api-keys/delete-api-key/delete-api-key-without-twofa/delete-api-key-without-twofa.component';
 
 @NgModule({
   declarations: [
@@ -229,6 +246,12 @@ import { NewApiKeyWithoutTwofaComponent }
     PaginationComponent,
     NewApiKeyWithTwofaComponent,
     NewApiKeyWithoutTwofaComponent,
+    DisableApiKeyWithTwofaComponent,
+    DisableApiKeyWithoutTwofaComponent,
+    EnableApiKeyWithTwofaComponent,
+    EnableApiKeyWithoutTwofaComponent,
+    DeleteApiKeyWithTwofaComponent,
+    DeleteApiKeyWithoutTwofaComponent,
   ],
   imports: [
     BrowserModule,

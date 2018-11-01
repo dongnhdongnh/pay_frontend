@@ -15,7 +15,7 @@ import { ApiType } from 'model/api-access/ApiType';
 })
 export class EditApiKeyWithoutTwofaComponent {
 
-  apiKey: ApiKey = new ApiKey();
+  public apiKey: ApiKey;
 
   idEdit: string = '';
 
@@ -63,6 +63,7 @@ export class EditApiKeyWithoutTwofaComponent {
     public service: ApiKeyService,
   ) {
     this.apiAccess = apiAccessService.apiAccess;
+    this.apiKey = new ApiKey();
   }
 
   show(data: any = {}) {
@@ -85,14 +86,17 @@ export class EditApiKeyWithoutTwofaComponent {
     this.is_SEND_TRANSACTIONS = this.apiKey.has_SEND_TRANSACTIONS;
     this.is_USER_MAIL = this.apiKey.has_USER_MAIL;
     this.is_USER_READ = this.apiKey.has_USER_READ;
-
   }
 
   async getApi() {
     try {
       this.apiKey = new ApiKey();
       this.isGettingApi = true;
-      await Utility.sleep(1000);
+
+      while (this.service.currentId === '') {
+        await Utility.sleep(100);
+      }
+
       this.idEdit = this.service.currentId;
       this.service.currentId = '';
 
@@ -171,9 +175,10 @@ export class EditApiKeyWithoutTwofaComponent {
   }
 
   onShowModalEditWithoutTwofa() {
-    this.onReset();
-    this.ngxSmartModalService.getModal(this.modalName).open();//refresh list of api key    
-    this.getApi();
+    this.isGettingApi = true;
+    this.ngxSmartModalService.getModal(this.modalName).open();//refresh list of api key   
+    // this.onReset();
+    // this.getApi(); 
   }
 
   onCloseModal() {
