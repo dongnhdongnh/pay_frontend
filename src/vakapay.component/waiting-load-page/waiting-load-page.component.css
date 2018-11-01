@@ -26,7 +26,7 @@
 .spinner>div {
   width: 18px;
   height: 18px;
-  background-color: #10a04a;
+  background-color: #0ba9d7;
   border-radius: 100%;
   display: inline-block;
   -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;

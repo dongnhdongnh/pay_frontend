@@ -7,7 +7,7 @@
   background-size: cover;
 }
 .resend-sms {
-    color: #10a04a;
+    color: #0ba9d7;
     cursor: pointer;
 }
 .ava-lock {
@@ -82,7 +82,7 @@
       margin: 0 auto;
       width: 15%;
       height: 15%;
-      background-color: #10a04a;
+      background-color: #0ba9d7;
       border-radius: 100%;
       -webkit-animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
               animation: sk-circleBounceDelay 1.2s infinite ease-in-out both; }
@@ -257,11 +257,11 @@
     border-radius: 5px;
 }
 .bg-green {
-    background: #10a04a;
+    background: #0ba9d7;
     color: #fff;
 }
 .sms .input-group-addon {
-    background: #10a04a;
+    background: #0ba9d7;
     color: #fff;
 }
 .sms .op-6 {
@@ -271,7 +271,7 @@
     background: #0a7937;
 } */
 .tx-green {
-    color: #10a04a;
+    color: #0ba9d7;
 }
 .port {
     position: absolute;
@@ -285,7 +285,7 @@
     margin-top: -15px;
 }
 .bg-vkc {
-    background: #10a04a;
+    background: #0ba9d7;
 }
 .bg-eos {
     background: #0071bd;
@@ -468,7 +468,7 @@ a:active, button:active, a:focus, button:focus {
     background: #0ba9d7;
 }
 .bd-green {
-    border-color: #10a04a !important;
+    border-color: #0ba9d7 !important;
 }
 .wd-480 {
     width: 480px;
@@ -527,8 +527,8 @@ hr {
     padding: 30px;
 }
 .inputfile + label.if-outline-green {
-    border: 2px solid #10a04a;
-    color: #10a04a;
+    border: 2px solid #0ba9d7;
+    color: #0ba9d7;
 }
 .minichart {
     margin-top: 10px;
@@ -570,7 +570,7 @@ hr {
 }
 .chart-vkc {
     stroke-width: 1.7;
-    stroke: #10a04a;
+    stroke: #0ba9d7;
     pointer-events: none;
 }
 .chart-btc {
@@ -589,13 +589,13 @@ hr {
     pointer-events: none;
 }
 .tx-rise {
-    color: #10a04a;
+    color: #0ba9d7;
 }
 .tx-down {
     color: #cc2243;
 }
 /* .tx-vkc {
-    color: #10a04a;
+    color: #0ba9d7;
 }
 .tx-btc {
     color: rgb(255, 177, 25);
@@ -607,7 +607,7 @@ hr {
     color: #0071bd;
 } */
 .cl-vkc {
-    background: #10a04a;
+    background: #0ba9d7;
 }
 .cl-btc {
     background: rgb(255, 177, 25);
@@ -1121,7 +1121,7 @@ img.mini-icon {
 }
 .active .coin-top {
     color: #fff;
-    background: #10a04a;
+    background: #0ba9d7;
 }
 .table tr td i img {
     width: 30px;
@@ -1405,7 +1405,7 @@ tbody .form-control {
     font-size: 20px;
 }
 .card-body p {
-    color: #10a04a;
+    color: #0ba9d7;
     font-weight: bold;
 }
 tbody .value {
@@ -1480,7 +1480,7 @@ input:focus {
     top: calc(50% - 22.5px);
 }
 .blur a:hover {
-    background: #10a04a;
+    background: #0ba9d7;
 }
 .blur {
     background: rgba(255,255,255,.9);
@@ -1592,12 +1592,12 @@ input:focus {
 .dropdown-content2 ul li {
     padding: 3px 5px;
     text-align: center;
-    color: #10a04a;
+    color: #0ba9d7;
     font-size: 12px;
 }
 .dropdown-content2 ul li:hover {
     color: #fff;
-    background: #10a04a;
+    background: #0ba9d7;
 }
 .dropdown-content2 ul {
     margin: 0 !important;
@@ -1686,7 +1686,7 @@ a {
     position: absolute;
     z-index: 100;
     background: #fff;
-    border-color: #10a04a;
+    border-color: #0ba9d7;
     border-radius: 3px;
     border-width: 0 0 2px;
     border-style: solid;
@@ -1705,10 +1705,10 @@ a {
     margin-left: 30px;
 }
 .menu #menu-web li.menu1 a:hover {
-    color: #10a04a;
+    color: #0ba9d7;
 }
 .menu #menu-web li.menu1 a.active {
-    color: #10a04a;
+    color: #0ba9d7;
 }
 .menu #menu-web li.menu1 a::after {
     content: '';
@@ -1719,7 +1719,7 @@ a {
     height: 2px;
     margin-top: 4px;
     transition: .3s all ease;
-    background: #10a04a;
+    background: #0ba9d7;
 }
 .menu #menu-web li.menu1 a:hover::after {
     left: 0;
@@ -1901,7 +1901,7 @@ ul, ol {
         width: 52px;
         margin-right: -25px;
         border-radius: 50%;
-        background: #10a04a;
+        background: #0ba9d7;
     }
     .navbar .navbar-inner .nav > li.signup::after {
         content: 'OR';
