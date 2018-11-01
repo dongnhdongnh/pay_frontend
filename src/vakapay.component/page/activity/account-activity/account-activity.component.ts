@@ -30,7 +30,6 @@ export class AccountActivityComponent {
   }
 
   delete(id) {
-    alert(id);
   }
 
 }
