@@ -300,7 +300,7 @@
 
 
                         <!-- <div *ngFor="let item of pageOfItems">                  -->
-                        <tr data-toggle="modal" data-target="#modaldemo1" *ngFor="let item of searchDatas | 
+                        <tr data-toggle="modal" data-target="#modaldemo1" *ngFor="let item of searchDatas |
                           paginate: { id: 'some_id',
                                       itemsPerPage: itemsPerPage,
                                       currentPage: currentPage,
@@ -780,7 +780,11 @@
           <div class="col-sm-12 mg-t-10 mg-sm-t-0">
             <div class="width-half-mini input-number">
               <div class="input-left bg-green">
+<<<<<<< HEAD
+                  <loading-button style="color:black" [isLoading]='loadingObject?.loadVND'></loading-button>
+=======
                 <loading-button style="color:black" [isLoading]='loadingObject?.loadVND'></loading-button>
+>>>>>>> b3e1be58e7f64d3d2746f9e5ff5670f861dc9e35
                 <span color="slate">VND</span>
               </div>
               <div class="input-right"><input type="number" class="form-control fc-outline-white" placeholder=""

@@ -1,0 +1,47 @@
+.br-profile {
+    margin-top: 20px;
+    background: #333d54;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.link-bottom {
+    float: left;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: row;
+}
+.link-bottom a {
+    padding: 10px;
+    flex: auto;
+    text-decoration: underline;
+}
+a.copyright {
+    color: #0286ad;
+}
+.br-footer a:hover, .br-footer a:focus {
+    color: #0286ad;
+}
+.copyright:hover {
+    text-decoration: underline;
+}
+.footer-right .show {
+    display: table;
+    margin: 0 auto;
+}
+@media only screen and (max-width: 640px){
+    .br-profile {
+        position: relative;
+    }
+    .br-footer {
+        letter-spacing: -0.5px;
+        text-align: center;
+    }
+    .footer-right {
+        margin-top: 5px !important;
+    }
+    .link-bottom {
+        margin-right: 0 !important;
+        width: 100%;
+    }
+}

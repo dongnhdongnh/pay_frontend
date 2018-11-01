@@ -115,7 +115,7 @@ body {
   font-size: 0.875rem;
   font-weight: normal;
   line-height: 1.5;
-  color: #868ba1;
+  color: #868ba1 !important;
   background-color: #E9ECEF;
 }
 
@@ -18870,8 +18870,9 @@ textarea.parsley-success:focus {
 
 .br-mainpanel {
   margin-left: 0;
-  /* margin-top: 30px; */
   transition: all 0.2s ease-in-out;
+  min-height: calc(100vh - 150px);
+  padding-bottom: 100px;
 }
 
 @media (min-width: 992px) {
@@ -19018,7 +19019,7 @@ textarea.parsley-success:focus {
 }
 
 .br-footer {
-  font-size: 12px;
+  font-size: 14px;
   padding: 20px 15px;
   width: 1400px;
   max-width: 100%;
@@ -19051,7 +19052,7 @@ textarea.parsley-success:focus {
 
 @media (min-width: 576px) {
   .br-footer {
-    padding: 30px 30px 20px;
+    padding: 12px 30px 12px;
   }
 }
 
