@@ -15,9 +15,9 @@
                   <tr *ngFor="let portfolio_ele of portfolio">
                     <td><i><img src="{{portfolio_ele.iconUrl}}" alt=""></i>{{portfolio_ele.networkName}}</td>
                     <td class="minper">
-                        <div class="progress">
-                            <div class="progress-bar cl-vkc wd-70p" role="progressbar"
-                                aria-valuenow="portfolio_ele.percent" aria-valuemin="0" aria-valuemax="100">{{portfolio_ele.percent}}%</div>
+                        <div>
+                          <progress-bar [progress]="portfolio_ele.percent" [color-degraded]="{'0': '#00cbcb',  '25': '#f9c3d3', '50': '#fd8c8e', '75':'#488aff'}">
+                          </progress-bar>
                         </div>
                     </td>
                     <td>{{portfolio_ele.amount}}</td>

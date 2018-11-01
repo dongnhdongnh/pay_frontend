@@ -42,6 +42,7 @@ export function highchartsModules() {
   // apply Highcharts Modules to this array
   return [stock, more];
 }
+import {ProgressBarModule} from "angular-progress-bar"
 
 //ng-select
 import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
@@ -263,6 +264,7 @@ import { DeleteApiKeyWithoutTwofaComponent }
     DeleteApiKeyWithoutTwofaComponent,
   ],
   imports: [
+    ProgressBarModule,
     ChartModule,
     BrowserModule,
     SwiperModule,
