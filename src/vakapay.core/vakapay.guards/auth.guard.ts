@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
             return false;
         }
 
-        this.lockScreen();
+        if (this.accountService.isCheckLock === false) this.lockScreen();
         return true;
     }
 

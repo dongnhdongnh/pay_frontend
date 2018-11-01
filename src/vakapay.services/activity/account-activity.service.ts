@@ -7,14 +7,20 @@ import { PaginationService } from 'services/pagination.service';
 @Injectable({ providedIn: 'root' })
 export class AccountActivityService extends PaginationService {
     public list: AccountActivity[];
+
     isError: boolean = false;
     isLoading: boolean = false;
-    public total: number = 0;
-    public offset: number = 0;
-    public limit: number = 8;
+
+    private deleteUrl = '/api/activity/account-activity/delete';
 
     constructor(private httpService: HttpService) {
         super();
+    }
+
+    delete(data: any) {
+        let operation = 'delete activity of account';
+        let api = this.deleteUrl;
+        return this.httpService.post(operation, api, data);
     }
 
     async getList() {
