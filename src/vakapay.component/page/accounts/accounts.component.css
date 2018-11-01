@@ -8,3 +8,17 @@
   .ng-invalid:not(form)  {
     border-left: 5px solid #da1212; /* red */
   }
+
+  .slick-slide {
+    margin: 0 27px;
+  }
+  /* the parent */
+  .slick-list {
+    margin: 0 -27px;
+  }
+
+  .br-mainpanel {
+    padding-bottom: 0;
+    min-height: 100%;
+  }
+  

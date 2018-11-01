@@ -1,0 +1,77 @@
+<span class="btn btn-secondary verified" (click)="onShowModalWithoutTwofa()">
+  <i class="fa fa-eye tx-13 tx-white"></i> Show
+</span>
+<ngx-smart-modal
+  #modalShowWithoutTwofa
+  [identifier]="'modalShowWithoutTwofa'"
+  (onOpen)="verify()">
+  <form class="modal-content bd-0 tx-14">
+    <div class="modal-header pd-y-20 pd-x-25">
+      <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">API Key Details</h6>
+    </div>
+    <div class="modal-body pd-x-20 pd-y-5">
+      <h6 class="grey tx-14">NOTE: Please store these credentials in a safe
+        place. For your protection, we will
+        not
+        show
+        them again. If you misplace your API key, you should delete this API key
+        and generate a new one.</h6>
+      <div class="col-sm-12 mg-t-30 mg-sm-t-0 mg-b-20">
+        <div [hidden]="isLoading == false">
+          It is loading... <loading-button [isLoading]='isLoading'></loading-button>
+        </div>
+        <message-error-input [message]='messageError'></message-error-input>
+        <div class="form-layout-6"
+          [hidden]="isLoading == true || messageError != ''">
+          <div class="row no-gutters">
+            <div class="col-4">
+              API Key
+            </div><!-- col-4 -->
+            <div class="col-8">
+              {{apiKey.keyApi}}
+            </div><!-- col-8 -->
+          </div><!-- row -->
+          <div class="row no-gutters">
+            <div class="col-4">
+              API Secret
+            </div><!-- col-4 -->
+            <div class="col-8">
+              {{apiKey.secret}}
+            </div><!-- col-8 -->
+          </div><!-- row -->
+          <div class="row no-gutters">
+            <div class="col-4">
+              Created at
+            </div><!-- col-4 -->
+            <div class="col-8">
+              {{apiKey._createdAt}}
+            </div><!-- col-8 -->
+          </div><!-- row -->
+          <div class="row no-gutters">
+            <div class="col-4">
+              Last updated at
+            </div><!-- col-4 -->
+            <div class="col-8">
+              {{apiKey._updatedAt}}
+            </div><!-- col-8 -->
+          </div><!-- row -->
+          <div class="row no-gutters">
+            <div class="col-4">
+              Status
+            </div><!-- col-4 -->
+            <div class="col-8">
+              <span class="btn btn-info verified" [hidden]="apiKey.status ===
+                0">
+                Enabled
+              </span>
+              <span class="btn btn-warning verified" [hidden]="apiKey.status ===
+                1">
+                Disabled
+              </span>
+            </div><!-- col-8 -->
+          </div><!-- row -->
+        </div>
+      </div>
+    </div>
+  </form>
+</ngx-smart-modal>

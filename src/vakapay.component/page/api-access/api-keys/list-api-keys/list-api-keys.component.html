@@ -1,0 +1,101 @@
+<div class="col-xl-12 mg-t-20 pd-10 tab-pane activity-table">
+  <div class="width-half">
+    <h5 class="dont mg-t-20" [hidden]="service.total> 0"><i class="fa
+        fa-info-circle tx-medium"></i>
+      You haven't created any API keys yet.
+    </h5>
+    <h5 class="dont mg-t-20" [hidden]="service.total === 0">
+      You have {{service.total}} API keys.
+    </h5>
+    <h6 class="grey tx-left tx-14">
+      API keys allow you to perform automated actions on your account with your
+      own software.
+    </h6>
+  </div>
+  <div class="width-half text-right">
+    <app-refresh [service]="service"></app-refresh>
+  </div>
+</div>
+<br>
+
+<mat-table #table [dataSource]="this.service.list" style="width: 100%;">
+  <ng-container matColumnDef="keyApi">
+    <mat-header-cell *matHeaderCellDef> Key </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span class="mobile-label">Key:</span>
+      {{element.keyApi.slice(0, 10)}}...
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span class="mobile-label"></span>
+      <span class="btn btn-info verified" [hidden]="element.status === 0">Active</span>
+      <span class="btn btn-warning verified" [hidden]="element.status === 1">
+        Not Active</span>
+      <span class="btn btn-warning verified" [hidden]="!element.isNew">New</span>
+      <span class="btn btn-secondary verified" [hidden]="!element.isEdited">Edited</span>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="wallets">
+    <mat-header-cell fxFlex="300px" *matHeaderCellDef> Accounts
+    </mat-header-cell>
+    <mat-cell fxFlex="300px" *matCellDef="let element">
+      <span class="mobile-label">Accounts:</span>
+      <span class="dropbtn btn btn-trans tx-11
+        tx-uppercase pd-y-7 pd-x-10 tx-mont mg-t-10 tx-green bd-green"
+        *ngFor="let wallet of element.listWallet">
+        {{wallet}}
+      </span>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="permissions">
+    <mat-header-cell *matHeaderCellDef> permissions </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <div style="min-width: 100%;">
+        <span class="mobile-label">Permissions</span>
+
+        <mat-expansion-panel (opened)="showPermission[element.id]= true"
+          (closed)="showPermission[element.id]= false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div class="dropbtn btn btn-trans tx-11
+                tx-uppercase pd-y-7 pd-x-10 tx-mont mg-t-10 tx-green bd-green">
+                <span>{{showPermission[element.id] ? 'Hidden' : 'Show'}}</span>
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="dropbtn btn btn-trans tx-11
+            tx-uppercase pd-y-7 pd-x-10 tx-mont mg-t-10 tx-green bd-green"
+            *ngFor="let permission of element.listPermission">
+            <span>{{apiAccessService.apiAccess.listApi[permission]}}</span>
+          </div>
+        </mat-expansion-panel>
+
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+    <mat-cell *matCellDef="let element"
+      (click)="onClick($event)"
+      [id]="element.id">
+      <div>
+        <span class="mobile-label"></span>
+        <app-show-api-key></app-show-api-key>
+        <app-edit-api-key></app-edit-api-key>
+        <app-enable-api-key [hidden]="element.status === 1"></app-enable-api-key>
+        <app-disable-api-key [hidden]="element.status === 0"></app-disable-api-key>
+        <app-delete-api-key></app-delete-api-key>
+      </div>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<app-pagination [service]="service"></app-pagination>

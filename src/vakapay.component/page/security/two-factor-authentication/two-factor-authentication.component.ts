@@ -15,11 +15,13 @@ export class TwoFactorAuthenticationComponent implements AfterViewInit {
   };
 
   modalName = 'modalTwoFA';
+  securityService: SecurityService;
 
   constructor(
     public ngxSmartModalService: NgxSmartModalService,
     private twofaEnableService: TwofaService,
-    public securityService: SecurityService) {
+    securityService: SecurityService) {
+    this.securityService = securityService;
   }
 
   ngAfterViewInit(): void {

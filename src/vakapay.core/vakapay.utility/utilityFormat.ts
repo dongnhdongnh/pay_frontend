@@ -156,8 +156,8 @@ export class UtilityFormat {
         }
     }
 
-    static formatDateBefore(time) {
-        var agoSeconds = new Date().getTime() / 1000 - time;
+    static formatDateBefore(second) {
+        var agoSeconds = new Date().getTime() / 1000 - second;
         var agoMinutes = agoSeconds / 60;
         if (agoMinutes < 1) {
             var value = parseInt(String(agoSeconds));
@@ -170,7 +170,7 @@ export class UtilityFormat {
             return `${value} minute${value === 1 ? '' : 's'} ago`;
         }
 
-        var agoDay = agoMinutes / 24;
+        var agoDay = agoHours / 24;
         if (agoDay < 1) {
             var value = parseInt(String(agoHours));
             return `${value} hour${value === 1 ? '' : 's'} ago`;
@@ -205,11 +205,11 @@ export class UtilityFormat {
         return format.replace(/h+/i, hh).replace(/i+/i, ii).replace(/s+/i, ss).replace(/d+/i, dd).replace(/m+/i, mm).replace(/y+/i, yy);
     }
 
-    static formatDateText(time) {
-        if (time == null)
+    static formatDateText(minisecond) {
+        if (minisecond == null)
             return null;
 
-        var date = new Date(time);
+        var date = new Date(minisecond);
 
         var ss = date.getSeconds();
         var ii = date.getMinutes();

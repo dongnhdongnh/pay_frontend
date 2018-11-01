@@ -1,15 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import 'angular2-toaster/toaster.css';
 @import "~@ng-select/ng-select/themes/material.theme.css";
 /**modal angular */
 
+@import '~swiper/dist/css/swiper.min.css';
 @import "~ngx-smart-modal/ngx-smart-modal.css";
 /**custom css */
 
 @import '/assets/css/bracket.css';
 @import '/assets/css/new.css';
+.card:hover {
+  -webkit-transform: translateY(-5px);
+  -ms-transform: translateY(-5px);
+  transform: translateY(-5px);
+  -webkit-box-shadow: 0 3px 38px rgba(170, 176, 177, .98);
+  box-shadow: 0 3px 38px rgba(170, 176, 177, .98);
+}
+
+.br-profile-page .card:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.btn {
+  margin-left: 5px;
+}
+
+.rickshaw_graph {
+  overflow: hidden;
+}
+
+.card2 {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.active>.card2 {
+  opacity: 1;
+}
+
+.active>.card {
+  border-top: 5px solid #0ba9d7;
+}
+
+.nsm-content {
+  margin: 1.75rem 0 !important;
+}
+
 [disabled] {
   cursor: not-allowed !important;
 }
@@ -22,25 +62,34 @@
   font-size: 13px !important;
 }
 
-#activity .mat-tab-label {
+.mat-tab-label-active .card {
+  border-top: 5px solid #0ba9d7;
+}
+
+#activity .mat-tab-label,
+#api-access .mat-tab-label {
   height: 100% !important;
   padding-left: 0 !important;
 }
 
-#activity .mat-tab-header {
+#activity .mat-tab-header,
+#api-access .mat-tab-header {
   border: 0;
 }
 
-#activity .mat-tab-group {
+#activity .mat-tab-group,
+#api-access .mat-tab-group {
   max-width: 100%;
   min-width: 100%;
 }
 
-#activity .mat-tab-list {
+#activity .mat-tab-list,
+#api-access .mat-tab-list {
   max-width: 100%;
 }
 
-#activity .mat-ink-bar {
+#activity .mat-ink-bar,
+#api-access .mat-ink-bar {
   visibility: hidden !important;
 }
 
@@ -48,6 +97,7 @@
   max-width: 100%;
 }
 
-#activity .d-table-cell {
+#activity .d-table-cell,
+#api-access .d-table-cell {
   max-width: 100%;
 }

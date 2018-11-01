@@ -1,6 +1,14 @@
 const PASSWORD_RESET_TOKEN_EXPIRE = 900;
 
 class Validate {
+    static isToday(second): boolean {
+        let today = new Date();
+        let dayCheck = new Date(second * 1000);
+        return dayCheck.getDate() === today.getDate() &&
+            dayCheck.getMonth() === today.getMonth() &&
+            dayCheck.getFullYear() === today.getFullYear();
+    }
+
     static isNumber(num) {
         return typeof num === 'number';
     }
@@ -137,7 +145,7 @@ export class UtilityValidate extends Validate {
     }
 
     static validateCode(code) {
-        this.validateString(code, 0, 100, 'Code');
+        this.validateString(code, 6, 100, 'Code');
 
         if (this.isAlphaNumericCharacter(code) === false) {
             throw new Error('Code is only alpha chatacters and numeric.');
@@ -150,6 +158,15 @@ export class UtilityValidate extends Validate {
 
         if (this.isNumericCharacter(code) === false) {
             throw new Error('Code is only numeric chatacters.');
+        }
+    }
+
+    static validateToken(token, maxLength = 6) {
+        if (!token) throw new Error('Token is required');
+        this.validateString(token, maxLength, maxLength, 'Code');
+
+        if (this.isNumericCharacter(token) === false) {
+            throw new Error('Token is only numeric chatacters.');
         }
     }
 

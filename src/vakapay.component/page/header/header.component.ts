@@ -7,7 +7,7 @@ import { AccountService } from 'services/account/account.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  @Input() device: any;
+  @Input() device: any = { isMobile: false };
   mAccount: any;
   mAccountSerive: any;
   constructor(mAccountSerive: AccountService) {
