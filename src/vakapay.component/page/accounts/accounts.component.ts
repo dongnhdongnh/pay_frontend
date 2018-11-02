@@ -334,8 +334,8 @@ export class AccountsComponent extends Root implements OnInit {
     this.updateSendObject(networkName);
     let sendWallet = this.getWalletByName(this.sendObject.networkName);
     console.log("sendwallet=========> " + JSON.stringify(sendWallet));
-    if (sendWallet == null)
-      return;
+    // if (sendWallet == null)
+    //   return;
 
     this.ngxSmartModalService.getModal('receiveCoin').open();
   }
@@ -343,7 +343,13 @@ export class AccountsComponent extends Root implements OnInit {
     try {
       let sendWallet = this.getWalletByName(this.sendObject.networkName);
       if (sendWallet == null)
-        return;
+      {
+        this.sendObject.address = {};
+        this.loadingObject.getAddress = false;
+        this.ngxSmartModalService.getModal('receiveCoin').close();
+        this.ngxSmartModalService.getModal('receiveCoinDetail').open();
+      }
+      //  return;
       this.loadingObject.getAddress = true;
       var result = await this.walletService.getAddress(sendWallet.Id, sendWallet.Currency);
       //  console.log("Address =" + result.message);
