@@ -44,31 +44,25 @@ export class LockScreenWithTwofaComponent implements AfterViewInit {
   }
 
   showModal() {
-    //test
-    // this.account.isLockScreen = 1;
     this.modal.open();
-    if (this.account.isLockScreen === 1) {
-      this.isValid = true;
-      this.nextStep();
-    }
   }
 
-  async requireSendCodePhone() {
-    try {
-      this.isResendingSms = true;
-      await this.service.requireSendCodePhone();
-      this.isResendingSms = false;
-      this.isValid = false;
-      this.codeElement.nativeElement.value = '';
-    } catch (error) {
-      this.isResendingSms = false;
-    }
-  }
+  // async requireSendCodePhone() {
+  //   try {
+  //     this.isResendingSms = true;
+  //     await this.service.requireSendCodePhone();
+  //     this.isResendingSms = false;
+  //     this.isValid = false;
+  //     this.codeElement.nativeElement.value = '';
+  //   } catch (error) {
+  //     this.isResendingSms = false;
+  //   }
+  // }
 
   nextStep() {
     if (this.isValid === false) return;
-    this.step++;
-    this.requireSendCodePhone();
+    this.step = 2;
+    // this.requireSendCodePhone();
     this.isValid = false;
   }
 
