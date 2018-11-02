@@ -8,6 +8,8 @@ export interface AddressElement {
   created: number;
 }
 
+let networkName: string;
+
 // Fixed data for table testing
 const ELEMENT_DATA: AddressElement[] = [
   {label: '', address: '3GiLC4weCamfEqaWFrHyoRykMXRfB4W1FP', created: 1 },
@@ -41,10 +43,10 @@ export class AddressesComponent implements OnInit {
   }
 
   // onClick function of 'Create New Address' button
-  public onClickCreateNewWallet() {
+  public async onClickCreateNewWallet() {
     try {
-      const tempData = {label: '', address: '3GiLC4weCamfEqaWFrHyoRykMXRfB4W1FP', created: 1 };
-      this.walletService.createWalletAddress(tempData);
+      // tslint:disable-next-line:prefer-const
+      let result = await this.walletService.createWalletAddress(networkName);
     } catch (error) {
       console.log(error);
     }
