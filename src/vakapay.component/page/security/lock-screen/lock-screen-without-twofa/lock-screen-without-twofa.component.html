@@ -1,0 +1,60 @@
+<h6 class="br-section-label tx-green"><i class="fa fa-lock"></i> Lock screen</h6>
+<hr>
+<div class="row mg-t-20 mg-x-0" [hidden]="account.isLockScreen !== 0">
+  <label class="col-sm-4 form-control-label"> Set your Lockscreen Password:</label>
+  <div class="col-sm-8 mg-l-auto">
+    <div class="form-layout-footer">
+      <a (click)="modalConfigLockScreenWithoutTwofa.open()"
+        class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
+        tx-medium">
+        Set Lockscreen</a>
+    </div>
+  </div>
+</div>
+<div class="row mg-t-20 mg-x-0" [hidden]="account.isLockScreen !== 1">
+  <label class="col-sm-4 form-control-label"> -Disable your Lockscreen Password:</label>
+  <div class="col-sm-8 mg-l-auto">
+    <div class="form-layout-footer">
+      <a
+        (click)="modalConfigLockScreenWithoutTwofa.open()"
+        class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
+        tx-medium">
+        Disable</a>
+    </div>
+  </div>
+</div>
+
+<ngx-smart-modal #modalConfigLockScreenWithoutTwofa
+  [identifier]="'modalConfigLockScreenWithoutTwofa'">
+  <form class="modal-content bd-0 tx-14" [hidden]="step != 1">
+    <div class="modal-header pd-y-20 pd-x-25">
+      <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">
+        Set Lockscreen Password
+      </h6>
+    </div>
+    <div class="modal-body pd-25">
+      <div class="row">
+        <label class="col-sm-12 form-control-label"> Set password:
+          <i class="tx-danger">*</i></label>
+        <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+          <input #password (keyup)="onPassword($event)" type="password"
+            class="form-control">
+          <message-error-input [message]='messageErrorPassword'></message-error-input>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer step">
+      <button #cancel (click)="modalConfigLockScreenWithoutTwofa.close()"
+        type="button" class="btn btn-secondary tx-11
+        tx-uppercase pd-y-12 pd-x-25 tx-mont
+        tx-medium">
+        Cancel
+      </button>
+      <button [disabled]="!isValid || isLoading" (click)="complete()" class="btn
+        bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
+        tx-medium">
+        Complete <loading-button [isLoading]='isLoading'></loading-button>
+      </button>
+    </div>
+  </form>
+</ngx-smart-modal>

@@ -28,9 +28,4 @@ export class AccountActivityComponent {
   refresh() {
     this.service.getList();
   }
-
-  delete(id) {
-    alert(id);
-  }
-
 }

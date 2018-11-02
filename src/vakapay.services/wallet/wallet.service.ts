@@ -169,8 +169,4 @@ export class WalletService {
     const api = this.url_createWallet + '?networkName=' + networkName;
     return this.httpService.post(operation, api, networkName);
   }
-
-
-
-
 }

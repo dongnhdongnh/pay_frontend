@@ -1,5 +1,5 @@
 export class Model {
-    set attributes(data) {
+    set _attributes(data) {
         var model = this;
         var listKeyModel = Object.keys(model);
         var listKeyData = Object.keys(data);
@@ -16,6 +16,10 @@ export class Model {
                 model[key] = value;
             }
         });
+    }
+
+    set attributes(data) {
+        this._attributes = data;
     }
 
     set attributesLower(data) {

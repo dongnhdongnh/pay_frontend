@@ -103,7 +103,6 @@ import { TwofaOptionsComponent } from 'component/page/security/two-factor-authen
 import { SessionActiveComponent } from 'component/page/activity/session-active/session-active.component';
 import { AccountActivityComponent } from 'component/page/activity/account-activity/account-activity.component';
 import { CloseAccountComponent } from 'component/page/security/close-account/close-account.component';
-import { LockScreenConfigComponent } from 'component/page/security/lock-screen/lock-screen.component';
 import { ApiAccessComponent } from 'component/page/api-access/api-access.component';
 
 import { AccountsComponent } from 'component/page/accounts/accounts.component';
@@ -122,7 +121,6 @@ import { RefreshComponent } from 'component/refresh/refresh.component';
 import { ButtonDeleteComponent } from 'component/button-delete/button-delete.component';
 import { WaitingLoadPageComponent } from 'component/waiting-load-page/waiting-load-page.component';
 import { ResendSmsComponent } from 'component/resend-sms/resend-sms.component';
-import { LockScreenComponent } from 'component/lock-screen/lock-screen.component';
 import { BuyWidgetsComponent } from 'component/page/api-access/buy-widgets/buy-widgets.component';
 import { ApiKeysComponent } from 'component/page/api-access/api-keys/api-keys.component';
 import { Oauth2AppComponent } from 'component/page/api-access/oauth2-app/oauth2-app.component';
@@ -168,6 +166,15 @@ import { DeleteApiKeyWithTwofaComponent }
   from 'component/page/api-access/api-keys/delete-api-key/delete-api-key-with-twofa/delete-api-key-with-twofa.component';
 import { DeleteApiKeyWithoutTwofaComponent }
   from 'component/page/api-access/api-keys/delete-api-key/delete-api-key-without-twofa/delete-api-key-without-twofa.component';
+
+import { LockScreenComponent } from 'component/lock-screen/lock-screen.component';
+
+import { LockScreenConfigComponent }
+  from 'component/page/security/lock-screen/lock-screen.component';
+import { LockScreenWithTwofaComponent }
+  from 'component/page/security/lock-screen/lock-screen-with-twofa/lock-screen-with-twofa.component';
+import { LockScreenWithoutTwofaComponent }
+  from 'component/page/security/lock-screen/lock-screen-without-twofa/lock-screen-without-twofa.component';
 
 @NgModule({
   declarations: [
@@ -252,6 +259,8 @@ import { DeleteApiKeyWithoutTwofaComponent }
     EnableApiKeyWithoutTwofaComponent,
     DeleteApiKeyWithTwofaComponent,
     DeleteApiKeyWithoutTwofaComponent,
+    LockScreenWithTwofaComponent,
+    LockScreenWithoutTwofaComponent,
   ],
   imports: [
     BrowserModule,
