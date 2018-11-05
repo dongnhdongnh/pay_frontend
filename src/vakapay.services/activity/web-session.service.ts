@@ -29,7 +29,7 @@ export class WebSessionService {
 
             this.isError = false;
             var list = new ListWebSession();
-            list.list = result.data;
+            list.list = result.data.List;
             list.format();
             this.list = list.list;
             return;

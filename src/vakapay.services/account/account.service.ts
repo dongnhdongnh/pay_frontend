@@ -14,7 +14,7 @@ export class AccountService {
     private urlApi: string;
 
     public mAccount: Account;
-    public currentRouter = '/';
+    public currentRouter = '/dashboard';
     public isGet: boolean = false;
     public isCheckLock: boolean = false;
 

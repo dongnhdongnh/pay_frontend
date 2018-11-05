@@ -58,9 +58,13 @@ export class LockScreenComponent {
 
       //Check result
       if (Utility.isError(result)) return;
-      
-      this.router.navigate([this.accountService.currentRouter]);
-      return;
+
+      //set unlock success
+      this.accountService.isCheckLock = true;
+
+      let currentRouter = this.accountService.currentRouter;
+      let link = ['/account-is-lock', '/'].includes(currentRouter) ? 'dashboard' : currentRouter;
+      return this.router.navigate([link]);
     } catch (error) {
       this.isLoading = false;
     }

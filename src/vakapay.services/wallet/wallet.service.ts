@@ -21,7 +21,7 @@ export class WalletService {
   url_requiteSMSCode = '/api/twofa/transaction/require-send-code-phone'
   // url_verifyCode = 'api/twofa/transaction/verify-code'
   url_sendTransactions = '/api/wallet/sendTransactions'
-  url_createWallet = '/api/wallet/create-new'
+  url_createWallet = '/api/tools/create-addresses'
 
   // Status
   isLoading = false;
@@ -162,11 +162,11 @@ export class WalletService {
     //  return this.isETHAddress(address);
   }
 
-  createWalletAddress(data: any) {
-    console.log('New Wallet created!\n' + data);
-    this.isLoading = true;
-    // const operation = 'create new wallet';
-    // const api = this.url_createWallet;
-    // return this.httpService.post(operation, api, data);
+  createWalletAddress(networkName: string): Promise<ResultObject> {
+    // console.log('New Wallet created!\n' + networkName);
+    // this.isLoading = true;
+    const operation = 'create new wallet';
+    const api = this.url_createWallet + '?networkName=' + networkName;
+    return this.httpService.post(operation, api, networkName);
   }
 }
