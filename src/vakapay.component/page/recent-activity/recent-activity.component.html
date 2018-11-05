@@ -4,8 +4,12 @@
       Activity</h6>
   </div>
   <div class="col-xs-12">
-    <div [hidden]="activities && activities.length > 0 && !isLoading"> No recent activity</div>
-    <loading-button [isLoading]='isLoading'></loading-button>
+    <div [hidden]="activities.length > 0 || isLoading"> No recent activity</div>
+    <i [hidden]="!isLoading" class="fa fa-spinner fa-spin" style="font-size: 30px;
+      position: absolute;
+      top: 20px;
+      right:20px;color: #03aba7">
+    </i>
     <div class="bd-gray-300 table-responsive table-recent" [hidden]="!activities || activities.length === 0">
       <table class="table table-hover mg-b-0 table-fix">
         <tbody>
