@@ -4,6 +4,7 @@
         <h6 class="br-section-label tx-green"><i class="fa fa-line-chart"></i> Price Chart</h6>
     </div>
     <div class="col-12 chart mg-t-20 tab-content">
+      <loading-button [isLoading]='isLoading'></loading-button>
       <mat-tab-group headerPosition="below">
         <mat-tab label="Vakacoin">
             <div style="display: block;">

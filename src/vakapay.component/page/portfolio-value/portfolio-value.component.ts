@@ -13,6 +13,7 @@ export class PortfolioValueComponent implements OnInit {
   private apiUrl = '';
   data = [];
   stock: StockChart;
+  isLoading = true;
 
   constructor(private httpService: HttpService, configService: ConfigService) {
     this.configService = configService;
@@ -66,6 +67,7 @@ export class PortfolioValueComponent implements OnInit {
         this.data.push(temp);
       });
     }
+    this.isLoading = false;
   }
 
 }

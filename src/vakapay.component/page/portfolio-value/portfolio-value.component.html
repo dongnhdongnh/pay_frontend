@@ -1,17 +1,17 @@
 <div class="bg-white rounded overflow-hidden no-padding h-fix">
-    <div class="overflow-hidden no-padding">
-      <div class="pos-rel pd-20 d-inline-block">
-        <div class="col-md-5 col-sm-4 col-xs-12">
-          <h6 class="br-section-label mg-b-0 tx-green"><i class="fa fa-money"></i> Your
-            Portfolio Value</h6>
-          <h4 class="tx-value">{{portfolioValue}}</h4>
-        </div>
-        <div [hidden]="data && data.length > 0">
-          You don't have any.
-        </div>
-        <div class="col-12 chart mg-t-20 tab-content" [hidden]="!data || data.length === 0">
-            <div [chart]="stock" style="height: 300px; width: 600px"></div>
-        </div>
-      </div>
+  <div class="pos-rel pd-20 d-inline-block">
+    <!-- <div class="pos-rel pd-20 d-inline-block"> -->
+    <div class="col-md-5 col-sm-4 col-xs-12">
+      <h6 class="br-section-label mg-b-0 tx-green"><i class="fa fa-money"></i> Your Portfolio Value</h6>
+      <h4 class="tx-value">{{portfolioValue}}</h4>
     </div>
+    <div class="col-12 chart mg-t-20 tab-content" [hidden]="!data || data.length === 0">
+      <div [hidden]="data && data.length > 0 && !isLoading">
+        You don't have any.
+      </div>
+      <loading-button [isLoading]='isLoading'></loading-button>
+      <div [chart]="stock" style="height: 300px; width: 600px"></div>
+    </div>
+    <!-- </div> -->
   </div>
+</div>

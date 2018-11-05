@@ -13,6 +13,7 @@ export class RecentActivityComponent implements OnInit, AfterViewInit {
     modal: {}
   };
   modalName = 'modalActivityDetail';
+  isLoading = true;
 
   ngAfterViewInit(): void {
     this.activity = {
@@ -58,6 +59,7 @@ export class RecentActivityComponent implements OnInit, AfterViewInit {
         this.activities.push(activity);
       });
     }
+    this.isLoading = false;
   }
 
 }

@@ -11,7 +11,7 @@ import { StockChart } from 'angular-highcharts';
 export class PriceComponent implements OnInit {
   private apiUrl = '';
   configService: ConfigService;
-
+  isLoading = true;
 
   VkcStock: StockChart;
   BtcStock: StockChart;
@@ -81,7 +81,7 @@ export class PriceComponent implements OnInit {
           break;
       }
     }
-    
+    this.isLoading = false;
   }
   
 }

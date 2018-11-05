@@ -4,7 +4,8 @@
       Activity</h6>
   </div>
   <div class="col-xs-12">
-    <div [hidden]="activities && activities.length > 0"> No recent activity</div>
+    <div [hidden]="activities && activities.length > 0 && !isLoading"> No recent activity</div>
+    <loading-button [isLoading]='isLoading'></loading-button>
     <div class="bd-gray-300 table-responsive table-recent" [hidden]="!activities || activities.length === 0">
       <table class="table table-hover mg-b-0 table-fix">
         <tbody>

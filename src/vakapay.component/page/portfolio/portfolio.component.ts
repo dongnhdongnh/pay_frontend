@@ -14,6 +14,7 @@ export class PortfolioComponent implements OnInit {
   account: Account;
   configService: ConfigService;
   private apiUrl = '';
+  isLoading = true;
 
   constructor(accountService: AccountService, private httpService: HttpService, configService: ConfigService) {
     this.configService = configService;
@@ -57,6 +58,7 @@ export class PortfolioComponent implements OnInit {
 
       this.doughnutChartData = [this.vakaValue, this.btcValue, this.ethValue];
     }
+    this.isLoading = false;
   }
 
   // Doughnut
