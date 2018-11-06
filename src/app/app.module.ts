@@ -120,7 +120,6 @@ import { AccountsComponent } from 'component/page/accounts/accounts.component';
 // TwofaVerify
 // tslint:disable-next-line:max-line-length
 import { TwofaVerifyCodeComponentWithPhoneComponent } from 'component/page/security/two-factor-authentication/enable/enable-twofa/twofa-verify-code-with-phone.component';
-import { TwofaOptionsVerifyWithPhoneComponent } from 'component/page/security/two-factor-authentication/twofa-options/twofa-options-verify-with-phone/twofa-options-verify-with-phone.component';
 import { DisableTwofaComponent } from 'component/page/security/two-factor-authentication/disable-twofa/disable-twofa.component';
 import { CloseAccountVerifyPasswordComponent } from 'component/page/security/close-account/close-account-verify-password/close-account-verify-password.component';
 import { CloseAccountVerifyPhoneComponent } from 'component/page/security/close-account/close-account-verify-phone/close-account-verify-phone.component';
@@ -241,7 +240,6 @@ import { CustomTwoFactorAuthenticateWithGoogleAuthenticateComponent }
     CloseAccountVerifyPasswordComponent,
     CloseAccountVerifyPhoneComponent,
     LoadingButtonComponent,
-    TwofaOptionsVerifyWithPhoneComponent,
     ActivityComponent,
     ConfirmedDevicesComponent,
     ThirdPartyAppComponent,
