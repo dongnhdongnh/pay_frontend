@@ -35,7 +35,17 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ClipboardModule } from 'ngx-clipboard';
-// ng-select
+import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
+import stock from 'highcharts/modules/stock.src';
+import more from 'highcharts/highcharts-more.src';
+
+export function highchartsModules() {
+  // apply Highcharts Modules to this array
+  return [stock, more];
+}
+import {ProgressBarModule} from "angular-progress-bar"
+
+//ng-select
 import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 
 // modal in angular
@@ -277,6 +287,8 @@ import { CustomTwoFactorAuthenticateWithGoogleAuthenticateComponent }
     CustomTwoFactorAuthenticateWithGoogleAuthenticateComponent,
   ],
   imports: [
+    ProgressBarModule,
+    ChartModule,
     BrowserModule,
     SwiperModule,
     QRCodeModule,
@@ -320,9 +332,6 @@ import { CustomTwoFactorAuthenticateWithGoogleAuthenticateComponent }
     NgxSmartModalModule.forRoot(),
 
     HttpClientModule,
-    // HttpClientInMemoryWebApiModule.forRoot(
-    //   InMemoryDataService, { dataEncapsulation: false }
-    // ),
     NgxPaginationModule
   ],
   providers: [
@@ -331,7 +340,8 @@ import { CustomTwoFactorAuthenticateWithGoogleAuthenticateComponent }
       useValue: {
         notFoundText: 'Custom not found'
       }
-    }
+    },
+    { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules }
   ],
   bootstrap: [AppComponent]
 })

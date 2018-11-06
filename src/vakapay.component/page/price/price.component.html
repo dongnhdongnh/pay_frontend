@@ -1,69 +1,29 @@
 <div class="bg-white rounded overflow-hidden no-padding h-fix">
   <div class="pos-rel pd-20 d-inline-block">
+    <i [hidden]="!isLoading" class="fa fa-spinner fa-spin" style="font-size: 30px;
+      position: absolute;
+      top: 20px;
+      right:20px;color: #03aba7">
+    </i>
     <div class="col-md-4 col-sm-4 col-xs-12">
-      <h6 class="br-section-label">Price Chart</h6>
-    </div>
-    <div class="col-md-8 col-sm-8 col-xs-12">
-      <ul class="nav nav-tabs nav-tabs-style-1 nav-justified tx-13" role="tablist">
-        <li class="nav-item">
-          <a [class]="isDay ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('day')">Day</a>
-        </li>
-        <li class="nav-item">
-          <a [class]="isWeek ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('week')">Week</a>
-        </li>
-        <li class="nav-item">
-          <a [class]="isMonth ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('month')">Month</a>
-        </li>
-        <li class="nav-item">
-          <a [class]="isYear ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('year')">Year</a>
-        </li>
-        <li class="nav-item">
-          <a [class]="isAll ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('all')">All</a>
-        </li>
-      </ul>
+        <h6 class="br-section-label tx-green"><i class="fa fa-line-chart"></i> Price Chart</h6>
     </div>
     <div class="col-12 chart mg-t-20 tab-content">
+      
       <mat-tab-group headerPosition="below">
         <mat-tab label="Vakacoin">
             <div style="display: block;">
-              <canvas baseChart width="400%" height="170%"
-                [datasets]="Data_VKC"
-                [labels]="Labels_VKC"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)">
-              </canvas>
+              <div [chart]="VkcStock" style="height: 270px; width: 600px"></div>
             </div>
         </mat-tab>
         <mat-tab label="Bitcoin">
             <div style="display: block;">
-              <canvas baseChart width="400%" height="170%"
-                [datasets]="Data_BTC"
-                [labels]="Labels_BTC"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)">
-              </canvas>
+              <div [chart]="BtcStock" style="height: 270px; width: 600px"></div>
             </div>
         </mat-tab>
         <mat-tab label="Ethereum">
             <div style="display: block;">
-              <canvas baseChart width="400%" height="170%"
-                [datasets]="Data_ETH"
-                [labels]="Labels_ETH"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)">
-              </canvas>
+              <div [chart]="EthStock" style="height: 270px; width: 600px"></div>
             </div>
         </mat-tab>
       </mat-tab-group>

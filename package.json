@@ -30,6 +30,7 @@
     "angular-font-awesome": "^3.1.2",
     "angular-in-memory-web-api": "^0.6.1",
     "angular-oauth2-oidc": "^4.0.3",
+    "angular-progress-bar": "^1.0.8",
     "angular-svg-round-progressbar": "^2.0.0",
     "angular-tabs-component": "^1.0.6",
     "angular2-jwt-simple": "^0.5.5",
