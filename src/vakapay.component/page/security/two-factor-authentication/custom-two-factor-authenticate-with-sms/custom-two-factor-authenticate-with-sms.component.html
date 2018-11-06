@@ -80,8 +80,8 @@
       <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center
         img-center">
         <qrcode [qrdata]="qrdata" [size]="150" [level]="'M'"
-          [hidden]="isGetting"></qrcode>
-        <span [hidden]="!isGetting">It is getting secret for twofa. Please
+          [hidden]="isLoading"></qrcode>
+        <span [hidden]="!isLoading">It is getting secret for twofa. Please
           waitting...</span>
       </i>
       <div class="text-center">

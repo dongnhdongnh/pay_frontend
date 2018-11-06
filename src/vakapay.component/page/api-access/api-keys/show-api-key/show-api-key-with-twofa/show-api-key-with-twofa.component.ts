@@ -36,6 +36,10 @@ export class ShowApiKeyWithTwofaComponent {
     this.mAccount = accountService.mAccount;
   }
 
+  requireSendCodePhone() {
+
+  }
+
   onShowModal() {
     this.apiKey = new ApiKey();
     this.ngxSmartModalService.getModal('modalShowVerify').open();
