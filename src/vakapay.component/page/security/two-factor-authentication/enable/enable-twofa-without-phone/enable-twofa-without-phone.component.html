@@ -1,52 +1,11 @@
-<a (click)="modalTwoFA.open()"
+<a (click)="modalTwoFAWithoutPhone.open()"
   class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">
   +Enable Authenticator
 </a>
 
-<ngx-smart-modal #modalTwoFA [identifier]="'modalTwoFA'">
+<ngx-smart-modal #modalTwoFAWithoutPhone
+  [identifier]="'modalTwoFAWithoutPhone'" (onOpen)="getSecret()">
   <form class="modal-content bd-0 tx-14" [hidden]="step !== 1">
-    <div class="modal-header pd-y-20 pd-x-25">
-      <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">
-        <span>Enable</span> Authenticator Support</h6>
-    </div>
-    <div class="modal-body pd-25">
-      <div class="row">
-        <label class="col-sm-12 form-control-label">
-          Enter the 2-step verification code provided by SMS to your phone:
-          <i class="tx-danger">*</i>
-        </label>
-        <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-          <div class="input-group sms">
-            <span class="input-group-addon">
-              <i class="fa fa-phone tx-16 lh-0 op-6"></i></span>
-            <input #code (keyup)="onCode($event)" type="text"
-              class="form-control fc-outline-white half" maxlength="6"
-              placeholder="000000">
-          </div>
-          <span class="resend">
-            <message-error-input [message]='messageErrorCode'></message-error-input>
-            <br>
-            Didn't receive the verification code? <br>
-            <a class="resend-sms" (click)="requireSendCodePhone()">Re-send SMS</a>
-          </span>
-        </div>
-      </div><!-- row -->
-    </div>
-    <div class="modal-footer step">
-      <button (click)="cancel()" type="button" class="btn btn-secondary tx-11
-        tx-uppercase pd-y-12 pd-x-25
-        tx-mont tx-medium">
-        Cancel
-      </button>
-      <button (click)="verifySms()" [disabled]="!isValid||isLoading" class="btn
-        bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">
-        Continue
-        <loading-button [isLoading]='isLoading'></loading-button>
-      </button>
-    </div>
-  </form>
-
-  <form class="modal-content bd-0 tx-14" [hidden]="step !== 2">
     <div class="modal-header pd-y-20 pd-x-25">
       <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Two-Factor
         Authentication</h6>
@@ -54,7 +13,8 @@
     <div class="modal-body pd-x-20 pd-y-5">
       <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center
         img-center">
-        <qrcode [qrdata]="qrdata" [size]="150" [level]="'M'"></qrcode>
+        <qrcode [qrdata]="qrdata" [size]="150" [level]="'M'" [hidden]="isGetting"></qrcode>
+        <span [hidden]="!isGetting">It is getting secret for twofa. Please waitting...</span>
       </i>
       <div class="row mg-t-20 mg-b-20">
         <div class="col-sm-12 mg-t-10 mg-sm-t-0">
@@ -98,23 +58,26 @@
             <input #token (keyup)="onToken($event)" type="text"
               class="form-control fc-outline-white half" maxlength="6"
               placeholder="000000">
+          </div>
+          <div class="text-center">
             <message-error-input [message]='messageErrorToken'></message-error-input>
           </div>
         </div>
       </div>
     </div>
     <div class="modal-footer step">
-      <button (click)="cancel()" type="button" class="btn btn-secondary tx-11
+      <button (click)="modalTwoFAWithoutPhone.close(); cancel()" type="button"
+        class="btn btn-secondary tx-11
         tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">
         Cancel</button>
       <button (click)="onUpdate()" [disabled]="!isValid||isLoading" class="btn
         bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">
-        Countinue <loading-button [isLoading]='isLoading'></loading-button>
+        Enable <loading-button [isLoading]='isLoading'></loading-button>
       </button>
     </div>
   </form>
 
-  <form class="modal-content bd-0 tx-14" [hidden]="step !== 3">
+  <form class="modal-content bd-0 tx-14" [hidden]="step !== 2">
     <div class="modal-body pd-25">
       <div class="row">
         <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20
@@ -125,7 +88,8 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-success tx-11 tx-uppercase pd-y-12
-        pd-x-25 tx-mont tx-medium mg-l-auto mg-r-auto" (click)="cancel()">Close</button>
+        pd-x-25 tx-mont tx-medium mg-l-auto mg-r-auto"
+        (click)="modalTwoFAWithoutPhone.close();">Close</button>
     </div>
   </form>
 </ngx-smart-modal>

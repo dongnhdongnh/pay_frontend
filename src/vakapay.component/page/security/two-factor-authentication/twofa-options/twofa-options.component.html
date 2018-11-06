@@ -1,0 +1,84 @@
+<div class="row mg-t-30 mg-x-0">
+  <label class="col-sm-4 form-control-label"> Require verification code to send:</label>
+  <div class="col-sm-8 mg-l-auto">
+    <mat-radio-group class="example-radio-group"
+      [(ngModel)]="option">
+      <mat-radio-button class="example-radio-button" value="1"
+        (click)="change('1')">
+        Any amount of digital currency — <i class="tx-green tx-bold">Most secure</i>
+      </mat-radio-button>
+      <mat-radio-button class="example-radio-button" value="2"
+        (click)="change('2')">
+        Over 1.2000 BTC (42.7655 ETH) per day
+      </mat-radio-button>
+      <mat-radio-button class="example-radio-button" value="3"
+        (click)="change('3')">
+        Never — <i class="tx-red tx-bold">Least secure</i>
+      </mat-radio-button>
+    </mat-radio-group>
+    <div class="form-layout-footer">
+      <button
+        (click)="modalTwofaOptions.open(); mAccount.isTwoFactor === 2 ?
+        requireSendCodePhone() : !1"
+        [disabled]="!isChange"
+        class="btn bg-green"
+        type="button">
+        Save
+      </button>
+    </div>
+  </div>
+</div>
+
+<ngx-smart-modal #modalTwofaOptions [identifier]="'modalTwofaOptions'">
+  <form class="modal-content bd-0 tx-14">
+    <div class="modal-header pd-y-20 pd-x-25">
+      <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">
+        Enable Authenticator Support</h6>
+    </div>
+    <div class="modal-body pd-25">
+      <div class="row">
+        <label class="col-sm-12 form-control-label"
+          [hidden]="mAccount.isTwoFactor !== 2">
+          Enter the 2-step verification code provided by SMS to your phone:
+          <i class="tx-danger">*</i>
+        </label>
+        <label class="col-sm-12 form-control-label"
+          [hidden]="mAccount.isTwoFactor !== 1">
+          Please enter the 2-step verification code provided by your authen app:
+          <i class="tx-danger">*</i>
+        </label>
+        <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+          <div class="input-group sms">
+            <span class="input-group-addon"><i class="fa fa-phone tx-16 lh-0
+                op-6"></i></span>
+            <input #code (keyup)="onCode($event)" type="text"
+              class="form-control fc-outline-white half" maxlength="6"
+              placeholder="000000">
+          </div>
+          <span class="resend">
+            <message-error-input [message]='messageErrorCode'></message-error-input>
+          </span>
+          <span class="resend" [hidden]="mAccount.isTwoFactor !== 2">
+            <br>
+            Didn't receive the verification code? <br>
+            <a class="resend-sms" (click)="requireSendCodePhone()">Re-send SMS</a>
+          </span>
+        </div>
+  
+      </div><!-- row -->
+    </div>
+    <div class="modal-footer step">
+      <button (click)="cancel()" type="button" class="btn btn-secondary tx-11
+        tx-uppercase pd-y-12 pd-x-25
+        tx-mont tx-medium">
+        Cancel
+      </button>
+      <button (click)="onUpdate()" [disabled]="!isChange||!isValid||isLoading"
+        class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
+        tx-medium">
+        + Verify
+        <loading-button [isLoading]='isLoading'></loading-button>
+      </button>
+    </div>
+  </form>
+</ngx-smart-modal>

@@ -54,7 +54,8 @@ export class DisableTwofaComponent {
       }
 
       var dataPost = {
-        code: this.code
+        code: this.code,
+        token: this.code,
       };
 
       //send ajax

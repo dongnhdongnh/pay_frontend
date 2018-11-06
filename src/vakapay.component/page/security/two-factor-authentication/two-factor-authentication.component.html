@@ -2,25 +2,16 @@
   Authentication</h6>
 <hr>
 <div class="row mg-x-0">
-  <label class="col-sm-4 form-control-label"> Your two-factor method is: SMS</label>
+  <label class="col-sm-4 form-control-label"> Custom your two-factor method:</label>
   <div class="col-sm-8 mg-l-auto">
     <div class="form-layout-footer">
-      <a [hidden]="securityService.isEnableTwofa" (click)="openModal()"
-        class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
-        tx-medium">
-        +Enable Authenticator
-      </a>
-      <a [hidden]="!securityService.isEnableTwofa" (click)="openModal()"
-        class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
-        tx-medium">
-        -Disable Authenticator
-      </a>
+      <app-custom-two-factor-authenticate
+        [hidden]="mAccount.isTwoFactor !== 0"></app-custom-two-factor-authenticate>
+      <app-custom-two-factor-authenticate-with-google-authenticate
+        [hidden]="mAccount.isTwoFactor !== 1"></app-custom-two-factor-authenticate-with-google-authenticate>
+      <app-custom-two-factor-authenticate-with-sms
+        [hidden]="mAccount.isTwoFactor !== 2"></app-custom-two-factor-authenticate-with-sms>
     </div>
   </div>
 </div>
-
-<ngx-smart-modal #modalTwoFA [identifier]="'modalTwoFA'">
-  <app-enable-twofa [form]="form" [hidden]="securityService.isEnableTwofa"></app-enable-twofa>
-  <app-disable-twofa [form]="form" [hidden]="!securityService.isEnableTwofa"></app-disable-twofa>
-</ngx-smart-modal>
-<twofa-options [hidden]="!securityService.isEnableTwofa"></twofa-options>
+<twofa-options [hidden]="mAccount.isTwoFactor === 0"></twofa-options>

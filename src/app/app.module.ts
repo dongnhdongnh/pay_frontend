@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 // Import ReactiveFormsModule
 import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -99,7 +100,7 @@ import { PreferenceComponent } from 'component/page/preferences/preference/prefe
 import { SecurityComponent } from 'component/page/security/security.component';
 import { ChangePasswordComponent } from 'component/page/security/change-password/change-password.component';
 import { TwoFactorAuthenticationComponent } from 'component/page/security/two-factor-authentication/two-factor-authentication.component';
-import { TwofaOptionsComponent } from 'component/page/security/two-factor-authentication/enable/twofa-options/twofa-options.component';
+import { TwofaOptionsComponent } from 'component/page/security/two-factor-authentication/twofa-options/twofa-options.component';
 import { SessionActiveComponent } from 'component/page/activity/session-active/session-active.component';
 import { AccountActivityComponent } from 'component/page/activity/account-activity/account-activity.component';
 import { CloseAccountComponent } from 'component/page/security/close-account/close-account.component';
@@ -109,7 +110,7 @@ import { AccountsComponent } from 'component/page/accounts/accounts.component';
 // TwofaVerify
 // tslint:disable-next-line:max-line-length
 import { TwofaVerifyCodeComponentWithPhoneComponent } from 'component/page/security/two-factor-authentication/enable/enable-twofa/twofa-verify-code-with-phone.component';
-import { TwofaOptionsVerifyWithPhoneComponent } from 'component/page/security/two-factor-authentication/enable/twofa-options/twofa-options-verify-with-phone/twofa-options-verify-with-phone.component';
+import { TwofaOptionsVerifyWithPhoneComponent } from 'component/page/security/two-factor-authentication/twofa-options/twofa-options-verify-with-phone/twofa-options-verify-with-phone.component';
 import { DisableTwofaComponent } from 'component/page/security/two-factor-authentication/disable-twofa/disable-twofa.component';
 import { CloseAccountVerifyPasswordComponent } from 'component/page/security/close-account/close-account-verify-password/close-account-verify-password.component';
 import { CloseAccountVerifyPhoneComponent } from 'component/page/security/close-account/close-account-verify-phone/close-account-verify-phone.component';
@@ -175,6 +176,15 @@ import { LockScreenWithTwofaComponent }
   from 'component/page/security/lock-screen/lock-screen-with-twofa/lock-screen-with-twofa.component';
 import { LockScreenWithoutTwofaComponent }
   from 'component/page/security/lock-screen/lock-screen-without-twofa/lock-screen-without-twofa.component';
+import { EnableTwofaWithoutPhoneComponent }
+  from 'component/page/security/two-factor-authentication/enable/enable-twofa-without-phone/enable-twofa-without-phone.component';
+
+import { CustomTwoFactorAuthenticateComponent }
+  from 'component/page/security/two-factor-authentication/custom-two-factor-authenticate/custom-two-factor-authenticate.component';
+import { CustomTwoFactorAuthenticateWithSmsComponent }
+  from 'component/page/security/two-factor-authentication/custom-two-factor-authenticate-with-sms/custom-two-factor-authenticate-with-sms.component';
+import { CustomTwoFactorAuthenticateWithGoogleAuthenticateComponent }
+  from 'component/page/security/two-factor-authentication/custom-two-factor-authenticate-with-google-authenticate/custom-two-factor-authenticate-with-google-authenticate.component';
 
 @NgModule({
   declarations: [
@@ -261,6 +271,10 @@ import { LockScreenWithoutTwofaComponent }
     DeleteApiKeyWithoutTwofaComponent,
     LockScreenWithTwofaComponent,
     LockScreenWithoutTwofaComponent,
+    EnableTwofaWithoutPhoneComponent,
+    CustomTwoFactorAuthenticateComponent,
+    CustomTwoFactorAuthenticateWithSmsComponent,
+    CustomTwoFactorAuthenticateWithGoogleAuthenticateComponent,
   ],
   imports: [
     BrowserModule,
@@ -285,6 +299,7 @@ import { LockScreenWithoutTwofaComponent }
     MatPaginatorModule,
     MatSidenavModule,
     MatExpansionModule,
+    MatRadioModule,
     QRCodeModule,
     ClipboardModule,
 

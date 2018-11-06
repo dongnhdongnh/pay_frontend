@@ -5,11 +5,12 @@ import { TwofaService } from 'services/twofa/twofa.service';
 import { SecurityService } from 'services/security/security.service';
 
 @Component({
-  selector: 'app-enable-twofa-with-phone',
-  templateUrl: './twofa-verify-code-with-phone.component.html'
+  selector: 'app-enable-twofa-without-phone',
+  templateUrl: './enable-twofa-without-phone.component.html',
+  styleUrls: ['./enable-twofa-without-phone.component.css']
 })
-export class TwofaVerifyCodeComponentWithPhoneComponent {
-  @ViewChild('code') codeElement: ElementRef;
+export class EnableTwofaWithoutPhoneComponent {
+
   @ViewChild('token') tokenElement: ElementRef;
 
   //#region init variable
@@ -18,16 +19,15 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
   step: number = 1;
 
   //input
-  code = '';
   token: string = '';
   secret: string = '';
 
   //status
   isLoading = false;
+  isGetting = false;
   isValid = false;
 
   //message error
-  messageErrorCode = '';
   messageErrorToken = '';
 
   //service
@@ -45,18 +45,44 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
     this.qrdata = 'Your QR code data string';
   }
 
-  requireSendCodePhone() {
-    this.onReset();
-    this.twofaService.requireSendCodePhone(!this.securityService.isEnableTwofa);
+  async getSecret() {
+    try {
+      if (this.secret !== '') return;
+      this.isGetting = true;
+      this.step = 1;     
+
+      var dataPost = {};
+
+      //send ajax
+      let result = await this.twofaService.getSecret(dataPost);
+
+      //Show message success
+      this.isGetting = false;
+
+      if (Utility.isError(result)) return;
+
+      //Get data
+      this.secret = result.data;
+      this.qrdata = `otpauth://totp/SecretKey?secret=${this.secret}`
+
+      this.onReset();
+
+      return;
+    } catch (error) {
+      //Show message success
+      this.isGetting = false;
+      console.log(JSON.stringify(error));
+    }
   }
 
   cancel() {
-    this.form.modal.close();
-     this.step = 1;
+    debugger;
+    // this.form.modal.close();
+    this.step = 1;
     this.onReset();
   }
 
-  async verifySms() {
+  async onUpdate() {
     try {
       this.isLoading = true;
       this.step = 1;
@@ -68,47 +94,6 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
       }
 
       var dataPost = {
-        code: this.code
-      };
-
-      //send ajax
-      let result = await this.twofaService.getSecret(dataPost);
-
-      //Show message success
-      this.isLoading = false;
-
-      if (Utility.isError(result)) return;
-
-      //Get data
-      this.secret = result.data;
-      this.qrdata = `otpauth://totp/SecretKey?secret=${this.secret}`
-
-      // this.securityService.isEnableTwofa = !this.securityService.isEnableTwofa;
-      this.step++;
-      this.onReset();
-      // this.form.modal.close();
-
-      return;
-    } catch (error) {
-      //Show message success
-      this.isLoading = false;
-      console.log(JSON.stringify(error));
-    }
-  }
-
-  async onUpdate() {
-    try {
-      this.isLoading = true;
-      this.step = 2;
-      this.validate();
-
-      if (this.isValid === false) {
-        this.isLoading = false;
-        return;
-      }
-
-      var dataPost = {
-        code: this.code,
         token: this.token
       };
 
@@ -122,8 +107,8 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
 
       this.step++;
       this.securityService.isEnableTwofa = !this.securityService.isEnableTwofa;
+      this.secret = '';
       this.onReset();
-      this.form.modal.close();
 
       return;
     } catch (error) {
@@ -144,44 +129,16 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
     this.isLoading = false;
 
     //custom
-    this.messageErrorCode = '';
-    this.codeElement.nativeElement.value = '';
     this.tokenElement.nativeElement.value = '';
   }
 
   validate() {
     try {
       //get value input
-      UtilityValidate.validateCodePhone(this.code);
-
-      if (this.step > 1) {
-        UtilityValidate.validateToken(this.token);
-      }
+      UtilityValidate.validateToken(this.token);
 
       this.isValid = true;
     } catch (error) {
-      this.isValid = false;
-    }
-  }
-
-  onCode(event) {
-    try {
-      if (Utility.isEnter(event)) {
-        // this.onUpdate();
-        return false;
-      }
-
-      //Get value
-      this.code = Utility.getValueEventInput(event);
-
-      UtilityValidate.validateCodePhone(this.code);
-
-      this.messageErrorCode = '';
-
-      //Validate form
-      this.validate();
-    } catch (error) {
-      this.messageErrorCode = error.message;
       this.isValid = false;
     }
   }
@@ -207,5 +164,4 @@ export class TwofaVerifyCodeComponentWithPhoneComponent {
       this.isValid = false;
     }
   }
-
 }
