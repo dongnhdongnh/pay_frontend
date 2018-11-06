@@ -12,10 +12,6 @@ export class TwofaService {
 
     constructor(private httpService: HttpService) { }
 
-    resultTest(operation) {
-        return this.httpService.test(operation);
-    }
-
     requireSendCodePhone(action: string, code: string = '') {
         let operation = 'require update status of twofa';
         let api = this.requireSendCodeUrl;

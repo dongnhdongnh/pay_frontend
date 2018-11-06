@@ -6,7 +6,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
+import { MatInputModule } from '@angular/material/input';
 
 // Add libriary
 import { ToasterModule } from 'angular2-toaster';
@@ -100,13 +100,17 @@ import { MessageErrorInputComponent } from 'component/system/message-error-input
 import { UploadImageProfileComponent } from 'component/page/profile/upload-image-profile/upload-image-profile.component';
 import { UpdateProfileComponent } from 'component/page/profile/update-profile/update-profile.component';
 import { ProfileComponent } from 'component/page/profile/profile.component';
+
 import { PreferencesComponent } from 'component/page/preferences/preferences.component';
+import { NotificationComponent } from 'component/page/preferences/notification/notification.component';
+import { PreferenceComponent } from 'component/page/preferences/preference/preference.component';
+import { ExchangeRateComponent } from 'component/page/preferences/exchange-rate/exchange-rate.component';
+
 import { ObjectivesComponent } from './objectives/objectives.component';
 import { AddressesComponent } from 'component/addresses/addresses.component';
 import { ReportsComponent } from 'component/reports/reports.component';
 import { ReportFormComponent } from 'component/report-form/report-form.component';
-import { NotificationComponent } from 'component/page/preferences/notification/notification.component';
-import { PreferenceComponent } from 'component/page/preferences/preference/preference.component';
+
 import { SecurityComponent } from 'component/page/security/security.component';
 import { ChangePasswordComponent } from 'component/page/security/change-password/change-password.component';
 import { TwoFactorAuthenticationComponent } from 'component/page/security/two-factor-authentication/two-factor-authentication.component';
@@ -275,6 +279,7 @@ import { CustomTwoFactorAuthenticateWithGoogleAuthenticateComponent }
     CustomTwoFactorAuthenticateComponent,
     CustomTwoFactorAuthenticateWithSmsComponent,
     CustomTwoFactorAuthenticateWithGoogleAuthenticateComponent,
+    ExchangeRateComponent,
   ],
   imports: [
     ProgressBarModule,
@@ -296,6 +301,7 @@ import { CustomTwoFactorAuthenticateWithGoogleAuthenticateComponent }
     MatProgressSpinnerModule,
     // Reactive Forms Module
     MatSelectModule,
+    MatInputModule,
     MatSlideToggleModule,
     MatTableModule,
     MatPaginatorModule,
