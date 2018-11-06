@@ -1,9 +1,11 @@
+import { AccountService } from 'services/account/account.service';
 import { ApiKeyService } from 'services/api-access/api-key/apiKey.service';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ApiKey } from 'model/api-access/ApiKey';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Utility } from 'utility/Utility';
 import { UtilityValidate } from 'utility/UtilityValidate';
+import { Account } from 'model/account/Account';
 
 @Component({
   selector: 'app-show-api-key-with-twofa',
@@ -21,13 +23,18 @@ export class ShowApiKeyWithTwofaComponent {
   //message
   messageErrorCode: string = '';
 
+  mAccount: Account;
+
   //validate
   isValid: boolean = false;
   isLoading: boolean = false;
 
   constructor(
     public ngxSmartModalService: NgxSmartModalService,
-    public service: ApiKeyService) { }
+    private accountService: AccountService,
+    public service: ApiKeyService) {
+    this.mAccount = accountService.mAccount;
+  }
 
   onShowModal() {
     this.apiKey = new ApiKey();

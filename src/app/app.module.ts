@@ -43,7 +43,7 @@ export function highchartsModules() {
   // apply Highcharts Modules to this array
   return [stock, more];
 }
-import {ProgressBarModule} from "angular-progress-bar"
+import { ProgressBarModule } from "angular-progress-bar"
 
 //ng-select
 import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
@@ -183,9 +183,6 @@ import { LockScreenWithTwofaComponent }
   from 'component/page/security/lock-screen/lock-screen-with-twofa/lock-screen-with-twofa.component';
 import { LockScreenWithoutTwofaComponent }
   from 'component/page/security/lock-screen/lock-screen-without-twofa/lock-screen-without-twofa.component';
-import { EnableTwofaWithoutPhoneComponent }
-  from 'component/page/security/two-factor-authentication/enable/enable-twofa-without-phone/enable-twofa-without-phone.component';
-
 import { CustomTwoFactorAuthenticateComponent }
   from 'component/page/security/two-factor-authentication/custom-two-factor-authenticate/custom-two-factor-authenticate.component';
 import { CustomTwoFactorAuthenticateWithSmsComponent }
@@ -275,7 +272,6 @@ import { CustomTwoFactorAuthenticateWithGoogleAuthenticateComponent }
     DeleteApiKeyWithoutTwofaComponent,
     LockScreenWithTwofaComponent,
     LockScreenWithoutTwofaComponent,
-    EnableTwofaWithoutPhoneComponent,
     CustomTwoFactorAuthenticateComponent,
     CustomTwoFactorAuthenticateWithSmsComponent,
     CustomTwoFactorAuthenticateWithGoogleAuthenticateComponent,
