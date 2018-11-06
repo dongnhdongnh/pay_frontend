@@ -6,6 +6,8 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Utility } from 'utility/Utility';
 import { UtilityValidate } from 'utility/UtilityValidate';
 import { Account } from 'model/account/Account';
+import { TwofaService } from 'services/twofa/twofa.service';
+import { Action } from 'model/Action';
 
 @Component({
   selector: 'app-show-api-key-with-twofa',
@@ -32,12 +34,14 @@ export class ShowApiKeyWithTwofaComponent {
   constructor(
     public ngxSmartModalService: NgxSmartModalService,
     private accountService: AccountService,
+    private twofaService: TwofaService,
     public service: ApiKeyService) {
     this.mAccount = accountService.mAccount;
   }
 
   requireSendCodePhone() {
-
+    this.onReset();
+    this.twofaService.requireSendCodePhone(Action.API_ACCESS_GET);
   }
 
   onShowModal() {

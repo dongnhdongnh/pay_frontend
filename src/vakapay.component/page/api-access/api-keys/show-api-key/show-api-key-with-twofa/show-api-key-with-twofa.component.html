@@ -1,4 +1,6 @@
-<span class="btn btn-secondary verified" (click)="onShowModal()">
+<span class="btn btn-secondary verified"
+  (click)="onShowModal();
+  mAccount.isTwoFactor === 2 ? requireSendCodePhone() : !1">
   <i class="fa fa-eye tx-13 tx-white"></i> Show
 </span>
 <ngx-smart-modal #modalShowVerify [identifier]="'modalShowVerify'">
@@ -29,9 +31,9 @@
           </div>
           <span class="resend">
             <message-error-input [message]='messageErrorCode'></message-error-input>
+            <br>
           </span>
           <span class="resend" [hidden]="mAccount.isTwoFactor !== 2">
-            <br>
             Didn't receive the verification code? <br>
             <a class="resend-sms" (click)="requireSendCodePhone()">Re-send SMS</a>
           </span>

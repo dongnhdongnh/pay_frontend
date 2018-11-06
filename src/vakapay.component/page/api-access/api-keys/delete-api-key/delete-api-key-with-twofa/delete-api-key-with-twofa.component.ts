@@ -3,6 +3,10 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 import { ApiKeyService } from 'services/api-access/api-key/apiKey.service';
 import { Utility } from 'utility/Utility';
 import { UtilityValidate } from 'utility/UtilityValidate';
+import { Account } from 'model/account/Account';
+import { TwofaService } from 'services/twofa/twofa.service';
+import { Action } from 'model/Action';
+import { AccountService } from 'services/account/account.service';
 
 @Component({
   selector: 'app-delete-api-key-with-twofa',
@@ -15,10 +19,11 @@ export class DeleteApiKeyWithTwofaComponent {
 
   //input
   code: string = '';
-  idDelete: string = '';
 
   //message
   messageErrorCode: string = '';
+
+  mAccount: Account;
 
   //validate
   isValid: boolean = false;
@@ -26,21 +31,25 @@ export class DeleteApiKeyWithTwofaComponent {
 
   constructor(
     public ngxSmartModalService: NgxSmartModalService,
-    public service: ApiKeyService
+    public service: ApiKeyService,
+    private accountService: AccountService,
+    private twofaService: TwofaService,
   ) {
+    this.mAccount = accountService.mAccount;
   }
 
-
+  requireSendCodePhone() {
+    this.onReset();
+    this.twofaService.requireSendCodePhone(Action.API_ACCESS_DELETE);
+  }
 
   onShowModal() {
     this.ngxSmartModalService.getModal('modal').open();
   }
 
   showModalDelete() {
-    this.idDelete = this.service.currentId;
     this.ngxSmartModalService.getModal('modal').close();
     this.ngxSmartModalService.getModal('modalDelete').open();
-    this.service.currentId = '';
   }
 
   onCode(event) {
@@ -98,7 +107,7 @@ export class DeleteApiKeyWithTwofaComponent {
 
       var dataPost = {
         code: this.code,
-        id: this.idDelete
+        id: this.service.currentId
       };
 
       //send ajax

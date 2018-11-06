@@ -1,29 +1,45 @@
-<button class="btn btn-secondary verified" (click)="onShowModal()">
+<button class="btn btn-secondary verified"
+  (click)="onShowModal();
+  mAccount.isTwoFactor === 2 ? requireSendCodePhone() : !1">
   <i class="fa fa-pencil tx-13 tx-white"></i> Edit
 </button>
 
-<ngx-smart-modal #modalEdit [identifier]="'modalEdit'" (onClose)="service.currentId= ''">
+<ngx-smart-modal #modalEdit [identifier]="'modalEdit'"
+  (onClose)="service.currentId= ''">
   <form class="modal-content bd-0 tx-14">
     <div class="modal-header pd-y-20 pd-x-25">
       <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">
-        <span>Edit Api Key {{service.currentId}} </span>
+        <span>Edit Api Key </span>
         Authenticator Support</h6>
     </div>
     <div class="modal-body pd-25">
       <div class="row">
-        <label class="col-sm-12 form-control-label">
-          Enter the 2-step verification code provided by your authen app:
+        <label class="col-sm-12 form-control-label"
+          [hidden]="mAccount.isTwoFactor !== 2">
+          Enter the 2-step verification code provided by SMS to your phone:
+          <i class="tx-danger">*</i>
+        </label>
+        <label class="col-sm-12 form-control-label"
+          [hidden]="mAccount.isTwoFactor !== 1">
+          Please enter the 2-step verification code provided by your authen app:
           <i class="tx-danger">*</i>
         </label>
         <div class="col-sm-12 mg-t-10 mg-sm-t-0">
           <div class="input-group sms">
             <span class="input-group-addon"><i class="fa fa-phone tx-16 lh-0
                 op-6"></i></span>
-            <input #code1 (keyup)="onCode($event)" type="text" class="form-control fc-outline-white half" maxlength="6" placeholder="000000">
+            <input #code1 (keyup)="onCode($event)" type="text"
+              class="form-control fc-outline-white half" maxlength="6"
+              placeholder="000000">
           </div>
           <span class="resend">
             <message-error-input [message]='messageErrorCode'></message-error-input>
             <br>
+          </span>
+          <span class="resend" [hidden]="mAccount.isTwoFactor !== 2">
+            <br>
+            Didn't receive the verification code? <br>
+            <a class="resend-sms" (click)="requireSendCodePhone()">Re-send SMS</a>
           </span>
         </div>
       </div><!-- row -->
@@ -60,29 +76,33 @@
         </div>
         <div class="col-sm-4" [hidden]="!apiAccess.hasBtc">
           <label class="ckbox">
-            <input type="checkbox" [checked]="isBtcWallet" (change)="isBtcWallet= !isBtcWallet; changeWallet(false)"><span>BTC
+            <input type="checkbox" [checked]="isBtcWallet"
+              (change)="isBtcWallet= !isBtcWallet; changeWallet(false)"><span>BTC
               Wallet
-              </span>
+            </span>
           </label>
         </div>
         <div class="col-sm-4" [hidden]="!apiAccess.hasVkc">
           <label class="ckbox">
-            <input type="checkbox" [checked]="isVkcWallet" (change)="isVkcWallet= !isVkcWallet; changeWallet(false)"><span>VKC
+            <input type="checkbox" [checked]="isVkcWallet"
+              (change)="isVkcWallet= !isVkcWallet; changeWallet(false)"><span>VKC
               Wallet
-              </span>
+            </span>
           </label>
         </div>
         <div class="col-sm-4" [hidden]="!apiAccess.hasEth">
           <label class="ckbox">
-            <input type="checkbox" [checked]="isEthWallet" (change)="isEthWallet= !isEthWallet; changeWallet(false)" /><span>ETH
+            <input type="checkbox" [checked]="isEthWallet"
+              (change)="isEthWallet= !isEthWallet; changeWallet(false)" /><span>ETH
               Wallet </span>
           </label>
         </div>
         <div class="col-sm-4" [hidden]="!apiAccess.hasEos">
           <label class="ckbox">
-            <input type="checkbox" [checked]="isEosWallet" (change)="isEosWallet= !isEosWallet; changeWallet(false)"><span>EOS
+            <input type="checkbox" [checked]="isEosWallet"
+              (change)="isEosWallet= !isEosWallet; changeWallet(false)"><span>EOS
               Wallet
-              </span>
+            </span>
           </label>
         </div>
         <div class="col-sm-4" [hidden]="!apiAccess.hasVkc_Vault">
@@ -94,7 +114,8 @@
         </div>
         <div class="col-sm-4" [hidden]="!apiAccess.hasVaka">
           <label class="ckbox">
-            <input type="checkbox" [checked]="isVakaWallet" (change)="isVakaWallet= !isVakaWallet; changeWallet(false)"><span>
+            <input type="checkbox" [checked]="isVakaWallet"
+              (change)="isVakaWallet= !isVakaWallet; changeWallet(false)"><span>
               Vaka Wallet</span>
           </label>
         </div>
@@ -110,52 +131,60 @@
         </div>
         <div class="col-sm-6" [hidden]="!apiAccess.has_CREATED_ADDRESSES">
           <label class="ckbox">
-            <input type="checkbox" [checked]="is_CREATED_ADDRESSES" (change)="is_CREATED_ADDRESSES= !is_CREATED_ADDRESSES;
+            <input type="checkbox" [checked]="is_CREATED_ADDRESSES"
+              (change)="is_CREATED_ADDRESSES= !is_CREATED_ADDRESSES;
               validate()">
             <span>wallet:addresses:create</span>
           </label>
         </div>
         <div class="col-sm-6" [hidden]="!apiAccess.has_CREATED_DEPOSITS">
           <label class="ckbox">
-            <input type="checkbox" [checked]="is_CREATED_DEPOSITS" (change)="is_CREATED_DEPOSITS= !is_CREATED_DEPOSITS; validate()">
+            <input type="checkbox" [checked]="is_CREATED_DEPOSITS"
+              (change)="is_CREATED_DEPOSITS= !is_CREATED_DEPOSITS; validate()">
             <span>wallet:deposits:create</span>
           </label>
         </div>
         <div class="col-sm-6" [hidden]="!apiAccess.has_READ_ADDRESSES">
           <label class="ckbox">
-            <input type="checkbox" [checked]="is_READ_ADDRESSES" (change)="is_READ_ADDRESSES= !is_READ_ADDRESSES;validate()">
+            <input type="checkbox" [checked]="is_READ_ADDRESSES"
+              (change)="is_READ_ADDRESSES= !is_READ_ADDRESSES;validate()">
             <span>wallet:addresses:read</span>
           </label>
         </div>
         <div class="col-sm-6" [hidden]="!apiAccess.has_READ_DEPOSITS">
           <label class="ckbox">
-            <input type="checkbox" [checked]="is_READ_DEPOSITS" (change)="is_READ_DEPOSITS= !is_READ_DEPOSITS; validate()">
+            <input type="checkbox" [checked]="is_READ_DEPOSITS"
+              (change)="is_READ_DEPOSITS= !is_READ_DEPOSITS; validate()">
             <span>wallet:deposits:read</span>
           </label>
         </div>
         <div class="col-sm-6" [hidden]="!apiAccess.has_READ_TRANSACTIONS">
           <label class="ckbox">
-            <input type="checkbox" [checked]="is_READ_TRANSACTIONS" (change)="is_READ_TRANSACTIONS= !is_READ_TRANSACTIONS;
+            <input type="checkbox" [checked]="is_READ_TRANSACTIONS"
+              (change)="is_READ_TRANSACTIONS= !is_READ_TRANSACTIONS;
               validate()">
             <span>wallet:transactions:read</span>
           </label>
         </div>
         <div class="col-sm-6" [hidden]="!apiAccess.has_SEND_TRANSACTIONS">
           <label class="ckbox">
-            <input type="checkbox" [checked]="is_SEND_TRANSACTIONS" (change)="is_SEND_TRANSACTIONS= !is_SEND_TRANSACTIONS;
+            <input type="checkbox" [checked]="is_SEND_TRANSACTIONS"
+              (change)="is_SEND_TRANSACTIONS= !is_SEND_TRANSACTIONS;
               validate()">
             <span>wallet:transactions:send</span>
           </label>
         </div>
         <div class="col-sm-6" [hidden]="!apiAccess.has_USER_MAIL">
           <label class="ckbox">
-            <input type="checkbox" [checked]="is_USER_MAIL" (change)="is_USER_MAIL= !is_USER_MAIL; validate()">
+            <input type="checkbox" [checked]="is_USER_MAIL"
+              (change)="is_USER_MAIL= !is_USER_MAIL; validate()">
             <span>wallet:user:email</span>
           </label>
         </div>
         <div class="col-sm-6" [hidden]="!apiAccess.has_USER_READ">
           <label class="ckbox">
-            <input type="checkbox" [checked]="is_USER_READ" (change)="is_USER_READ= !is_USER_READ; validate();">
+            <input type="checkbox" [checked]="is_USER_READ"
+              (change)="is_USER_READ= !is_USER_READ; validate();">
             <span>wallet:user:read</span>
           </label>
         </div>
@@ -206,19 +235,32 @@
     </div>
     <div class="modal-body pd-25">
       <div class="row">
-        <label class="col-sm-12 form-control-label">
-          Enter the 2-step verification code provided by your authen app:
+        <label class="col-sm-12 form-control-label"
+          [hidden]="mAccount.isTwoFactor !== 2">
+          Enter the 2-step verification code provided by SMS to your phone:
+          <i class="tx-danger">*</i>
+        </label>
+        <label class="col-sm-12 form-control-label"
+          [hidden]="mAccount.isTwoFactor !== 1">
+          Please enter the 2-step verification code provided by your authen app:
           <i class="tx-danger">*</i>
         </label>
         <div class="col-sm-12 mg-t-10 mg-sm-t-0">
           <div class="input-group sms">
             <span class="input-group-addon"><i class="fa fa-phone tx-16 lh-0
                 op-6"></i></span>
-            <input #code (keyup)="onCode($event)" type="text" class="form-control fc-outline-white half" maxlength="6" placeholder="000000">
+            <input #code (keyup)="onCode($event)" type="text"
+              class="form-control fc-outline-white half" maxlength="6"
+              placeholder="000000">
           </div>
           <span class="resend">
             <message-error-input [message]='messageErrorCode'></message-error-input>
             <br>
+          </span>
+          <span class="resend" [hidden]="mAccount.isTwoFactor !== 2">
+            <br>
+            Didn't receive the verification code? <br>
+            <a class="resend-sms" (click)="requireSendCodePhone()">Re-send SMS</a>
           </span>
         </div>
       </div><!-- row -->
