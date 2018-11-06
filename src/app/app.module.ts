@@ -119,8 +119,6 @@ import { ApiAccessComponent } from 'component/page/api-access/api-access.compone
 import { AccountsComponent } from 'component/page/accounts/accounts.component';
 // TwofaVerify
 // tslint:disable-next-line:max-line-length
-import { TwofaVerifyCodeComponentWithPhoneComponent } from 'component/page/security/two-factor-authentication/enable/enable-twofa/twofa-verify-code-with-phone.component';
-import { DisableTwofaComponent } from 'component/page/security/two-factor-authentication/disable-twofa/disable-twofa.component';
 import { CloseAccountVerifyPasswordComponent } from 'component/page/security/close-account/close-account-verify-password/close-account-verify-password.component';
 import { CloseAccountVerifyPhoneComponent } from 'component/page/security/close-account/close-account-verify-phone/close-account-verify-phone.component';
 import { LoadingButtonComponent } from 'component/loading-button/loading-button.component';
@@ -236,7 +234,6 @@ import { CustomTwoFactorAuthenticateWithGoogleAuthenticateComponent }
     SessionActiveComponent,
     AccountActivityComponent,
     CloseAccountComponent,
-    TwofaVerifyCodeComponentWithPhoneComponent,
     CloseAccountVerifyPasswordComponent,
     CloseAccountVerifyPhoneComponent,
     LoadingButtonComponent,
@@ -251,7 +248,6 @@ import { CustomTwoFactorAuthenticateWithGoogleAuthenticateComponent }
     LockScreenComponent,
     AccountsComponent,
     JwPaginationComponent,
-    DisableTwofaComponent,
     ApiAccessComponent,
     BuyWidgetsComponent,
     ApiKeysComponent,
