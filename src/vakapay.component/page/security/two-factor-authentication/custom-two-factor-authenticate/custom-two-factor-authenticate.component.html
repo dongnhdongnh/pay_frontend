@@ -5,7 +5,8 @@
     <mat-radio-button class="example-radio-button" value="1">
       Enable twofa with google authenticate
     </mat-radio-button>
-    <mat-radio-button class="example-radio-button" value="2">
+    <mat-radio-button class="example-radio-button" value="2"
+      [hidden]="accountService.mAccount.phoneNumber == ''">
       Enable twofa with sms
     </mat-radio-button>
     <mat-radio-button class="example-radio-button" value="0" [checked]="true">
@@ -138,7 +139,8 @@
       </div>
     </div>
     <div class="modal-footer step">
-      <button #cancel_0_2 (click)="modalTwoFA_0_sms.close(); cancel()" type="button"
+      <button #cancel_0_2 (click)="modalTwoFA_0_sms.close(); cancel()"
+        type="button"
         class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
         tx-medium">
         Cancel

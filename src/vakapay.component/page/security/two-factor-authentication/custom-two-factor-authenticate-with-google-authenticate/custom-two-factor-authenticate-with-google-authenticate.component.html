@@ -4,7 +4,8 @@
     <mat-radio-button class="example-radio-button" value="1" [checked]="true">
       Enable twofa with google authenticate
     </mat-radio-button>
-    <mat-radio-button class="example-radio-button" value="2">
+    <mat-radio-button class="example-radio-button" value="2"
+      [hidden]="accountService.mAccount.phoneNumber == ''">
       Enable twofa with sms
     </mat-radio-button>
     <mat-radio-button class="example-radio-button" value="0">
@@ -57,7 +58,8 @@
       </button>
 
       <button
-        (click)="isChange && level === '2' ? requireSendCodePhone() : onUpdate()"
+        (click)="isChange && level === '2' ? requireSendCodePhone() :
+        onUpdate()"
         [disabled]="!isChange||!isValid||isLoading"
         class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
         tx-medium">
@@ -68,7 +70,8 @@
   </form>
 </ngx-smart-modal>
 
-<ngx-smart-modal #modalTwoFA_1_sms [identifier]="'modalTwoFA_1_sms'" (onOpen)="level = '2'">
+<ngx-smart-modal #modalTwoFA_1_sms [identifier]="'modalTwoFA_1_sms'"
+  (onOpen)="level= '2'">
   <form class="modal-content bd-0 tx-14">
     <div class="modal-header pd-y-20 pd-x-25">
       <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">

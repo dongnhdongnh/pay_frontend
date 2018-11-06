@@ -13,7 +13,9 @@
     <div id="logo-mob"><a><img src="assets/images/logo/logo2.svg" alt=""></a></div>
     <div class="br-header-right">
       <nav class="nav">
-        <div class="dropdown" dropdown>
+        <loading-component [hidden]="mAccountSerive.isGet === true"></loading-component>
+        <div class="dropdown" dropdown
+          [hidden]="mAccountSerive.isGet === false">
           <a class="nav-link nav-link-profile" data-toggle="dropdown"
             dropdownToggle>
             <span class="logged-name hidden-md-down">{{mAccount.firstName}}</span>

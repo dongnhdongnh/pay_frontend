@@ -3,7 +3,8 @@
 <hr>
 <div class="row mg-x-0">
   <label class="col-sm-4 form-control-label"> Custom your two-factor method:</label>
-  <div class="col-sm-8 mg-l-auto">
+  <loading-component [hidden]="accountService.isGet === true"></loading-component>
+  <div class="col-sm-8 mg-l-auto" [hidden]="accountService.isGet === false">
     <div class="form-layout-footer">
       <app-custom-two-factor-authenticate
         [hidden]="mAccount.isTwoFactor !== 0"></app-custom-two-factor-authenticate>

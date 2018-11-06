@@ -11,7 +11,7 @@ export class TwoFactorAuthenticationComponent {
 
   mAccount: Account;
 
-  constructor(accountService: AccountService) {
+  constructor(public accountService: AccountService) {
     this.mAccount = accountService.mAccount;
   }
 }

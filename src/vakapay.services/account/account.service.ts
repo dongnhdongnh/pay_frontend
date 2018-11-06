@@ -58,6 +58,8 @@ export class AccountService {
             if (result.data.avatar || result.data.Avatar) {
                 this.mAccount.avatar = new URL(this.mAccount.avatar, this.urlApi).href;
             }
+
+            await Utility.sleep(500);
             this.isGet = true;
             return;
         } catch (error) {

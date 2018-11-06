@@ -14,7 +14,7 @@ export class SecurityComponent extends Root {
     titleService: Title,
     route: ActivatedRoute,
     router: Router,
-    sercurityService: SecurityService
+    sercurityService: SecurityService,
   ) {
     super(titleService, route, router);
     sercurityService.getInfo();
