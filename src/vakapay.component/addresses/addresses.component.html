@@ -10,27 +10,11 @@
           generated for each payment on VakaPay and stay associated with your account forever (so it is safe to reuse them).</p>
         <div class="col-12 mg-b-20">
           <div class="col-md-3 col-sm-12 pd-l-0 pd-r-0 mg-t-10">
-<<<<<<< HEAD
-            <!-- Network name select using Ng-Select -->
-            <!-- <ng-select [items]="networkNames"
-                       bindLabel="name"
-                       bindValue="id"
-                       [(ngModel)]="selectedNetworkName">
-            </ng-select> -->
-            <!-- TODO: OLD NETWORK SELECTION - DELETE AFTER USING NG-SELECT -->
-            <select class="form-control select2 select2-hidden-accessible" data-placeholder="BTC Wallet (0.0000 BTC)" tabindex="-1" aria-hidden="true">
-              <option label="Choose Currency"></option>
-              <option value="USA">VKC Wallet (0.0000 VKC)</option>
-              <option value="UK">ETH Wallet (0.0000 ETH)</option>
-              <option value="China">EOS Wallet (0.0000 EOS)</option>
-            </select>
-=======
             <ng-select [items]="listWallet" bindLabel="name" bindValue="key"
             [(ngModel)]="networkName" name="networkName"
             (change)="onChangeWallet($event)" placeholder="Choose Currency"
             class="select-list">
           </ng-select>
->>>>>>> d9c0f3b7f611b336711dc689859385947151f21f
           </div>
           <div class="col-md-4 col-sm-12 pd-r-0 mg-t-10">
             <div class="input-group">
@@ -117,8 +101,8 @@
       </h6>
     </div>
     <div class="modal-body pd-x-20 pd-y-5">
-        <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/qr.png" alt=""
-          class="img-big">
+        <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center">
+          <qrcode [qrdata]="qrcode" [size]="150" [level]="'M'"></qrcode>
         </i>
         <div class="mg-t-40">
             <!-- <div class="col-12 mg-b-10 ">

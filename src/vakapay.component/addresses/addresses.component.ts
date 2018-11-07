@@ -1,16 +1,11 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';   // Using Material Paginator
 import { WalletService } from 'services/wallet/wallet.service';
-<<<<<<< HEAD
-import {NgSelectModule, NgOption} from '@ng-select/ng-select';
-
-=======
 import { AddressToolsService } from 'services/tools/address-tools.service';
 import { Wallet } from 'model/tools/Wallet';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Address } from 'model/tools/Address';
->>>>>>> d9c0f3b7f611b336711dc689859385947151f21f
 export interface AddressElement {
   address: string;
   label: string;
@@ -39,6 +34,7 @@ export class AddressesComponent implements OnInit {
   listWallet: any[];
   networkName: "Bitcoin";
   filter: string;
+  qrcode: string;
   displayedColumns: string[] =  [ 'address', 'label', 'whenFormat', 'id'];
   constructor(
     public serviceAddress: AddressToolsService,
@@ -53,23 +49,23 @@ export class AddressesComponent implements OnInit {
         [ 'address', 'label', 'whenFormat', 'id'] :
         [ 'address', 'label', 'whenFormat', 'id'];
     });
-
+    
     this.walletService = walletService;
-  }
+   }
 
   ngOnInit() {
     this.getUserData();
-    this.serviceAddress.infoAddress = new Address;
+    this.reset();
   }
 
   async getUserData() {
     try {
-
+      
       var result = await this.walletService.getAllWallet();
       var dataWallet = JSON.parse(result.message);
-
+      
       this.listWallet = dataWallet.map(x => new Wallet(x['Currency'], x['Currency'] + ' wallet (' + x['Balance'] + ')', false));
-
+     
     } catch (error) {
       console.log(error);
     }
@@ -79,7 +75,7 @@ export class AddressesComponent implements OnInit {
   public async onClickCreateNewWallet() {
     try {
       // tslint:disable-next-line:prefer-const
-
+      
       var dataPost = {
         networkName: this.networkName || ''
       };
@@ -106,23 +102,23 @@ export class AddressesComponent implements OnInit {
       id: id
     };
     await this.serviceAddress.getAddressInfo(dataPost);
-
+    this.qrcode = `${this.networkName}:${this.serviceAddress.infoAddress.address}`;
     this.onShowModal();
   }
 
   onShowModal() {
-
-    this.ngxSmartModalService.getModal('modalEdit').open();//refresh list of api key
+    
+    this.ngxSmartModalService.getModal('modalEdit').open();//refresh list of api key    
   }
 
   onCloseModal() {
     this.ngxSmartModalService.getModal('modalEdit').close();
-    this.serviceAddress.infoAddress = new Address;
+    this.reset();
   }
 
   cancel() {
     this.onCloseModal();
-    this.serviceAddress.infoAddress = new Address;
+    this.reset();
   }
 
   async onUpdate() {
@@ -131,12 +127,17 @@ export class AddressesComponent implements OnInit {
       id: this.serviceAddress.infoAddress.id,
       label: this.serviceAddress.infoAddress.label
     };
-
+    
     await this.serviceAddress.updateAddress(dataPost);
-
+    
     if(!this.serviceAddress.isError){
       this.serviceAddress.getList(this.networkName);
       this.cancel();
     }
+  }
+
+  reset(){
+    this.serviceAddress.infoAddress = new Address;
+    this.qrcode = this.networkName;
   }
 }
