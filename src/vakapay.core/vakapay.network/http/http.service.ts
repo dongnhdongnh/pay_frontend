@@ -62,20 +62,6 @@ export class HttpService {
     };
   }
 
-  test(operation = 'operation', alert = true) {
-    var self = this;
-    return new Promise<ResultObject>(
-      (resolve) => {
-        let dataConvert = new ResultObject({
-          status: 'success',
-          data: null,
-          message: `Hardcode api ${operation}`
-        });
-        self.handleSuccess(operation, '', dataConvert, alert);
-        resolve(dataConvert);
-      });
-  }
-
   //Get api
   get(operation = 'operation', api, alert = true): Promise<ResultObject> {
     let URL_API = new URL(api, this.url).href;

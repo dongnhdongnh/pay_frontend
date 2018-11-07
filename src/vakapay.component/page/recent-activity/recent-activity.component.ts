@@ -13,6 +13,7 @@ export class RecentActivityComponent implements OnInit, AfterViewInit {
     modal: {}
   };
   modalName = 'modalActivityDetail';
+  isLoading = true;
 
   ngAfterViewInit(): void {
     this.activity = {
@@ -35,23 +36,30 @@ export class RecentActivityComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    var self = this;
     this.getData('10');
+    setInterval(function(){
+      self.getData('10');
+    }, 5 * 60 * 1000);
   }
 
   public async getData(apiString = '') {
+    this.activities.length = 0;
     var apiData = await this.httpService.getFrom("get coinmarket data", this.apiUrl + apiString);
 
-    // if (Utility.isError) throw new Error(apiData.message);
-    var objectData = apiData.data;
-    objectData.forEach(element => {
-      var value = Number(element["Value"]).toFixed(3).toString();
+    if (apiData && apiData.data){
+      var objectData = apiData.data;
+      objectData.forEach(element => {
+        var value = Number(element["Value"]).toFixed(3).toString();
 
-      var activity = new Activity(element["TimeStamp"], element["IsSend"], element["NetworkName"],
-        element["FromAddress"], element["ToAddress"], element["Amount"], value,
-        element["Hash"], element["Price"], element["BlockNumber"], element["Status"]);
+        var activity = new Activity(element["TimeStamp"], element["IsSend"], element["NetworkName"],
+          element["FromAddress"], element["ToAddress"], element["Amount"], value,
+          element["Hash"], element["Price"], element["BlockNumber"], element["Status"]);
 
-      this.activities.push(activity);
-    });
+        this.activities.push(activity);
+      });
+    }
+    this.isLoading = false;
   }
 
 }

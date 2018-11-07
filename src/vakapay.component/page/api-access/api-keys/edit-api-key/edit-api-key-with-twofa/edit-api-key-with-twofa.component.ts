@@ -8,6 +8,10 @@ import { Utility } from 'utility/Utility';
 import { UtilityValidate } from 'utility/UtilityValidate';
 import { ApiType } from 'model/api-access/ApiType';
 import { WalletType } from 'model/wallet/WalletType';
+import { Account } from 'model/account/Account';
+import { TwofaService } from 'services/twofa/twofa.service';
+import { Action } from 'model/Action';
+import { AccountService } from 'services/account/account.service';
 
 @Component({
   selector: 'app-edit-api-key-with-twofa',
@@ -61,12 +65,22 @@ export class EditApiKeyWithTwofaComponent {
   messageErrorApiType: string = '';
   messageErrorCode: string = '';
 
+  mAccount: Account;
+
   constructor(
     public ngxSmartModalService: NgxSmartModalService,
     public apiAccessService: ApiAccessService,
     public service: ApiKeyService,
+    private accountService: AccountService,
+    private twofaService: TwofaService,
   ) {
     this.apiAccess = apiAccessService.apiAccess;
+    this.mAccount = accountService.mAccount;
+  }
+
+  requireSendCodePhone() {
+    this.onResetCode();
+    this.twofaService.requireSendCodePhone(Action.API_ACCESS_EDIT);
   }
 
   show(data: any = {}) {
@@ -228,21 +242,24 @@ export class EditApiKeyWithTwofaComponent {
     this.ngxSmartModalService.getModal('modalMain').open();
   }
 
-  onReset() {
-    this.step = 0;
+  onResetCode() {
     this.code = '';
+    //input
+    this.codeElement.nativeElement.value = '';
+    this.code1Element.nativeElement.value = '';
+    this.messageErrorCode = '';
+  }
+
+  onReset() {
+    this.onResetCode();
+    this.step = 0;
     this.idEdit = '';
 
     //valid
     this.isValid = false;
 
-    //input
-    this.codeElement.nativeElement.value = '';
-    this.code1Element.nativeElement.value = '';
-
     //message
     this.messageErrorApiType = '';
-    this.messageErrorCode = '';
     this.messageErrorWalletType = '';
 
     //wallet
@@ -273,6 +290,7 @@ export class EditApiKeyWithTwofaComponent {
   continue() {
     this.validate();
     if (this.isValid === false) return;
+    this.requireSendCodePhone();
     this.step++;
     this.isValid = false;
   }

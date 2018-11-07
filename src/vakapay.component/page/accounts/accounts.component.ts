@@ -80,7 +80,7 @@ export class AccountsComponent extends Root implements OnInit {
   async getUserData(loadDefault = true) {
     try {
       this.loadingObject.loadAllWallet = true;
-      var result = await this.walletService.getAllWallet(this.mAccount);
+      var result = await this.walletService.getAllWallet();
       console.log(result);
       this.loadingObject.loadAllWallet = false;
       this.walletsData = JSON.parse(result.message);

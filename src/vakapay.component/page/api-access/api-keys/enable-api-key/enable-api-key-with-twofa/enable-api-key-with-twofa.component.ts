@@ -2,6 +2,10 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ApiKeyService } from 'services/api-access/api-key/apiKey.service';
 import { Utility } from 'utility/Utility';
 import { UtilityValidate } from 'utility/UtilityValidate';
+import { Account } from 'model/account/Account';
+import { TwofaService } from 'services/twofa/twofa.service';
+import { Action } from 'model/Action';
+import { AccountService } from 'services/account/account.service';
 
 @Component({
   selector: 'app-enable-api-key-with-twofa',
@@ -22,13 +26,23 @@ export class EnableApiKeyWithTwofaComponent {
   //message
   messageErrorCode: string = '';
 
+  mAccount: Account;
+
   //validate
   isValid: boolean = false;
   isLoading: boolean = false;
 
   constructor(
-    public service: ApiKeyService
+    public service: ApiKeyService,
+    private accountService: AccountService,
+    private twofaService: TwofaService,
   ) {
+    this.mAccount = accountService.mAccount;
+  }
+
+  requireSendCodePhone() {
+    this.onReset();
+    this.twofaService.requireSendCodePhone(Action.API_ACCESS_SATUS);
   }
 
   onCode(event) {

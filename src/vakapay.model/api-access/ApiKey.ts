@@ -70,7 +70,7 @@ export class ApiKey extends Model {
 
     get has_CREATED_ADDRESSES() { return this.hasApi('CREATED_ADDRESSES'); }
     get has_CREATED_DEPOSITS() { return this.hasApi('CREATED_DEPOSITS'); }
-    get has_READ_ADDRESSES() { return this.hasApi('CREATED_DEPOSITS'); }
+    get has_READ_ADDRESSES() { return this.hasApi('READ_ADDRESSES'); }
     get has_READ_DEPOSITS() { return this.hasApi('READ_DEPOSITS'); }
     get has_READ_TRANSACTIONS() { return this.hasApi('READ_TRANSACTIONS'); }
     get has_SEND_TRANSACTIONS() { return this.hasApi('SEND_TRANSACTIONS'); }

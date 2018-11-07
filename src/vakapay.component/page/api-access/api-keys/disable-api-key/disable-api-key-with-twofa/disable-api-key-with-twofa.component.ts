@@ -3,7 +3,10 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 import { ApiKeyService } from 'services/api-access/api-key/apiKey.service';
 import { Utility } from 'utility/Utility';
 import { UtilityValidate } from 'utility/UtilityValidate';
-
+import { Account } from 'model/account/Account';
+import { TwofaService } from 'services/twofa/twofa.service';
+import { Action } from 'model/Action';
+import { AccountService } from 'services/account/account.service';
 @Component({
   selector: 'app-disable-api-key-with-twofa',
   templateUrl: './disable-api-key-with-twofa.component.html',
@@ -15,7 +18,6 @@ export class DisableApiKeyWithTwofaComponent {
 
   //input
   code: string = '';
-  idDisable: string = '';
 
   //message
   messageErrorCode: string = '';
@@ -24,20 +26,20 @@ export class DisableApiKeyWithTwofaComponent {
   isValid: boolean = false;
   isLoading: boolean = false;
 
+  mAccount: Account;
+
   constructor(
     public ngxSmartModalService: NgxSmartModalService,
-    public service: ApiKeyService
+    public service: ApiKeyService,
+    private accountService: AccountService,
+    private twofaService: TwofaService,
   ) {
+    this.mAccount = accountService.mAccount;
   }
 
-  onShowModalVerifyDisable() {
-    this.ngxSmartModalService.getModal('modalVerifyDisable').open();
-  }
-
-  showModalDisable() {
-    this.idDisable = this.service.currentId;
-    this.ngxSmartModalService.getModal('modalVerifyDisable').close();
-    this.ngxSmartModalService.getModal('modalDisable').open();
+  requireSendCodePhone() {
+    this.onReset();
+    this.twofaService.requireSendCodePhone(Action.API_ACCESS_SATUS);
   }
 
   onCode(event) {
@@ -95,7 +97,7 @@ export class DisableApiKeyWithTwofaComponent {
 
       var dataPost = {
         code: this.code,
-        id: this.idDisable
+        id: this.service.currentId
       };
 
       //send ajax

@@ -47,22 +47,9 @@ export class LockScreenWithTwofaComponent implements AfterViewInit {
     this.modal.open();
   }
 
-  // async requireSendCodePhone() {
-  //   try {
-  //     this.isResendingSms = true;
-  //     await this.service.requireSendCodePhone();
-  //     this.isResendingSms = false;
-  //     this.isValid = false;
-  //     this.codeElement.nativeElement.value = '';
-  //   } catch (error) {
-  //     this.isResendingSms = false;
-  //   }
-  // }
-
   nextStep() {
     if (this.isValid === false) return;
     this.step = 2;
-    // this.requireSendCodePhone();
     this.isValid = false;
   }
 

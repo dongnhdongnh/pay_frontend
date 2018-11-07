@@ -1,44 +1,19 @@
 <div class="bg-white rounded overflow-hidden no-padding h-fix">
-    <div class="overflow-hidden no-padding">
-      <div class="pos-rel pd-20 d-inline-block">
-        <div class="col-md-5 col-sm-4 col-xs-12">
-          <h6 class="br-section-label mg-b-0">Your Portfolio Value</h6>
-          <h4 class="tx-value">{{portfolioValue}}</h4>
-        </div>
-        <div class="col-md-7 col-sm-8 col-xs-12">
-          <ul class="nav nav-tabs nav-tabs-style-1 nav-justified tx-13" role="tablist">
-            <li class="nav-item">
-              <a [class]="isHour ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('hour')">1H</a>
-            </li>
-            <li class="nav-item">
-              <a [class]="isDay ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('day')">24H</a>
-            </li>
-            <li class="nav-item">
-              <a [class]="isWeek ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('week')">1W</a>
-            </li>
-            <li class="nav-item">
-              <a [class]="isMonth ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('month')">1M</a>
-            </li>
-            <li class="nav-item">
-              <a [class]="isYear ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('year')">1Y</a>
-            </li>
-            <li class="nav-item">
-              <a [class]="isAll ? 'nav-link pd-y-10 active' : 'nav-link pd-y-10'" data-toggle="tab" role="tab" (click)="timeOption('all')">All</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-12 chart mg-t-20 tab-content">
-            <div style="display: block;">
-              <canvas baseChart width="400%" height="170%"
-                [datasets]="lineChartData"
-                [labels]="lineChartLabels"
-                [options]="lineChartOptions"
-                [chartType]="lineChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)">
-              </canvas>
-            </div>
-        </div>
+  <div class="pos-rel pd-20 d-inline-block">
+    <div>
+      <h6 class="br-section-label mg-b-0 tx-green"><i class="fa fa-money"></i> Your Portfolio Value</h6>
+      <h4 class="tx-value">{{portfolioValue}}</h4>
+    </div>
+    <div class="col-12 chart mg-t-20 tab-content" [hidden]="!data || data.length === 0">
+      <div [hidden]="data.length > 0 || isLoading">
+        You don't have any.
       </div>
+      <i [hidden]="!isLoading" class="fa fa-spinner fa-spin" style="font-size: 30px;
+        position: absolute;
+        top: 20px;
+        right:20px;color: #03aba7">
+      </i>
+      <div [chart]="stock" style="height: 300px; width: 600px"></div>
     </div>
   </div>
+</div>
