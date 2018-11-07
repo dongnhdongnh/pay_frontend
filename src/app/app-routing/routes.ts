@@ -33,7 +33,7 @@ export const routes: Routes = [
     { path: 'verify', component: VerifyComponent, canActivate: [LoginGuard], data: { title: 'Verify'} },
     { path: 'logout', component: LogoutComponent, data: { title: 'Logout' } },
     { path: 'account-is-lock', canActivate: [LockGuard], component: LockScreenComponent, data: { title: 'Lock Screen' } },
-    { path: 'addresses', component: AddressesComponent, data: { title: 'Addresses' } },
+    { path: 'addresses', component: AddressesComponent, canActivate: [AuthGuard], data: { title: 'Addresses' } },
     { path: 'reports', component: ReportsComponent, data: { title: 'Reports' } },
     { path: 'reportform', component: ReportFormComponent, data: {title: 'Report Form'} },
     { path: '', component: DashboardComponent, canActivate: [AuthGuard], children: [
