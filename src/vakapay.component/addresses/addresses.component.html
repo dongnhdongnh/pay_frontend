@@ -10,6 +10,13 @@
           generated for each payment on VakaPay and stay associated with your account forever (so it is safe to reuse them).</p>
         <div class="col-12 mg-b-20">
           <div class="col-md-3 col-sm-12 pd-l-0 pd-r-0 mg-t-10">
+            <!-- Network name select using Ng-Select -->
+            <!-- <ng-select [items]="networkNames"
+                       bindLabel="name"
+                       bindValue="id"
+                       [(ngModel)]="selectedNetworkName">
+            </ng-select> -->
+            <!-- TODO: OLD NETWORK SELECTION - DELETE AFTER USING NG-SELECT -->
             <select class="form-control select2 select2-hidden-accessible" data-placeholder="BTC Wallet (0.0000 BTC)" tabindex="-1" aria-hidden="true">
               <option label="Choose Currency"></option>
               <option value="USA">VKC Wallet (0.0000 VKC)</option>

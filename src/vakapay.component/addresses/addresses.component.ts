@@ -1,14 +1,13 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';   // Using Material Paginator
 import { WalletService } from 'services/wallet/wallet.service';
+import {NgSelectModule, NgOption} from '@ng-select/ng-select';
 
 export interface AddressElement {
   address: string;
   label: string;
   created: number;
 }
-
-let networkName: string;
 
 // Fixed data for table testing
 const ELEMENT_DATA: AddressElement[] = [
@@ -32,9 +31,17 @@ export class AddressesComponent implements OnInit {
   dataSource = new MatTableDataSource<AddressElement>(ELEMENT_DATA);
   walletService: WalletService;
 
+  /** Network name Ng-Select */
+  networkNames = [
+    {id: 0, name: 'VakaCoin'},
+    {id: 1, name: 'Ethereum'},
+    {id: 2, name: 'Bitcoin'},
+  ];
+  selectedNetworkName = 'VakaCoin';
+
   constructor(walletService: WalletService) {
     this.walletService = walletService;
-   }
+  }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -46,7 +53,7 @@ export class AddressesComponent implements OnInit {
   public async onClickCreateNewWallet() {
     try {
       // tslint:disable-next-line:prefer-const
-      let result = await this.walletService.createWalletAddress(networkName);
+      // let result = await this.walletService.createWalletAddress(networkName);
     } catch (error) {
       console.log(error);
     }
