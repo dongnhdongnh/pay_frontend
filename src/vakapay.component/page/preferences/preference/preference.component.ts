@@ -31,6 +31,8 @@ export class PreferenceComponent implements OnInit {
   //service
   accountService: AccountService;
 
+  listWallet: any;
+
   constructor(accountService: AccountService) {
     this.listCurrency = Currency.getListCurrency();
     this.listTimeZone = TimeZone.getListTimeZone();
