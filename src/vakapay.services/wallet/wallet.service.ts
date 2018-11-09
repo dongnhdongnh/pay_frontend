@@ -12,7 +12,7 @@ import * as WAValidator from 'wallet-address-validator';
 export class WalletService {
 
   // API endpoints
-  url_getAllWalletByUserID = '/api/wallet/all?userID='
+  url_getAllWalletByUserID = '/api/wallet/all'
   url_getWalletInfor = '/api/wallet/History'
   url_getExchangeRate = '/api/wallet/GetExchangeRate'
   url_getWalletHistory = '/api/wallet/History'
@@ -28,12 +28,12 @@ export class WalletService {
 
   constructor(private httpService: HttpService) { }
 
-  async getAllWallet(mAccount) {
+  async getAllWallet() {
     try {
       let operation = 'get all wallets by info user';
-      let api = this.url_getAllWalletByUserID + mAccount.id;
+      let api = this.url_getAllWalletByUserID;
       let result = await this.httpService.get(operation, api, false);
-      console.log(mAccount.id + " result " + result);
+     
 
       if (Utility.isError(result)) {
         console.log(result.message);
@@ -162,11 +162,11 @@ export class WalletService {
     //  return this.isETHAddress(address);
   }
 
-  createWalletAddress(networkName: string): Promise<ResultObject> {
+  createWalletAddress(data: any): Promise<ResultObject> {
     // console.log('New Wallet created!\n' + networkName);
     // this.isLoading = true;
     const operation = 'create new wallet';
-    const api = this.url_createWallet + '?networkName=' + networkName;
-    return this.httpService.post(operation, api, networkName);
+    const api = this.url_createWallet;
+    return this.httpService.post(operation, api, data);
   }
 }
