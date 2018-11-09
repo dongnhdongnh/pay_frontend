@@ -43,6 +43,11 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit() {
   }
 
+  redirectPage(){
+    localStorage.clear();
+    location.href = "https://vakaid.vakaxalab.com/Security";
+  }
+
   showModalChangePassword() {
     this.ngxSmartModalService.getModal('changePasswordModal').open();
   }

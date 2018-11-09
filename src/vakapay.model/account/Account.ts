@@ -51,7 +51,9 @@ export class Account extends Model {
 
     set attributes(data: any) {
         this._attributes = data;
-        let date = new Date(this.birthday);
-        this.birthday = UtilityFormat.formatDateText(date.getTime());
+        if (this.birthday) {
+            let date = new Date(this.birthday);
+            this.birthday = UtilityFormat.formatDateText(date.getTime());
+        }
     }
 }

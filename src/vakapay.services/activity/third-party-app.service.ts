@@ -14,27 +14,27 @@ export class ThirdPartyAppService {
     }
 
     async getList(offset = 0, limit = 8) {
-        try {
-            this.isLoading = true;
-            let operation = 'get list third party services';
-            let api = `/api/activity/web-session/get-list?offset=${offset}&limit=${limit}`;
-            let result = await this.httpService.get(operation, api, false);
-            this.isLoading = false;
+        // try {
+        //     this.isLoading = true;
+        //     let operation = 'get list third party services';
+        //     let api = `/api/activity/web-session/get-list?offset=${offset}&limit=${limit}`;
+        //     let result = await this.httpService.get(operation, api, false);
+        //     this.isLoading = false;
 
-            if (Utility.isError(result)) {
-                this.isError = true;
-                return;
-            }
+        //     if (Utility.isError(result)) {
+        //         this.isError = true;
+        //         return;
+        //     }
 
-            this.isError = false;
-            var list = new ListThirdPartyApp();
-            list.list = result.data;
-            list.format();
-            this.list = list.list;
-        } catch (error) {
-            this.isError = true;
-            this.isLoading = false;
-        }
+        //     this.isError = false;
+        //     var list = new ListThirdPartyApp();
+        //     list.list = result.data;
+        //     list.format();
+        //     this.list = list.list;
+        // } catch (error) {
+        //     this.isError = true;
+        //     this.isLoading = false;
+        // }
     }
 
     refresh() {
