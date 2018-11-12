@@ -4804,7 +4804,7 @@ button.close {
   border-radius: 0.3rem;
   outline: 0;
   min-width: 300px;
-  width: 500px;
+  width: 520px;
   max-width: 100%;
 }
 
@@ -4871,7 +4871,6 @@ button.close {
 
 @media (min-width: 576px) {
   .modal-dialog {
-    max-width: 500px;
     margin: 30px auto;
   }
   .modal-sm {
@@ -18217,7 +18216,7 @@ textarea.parsley-success:focus {
 
 .navicon-left a:hover,
 .navicon-left a:focus {
-  color: #343a40;
+  /* color: #343a40; */
 }
 
 .navicon-right {
@@ -18873,9 +18872,6 @@ textarea.parsley-success:focus {
 }
 
 @media (min-width: 992px) {
-  /* .br-mainpanel {
-    margin-left: 230px;
-  } */
   .br-pagebody {
     width: 1400px;
     max-width: 100%;

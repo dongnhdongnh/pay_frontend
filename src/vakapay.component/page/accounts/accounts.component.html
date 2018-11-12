@@ -42,7 +42,7 @@
                               VKC</p>
                             <div class="pd-t-10 pd-b-10 d-flex align-items-center">
                               <div *ngIf="wallets.get('Vakacoin')?.Balance>0">
-                                <a href="#" (click)="onClickSend('VKC')" class="btn btn-trans  send-receive"
+                                <a href="#" (click)="onClickSend('VKC')" class="btn btn-trans send-receive"
                                   data-toggle="modal" data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send
                                   <loading-button [isLoading]='loadingObject?.loadClickSend'></loading-button>
                                 </a>
@@ -429,7 +429,7 @@
                           </div>
 
                           <h6 class="check tx-20 mg-b-0 mg-t-20">No transactions</h6>
-                          <p class="mg-b-20 mg-x-20 tx-center">VakaPay is the easiest place to get started.</p>
+                          <p class="tx-center">VakaPay is the easiest place to get started.</p>
                         </div>
                       </div>
                     </div>
@@ -541,7 +541,7 @@
                     <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/icon-btc.svg"
                         alt=""></i>
                     <h6 class="check tx-20 mg-b-0 mg-t-20">No transactions</h6>
-                    <p class="mg-b-20 mg-x-20 tx-center">VakaPay is the easiest place to get started.</p>
+                    <p class="tx-center">VakaPay is the easiest place to get started.</p>
                   </div>
                 </div>
               </div>
@@ -557,7 +557,7 @@
                     <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/icon-eth.svg"
                         alt=""></i>
                     <h6 class="check tx-20 mg-b-0 mg-t-20">No transactions</h6>
-                    <p class="mg-b-20 mg-x-20 tx-center">VakaPay is the easiest place to get started.</p>
+                    <p class="tx-center">VakaPay is the easiest place to get started.</p>
                   </div>
                 </div>
               </div>
@@ -573,7 +573,7 @@
                     <i class="tx-medium tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/icon-eos.svg"
                         alt=""></i>
                     <h6 class="check tx-20 mg-b-0 mg-t-20">No transactions</h6>
-                    <p class="mg-b-20 mg-x-20 tx-center">VakaPay is the easiest place to get started.</p>
+                    <p class="tx-center">VakaPay is the easiest place to get started.</p>
                   </div>
                 </div>
               </div>
@@ -797,13 +797,8 @@
           <div class="col-sm-12 mg-t-10 mg-sm-t-0">
             <div class="width-half-mini input-number">
               <div class="input-left bg-green">
-<<<<<<< HEAD
-                <loading-button style="color:black" [isLoading]='loadingObject?.loadVND'></loading-button>
-                <span color="slate">VND</span>
-=======
                   <loading-button style="color:black" [isLoading]='loadingObject?.loadVND'></loading-button>
                 <span color="slate">{{mAccount?.currencyKey}}</span>
->>>>>>> bcf75ecb739b644c9a6c829f18a0ebd6e824b637
               </div>
               <div class="input-right"><input type="number" class="form-control fc-outline-white" placeholder=""
                   [(ngModel)]="vndValue" maxlength="15" name="VNDAmount" #VNDAmount="ngModel" ngModel required

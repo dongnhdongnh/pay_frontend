@@ -50,7 +50,7 @@ export class AccountsComponent extends Root implements OnInit {
     router: Router,
     mAccountSerive: AccountService,
     walletService: WalletService,
-    currentCurrency : CurrentCurrency,
+    currentCurrency: CurrentCurrency,
     public ngxSmartModalService: NgxSmartModalService,
     toasterService: ToasterService,
     private _clipboardService: ClipboardService
@@ -62,7 +62,7 @@ export class AccountsComponent extends Root implements OnInit {
     this.walletService = walletService;
     this.isDataLoaded = false;
     this.clipboardService = _clipboardService;
-    this.currentCurrency=currentCurrency;
+    this.currentCurrency = currentCurrency;
     console.log("ACCOUNT ID: " + JSON.stringify(this.mAccount));
     this.getUserData();
 
@@ -303,7 +303,7 @@ export class AccountsComponent extends Root implements OnInit {
           break;
       }
       let sendWallet = this.getWalletByName(this.sendObject.networkName);
-     
+
       await this.walletService.getExchangeRate(sendWallet.Currency, this.currentCurrency.exchangeRate).then((output) => {
         console.log(output);
         this.sendObject.exchangeRate = output;
@@ -492,7 +492,7 @@ export class AccountsComponent extends Root implements OnInit {
       if (id == -1) {
         this.errorObject.canNext = canNext;
       }
-     // console.log("canNExt " + canNext);
+      // console.log("canNExt " + canNext);
       return canNext;
     } catch (error) {
       console.log("error " + error);
@@ -649,9 +649,10 @@ export class AccountsComponent extends Root implements OnInit {
 
   slideConfig: SwiperConfigInterface = {
     speed: 300,
-    centeredSlides: false,
-    slidesPerView: 4,
-    spaceBetween: 10,
+    slidesPerView: 'auto',
+    visibilityFullFit: true,
+    autoResize: false,
+    loopedSlides: 4,
     navigation: true,
     pagination: true,
     scrollbar: false,
