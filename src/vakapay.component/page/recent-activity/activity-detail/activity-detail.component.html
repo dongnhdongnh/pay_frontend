@@ -7,7 +7,7 @@
             <div class="modal-body pd-x-20 pd-y-5">
                 <i [class]="activity.isSend ? 'icon ion-arrow-up-a tx-60 tx-success lh-1 mg-t-20 d-inline-block tx-center img-center' : 'icon ion-arrow-down-a tx-60 tx-success lh-1 mg-t-20 d-inline-block tx-center img-center'"></i>
                 <h6 class="check tx-20 mg-b-0">{{ activity.isSend ? '-' : '+'}}{{activity.amount}} {{activity.symbol}}</h6>
-                <h6 class="grey tx-16">= ${{activity.value}}</h6>
+                <h6 class="grey tx-16">= {{activity.currencySymbol}}{{activity.value}}</h6>
                 <div class="col-sm-12 mg-t-30 mg-sm-t-0">
                     <div class="form-layout-6">
                         <div class="row no-gutters">
@@ -15,7 +15,7 @@
                                 Price per coin
                             </div><!-- col-4 -->
                             <div class="col-8">
-                                ${{activity.price}}
+                                {{activity.currencySymbol}}{{activity.price}}
                             </div><!-- col-8 -->
                         </div><!-- row -->
                         <div class="row no-gutters">

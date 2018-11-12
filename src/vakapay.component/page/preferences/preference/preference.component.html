@@ -5,7 +5,7 @@
     Local Currency:<i class="tx-danger">*</i>
   </label>
   <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-    <ng-select [items]="listWallet" bindLabel="name" bindValue="key"
+    <ng-select [items]="listCurrency" bindLabel="name" bindValue="key"
       [(ngModel)]="mAccount.currencyKey" name="currency"
       (change)="onChangeCurrency($event)" placeholder="Choose Currency"
       class="select-list">

@@ -68,6 +68,22 @@ export class HttpService {
     return this.requestGet(operation, URL_API, alert);
   };
 
+  manualGet(URL_api) {
+    var self = this;
+    return new Promise<ResultObject>(
+      (resolve, reject) => self.http.get(URL_api, self.httpOptionsGet())
+        .subscribe(
+          data => {
+            let dataConvert = new ResultObject(data);
+            //  self.handleSuccess(operation, URL_API, dataConvert, alert);
+            resolve(dataConvert);
+          },
+          error => {
+            // self.handleError(operation, URL_API, error, alert);
+            reject(error);
+          }
+        ));
+  }
   requestGet(operation = 'operation', URL_API, alert = true) {
     var self = this;
     return new Promise<ResultObject>(

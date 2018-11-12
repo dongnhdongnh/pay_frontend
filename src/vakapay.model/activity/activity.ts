@@ -17,8 +17,9 @@ export class Activity {
     symbol: string;
     status: string;
     transactionUrl: string;
+    currencySymbol: string;
 
-    constructor(timestamp, isSend, networkName, fromAddress, toAddress, amount, value, hash, price, blockNumber, status) {
+    constructor(timestamp, isSend, networkName, fromAddress, toAddress, amount, value, hash, price, blockNumber, status, currencySymbol) {
         var date = new Date(Number(timestamp+'000'));
         var dateElement = date.toString().split(' ');
         this.day = dateElement[2];
@@ -54,5 +55,6 @@ export class Activity {
             default:
                 break;
         }
+        this.currencySymbol = currencySymbol;
     }
 }

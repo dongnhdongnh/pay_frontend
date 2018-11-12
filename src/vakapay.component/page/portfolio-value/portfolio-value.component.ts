@@ -59,10 +59,9 @@ export class PortfolioValueComponent implements OnInit {
     this.data.length = 0;
     var apiData = await this.httpService.getFrom("get coinmarket data", this.apiUrl + apiString);
     
-    if (this.currentCurrency.isLoading){
+    while (this.currentCurrency.isLoading){
       await Utility.sleep(100);
     }
-    console.log(" aaaaaaaaaa " + this.currentCurrency.exchangeRate)
 
     if (apiData || apiData.data){
       var objectData = apiData.data;
@@ -70,7 +69,6 @@ export class PortfolioValueComponent implements OnInit {
       objectData.forEach(element => {
         var temp = [];
         var value = ((Number(element["BitcoinValue"]) + Number(element["EthereumValue"]) + Number(element["VakacoinValue"]))*this.currentCurrency.exchangeRate).toFixed(3);
-        console.log(value + " aaaaaaaaaa " + this.currentCurrency.exchangeRate)
         var time = Number(element["Timestamp"] + "000");
         this.portfolioValue = this.currentCurrency.symbol + value;
         temp.push(time, Number(value));

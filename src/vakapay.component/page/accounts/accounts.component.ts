@@ -10,6 +10,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
 import { ClipboardService } from 'ngx-clipboard'
 import { UtilityValidate } from 'utility/UtilityValidate';
+import { CurrentCurrency } from 'model/currency/Currency';
 import {
   SwiperComponent, SwiperDirective, SwiperConfigInterface,
   SwiperScrollbarInterface, SwiperPaginationInterface
@@ -49,6 +50,7 @@ export class AccountsComponent extends Root implements OnInit {
     router: Router,
     mAccountSerive: AccountService,
     walletService: WalletService,
+    private currentCurrency: CurrentCurrency,
     public ngxSmartModalService: NgxSmartModalService,
     toasterService: ToasterService,
     private _clipboardService: ClipboardService
@@ -60,6 +62,7 @@ export class AccountsComponent extends Root implements OnInit {
     this.walletService = walletService;
     this.isDataLoaded = false;
     this.clipboardService = _clipboardService;
+
     console.log("ACCOUNT ID: " + JSON.stringify(this.mAccount));
     this.getUserData();
 
@@ -109,7 +112,7 @@ export class AccountsComponent extends Root implements OnInit {
 
   async getHistory(wallet) {
     try {
-      console.log("get history " + JSON.stringify(wallet));
+      //  console.log("get history " + JSON.stringify(wallet));
 
       if (wallet == null) {
         console.log("nothing to show");
@@ -149,7 +152,7 @@ export class AccountsComponent extends Root implements OnInit {
   }
 
   searchHistory(valueThing) {
-    console.log("SEARCH====== " + valueThing);
+    // console.log("SEARCH====== " + valueThing);
     if (valueThing == this.vkcSearchValue)
       return;
     this.vkcSearchValue = valueThing;
@@ -168,9 +171,9 @@ export class AccountsComponent extends Root implements OnInit {
     this.walletsData.forEach(element => {
       if (element.Currency == walletName) {
         {
-          console.log("HELLO get Balance " + JSON.stringify(element));
+          //    console.log("HELLO get Balance " + JSON.stringify(element));
           //   return JSON.stringify(element);
-          console.log(element.Balance);
+          //  console.log(element.Balance);
           return element.Balance;
           //   break;
         }
@@ -185,7 +188,7 @@ export class AccountsComponent extends Root implements OnInit {
   }
 
   public onClickWalletTab(event, name) {
-    console.log(JSON.stringify(event) + name);
+    // console.log(JSON.stringify(event) + name);
     if (this.tab_current && this.tab_current.sortName == name)
       return;
     this.tab_current = {};
@@ -261,21 +264,19 @@ export class AccountsComponent extends Root implements OnInit {
     }
   }
   public onClickSend(networkName) {
-    console.log("on cl0ickkkkkkkkkkkkkkkkkkkkkkkkkkk send " + networkName);
-
     this.errorObject = {};
     this.sendCoinForm.reset();
     this.updateSendObject(networkName);
     // this.loadingObject.loadClickSend = true;
     let sendWallet = this.getWalletByName(this.sendObject.networkName);
-    console.log("sendwallet=========> " + JSON.stringify(sendWallet));
+    // console.log("sendwallet=========> " + JSON.stringify(sendWallet));
     if (sendWallet == null)
       return;
     // var result = await this.walletService.getAddress(sendWallet.Id, sendWallet.Currency);
     // this.sendObject.address = JSON.parse(result.message);
 
     this.ngxSmartModalService.getModal('sendDetail').open();
-    this.validateSendCoin(this.sendCoinForm);
+    // this.validateSendCoin(this.sendCoinForm);
     //  var result_exchangeRate = await this.walletService.getExchangeRate(sendWallet.Currency);
     //  this.sendObject.exchangeRate = result_exchangeRate.message;
     // this.loadingObject.loadClickSend = false;
@@ -300,11 +301,14 @@ export class AccountsComponent extends Root implements OnInit {
           break;
       }
       let sendWallet = this.getWalletByName(this.sendObject.networkName);
+      let exchangeRateMoney = await this.currentCurrency.ExchangeRate();
+      if (exchangeRateMoney < 0)
+        throw 'cant get exchangerRate';
       await this.walletService.getExchangeRate(sendWallet.Currency).then((output) => {
-        console.log(output);
-        this.sendObject.exchangeRate = output;
+        //console.log(output);
+        this.sendObject.exchangeRate = output * exchangeRateMoney;
       });
-      console.log("WHAT " + typeName);
+
       switch (typeName) {
         case "VKC":
           this.loadingObject.loadVND = false;
@@ -330,10 +334,10 @@ export class AccountsComponent extends Root implements OnInit {
   }
 
   public onClickReceive(networkName) {
-    console.log("onClickReceive " + networkName);
+    //  console.log("onClickReceive " + networkName);
     this.updateSendObject(networkName);
     let sendWallet = this.getWalletByName(this.sendObject.networkName);
-    console.log("sendwallet=========> " + JSON.stringify(sendWallet));
+    //  console.log("sendwallet=========> " + JSON.stringify(sendWallet));
     // if (sendWallet == null)
     //   return;
 
@@ -342,8 +346,7 @@ export class AccountsComponent extends Root implements OnInit {
   public async onClickReceiveDetail() {
     try {
       let sendWallet = this.getWalletByName(this.sendObject.networkName);
-      if (sendWallet == null)
-      {
+      if (sendWallet == null) {
         this.sendObject.address = {};
         this.loadingObject.getAddress = false;
         this.ngxSmartModalService.getModal('receiveCoin').close();
@@ -369,23 +372,23 @@ export class AccountsComponent extends Root implements OnInit {
   async sendCoin(form: NgForm) {
     try {
       // console.log("FORM CONTROLLLL:" + form.controls.Recipient_EmailAddress.errors.required);
-      console.log("HAHAHAHAHA ============>" + JSON.stringify(form.value));
+      //  console.log("HAHAHAHAHA ============>" + JSON.stringify(form.value));
       if (!this.validateSendCoin(form)) {
-        console.log("validateSendCoin false");
+        //  console.log("validateSendCoin false");
         return;
       }
       this.sendObject.detail = form.value;
       this.loadingObject.sendCoin = true;
       var result = await this.walletService.checkSendCoin(this.sendObject.detail.withdrawn_from
         , this.sendObject.detail.recipientWalletAddress, this.sendObject.networkName, this.sendObject.detail.VKCAmount);
-      console.log("RESULT " + result);
+      //  console.log("RESULT " + result);
       let _checkObject = JSON.parse(result.message);
       this.sendObject.checkObject = _checkObject;
       this.requestSMSCode();
       this.loadingObject.sendCoin = false;
       this.ngxSmartModalService.getModal('sendConfirm').open();
-      console.log("HAHAHAHAHA confirm:checkObject ============>" + JSON.stringify(this.sendObject.checkObject));
-      console.log("SEND WITH DATA =" + JSON.stringify(this.sendObject));
+      // console.log("HAHAHAHAHA confirm:checkObject ============>" + JSON.stringify(this.sendObject.checkObject));
+      // console.log("SEND WITH DATA =" + JSON.stringify(this.sendObject));
     } catch (error) {
       console.log(error);
       this.loadingObject.sendCoin = false;
@@ -397,62 +400,109 @@ export class AccountsComponent extends Root implements OnInit {
   }
 
   errorObject: any;
-  validateSendCoin(form: NgForm) {
+  validateSendCoin(form: NgForm, id = -1, showError = true) {
 
-    this.errorObject = {};
-    this.errorObject.canNext = true;
-    if (this.sendByAd) {
-      if (form.controls.recipientWalletAddress.errors && form.controls.recipientWalletAddress.errors.required) {
-        this.errorObject.recipientWalletAddress = 'Address is required';
-        //  return false;
-        this.errorObject.canNext = false;
+    try {
+      // console.log("validate coin " + id);
+      this.errorObject = {};
+      let canNext = true;
+      //  this.errorObject.canNext = true;
+      if (this.sendByAd) {
+
+        if (id == -1 || id == 1) {
+          if (form.controls.recipientWalletAddress.errors && form.controls.recipientWalletAddress.errors.required) {
+            //   this.errorObject.recipientWalletAddress = 'Address is required';
+            //  return false;
+            canNext = false;
+            //  this.errorObject.canNext = false;
+          }
+          else {
+            if (!this.walletService.validateAddress(form.value.recipientWalletAddress, this.tab_current.fullName)) {
+              this.errorObject.recipientWalletAddress = 'Address is not valid';
+              //  this.errorObject.canNext = false;
+              canNext = false;
+            }
+
+          }
+
+        }
+
+
       }
       else {
-        if (!this.walletService.validateAddress(form.value.recipientWalletAddress, this.tab_current.fullName)) {
-          this.errorObject.recipientWalletAddress = 'Address is not valid';
-          this.errorObject.canNext = false;
+        if (id == -1 || id == 2) {
+          if (form.controls.recipientEmailAddress.errors && form.controls.recipientEmailAddress.errors.required) {
+            //  this.errorObject.recipientEmailAddress = 'Email is required';
+            // this.errorObject.canNext = false;
+            canNext = false;
+            //   return false;
+          }
+          else {
+
+            if (!UtilityValidate.isEmail(form.value.recipientEmailAddress)) {
+              this.errorObject.recipientEmailAddress = 'Email is not valid';
+              canNext = false;
+            }
+          }
+
         }
 
       }
+      // if (form.controls.withdrawn_from.errors && form.controls.withdrawn_from.errors.required) {
+      //   this.errorObject.withdrawn_from = true;
+      //   return false;
+      // }
+      if (id == -1 || id == 3) {
 
-    }
-    else {
-      if (form.controls.recipientEmailAddress.errors && form.controls.recipientEmailAddress.errors.required) {
-        this.errorObject.recipientEmailAddress = 'Email is required';
-        this.errorObject.canNext = false;
-        //   return false;
-      }
-    }
-    // if (form.controls.withdrawn_from.errors && form.controls.withdrawn_from.errors.required) {
-    //   this.errorObject.withdrawn_from = true;
-    //   return false;
-    // }
-    if (form.controls.VNDAmount.errors && form.controls.VNDAmount.errors.required && !this.vndValue) {
-      this.errorObject.VNDAmount = 'Amount is required';
-      this.errorObject.canNext = false;
-      //  return false;
-    }
-    else {
-      if (this.vndValue <= 0) {
-        this.errorObject.VNDAmount = 'Amount must be greater than 0';
-        this.errorObject.canNext = false;
-        //  return false;
-      }
-      else
-        if (this.vkcValue > this.wallet_current.Balance) {
-          this.errorObject.VNDAmount = 'Amount cannot be greater than balance';
-          // +form.value.VKCAmount +"___"+this.vkcValue+"____"+this.wallet_current.Balance;
-          this.errorObject.canNext = false;
+        if (form.controls.VNDAmount.errors && form.controls.VNDAmount.errors.required && !this.vndValue) {
+          //  this.errorObject.VNDAmount = 'Amount is required';
+          //  this.errorObject.canNext = false;
+          canNext = false;
           //  return false;
         }
+        else {
+          if (this.vndValue <= 0) {
+            this.errorObject.VNDAmount = 'Amount must be greater than 0';
+            // this.errorObject.canNext = false;
+            canNext = false;
+            //  return false;
+          }
+          else
+            if (this.vkcValue > this.wallet_current.Balance) {
+              this.errorObject.VNDAmount = 'Amount cannot be greater than balance';
+              // +form.value.VKCAmount +"___"+this.vkcValue+"____"+this.wallet_current.Balance;
+              // this.errorObject.canNext = false;
+              canNext = false;
+              //  return false;
+            }
 
+        }
+
+      }
+
+
+      // if (form.controls.VKCnote.errors && form.controls.VKCnote.errors.required) {
+      //   this.errorObject.VKCnote = 'Note is required';
+      //  // return false;
+      // }
+
+      if (!showError) {
+        this.errorObject = {};
+      }
+      if (id == -1) {
+        this.errorObject.canNext = canNext;
+      }
+      // console.log("canNExt " + canNext);
+      return canNext;
+    } catch (error) {
+      console.log("error " + error);
+
+      if (!showError) {
+        this.errorObject = {};
+      }
+      return false;
     }
 
-    // if (form.controls.VKCnote.errors && form.controls.VKCnote.errors.required) {
-    //   this.errorObject.VKCnote = 'Note is required';
-    //  // return false;
-    // }
-    return this.errorObject.canNext;
 
   }
 
@@ -465,14 +515,14 @@ export class AccountsComponent extends Root implements OnInit {
       delete this.sendObject.exchangeRate;
 
 
-      console.log("HAHAHAHAHA confirm ============>" + JSON.stringify(this.sendObject));
+      //   console.log("HAHAHAHAHA confirm ============>" + JSON.stringify(this.sendObject));
       this.ngxSmartModalService.getModal('sendDetail').close();
       this.ngxSmartModalService.getModal('sendConfirm').close();
       this.loadingObject.sendCoinConfirm = true;
       let result = await this.walletService.sendCoinConfirm(this.sendObject);
-      console.log("result:========== " + JSON.stringify(result));
+      //  console.log("result:========== " + JSON.stringify(result));
       if (Utility.isError(result)) {
-        console.log(result.message);
+        //  console.log(result.message);
         this.errorObject.sendTransactions = result.message;
 
       }
@@ -502,7 +552,7 @@ export class AccountsComponent extends Root implements OnInit {
     //     return;
     //   }
     // });
-    console.log("get history of " + JSON.stringify(this.wallet_current));
+    //  console.log("get history of " + JSON.stringify(this.wallet_current));
     await this.getHistory(this.wallet_current);
   }
 
@@ -514,7 +564,7 @@ export class AccountsComponent extends Root implements OnInit {
       this.walletsData.forEach(element => {
         if (element.Currency == networkName.toString()) {
           _output = element;
-          console.log("get " + JSON.stringify(element));
+          //     console.log("get " + JSON.stringify(element));
           return element;
           //    this.getHistory(this.wallet_current);
         }
@@ -599,9 +649,10 @@ export class AccountsComponent extends Root implements OnInit {
 
   slideConfig: SwiperConfigInterface = {
     speed: 300,
-    centeredSlides: false,
-    slidesPerView: 4,
-    spaceBetween: 10,
+    slidesPerView: 'auto',
+    //visibilityFullFit: true,
+    //autoResize: false,
+    loopedSlides: 4,
     navigation: true,
     pagination: true,
     scrollbar: false,
