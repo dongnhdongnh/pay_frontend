@@ -37,6 +37,8 @@ export class CurrentCurrency {
     configService: ConfigService;
     symbol = '$';
     exchangeRate = 1;
+    //Waiting until loading data is completed
+    isLoading: boolean = true;
 
     constructor(
         private accountService: AccountService, private httpService: HttpService,
@@ -50,7 +52,7 @@ export class CurrentCurrency {
 
     public async getExchangeRate() {
         while (!this.mAccount.currencyKey) {
-            await Utility.sleep(500);
+            await Utility.sleep(200);
         }
         var currencyId = this.mAccount.currencyKey;
         listSymbol.forEach(element => {
@@ -62,9 +64,11 @@ export class CurrentCurrency {
             return;
         }
         this.exchangeRate = Number(await this.getData(currencyId));
+        this.isLoading = false;
     }
 
     public async getData(currencySymbol = '') {
+        this.isLoading = true;
         var apiData = await this.httpService.getFrom("get coinmarket data", this.apiUrl + '/api/currency/' + currencySymbol);
         if (apiData && apiData.data) {
             return apiData.data;

@@ -4,8 +4,9 @@ export class Portfolio{
     percent: string;
     amount: string;
     value: string;
+    symbol: string;
 
-    constructor(networkName = '', total = 0, amount = '', value = 0){
+    constructor(networkName = '', total = 0, amount = '', value = 0, symbol = '$'){
         this.networkName = networkName;
         if (total == 0){
             this.percent = "0";
@@ -29,7 +30,8 @@ export class Portfolio{
                 this.amount = '';
                 this.iconUrl = '';
         }
-        this.value = "$" + value;
+        this.value = symbol + value.toFixed(3);
+        this.symbol = symbol;
     }
 
 }
