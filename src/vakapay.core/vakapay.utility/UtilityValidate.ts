@@ -13,6 +13,7 @@ class Validate {
         return typeof num === 'number';
     }
 
+
     static isPositive(number) {
         return this.isNumber(number) && number > 0;
     }
@@ -36,6 +37,12 @@ class Validate {
 
     static isString(str, lengthMin, lengthMax) {
         return typeof str === 'string' && str.length <= lengthMax && str.length >= lengthMin;
+    }
+
+    static isEmail(email) {
+        if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email))
+            return false;
+        return true;
     }
 
     static isValidAprroveLink(link) {

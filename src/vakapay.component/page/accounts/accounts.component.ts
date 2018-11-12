@@ -10,6 +10,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
 import { ClipboardService } from 'ngx-clipboard'
 import { UtilityValidate } from 'utility/UtilityValidate';
+import { CurrentCurrency } from 'model/currency/Currency';
 import {
   SwiperComponent, SwiperDirective, SwiperConfigInterface,
   SwiperScrollbarInterface, SwiperPaginationInterface
@@ -42,13 +43,14 @@ export class AccountsComponent extends Root implements OnInit {
   wallets = new Map<string, any>();
   wallet_current: any;
   tab_current: any;
-
+  currentCurrency: CurrentCurrency;
   constructor(
     titleService: Title,
     route: ActivatedRoute,
     router: Router,
     mAccountSerive: AccountService,
     walletService: WalletService,
+    currentCurrency : CurrentCurrency,
     public ngxSmartModalService: NgxSmartModalService,
     toasterService: ToasterService,
     private _clipboardService: ClipboardService
@@ -60,6 +62,7 @@ export class AccountsComponent extends Root implements OnInit {
     this.walletService = walletService;
     this.isDataLoaded = false;
     this.clipboardService = _clipboardService;
+    this.currentCurrency=currentCurrency;
     console.log("ACCOUNT ID: " + JSON.stringify(this.mAccount));
     this.getUserData();
 
@@ -275,7 +278,7 @@ export class AccountsComponent extends Root implements OnInit {
     // this.sendObject.address = JSON.parse(result.message);
 
     this.ngxSmartModalService.getModal('sendDetail').open();
-    this.validateSendCoin(this.sendCoinForm);
+    // this.validateSendCoin(this.sendCoinForm);
     //  var result_exchangeRate = await this.walletService.getExchangeRate(sendWallet.Currency);
     //  this.sendObject.exchangeRate = result_exchangeRate.message;
     // this.loadingObject.loadClickSend = false;
@@ -300,7 +303,8 @@ export class AccountsComponent extends Root implements OnInit {
           break;
       }
       let sendWallet = this.getWalletByName(this.sendObject.networkName);
-      await this.walletService.getExchangeRate(sendWallet.Currency).then((output) => {
+     
+      await this.walletService.getExchangeRate(sendWallet.Currency, this.currentCurrency.exchangeRate).then((output) => {
         console.log(output);
         this.sendObject.exchangeRate = output;
       });
@@ -342,8 +346,7 @@ export class AccountsComponent extends Root implements OnInit {
   public async onClickReceiveDetail() {
     try {
       let sendWallet = this.getWalletByName(this.sendObject.networkName);
-      if (sendWallet == null)
-      {
+      if (sendWallet == null) {
         this.sendObject.address = {};
         this.loadingObject.getAddress = false;
         this.ngxSmartModalService.getModal('receiveCoin').close();
@@ -397,62 +400,109 @@ export class AccountsComponent extends Root implements OnInit {
   }
 
   errorObject: any;
-  validateSendCoin(form: NgForm) {
+  validateSendCoin(form: NgForm, id = -1, showError = true) {
 
-    this.errorObject = {};
-    this.errorObject.canNext = true;
-    if (this.sendByAd) {
-      if (form.controls.recipientWalletAddress.errors && form.controls.recipientWalletAddress.errors.required) {
-        this.errorObject.recipientWalletAddress = 'Address is required';
-        //  return false;
-        this.errorObject.canNext = false;
+    try {
+      console.log("validate coin " + id);
+      this.errorObject = {};
+      let canNext = true;
+      //  this.errorObject.canNext = true;
+      if (this.sendByAd) {
+
+        if (id == -1 || id == 1) {
+          if (form.controls.recipientWalletAddress.errors && form.controls.recipientWalletAddress.errors.required) {
+            //   this.errorObject.recipientWalletAddress = 'Address is required';
+            //  return false;
+            canNext = false;
+            //  this.errorObject.canNext = false;
+          }
+          else {
+            if (!this.walletService.validateAddress(form.value.recipientWalletAddress, this.tab_current.fullName)) {
+              this.errorObject.recipientWalletAddress = 'Address is not valid';
+              //  this.errorObject.canNext = false;
+              canNext = false;
+            }
+
+          }
+
+        }
+
+
       }
       else {
-        if (!this.walletService.validateAddress(form.value.recipientWalletAddress, this.tab_current.fullName)) {
-          this.errorObject.recipientWalletAddress = 'Address is not valid';
-          this.errorObject.canNext = false;
+        if (id == -1 || id == 2) {
+          if (form.controls.recipientEmailAddress.errors && form.controls.recipientEmailAddress.errors.required) {
+            //  this.errorObject.recipientEmailAddress = 'Email is required';
+            // this.errorObject.canNext = false;
+            canNext = false;
+            //   return false;
+          }
+          else {
+
+            if (!UtilityValidate.isEmail(form.value.recipientEmailAddress)) {
+              this.errorObject.recipientEmailAddress = 'Email is not valid';
+              canNext = false;
+            }
+          }
+
         }
 
       }
+      // if (form.controls.withdrawn_from.errors && form.controls.withdrawn_from.errors.required) {
+      //   this.errorObject.withdrawn_from = true;
+      //   return false;
+      // }
+      if (id == -1 || id == 3) {
 
-    }
-    else {
-      if (form.controls.recipientEmailAddress.errors && form.controls.recipientEmailAddress.errors.required) {
-        this.errorObject.recipientEmailAddress = 'Email is required';
-        this.errorObject.canNext = false;
-        //   return false;
-      }
-    }
-    // if (form.controls.withdrawn_from.errors && form.controls.withdrawn_from.errors.required) {
-    //   this.errorObject.withdrawn_from = true;
-    //   return false;
-    // }
-    if (form.controls.VNDAmount.errors && form.controls.VNDAmount.errors.required && !this.vndValue) {
-      this.errorObject.VNDAmount = 'Amount is required';
-      this.errorObject.canNext = false;
-      //  return false;
-    }
-    else {
-      if (this.vndValue <= 0) {
-        this.errorObject.VNDAmount = 'Amount must be greater than 0';
-        this.errorObject.canNext = false;
-        //  return false;
-      }
-      else
-        if (this.vkcValue > this.wallet_current.Balance) {
-          this.errorObject.VNDAmount = 'Amount cannot be greater than balance';
-          // +form.value.VKCAmount +"___"+this.vkcValue+"____"+this.wallet_current.Balance;
-          this.errorObject.canNext = false;
+        if (form.controls.VNDAmount.errors && form.controls.VNDAmount.errors.required && !this.vndValue) {
+          //  this.errorObject.VNDAmount = 'Amount is required';
+          //  this.errorObject.canNext = false;
+          canNext = false;
           //  return false;
         }
+        else {
+          if (this.vndValue <= 0) {
+            this.errorObject.VNDAmount = 'Amount must be greater than 0';
+            // this.errorObject.canNext = false;
+            canNext = false;
+            //  return false;
+          }
+          else
+            if (this.vkcValue > this.wallet_current.Balance) {
+              this.errorObject.VNDAmount = 'Amount cannot be greater than balance';
+              // +form.value.VKCAmount +"___"+this.vkcValue+"____"+this.wallet_current.Balance;
+              // this.errorObject.canNext = false;
+              canNext = false;
+              //  return false;
+            }
 
+        }
+
+      }
+
+
+      // if (form.controls.VKCnote.errors && form.controls.VKCnote.errors.required) {
+      //   this.errorObject.VKCnote = 'Note is required';
+      //  // return false;
+      // }
+
+      if (!showError) {
+        this.errorObject = {};
+      }
+      if (id == -1) {
+        this.errorObject.canNext = canNext;
+      }
+     // console.log("canNExt " + canNext);
+      return canNext;
+    } catch (error) {
+      console.log("error " + error);
+
+      if (!showError) {
+        this.errorObject = {};
+      }
+      return false;
     }
 
-    // if (form.controls.VKCnote.errors && form.controls.VKCnote.errors.required) {
-    //   this.errorObject.VKCnote = 'Note is required';
-    //  // return false;
-    // }
-    return this.errorObject.canNext;
 
   }
 

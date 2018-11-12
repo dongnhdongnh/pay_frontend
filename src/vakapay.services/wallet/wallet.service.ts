@@ -3,9 +3,9 @@ import { HttpService } from 'network/http/http.service';
 import { Utility } from 'utility/Utility';
 import { ResultObject } from 'model/result/ResultObject';
 import * as priceCrypto from 'crypto-price';
-import * as convertCurrency from 'money';
 import * as WAValidator from 'wallet-address-validator';
 
+//import * as cc from 'currency-converter';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,7 +22,7 @@ export class WalletService {
   // url_verifyCode = 'api/twofa/transaction/verify-code'
   url_sendTransactions = '/api/wallet/sendTransactions'
   url_createWallet = '/api/tools/create-addresses'
-
+  url_currencyConvert = '/api/currency/VND';
   // Status
   isLoading = false;
 
@@ -33,7 +33,7 @@ export class WalletService {
       let operation = 'get all wallets by info user';
       let api = this.url_getAllWalletByUserID;
       let result = await this.httpService.get(operation, api, false);
-     
+
 
       if (Utility.isError(result)) {
         console.log(result.message);
@@ -49,9 +49,28 @@ export class WalletService {
     }
 
   }
-  getExchangeRate(networkName) {
-    return priceCrypto.getCryptoPrice('USD', 'ETH').then(obj => { // Base for ex - USD, Crypto for ex - ETH
-      console.log("get PRICE        " + obj.price)
+  getExchangeRate(networkName,exchangeRate) {
+    console.log("RATE "+exchangeRate);
+    let coinName = '';
+    switch (networkName) {
+      case "Bitcoin":
+        coinName = 'BTC';
+        break;
+      case "Ethereum":
+        coinName = 'ETH';
+        break;
+      case "VakaCoin":
+
+        break;
+      default:
+        return true;
+        break;
+    }
+    return priceCrypto.getCryptoPrice('USD', coinName).then(obj => { // Base for ex - USD, Crypto for ex - ETH
+      console.log("get PRICE        " + networkName + " " + obj.price)
+      //   cc.rates('USD','VND').then(
+      //     (o)=>{console.log(o)}
+      // );
       return obj.price;
       // let money = convertCurrency.convert(1, { from: "USD", to: "VND" });
       // console.log(money+" VND");
@@ -75,6 +94,8 @@ export class WalletService {
     //   console.log(JSON.stringify(error));
     // }
   }
+
+
   async getWalletInfor() {
     try {
       let operation = 'get info user';

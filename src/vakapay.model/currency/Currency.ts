@@ -65,8 +65,10 @@ export class CurrentCurrency {
     }
 
     public async getData(currencySymbol = '') {
+        console.log("========> get DAta" + currencySymbol);
         var apiData = await this.httpService.getFrom("get coinmarket data", this.apiUrl + '/api/currency/' + currencySymbol);
         if (apiData && apiData.data) {
+            console.log("===========>GET CURRENTCY DATA " + apiData.data);
             return apiData.data;
         }
         return null;
