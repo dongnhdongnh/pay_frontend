@@ -1,3 +1,4 @@
+import { TwofaService } from 'services/twofa/twofa.service';
 import { ApiKeyService } from 'services/api-access/api-key/apiKey.service';
 import { ApiAccess } from 'model/api-access/ApiAccess';
 import { Component, ViewChild, ElementRef } from '@angular/core';
@@ -7,6 +8,9 @@ import { Utility } from 'utility/Utility';
 import { UtilityValidate } from 'utility/UtilityValidate';
 import { WalletType } from 'model/wallet/WalletType';
 import { ApiType } from 'model/api-access/ApiType';
+import { Account } from 'model/account/Account';
+import { AccountService } from 'services/account/account.service';
+import { Action } from 'model/Action';
 
 @Component({
   selector: 'app-new-api-key-with-twofa',
@@ -38,6 +42,8 @@ export class NewApiKeyWithTwofaComponent {
   isEthWallet: boolean = false;
   isVakaWallet: boolean = false;
 
+  mAccount: Account;
+
   //select api
   is_CREATED_ADDRESSES: boolean = false;
   is_CREATED_DEPOSITS: boolean = false;
@@ -57,10 +63,26 @@ export class NewApiKeyWithTwofaComponent {
 
   constructor(
     public ngxSmartModalService: NgxSmartModalService,
+    private accountService: AccountService,
+    private twofaService: TwofaService,
     public apiAccessService: ApiAccessService,
     public apiKeyService: ApiKeyService,
   ) {
     this.apiAccess = apiAccessService.apiAccess;
+    this.mAccount = accountService.mAccount;
+  }
+
+  requireSendCodePhone() {
+    this.onResetFormCode();
+    this.twofaService.requireSendCodePhone(Action.API_ACCESS_ADD);
+  }
+
+  onResetFormCode() {
+    //input
+    this.codeElement.nativeElement.value = '';
+
+    //message
+    this.messageErrorCode = '';
   }
 
   onCode(event) {
@@ -166,13 +188,11 @@ export class NewApiKeyWithTwofaComponent {
     //valid
     this.isValid = false;
 
-    //input
-    this.codeElement.nativeElement.value = '';
-
     //message
     this.messageErrorApiType = '';
-    this.messageErrorCode = '';
     this.messageErrorWalletType = '';
+
+    this.onResetFormCode();
   }
 
   cancel() {
@@ -183,6 +203,9 @@ export class NewApiKeyWithTwofaComponent {
   continue() {
     this.validate();
     if (this.isValid === false) return;
+    if (this.mAccount.isTwoFactor === 2) {
+      this.requireSendCodePhone();
+    }
     this.step++;
     this.isValid = false;
   }

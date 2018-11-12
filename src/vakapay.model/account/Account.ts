@@ -20,7 +20,7 @@ export class Account extends Model {
     timezoneKey: string;
     notifications: string[];
     isLockScreen: number;
-    IsTwoFactor: number;
+    isTwoFactor: number;
 
     constructor() {
         super();
@@ -42,7 +42,7 @@ export class Account extends Model {
         this.timezoneKey = null;
         this.notifications = [];
         this.isLockScreen = 0;
-        this.IsTwoFactor = 0;
+        this.isTwoFactor = 0;
     }
 
     get fullName() {
@@ -51,7 +51,9 @@ export class Account extends Model {
 
     set attributes(data: any) {
         this._attributes = data;
-        let date = new Date(this.birthday);
-        this.birthday = UtilityFormat.formatDateText(date.getTime());
+        if (this.birthday) {
+            let date = new Date(this.birthday);
+            this.birthday = UtilityFormat.formatDateText(date.getTime());
+        }
     }
 }

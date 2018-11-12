@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 // Import ReactiveFormsModule
 import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
+import { MatInputModule } from '@angular/material/input';
 
 // Add libriary
 import { ToasterModule } from 'angular2-toaster';
@@ -42,7 +43,7 @@ export function highchartsModules() {
   // apply Highcharts Modules to this array
   return [stock, more];
 }
-import {ProgressBarModule} from "angular-progress-bar"
+import { ProgressBarModule } from "angular-progress-bar"
 
 //ng-select
 import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
@@ -99,17 +100,21 @@ import { MessageErrorInputComponent } from 'component/system/message-error-input
 import { UploadImageProfileComponent } from 'component/page/profile/upload-image-profile/upload-image-profile.component';
 import { UpdateProfileComponent } from 'component/page/profile/update-profile/update-profile.component';
 import { ProfileComponent } from 'component/page/profile/profile.component';
+
 import { PreferencesComponent } from 'component/page/preferences/preferences.component';
+import { NotificationComponent } from 'component/page/preferences/notification/notification.component';
+import { PreferenceComponent } from 'component/page/preferences/preference/preference.component';
+import { ExchangeRateComponent } from 'component/page/preferences/exchange-rate/exchange-rate.component';
+
 import { ObjectivesComponent } from './objectives/objectives.component';
 import { AddressesComponent } from 'component/addresses/addresses.component';
 import { ReportsComponent } from 'component/reports/reports.component';
 import { ReportFormComponent } from 'component/report-form/report-form.component';
-import { NotificationComponent } from 'component/page/preferences/notification/notification.component';
-import { PreferenceComponent } from 'component/page/preferences/preference/preference.component';
+
 import { SecurityComponent } from 'component/page/security/security.component';
 import { ChangePasswordComponent } from 'component/page/security/change-password/change-password.component';
 import { TwoFactorAuthenticationComponent } from 'component/page/security/two-factor-authentication/two-factor-authentication.component';
-import { TwofaOptionsComponent } from 'component/page/security/two-factor-authentication/enable/twofa-options/twofa-options.component';
+import { TwofaOptionsComponent } from 'component/page/security/two-factor-authentication/twofa-options/twofa-options.component';
 import { SessionActiveComponent } from 'component/page/activity/session-active/session-active.component';
 import { AccountActivityComponent } from 'component/page/activity/account-activity/account-activity.component';
 import { CloseAccountComponent } from 'component/page/security/close-account/close-account.component';
@@ -118,9 +123,6 @@ import { ApiAccessComponent } from 'component/page/api-access/api-access.compone
 import { AccountsComponent } from 'component/page/accounts/accounts.component';
 // TwofaVerify
 // tslint:disable-next-line:max-line-length
-import { TwofaVerifyCodeComponentWithPhoneComponent } from 'component/page/security/two-factor-authentication/enable/enable-twofa/twofa-verify-code-with-phone.component';
-import { TwofaOptionsVerifyWithPhoneComponent } from 'component/page/security/two-factor-authentication/enable/twofa-options/twofa-options-verify-with-phone/twofa-options-verify-with-phone.component';
-import { DisableTwofaComponent } from 'component/page/security/two-factor-authentication/disable-twofa/disable-twofa.component';
 import { CloseAccountVerifyPasswordComponent } from 'component/page/security/close-account/close-account-verify-password/close-account-verify-password.component';
 import { CloseAccountVerifyPhoneComponent } from 'component/page/security/close-account/close-account-verify-phone/close-account-verify-phone.component';
 import { LoadingButtonComponent } from 'component/loading-button/loading-button.component';
@@ -185,6 +187,12 @@ import { LockScreenWithTwofaComponent }
   from 'component/page/security/lock-screen/lock-screen-with-twofa/lock-screen-with-twofa.component';
 import { LockScreenWithoutTwofaComponent }
   from 'component/page/security/lock-screen/lock-screen-without-twofa/lock-screen-without-twofa.component';
+import { CustomTwoFactorAuthenticateComponent }
+  from 'component/page/security/two-factor-authentication/custom-two-factor-authenticate/custom-two-factor-authenticate.component';
+import { CustomTwoFactorAuthenticateWithSmsComponent }
+  from 'component/page/security/two-factor-authentication/custom-two-factor-authenticate-with-sms/custom-two-factor-authenticate-with-sms.component';
+import { CustomTwoFactorAuthenticateWithGoogleAuthenticateComponent }
+  from 'component/page/security/two-factor-authentication/custom-two-factor-authenticate-with-google-authenticate/custom-two-factor-authenticate-with-google-authenticate.component';
 
 @NgModule({
   declarations: [
@@ -227,11 +235,9 @@ import { LockScreenWithoutTwofaComponent }
     SessionActiveComponent,
     AccountActivityComponent,
     CloseAccountComponent,
-    TwofaVerifyCodeComponentWithPhoneComponent,
     CloseAccountVerifyPasswordComponent,
     CloseAccountVerifyPhoneComponent,
     LoadingButtonComponent,
-    TwofaOptionsVerifyWithPhoneComponent,
     ActivityComponent,
     ConfirmedDevicesComponent,
     ThirdPartyAppComponent,
@@ -243,7 +249,6 @@ import { LockScreenWithoutTwofaComponent }
     LockScreenComponent,
     AccountsComponent,
     JwPaginationComponent,
-    DisableTwofaComponent,
     ApiAccessComponent,
     BuyWidgetsComponent,
     ApiKeysComponent,
@@ -271,6 +276,10 @@ import { LockScreenWithoutTwofaComponent }
     DeleteApiKeyWithoutTwofaComponent,
     LockScreenWithTwofaComponent,
     LockScreenWithoutTwofaComponent,
+    CustomTwoFactorAuthenticateComponent,
+    CustomTwoFactorAuthenticateWithSmsComponent,
+    CustomTwoFactorAuthenticateWithGoogleAuthenticateComponent,
+    ExchangeRateComponent,
   ],
   imports: [
     ProgressBarModule,
@@ -292,11 +301,13 @@ import { LockScreenWithoutTwofaComponent }
     MatProgressSpinnerModule,
     // Reactive Forms Module
     MatSelectModule,
+    MatInputModule,
     MatSlideToggleModule,
     MatTableModule,
     MatPaginatorModule,
     MatSidenavModule,
     MatExpansionModule,
+    MatRadioModule,
     QRCodeModule,
     ClipboardModule,
 

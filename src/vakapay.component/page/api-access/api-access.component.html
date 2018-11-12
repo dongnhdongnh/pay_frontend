@@ -5,15 +5,15 @@
         <label class="col-sm-4 form-control-label"> Choose your API Access:</label>
         <div class="col-sm-8">
           <ng-select [(ngModel)]="selectedIndex">
-            <ng-option [value]="0">Buy Widgets</ng-option>
+            <!-- <ng-option [value]="0">Buy Widgets</ng-option> -->
             <ng-option [value]="1">API Keys</ng-option>
-            <ng-option [value]="2">OAuth2 App</ng-option>
+            <!-- <ng-option [value]="2">OAuth2 App</ng-option> -->
           </ng-select>
         </div>
       </div>
       <div class="clear-both"></div>
       <div class="nav" role="tablist">
-        <div class="d-table-cell col-sm-6 col-lg-4 mg-t-20 hidden-mob" [class.active]="selectedIndex == 0"
+        <div class="d-table-cell col-sm-6 col-lg-4 mg-t-20 hidden-mob" [hidden]="true" [class.active]="selectedIndex == 0"
           data-toggle="tab" href="#tab1" role="tab" aria-selected="false">
           <div class="card card2">
             <div class="pd-x-20 pd-t-20 d-flex tx-primary align-items-center">
@@ -59,7 +59,7 @@
               </svg></div>
           </div>
         </div>
-        <div class="d-table-cell col-lg-4 col-sm-6 mg-t-20 hidden-mob" [class.active]="selectedIndex == 2"
+        <div class="d-table-cell col-lg-4 col-sm-6 mg-t-20 hidden-mob" [hidden]="true" [class.active]="selectedIndex == 2"
           data-toggle="tab" href="#tab2" role="tab">
           <div class="card card2">
             <div class="pd-x-20 pd-t-20 d-flex align-items-center">

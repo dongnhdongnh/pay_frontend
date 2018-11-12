@@ -1,34 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from 'network/http/http.service';
-import { Action } from 'model/Action';
 
 @Injectable({ providedIn: 'root' })
 export class TwofaService {
 
-    private updateEnableUrl = '/api/twofa/enable/update';
-    private verifySmsUrl = '/api/twofa/enable/verify-code-sms';
+    private getSecretUrl = '/api/twofa/enable/get-secret';
     private updateDisableUrl = '/api/twofa/disable/update';
     private requireSendCodeUrl = '/api/twofa/require-send-code-phone';
     private verifyTokenUrl = '/api/verify-code-twofa';
+    private customUrl = '/api/twofa/custom';
 
     constructor(private httpService: HttpService) { }
 
-    resultTest(operation) {
-        return this.httpService.test(operation);
-    }
-
-    requireSendCodePhone(isEnable = true) {
+    requireSendCodePhone(action: string, code: string = '') {
         let operation = 'require update status of twofa';
         let api = this.requireSendCodeUrl;
-        return this.httpService.post(
-            operation, api,
-            { action: isEnable ? Action.TWOFA_ENABLE : Action.TWOFA_DISABLE }
-            , false);
+        return this.httpService.post(operation, api, { action: action, code: code }, false);
     }
 
-    verifySms(data: any) {
-        let operation = 'verify code with phone';
-        let api = this.verifySmsUrl;
+    getSecret(data: any) {
+        let operation = 'get secret';
+        let api = this.getSecretUrl;
         return this.httpService.post(operation, api, data);
     }
 
@@ -38,9 +30,9 @@ export class TwofaService {
         return this.httpService.post(operation, api, data);
     }
 
-    enable(data: any) {
-        let operation = 'enable twofa';
-        let api = this.updateEnableUrl;
+    custom(data: any) {
+        let operation = 'custom twofa';
+        let api = this.customUrl;
         return this.httpService.post(operation, api, data);
     }
 

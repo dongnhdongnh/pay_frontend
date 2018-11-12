@@ -12,6 +12,10 @@
 
 @import '/assets/css/bracket.css';
 @import '/assets/css/new.css';
+a[data-toggle] {
+  cursor: pointer;
+}
+
 .card:hover {
   -webkit-transform: translateY(-5px);
   -ms-transform: translateY(-5px);
