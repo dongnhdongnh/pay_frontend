@@ -224,6 +224,9 @@
 .p-rl {
     position: relative;
 }
+.btn:first-child {
+    margin-left: 0;
+}
 .bg-invite {
     background: url('../images/backgrounds/bg2.jpg') center no-repeat;
 }
@@ -285,7 +288,7 @@
     margin-top: -15px;
 }
 .bg-vkc {
-    background: #0ba9d7;
+    background: #0286ad;
 }
 .bg-eos {
     background: #0071bd;
@@ -463,7 +466,6 @@ a:active, button:active, a:focus, button:focus {
     transition: all 0.2s ease-in-out;
 }
 .btn-trans:hover {
-    border-color: #0ba9d7;
     color: #fff;
     background: #0ba9d7;
 }
@@ -639,6 +641,16 @@ hr {
 .logo {
     margin: 30px 20px 10px;
 }
+.d-table-cell.border {
+    border: none !important;
+}
+.d-table-cell.border .border {
+    border-top: 5px solid #0ba9d7 !important;
+} 
+.swiper-slide { 
+    width: auto !important;
+    margin-right: 10px;
+}
 .send-receive {
     background: transparent;
     border: 1px solid rgb(218, 225, 233);
@@ -646,7 +658,7 @@ hr {
     font-size: 11px;
     text-transform: uppercase;
     font-weight: 500;
-    padding: 7px 10px;
+    padding: 7px 15px;
     margin: 10px 5px 0 0;
 }
 .h120 {
@@ -1549,7 +1561,7 @@ input:focus {
 }
 .btn-trans {
     background: transparent;
-    border: 1px solid rgb(218, 225, 233);
+    border: 2px solid rgb(218, 225, 233);
 }
 .fl-l {
     float: left;

@@ -4282,7 +4282,6 @@ tbody.collapse.show {
 
 .alert {
   padding: 0.75rem 1.25rem;
-  margin-bottom: 1rem;
   border: 1px solid transparent;
   border-radius: 3px;
 }
@@ -4375,8 +4374,6 @@ tbody.collapse.show {
 
 .alert-danger {
   color: #721c24;
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
 }
 
 .alert-danger hr {
@@ -8345,8 +8342,6 @@ a.text-dark:hover {
 
 .alert-danger {
   color: #b51f2e;
-  background-color: #f7d1d5;
-  border-color: #DC3545;
 }
 
 .alert-danger hr {
@@ -8359,8 +8354,10 @@ a.text-dark:hover {
 
 .alert {
   border-width: 0;
-  padding: 15px 20px;
+  padding: 5px;
+  text-align: center;
   position: relative;
+  font-size: 12px;
 }
 
 .alert .close {
@@ -20717,7 +20714,7 @@ textarea.parsley-success:focus {
 }
 
 .bd-5 {
-  border-width: 5px;
+  border-radius: 5px;
 }
 
 .bd-t-0 {

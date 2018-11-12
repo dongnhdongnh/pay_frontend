@@ -23,19 +23,19 @@
             </div> -->
           </div>
           <div class="clear-both"></div>
-          <div class="row row-sm tab-account mg-t-20">
+          <div class="tab-account mg-t-20">
             <div class="col-xl-12 tab-left">
 
 
               <div class="swiper-container" [swiper]="slideConfig" [(index)]="index">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
-                    <div [ngClass]="tab_current?.sortName=='VKC' ? 'd-table-cell border border-primary':'d-table-cell'"
-                      href="#tab1" role="tab" aria-selected="true" (click)="onClickWalletTab($event,'VKC')">
-                      <div class="bg-green border p-rl h120">
-                        <div class="pd-x-10 pd-t-10 d-flex align-items-center">
+                    <div [ngClass]="tab_current?.sortName=='VKC' ? 'd-table-cell border':'d-table-cell'" href="#tab1"
+                      role="tab" aria-selected="true" (click)="onClickWalletTab($event,'VKC')">
+                      <div class="bg-vkc border p-rl h120 bd-5">
+                        <div class="pd-x-20 pd-t-10 d-flex align-items-center">
                           <!-- <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-vkc.png" alt=""></i> -->
-                          <div class="mg-r-20 width-text">
+                          <div class="mg-r-10 width-text">
                             <p class="tx-15 tx-white tx-spacing-1 mg-b-0">VakaCoin</p>
                             <loading-button [isLoading]='loadingObject?.loadAllWallet'></loading-button>
                             <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{wallets.get("Vakacoin")?wallets.get("Vakacoin")?.Balance:0}}
@@ -77,9 +77,9 @@
                   </div>
                   <!-- <div class="d-table-cell" data-toggle="tab" href="#tab1b" role="tab" aria-selected="false" (click)="onClickWalletTab($event,'VKCV')">
                               <div class="bg-green border p-rl h120">
-                                <div class="pd-x-10 pd-t-10 d-flex align-items-center">
+                                <div class="pd-x-20 pd-t-10 d-flex align-items-center">
                                   <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-vault.svg" alt=""></i>
-                                  <div class="mg-r-20 width-text">
+                                  <div class="mg-r-10 width-text">
                                     <p class="tx-15 tx-white tx-spacing-1 mg-b-0">VKC Vault</p>
                                     <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ wallets.get("VAKA")}} VKC</p>
                                     <div class="pd-t-10 pd-b-10 d-flex align-items-center">
@@ -107,12 +107,12 @@
                             </div> -->
                   <!-- col-3 -->
                   <div class="swiper-slide">
-                    <div [ngClass]="tab_current?.sortName=='BTC' ? 'd-table-cell border border-primary':'d-table-cell'"
-                      href="#tab1" role="tab" (click)="onClickWalletTab($event,'BTC')">
-                      <div class="bg-btc border p-rl h120">
-                        <div class="pd-x-10 pd-t-10 d-flex align-items-center">
+                    <div [ngClass]="tab_current?.sortName=='BTC' ? 'd-table-cell border':'d-table-cell'" href="#tab1"
+                      role="tab" (click)="onClickWalletTab($event,'BTC')">
+                      <div class="bg-btc border p-rl h120 bd-5">
+                        <div class="pd-x-20 pd-t-10 d-flex align-items-center">
                           <!-- <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-btc.svg" alt=""></i> -->
-                          <div class="mg-r-20 width-text">
+                          <div class="mg-r-10 width-text">
                             <p class="tx-15 tx-white tx-spacing-1 mg-b-0">BitCoin</p>
                             <loading-button [isLoading]='loadingObject?.loadAllWallet'></loading-button>
                             <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{wallets.get("Bitcoin")?wallets.get("Bitcoin")?.Balance:0}}
@@ -150,12 +150,12 @@
                   </div>
                   <!-- col-3 -->
                   <div class="swiper-slide">
-                    <div [ngClass]="tab_current?.sortName=='ETH' ? 'd-table-cell border border-primary':'d-table-cell'"
-                      href="#tab1" role="tab" (click)="onClickWalletTab($event,'ETH')">
-                      <div class="bg-eth border p-rl h120">
-                        <div class="pd-x-10 pd-t-10 d-flex align-items-center">
+                    <div [ngClass]="tab_current?.sortName=='ETH' ? 'd-table-cell border':'d-table-cell'" href="#tab1"
+                      role="tab" (click)="onClickWalletTab($event,'ETH')">
+                      <div class="bg-eth border p-rl h120 bd-5">
+                        <div class="pd-x-20 pd-t-10 d-flex align-items-center">
                           <!-- <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eth.svg" alt=""></i> -->
-                          <div class="mg-r-20 width-text">
+                          <div class="mg-r-10 width-text">
                             <p class="tx-15 tx-white tx-spacing-1 mg-b-0">Ethereum</p>
                             <loading-button [isLoading]='loadingObject?.loadAllWallet'></loading-button>
                             <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{wallets.get("Ethereum")?wallets.get("Ethereum")?.Balance:0}}
@@ -194,15 +194,16 @@
                   </div>
                   <!-- col-3 -->
                   <div class="swiper-slide">
-                    <div [ngClass]="tab_current?.sortName=='EOS' ? 'd-table-cell border border-primary':'d-table-cell'"
-                      href="#tab1" role="tab" (click)="onClickWalletTab($event,'EOS')">
-                      <div class="bg-eos border p-rl h120">
-                        <div class="pd-x-10 pd-t-10 d-flex align-items-center">
+                    <div [ngClass]="tab_current?.sortName=='EOS' ? 'd-table-cell border':'d-table-cell'" href="#tab1"
+                      role="tab" (click)="onClickWalletTab($event,'EOS')">
+                      <div class="bg-eos border p-rl h120 bd-5">
+                        <div class="pd-x-20 pd-t-10 d-flex align-items-center">
                           <!-- <i class="icon tx-60 lh-0 tx-white mg-r-10"><img src="../assets/icons/icon-eos.svg" alt=""></i> -->
-                          <div class="mg-r-20 width-text">
+                          <div class="mg-r-10 width-text">
                             <p class="tx-15 tx-white tx-spacing-1 mg-b-0">EOS</p>
                             <loading-button [isLoading]='loadingObject?.loadAllWallet'></loading-button>
-                            <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{wallets.get("EOS")? wallets.get("EOS")?.Balance:0}} EOS</p>
+                            <p class="tx-14 tx-white tx-lato tx-bold mg-b-0 lh-1">{{wallets.get("EOS")?
+                              wallets.get("EOS")?.Balance:0}} EOS</p>
                             <div class="pd-t-10 pd-b-10 d-flex align-items-center">
                               <div *ngIf="wallets.get('EOS')?.Balance>0">
                                 <a href="#" (click)="onClickSend('EOS')" class="btn btn-trans  send-receive"
@@ -252,7 +253,7 @@
           </div>
 
           <!-- History View -->
-          <div class="col-xl-12 tab-content tab-right">
+          <div class="col-xl-12 tab-content tab-right mg-t-20 mg-b-30">
             <div class="table-content border tab-pane active show" id="tab1" role="tabpanel">
               <div class="col-xs-12">
                 <h6 class="br-section-label col-md-8 col-sm-12">Transactions</h6>
@@ -275,7 +276,7 @@
 
 
               <div *ngIf="loadingObject?.loadHistory">
-                <div class="table-content border tab-pane" role="tabpanel">
+                <div class="table-content tab-pane" role="tabpanel">
                   <!-- <div class="col-xs-12">
                       <h6 class="br-section-label">Recent Activity</h6>
                     </div> -->
@@ -407,7 +408,7 @@
                 <!-- page -->
                 <div *ngIf="searchDatas?.length <= 0">
 
-                  <div class="table-content border tab-pane" role="tabpanel">
+                  <div class="table-content tab-pane" role="tabpanel">
                     <!-- <div class="col-xs-12">
                         <h6 class="br-section-label">Recent Activity</h6>
                       </div> -->
@@ -465,7 +466,7 @@
 
 
 
-            <div class="table-content border tab-pane" id="tab1b" role="tabpanel">
+            <div class="table-content tab-pane" id="tab1b" role="tabpanel">
               <div class="col-xs-12">
                 <h6 class="br-section-label col-md-8 col-sm-12">Transactions</h6>
                 <div class="col-md-4 col-sm-12 pd-r-0">
@@ -530,7 +531,7 @@
               </div>
               <!-- Tab panes -->
             </div>
-            <div class="table-content border tab-pane" id="tab2" role="tabpanel">
+            <div class="table-content tab-pane" id="tab2" role="tabpanel">
               <div class="col-xs-12">
                 <h6 class="br-section-label">Recent Activity</h6>
               </div>
@@ -546,7 +547,7 @@
               </div>
               <!-- Tab panes -->
             </div>
-            <div class="table-content border tab-pane" id="tab3" role="tabpanel">
+            <div class="table-content tab-pane" id="tab3" role="tabpanel">
               <div class="col-xs-12">
                 <h6 class="br-section-label">Recent Activity</h6>
               </div>
@@ -562,7 +563,7 @@
               </div>
               <!-- Tab panes -->
             </div>
-            <div class="table-content border tab-pane" id="tab4" role="tabpanel">
+            <div class="table-content tab-pane" id="tab4" role="tabpanel">
               <div class="col-xs-12">
                 <h6 class="br-section-label">Recent Activity</h6>
               </div>
@@ -674,18 +675,18 @@
         <!-- <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"><img src="../assets/icons/icon-vkc.png"
             alt="" class="img-medium"></i> -->
 
-            <div [ngSwitch]="tab_current?.sortName">
-                <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center" 
-                  *ngSwitchCase="'VKC'"><img src="../assets/icons/icon-vkc.png" class="img-medium" alt=""></i>
-                <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center" 
-                  *ngSwitchCase="'VKCV'"><img src="../assets/icons/icon-vault.svg" class="img-medium" alt=""></i>
-                <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
-                  *ngSwitchCase="'BTC'"><img src="../assets/icons/icon-btc.svg" class="img-medium" alt=""></i>
-                <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"
-                  *ngSwitchCase="'ETH'"><img src="../assets/icons/icon-eth.svg" class="img-medium" alt=""></i>
-                <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center" 
-                  *ngSwitchCase="'EOS'"><img src="../assets/icons/icon-eos.svg" class="img-medium" alt=""></i>
-              </div>
+        <div [ngSwitch]="tab_current?.sortName">
+          <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center" *ngSwitchCase="'VKC'"><img src="../assets/icons/icon-vkc.png"
+              class="img-medium" alt=""></i>
+          <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center" *ngSwitchCase="'VKCV'"><img src="../assets/icons/icon-vault.svg"
+              class="img-medium" alt=""></i>
+          <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center" *ngSwitchCase="'BTC'"><img src="../assets/icons/icon-btc.svg"
+              class="img-medium" alt=""></i>
+          <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center" *ngSwitchCase="'ETH'"><img src="../assets/icons/icon-eth.svg"
+              class="img-medium" alt=""></i>
+          <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center" *ngSwitchCase="'EOS'"><img src="../assets/icons/icon-eos.svg"
+              class="img-medium" alt=""></i>
+        </div>
 
 
 
@@ -796,7 +797,7 @@
           <div class="col-sm-12 mg-t-10 mg-sm-t-0">
             <div class="width-half-mini input-number">
               <div class="input-left bg-green">
-                  <loading-button style="color:black" [isLoading]='loadingObject?.loadVND'></loading-button>
+                <loading-button style="color:black" [isLoading]='loadingObject?.loadVND'></loading-button>
                 <span color="slate">VND</span>
               </div>
               <div class="input-right"><input type="number" class="form-control fc-outline-white" placeholder=""
