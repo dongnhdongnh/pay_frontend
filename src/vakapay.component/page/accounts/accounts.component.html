@@ -406,7 +406,7 @@
                   </pagination-controls>
                 </div>
                 <!-- page -->
-                <div *ngIf="searchDatas?.length <= 0">
+                <div *ngIf="searchDatas?.length <= 0 && !loadingObject?.loadHistory">
 
                   <div class="table-content tab-pane" role="tabpanel">
                     <!-- <div class="col-xs-12">
@@ -750,11 +750,11 @@
         <div class="row">
           <ul class="nav nav-tabs nav-tabs-style-1 nav-justified tx-13" role="tablist">
             <li class="nav-item width-half">
-              <a class="nav-link pd-y-10 active" data-toggle="tab" href="#taba" role="tab" (click)="sendByAd=true;validateSendCoin(sendCoinForm);">Wallet
+              <a class="nav-link pd-y-10 active" data-toggle="tab" href="#taba" role="tab" (click)="sendByAd=true;validateSendCoin(sendCoinForm,-1,false)">Wallet
                 Address</a>
             </li>
             <li class="nav-item width-half">
-              <a class="nav-link pd-y-10" data-toggle="tab" href="#tabb" role="tab" (click)="sendByAd=false;validateSendCoin(sendCoinForm);">Email
+              <a class="nav-link pd-y-10" data-toggle="tab" href="#tabb" role="tab" (click)="sendByAd=false;validateSendCoin(sendCoinForm,-1,false)">Email
                 Address</a>
             </li>
           </ul>
@@ -797,8 +797,13 @@
           <div class="col-sm-12 mg-t-10 mg-sm-t-0">
             <div class="width-half-mini input-number">
               <div class="input-left bg-green">
+<<<<<<< HEAD
                 <loading-button style="color:black" [isLoading]='loadingObject?.loadVND'></loading-button>
                 <span color="slate">VND</span>
+=======
+                  <loading-button style="color:black" [isLoading]='loadingObject?.loadVND'></loading-button>
+                <span color="slate">{{mAccount?.currencyKey}}</span>
+>>>>>>> bcf75ecb739b644c9a6c829f18a0ebd6e824b637
               </div>
               <div class="input-right"><input type="number" class="form-control fc-outline-white" placeholder=""
                   [(ngModel)]="vndValue" maxlength="15" name="VNDAmount" #VNDAmount="ngModel" ngModel required
@@ -817,7 +822,7 @@
                   minlength="1" (change)="ExchangeRateInput('VKC');validateSendCoin(sendCoinForm);"></div>
             </div>
           </div>
-          <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.VNDAmount">
+          <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.VNDAmount && !loadingObject?.loadVND">
             {{errorObject.VNDAmount}}
           </div>
         </div><!-- row -->
@@ -825,7 +830,7 @@
           <label class="col-sm-12 form-control-label"> Note:</label>
           <div class="col-sm-12 mg-t-10 mg-sm-t-0">
             <textarea rows="3" class="form-control" placeholder="Write an optional message" name="VKCnote" ngModel
-              (keyup)="validateSendCoin(sendCoinForm)" #VKCnote="ngModel"></textarea>
+               #VKCnote="ngModel"></textarea>
             <!-- <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.VKCnote">
               {{errorObject.VKCnote}}
             </div> -->
