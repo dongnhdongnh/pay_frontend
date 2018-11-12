@@ -43,14 +43,14 @@ export class AccountsComponent extends Root implements OnInit {
   wallets = new Map<string, any>();
   wallet_current: any;
   tab_current: any;
-  currentCurrency: CurrentCurrency;
+
   constructor(
     titleService: Title,
     route: ActivatedRoute,
     router: Router,
     mAccountSerive: AccountService,
     walletService: WalletService,
-    currentCurrency: CurrentCurrency,
+    private currentCurrency: CurrentCurrency,
     public ngxSmartModalService: NgxSmartModalService,
     toasterService: ToasterService,
     private _clipboardService: ClipboardService
@@ -62,7 +62,7 @@ export class AccountsComponent extends Root implements OnInit {
     this.walletService = walletService;
     this.isDataLoaded = false;
     this.clipboardService = _clipboardService;
-    this.currentCurrency = currentCurrency;
+
     console.log("ACCOUNT ID: " + JSON.stringify(this.mAccount));
     this.getUserData();
 
@@ -112,7 +112,7 @@ export class AccountsComponent extends Root implements OnInit {
 
   async getHistory(wallet) {
     try {
-      console.log("get history " + JSON.stringify(wallet));
+      //  console.log("get history " + JSON.stringify(wallet));
 
       if (wallet == null) {
         console.log("nothing to show");
@@ -152,7 +152,7 @@ export class AccountsComponent extends Root implements OnInit {
   }
 
   searchHistory(valueThing) {
-    console.log("SEARCH====== " + valueThing);
+    // console.log("SEARCH====== " + valueThing);
     if (valueThing == this.vkcSearchValue)
       return;
     this.vkcSearchValue = valueThing;
@@ -171,9 +171,9 @@ export class AccountsComponent extends Root implements OnInit {
     this.walletsData.forEach(element => {
       if (element.Currency == walletName) {
         {
-          console.log("HELLO get Balance " + JSON.stringify(element));
+          //    console.log("HELLO get Balance " + JSON.stringify(element));
           //   return JSON.stringify(element);
-          console.log(element.Balance);
+          //  console.log(element.Balance);
           return element.Balance;
           //   break;
         }
@@ -188,7 +188,7 @@ export class AccountsComponent extends Root implements OnInit {
   }
 
   public onClickWalletTab(event, name) {
-    console.log(JSON.stringify(event) + name);
+    // console.log(JSON.stringify(event) + name);
     if (this.tab_current && this.tab_current.sortName == name)
       return;
     this.tab_current = {};
@@ -264,14 +264,12 @@ export class AccountsComponent extends Root implements OnInit {
     }
   }
   public onClickSend(networkName) {
-    console.log("on cl0ickkkkkkkkkkkkkkkkkkkkkkkkkkk send " + networkName);
-
     this.errorObject = {};
     this.sendCoinForm.reset();
     this.updateSendObject(networkName);
     // this.loadingObject.loadClickSend = true;
     let sendWallet = this.getWalletByName(this.sendObject.networkName);
-    console.log("sendwallet=========> " + JSON.stringify(sendWallet));
+    // console.log("sendwallet=========> " + JSON.stringify(sendWallet));
     if (sendWallet == null)
       return;
     // var result = await this.walletService.getAddress(sendWallet.Id, sendWallet.Currency);
@@ -303,12 +301,14 @@ export class AccountsComponent extends Root implements OnInit {
           break;
       }
       let sendWallet = this.getWalletByName(this.sendObject.networkName);
-
-      await this.walletService.getExchangeRate(sendWallet.Currency, this.currentCurrency.exchangeRate).then((output) => {
-        console.log(output);
-        this.sendObject.exchangeRate = output;
+      let exchangeRateMoney = await this.currentCurrency.ExchangeRate();
+      if (exchangeRateMoney < 0)
+        throw 'cant get exchangerRate';
+      await this.walletService.getExchangeRate(sendWallet.Currency).then((output) => {
+        //console.log(output);
+        this.sendObject.exchangeRate = output * exchangeRateMoney;
       });
-      console.log("WHAT " + typeName);
+
       switch (typeName) {
         case "VKC":
           this.loadingObject.loadVND = false;
@@ -334,10 +334,10 @@ export class AccountsComponent extends Root implements OnInit {
   }
 
   public onClickReceive(networkName) {
-    console.log("onClickReceive " + networkName);
+    //  console.log("onClickReceive " + networkName);
     this.updateSendObject(networkName);
     let sendWallet = this.getWalletByName(this.sendObject.networkName);
-    console.log("sendwallet=========> " + JSON.stringify(sendWallet));
+    //  console.log("sendwallet=========> " + JSON.stringify(sendWallet));
     // if (sendWallet == null)
     //   return;
 
@@ -372,23 +372,23 @@ export class AccountsComponent extends Root implements OnInit {
   async sendCoin(form: NgForm) {
     try {
       // console.log("FORM CONTROLLLL:" + form.controls.Recipient_EmailAddress.errors.required);
-      console.log("HAHAHAHAHA ============>" + JSON.stringify(form.value));
+      //  console.log("HAHAHAHAHA ============>" + JSON.stringify(form.value));
       if (!this.validateSendCoin(form)) {
-        console.log("validateSendCoin false");
+        //  console.log("validateSendCoin false");
         return;
       }
       this.sendObject.detail = form.value;
       this.loadingObject.sendCoin = true;
       var result = await this.walletService.checkSendCoin(this.sendObject.detail.withdrawn_from
         , this.sendObject.detail.recipientWalletAddress, this.sendObject.networkName, this.sendObject.detail.VKCAmount);
-      console.log("RESULT " + result);
+      //  console.log("RESULT " + result);
       let _checkObject = JSON.parse(result.message);
       this.sendObject.checkObject = _checkObject;
       this.requestSMSCode();
       this.loadingObject.sendCoin = false;
       this.ngxSmartModalService.getModal('sendConfirm').open();
-      console.log("HAHAHAHAHA confirm:checkObject ============>" + JSON.stringify(this.sendObject.checkObject));
-      console.log("SEND WITH DATA =" + JSON.stringify(this.sendObject));
+      // console.log("HAHAHAHAHA confirm:checkObject ============>" + JSON.stringify(this.sendObject.checkObject));
+      // console.log("SEND WITH DATA =" + JSON.stringify(this.sendObject));
     } catch (error) {
       console.log(error);
       this.loadingObject.sendCoin = false;
@@ -403,7 +403,7 @@ export class AccountsComponent extends Root implements OnInit {
   validateSendCoin(form: NgForm, id = -1, showError = true) {
 
     try {
-      console.log("validate coin " + id);
+      // console.log("validate coin " + id);
       this.errorObject = {};
       let canNext = true;
       //  this.errorObject.canNext = true;
@@ -515,14 +515,14 @@ export class AccountsComponent extends Root implements OnInit {
       delete this.sendObject.exchangeRate;
 
 
-      console.log("HAHAHAHAHA confirm ============>" + JSON.stringify(this.sendObject));
+      //   console.log("HAHAHAHAHA confirm ============>" + JSON.stringify(this.sendObject));
       this.ngxSmartModalService.getModal('sendDetail').close();
       this.ngxSmartModalService.getModal('sendConfirm').close();
       this.loadingObject.sendCoinConfirm = true;
       let result = await this.walletService.sendCoinConfirm(this.sendObject);
-      console.log("result:========== " + JSON.stringify(result));
+      //  console.log("result:========== " + JSON.stringify(result));
       if (Utility.isError(result)) {
-        console.log(result.message);
+        //  console.log(result.message);
         this.errorObject.sendTransactions = result.message;
 
       }
@@ -552,7 +552,7 @@ export class AccountsComponent extends Root implements OnInit {
     //     return;
     //   }
     // });
-    console.log("get history of " + JSON.stringify(this.wallet_current));
+    //  console.log("get history of " + JSON.stringify(this.wallet_current));
     await this.getHistory(this.wallet_current);
   }
 
@@ -564,7 +564,7 @@ export class AccountsComponent extends Root implements OnInit {
       this.walletsData.forEach(element => {
         if (element.Currency == networkName.toString()) {
           _output = element;
-          console.log("get " + JSON.stringify(element));
+          //     console.log("get " + JSON.stringify(element));
           return element;
           //    this.getHistory(this.wallet_current);
         }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpService } from 'network/http/http.service';
 import { Utility } from 'utility/Utility';
 import { ResultObject } from 'model/result/ResultObject';
+
 import * as priceCrypto from 'crypto-price';
 import * as WAValidator from 'wallet-address-validator';
 
@@ -49,8 +50,9 @@ export class WalletService {
     }
 
   }
-  getExchangeRate(networkName,exchangeRate) {
-    console.log("RATE "+exchangeRate);
+  async getExchangeRate(networkName) {
+    //console.log("RATE "+exchangeRate);
+
     let coinName = '';
     switch (networkName) {
       case "Bitcoin":
@@ -67,7 +69,8 @@ export class WalletService {
         break;
     }
     return priceCrypto.getCryptoPrice('USD', coinName).then(obj => { // Base for ex - USD, Crypto for ex - ETH
-      console.log("get PRICE        " + networkName + " " + obj.price)
+      console.log("get PRICE        " + networkName + " " + obj.price);
+
       //   cc.rates('USD','VND').then(
       //     (o)=>{console.log(o)}
       // );
@@ -102,7 +105,7 @@ export class WalletService {
       let api = this.url_getWalletInfor;
       let result = await this.httpService.get(operation, api, false);
       if (Utility.isError(result)) {
-        console.log(result.message);
+        //  console.log(result.message);
         return;
       }
     } catch (error) {

@@ -37,7 +37,7 @@ export class CurrentCurrency {
     configService: ConfigService;
     symbol = '$';
     exchangeRate = 1;
-
+    currencyId = 'USD';
     constructor(
         private accountService: AccountService, private httpService: HttpService,
         configService: ConfigService
@@ -52,25 +52,42 @@ export class CurrentCurrency {
         while (!this.mAccount.currencyKey) {
             await Utility.sleep(500);
         }
-        var currencyId = this.mAccount.currencyKey;
+        this.currencyId = this.mAccount.currencyKey;
         listSymbol.forEach(element => {
-            if (currencyId == element[0]) {
+            if (this.currencyId == element[0]) {
                 this.symbol = element[1];
             }
         });
-        if (currencyId === 'USD') {
+        if (this.currencyId === 'USD') {
             return;
         }
-        this.exchangeRate = Number(await this.getData(currencyId));
+      //  this.currencyId = 'VND';
+        this.exchangeRate = await this.getData(this.currencyId);
     }
 
-    public async getData(currencySymbol = '') {
-        console.log("========> get DAta" + currencySymbol);
-        var apiData = await this.httpService.getFrom("get coinmarket data", this.apiUrl + '/api/currency/' + currencySymbol);
-        if (apiData && apiData.data) {
-            console.log("===========>GET CURRENTCY DATA " + apiData.data);
-            return apiData.data;
+    async getData(currencySymbol = '') {
+        try {
+            // console.log("========> get DAta" + currencySymbol);
+            var apiData = await this.httpService.getFrom("get coinmarket data", this.apiUrl + '/api/currency/' + currencySymbol);
+            if (apiData && apiData.data) {
+                // console.log("===========>GET CURRENTCY DATA " + apiData.data);
+                return Number(apiData.data);
+            }
+            else {
+                console.log('No response');
+                return -1;
+            }
+            // return -1;
         }
-        return null;
+        catch (error) {
+            console.log(error);
+            return -1;
+        }
+
     }
+    public async ExchangeRate() {
+        return this.getData(this.currencyId);
+    }
+
+
 }
