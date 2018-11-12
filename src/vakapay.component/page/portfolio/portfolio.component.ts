@@ -4,6 +4,7 @@ import { Account } from 'model/account/Account';
 import { AccountService } from 'services/account/account.service';
 import { HttpService } from 'network/http/http.service';
 import { ConfigService } from 'network/config/config.service';
+import { CurrentCurrency } from 'model/currency/Currency'
 
 @Component({
   selector: 'app-portfolio',
@@ -11,15 +12,20 @@ import { ConfigService } from 'network/config/config.service';
   styleUrls: ['./portfolio.component.css']
 })
 export class PortfolioComponent implements OnInit {
-  account: Account;
   configService: ConfigService;
   private apiUrl = '';
   isLoading = true;
+  currentCurrency: CurrentCurrency;
+  account: Account;
+  accountService: AccountService;
 
-  constructor(accountService: AccountService, private httpService: HttpService, configService: ConfigService) {
-    this.configService = configService;
-    this.apiUrl = this.configService.urlApi;
-    this.account = accountService.mAccount;
+  constructor(private httpService: HttpService, configService: ConfigService,
+    currentCurrency : CurrentCurrency, accountService : AccountService) {
+      this.accountService = accountService;
+      this.account = this.accountService.mAccount;
+      this.configService = configService;
+      this.apiUrl = this.configService.urlApi;
+      this.currentCurrency = currentCurrency;
   }
 
   ngOnInit() {
