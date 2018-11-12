@@ -24,10 +24,16 @@ export class PreferenceComponent implements OnInit {
   isLoading = false;
   isValid = false;
 
+  //message
+  messageErrorCurrency: string = '';
+  messageErrorTimeZone: string = '';
+
   //service
   accountService: AccountService;
 
-  constructor(    accountService: AccountService) {
+  listWallet: any;
+
+  constructor(accountService: AccountService) {
     this.listCurrency = Currency.getListCurrency();
     this.listTimeZone = TimeZone.getListTimeZone();
     this.accountService = accountService;
@@ -39,15 +45,30 @@ export class PreferenceComponent implements OnInit {
   validate() {
     var currencyKey = this.mAccount.currencyKey || '';
     var timezoneKey = this.mAccount.timezoneKey || '';
-    let isCurrency = !currencyKey || Boolean(
+
+    let isCurrency = currencyKey != null && Boolean(
       this.listCurrency.find(x => x.key === currencyKey)
     );
 
-    let isTimezone = !timezoneKey || Boolean(
+    let isTimezone = timezoneKey != null && Boolean(
       this.listTimeZone.find(x => x.key === timezoneKey)
     );
 
     this.isValid = isCurrency && isTimezone;
+
+    if (isCurrency === false) {
+      this.messageErrorCurrency = 'Currency is invalid.';
+      return;
+    }
+
+    this.messageErrorCurrency = '';
+
+    if (isTimezone === false) {
+      this.messageErrorTimeZone = 'Timezone is invalid.';
+      return;
+    }
+
+    this.messageErrorTimeZone = '';
   }
 
   async onUpdate() {

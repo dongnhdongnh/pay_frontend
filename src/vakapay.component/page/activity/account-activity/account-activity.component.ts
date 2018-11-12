@@ -18,7 +18,6 @@ export class AccountActivityComponent {
     breakpointObserver: BreakpointObserver
   ) {
     this.service.getList();
-
     breakpointObserver.observe(['(max-width: 768px)']).subscribe(result => {
       this.displayedColumns = result.matches ?
         ['whenFormat', 'browser', 'ip', 'location', 'current', 'delete'] :
@@ -29,9 +28,4 @@ export class AccountActivityComponent {
   refresh() {
     this.service.getList();
   }
-
-  delete(id) {
-    alert(id);
-  }
-
 }

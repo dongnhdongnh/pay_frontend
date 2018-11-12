@@ -9,23 +9,26 @@ import { Report, ReportTypes, Accounts, Timeranges } from '../../app/shared/repo
 })
 export class ReportFormComponent implements OnInit {
 
+  @ViewChild('rform') reportFormDirective;
+
   reportForm: FormGroup;
   report: Report;
   reportType = ReportTypes;
 
   constructor(private fb: FormBuilder) {
     this.createForm();
-   }
+
+  }
 
   ngOnInit() {
   }
 
   createForm() {
     this.reportForm = this.fb.group({
-      type: 'Transaction history',
+      reporttype: 'Transaction history',
       account: 'BTC',
       timerange: 'today',
-      email: ''
+      email: ['', [Validators.required, Validators.email] ],
       // TODO: Add more field
     });
   }

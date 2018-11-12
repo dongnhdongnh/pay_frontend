@@ -66,7 +66,8 @@ export class FormLoginComponent extends Root implements OnInit {
         return;
       }
 
-      var mLogin = new Login(this.email, this.password, '');
+      // tslint:disable-next-line:prefer-const
+      let mLogin = new Login(this.email, this.password, '');
 
       //send ajax
       let result = await this.loginService.login(mLogin);

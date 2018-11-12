@@ -1,0 +1,156 @@
+<div class="col-sm-8 mg-l-auto">
+  <mat-radio-group class="example-radio-group"
+    [(ngModel)]="level_0"
+    (change)="change()">
+    <mat-radio-button class="example-radio-button" value="1">
+      Enable twofa with google authenticate
+    </mat-radio-button>
+    <mat-radio-button class="example-radio-button" value="2"
+      [hidden]="accountService.mAccount.phoneNumber == ''">
+      Enable twofa with sms
+    </mat-radio-button>
+    <mat-radio-button class="example-radio-button" value="0" [checked]="true">
+      Disable twofa
+    </mat-radio-button>
+  </mat-radio-group>
+  <div class="form-layout-footer">
+    <button
+      [disabled]="!isChange"
+      (click)="isChange && level_0 === '1' ?
+      modalTwoFA_0.open() : modalTwoFA_0_sms.open()"
+      class="btn bg-green" type="button">
+      Save
+    </button>
+  </div>
+</div>
+
+<ngx-smart-modal #modalTwoFA_0 [identifier]="'modalTwoFA_0'"
+  (onOpen)="getSecret()">
+  <form class="modal-content bd-0 tx-14">
+    <div class="modal-header pd-y-20 pd-x-25">
+      <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Two-Factor
+        Authentication</h6>
+    </div>
+    <div class="modal-body pd-x-20 pd-y-5">
+      <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center
+        img-center">
+        <qrcode [qrdata]="qrdata" [size]="150" [level]="'M'"
+          [hidden]="isGetting"></qrcode>
+        <span [hidden]="!isGetting">It is getting secret for twofa. Please
+          waitting...</span>
+      </i>
+      <div class="text-center">
+        <message-error-input [message]='messageError'></message-error-input>
+      </div>
+      <div class="row mg-t-20 mg-b-20">
+        <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+          <label class="form-control-label tx-center"> Authenticator Secret
+            Code:<i class="tx-danger">*</i></label>
+          <div class="input-group">
+            <input type="text" class="form-control tx-center" readonly=""
+              [value]="secret">
+            <span (click)="copySecret(secret)" class="input-group-addon
+              tx-size-sm
+              lh-2 bg-green tx-white
+              secret-code">Copy</span>
+          </div>
+        </div>
+      </div><!-- row -->
+      <div class="intro">
+        <p><b>1.</b> Install an authenticator app on your mobile device if you
+          don't already have one.</p>
+        <p><b>2.</b> Scan QR code with the authenticator (or tap it in mobile
+          browser)</p>
+        <p><b>3.</b> Please write down or print a copy of the 16-digit secret
+          code
+          and put it in a safe place</p>
+        <p><b>4.</b> If your phone gets lost, stolen or erased, you will need
+          this
+          code to link VakaPay to a
+          new authenticator app install once again</p>
+        <p><b>5.</b> Do not share it with anyone. Be aware of phishing scams. We
+          will never ask you for this
+          key</p>
+      </div>
+      <hr>
+      <div class="row">
+        <label class="col-sm-12 form-control-label tx-center">
+          Enter the 2-step verific-ation code provided by your authen app:
+          <i class="tx-danger">*</i></label>
+        <div class="col-sm-12 mg-t-10 mg-sm-t-0 mg-b-20">
+          <div class="input-group sms">
+            <span class="input-group-addon"><i class="fa fa-mobile tx-20 lh-0
+                op-6"></i></span>
+            <input #token (keyup)="onToken($event)" type="text"
+              class="form-control fc-outline-white half" maxlength="6"
+              placeholder="000000">
+          </div>
+          <div class="text-center">
+            <message-error-input [message]='messageErrorToken'></message-error-input>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer step">
+      <button #cancel_0 (click)="modalTwoFA_0.close(); cancel()"
+        type="button"
+        class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
+        tx-medium">
+        Cancel</button>
+      <button
+        (click)="onUpdate()"
+        [disabled]="!isValid||isLoading"
+        class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
+        tx-medium">
+        Enable <loading-button [isLoading]='isLoading'></loading-button>
+      </button>
+    </div>
+  </form>
+</ngx-smart-modal>
+
+<ngx-smart-modal #modalTwoFA_0_sms [identifier]="'modalTwoFA_0_sms'"
+  (onOpen)="requireSendCodePhone()">
+  <form class="modal-content bd-0 tx-14">
+    <div class="modal-header pd-y-20 pd-x-25">
+      <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">
+        Confirm enable two factor with SMS</h6>
+    </div>
+    <div class="modal-body pd-25">
+      <div class="row mg-t-20">
+        <label class="col-sm-12 form-control-label">
+          Enter the 2-step verification code provided by SMS to your
+          phone:<i class="tx-danger">*</i>
+        </label>
+        <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+          <div class="input-group sms">
+            <span class="input-group-addon">
+              <i class="fa fa-phone tx-16 lh-0 op-6"></i>
+            </span>
+            <input #code (keyup)="onCode($event)" type="text"
+              class="form-control fc-outline-white half" maxlength="6"
+              placeholder="000000">
+          </div>
+          <span class="resend">Didn't receive the verification code?
+            <message-error-input [message]='messageErrorCode'></message-error-input>
+            <br>
+            <a class="resend-sms" (click)="requireSendCodePhone()">Re-send SMS</a>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer step">
+      <button #cancel_0_2 (click)="modalTwoFA_0_sms.close(); cancel()"
+        type="button"
+        class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
+        tx-medium">
+        Cancel
+      </button>
+      <button (click)="onUpdate()" [disabled]="!isChange||!isValid||isLoading"
+        class="btn bg-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
+        tx-medium
+        tx-white">
+        Enable
+      </button>
+    </div>
+  </form>
+</ngx-smart-modal>

@@ -1,3 +1,4 @@
+import { UtilityFormat } from 'utility/utilityFormat';
 import { Model } from "model/Model";
 
 export class Account extends Model {
@@ -19,6 +20,7 @@ export class Account extends Model {
     timezoneKey: string;
     notifications: string[];
     isLockScreen: number;
+    isTwoFactor: number;
 
     constructor() {
         super();
@@ -40,9 +42,18 @@ export class Account extends Model {
         this.timezoneKey = null;
         this.notifications = [];
         this.isLockScreen = 0;
+        this.isTwoFactor = 0;
     }
 
     get fullName() {
         return `${this.firstName} ${this.lastName}`;
+    }
+
+    set attributes(data: any) {
+        this._attributes = data;
+        if (this.birthday) {
+            let date = new Date(this.birthday);
+            this.birthday = UtilityFormat.formatDateText(date.getTime());
+        }
     }
 }

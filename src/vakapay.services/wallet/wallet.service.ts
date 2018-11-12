@@ -11,7 +11,8 @@ import * as WAValidator from 'wallet-address-validator';
 })
 export class WalletService {
 
-  url_getAllWalletByUserID = '/api/wallet/all?userID='
+  // API endpoints
+  url_getAllWalletByUserID = '/api/wallet/all'
   url_getWalletInfor = '/api/wallet/History'
   url_getExchangeRate = '/api/wallet/GetExchangeRate'
   url_getWalletHistory = '/api/wallet/History'
@@ -20,13 +21,19 @@ export class WalletService {
   url_requiteSMSCode = '/api/twofa/transaction/require-send-code-phone'
   // url_verifyCode = 'api/twofa/transaction/verify-code'
   url_sendTransactions = '/api/wallet/sendTransactions'
+  url_createWallet = '/api/tools/create-addresses'
+
+  // Status
+  isLoading = false;
+
   constructor(private httpService: HttpService) { }
-  async getAllWallet(mAccount) {
+
+  async getAllWallet() {
     try {
       let operation = 'get all wallets by info user';
-      let api = this.url_getAllWalletByUserID + mAccount.id;
+      let api = this.url_getAllWalletByUserID;
       let result = await this.httpService.get(operation, api, false);
-      console.log(mAccount.id + " result " + result);
+     
 
       if (Utility.isError(result)) {
         console.log(result.message);
@@ -43,7 +50,7 @@ export class WalletService {
 
   }
   getExchangeRate(networkName) {
-    return priceCrypto.getCryptoPrice('USD', 'ETH').then(obj => { // Base for ex - USD, Crypto for ex - ETH 
+    return priceCrypto.getCryptoPrice('USD', 'ETH').then(obj => { // Base for ex - USD, Crypto for ex - ETH
       console.log("get PRICE        " + obj.price)
       return obj.price;
       // let money = convertCurrency.convert(1, { from: "USD", to: "VND" });
@@ -155,9 +162,11 @@ export class WalletService {
     //  return this.isETHAddress(address);
   }
 
-
-
-
-
-
+  createWalletAddress(data: any): Promise<ResultObject> {
+    // console.log('New Wallet created!\n' + networkName);
+    // this.isLoading = true;
+    const operation = 'create new wallet';
+    const api = this.url_createWallet;
+    return this.httpService.post(operation, api, data);
+  }
 }

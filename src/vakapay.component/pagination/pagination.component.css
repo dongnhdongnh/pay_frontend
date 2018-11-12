@@ -1,0 +1,7 @@
+.page-item {
+  cursor: pointer;
+}
+
+.page-link.isLoading {
+  cursor: not-allowed;
+}

@@ -10,97 +10,129 @@
           generated for each payment on VakaPay and stay associated with your account forever (so it is safe to reuse them).</p>
         <div class="col-12 mg-b-20">
           <div class="col-md-3 col-sm-12 pd-l-0 pd-r-0 mg-t-10">
-            <select class="form-control select2 select2-hidden-accessible" data-placeholder="BTC Wallet (0.0000 BTC)" tabindex="-1" aria-hidden="true">
-              <option label="Choose Currency"></option>
-              <option value="USA">VKC Wallet (0.0000 VKC)</option>
-              <option value="UK">ETH Wallet (0.0000 ETH)</option>
-              <option value="China">EOS Wallet (0.0000 EOS)</option>
-            </select>
+            <ng-select [items]="listWallet" bindLabel="name" bindValue="key"
+            [(ngModel)]="networkName" name="networkName"
+            (change)="onChangeWallet($event)" placeholder="Choose Currency"
+            class="select-list">
+          </ng-select>
           </div>
           <div class="col-md-4 col-sm-12 pd-r-0 mg-t-10">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Bitcoin address or label...">
+              <input type="text" name="filter" [(ngModel)]="filter" class="form-control" placeholder="Bitcoin address or label...">
               <span class="input-group-btn">
-                <button class="btn bd bg-white tx-gray-600" type="button"><i class="fa fa-search"></i></button>
+                <button class="btn bd bg-white tx-gray-600" (click)="onClickFilter();" type="button"><i class="fa fa-search"></i></button>
               </span>
             </div>
           </div>
           <div class="col-md-2 col-sm-12 hidden-mob"></div>
           <div class="col-md-3 col-sm-12 pd-r-0 mg-t-10">
-            <a href="" class="btn bg-green pd-x-30 pd-y-11 tx-uppercase tx-bold tx-14 fl-right tx-white"><i class="fa fa-credit-card mg-r-5"></i>Creat
-              new wallet</a>
+            <a class="btn bg-green pd-x-30 pd-y-11 tx-uppercase tx-bold tx-14 fl-right tx-white" (click)="onClickCreateNewWallet();"><i class="fa fa-credit-card mg-r-5"></i>
+              Creat new wallet
+            </a>
           </div>
         </div>
         <div class="clear-both"></div>
-        <div class="bd bd-gray-300 table-responsive table-add">
-          <table class="table table-hover mg-b-0">
-            <thead>
-              <tr>
-                <th>Address</th>
-                <th>Label</th>
-                <th>Created</th>
-                <th>Detail</th>
-              </tr>
-            </thead>
-            <tbody class="table-add-body">
-              <tr>
-                <td>3GiLC4weCamfEqaWFrHyoRykMXRfB4W1FP</td>
-                <td>Tiger Nixon</td>
-                <td>less than a minute ago</td>
-                <td><span class="btn btn-secondary verified" data-toggle="modal" data-target="#modaldemo1">Details</span></td>
-              </tr>
-              <tr>
-                <td>36saLyD3Z8T3mXkSpAajEAmGXuouwHDnVz</td>
-                <td>Garrett Winters</td>
-                <td>about 1 hour ago</td>
-                <td><span class="btn btn-secondary verified" data-toggle="modal" data-target="#modaldemo1">Details</span></td>
-              </tr>
-              <tr>
-                <td>3Lkgz9Rk3k4ZsnzbULLMsHNaNJ4MMhKEwX</td>
-                <td>Ashton Cox</td>
-                <td>Junior Technical Author</td>
-                <td><span class="btn btn-secondary verified" data-toggle="modal" data-target="#modaldemo1">Details</span></td>
-              </tr>
-              <tr>
-                <td>3D6t6FTD4rL7xrpMUSCrVgLKmJCsweSh1c</td>
-                <td>Cedric Kelly</td>
-                <td>Senior Javascript Developer</td>
-                <td><span class="btn btn-secondary verified" data-toggle="modal" data-target="#modaldemo1">Details</span></td>
-              </tr>
-              <tr>
-                <td>39YnKD83BYQB6SajUGHZBmnrx6WSDDHZ5f</td>
-                <td>Airi Satou</td>
-                <td>Accountant</td>
-                <td><span class="btn btn-secondary verified" data-toggle="modal" data-target="#modaldemo1">Details</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div><!-- bd -->
+        <!-- Table for address information -->
+     
+          <!-- Mat table (start) -->
+          <!-- 1. Write mat-table -->
+          <mat-table #table [dataSource]="this.serviceAddress.list" style="width: 100%;">
+
+              <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+
+              <!-- Address Column -->
+              <ng-container matColumnDef="address">
+                <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <span class="mobile-label">Address:</span> {{element.address}}
+                  </mat-cell>
+              </ng-container>
+
+              <!-- Label Column -->
+              <ng-container matColumnDef="label">
+                  <mat-header-cell *matHeaderCellDef> Label </mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                      <span class="mobile-label">Label:</span> {{element.label}}
+                    </mat-cell>
+              </ng-container>
+
+              <!-- Created Column -->
+              <ng-container matColumnDef="whenFormat">
+                  <mat-header-cell *matHeaderCellDef> Created </mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                      <span class="mobile-label">Created:</span> {{element.whenFormat}}
+                    </mat-cell>
+               
+              </ng-container>
+
+              <!-- Detail Column -->
+              <ng-container matColumnDef="id">
+                  <mat-header-cell *matHeaderCellDef> Detail </mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                      <span class="mobile-label">Detail:</span>  <a (click)="onClickDetail(element.id);">Detail</a>
+                   
+                    </mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+            <!-- Mat table (end) -->
+  
+
+        <!-- Table Pagination (start) -->
         <div class="ht-80 d-flex align-items-center justify-content-center mg-t-20">
-          <ul class="pagination pagination-basic pagination-rounded mg-b-0">
-            <li class="page-item hidden-xs-down">
-              <a class="page-link" href="#" aria-label="First"><i class="fa fa-angle-double-left"></i></a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous"><i class="fa fa-angle-left"></i></a>
-            </li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item hidden-xs-down"><a class="page-link" href="#">3</a></li>
-            <li class="page-item hidden-xs-down"><a class="page-link" href="#">4</a></li>
-            <li class="page-item disabled"><span class="page-link">...</span></li>
-            <li class="page-item"><a class="page-link" href="#">10</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next"><i class="fa fa-angle-right"></i></a>
-            </li>
-            <li class="page-item hidden-xs-down">
-              <a class="page-link" href="#" aria-label="Last"><i class="fa fa-angle-double-right"></i></a>
-            </li>
-          </ul>
+          <app-pagination [service]="serviceAddress"></app-pagination> 
         </div>
+
       </div><!-- col-6 -->
     </div><!-- row -->
   </div><!-- br-section-wrapper -->
 </div><!-- br-mainpanel -->
 <div class="clear-both"></div>
 <!-- ########## END: MAIN PANEL ########## -->
+
+<ngx-smart-modal #modalEdit [identifier]="'modalEdit'">
+  <form class="modal-content bd-0 tx-14">
+    <div class="modal-header pd-y-20 pd-x-25">
+      <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">
+       {{networkName}} Wallet Address
+      </h6>
+    </div>
+    <div class="modal-body pd-x-20 pd-y-5">
+        <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center">
+          <qrcode [qrdata]="qrcode" [size]="150" [level]="'M'"></qrcode>
+        </i>
+        <div class="mg-t-40">
+            <!-- <div class="col-12 mg-b-10 ">
+              <label class="width-half mob form-control-label">Account:</label>
+              <label class="width-half mob form-control-label">{{this.serviceAddress.infoAddress.id}}</label>
+            </div> -->
+            <div class="col-12 mg-b-10">
+              <label class="width-half mob form-control-label">Address:</label>
+              <label class="width-half mob form-control-label break">{{this.serviceAddress.infoAddress.address}}</label>
+            </div>
+            <div class="col-12 mg-b-10">
+              <label class="width-half mob form-control-label">Label:</label>
+              <div class="width-half mob mg-t-10 mg-sm-t-0">
+                <input [(ngModel)]="this.serviceAddress.infoAddress.label" name="this.serviceAddress.infoAddress.label" type="text" class="form-control"  placeholder="My Label">
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="modal-footer step">
+      <button (click)="cancel()" type="button" class="btn btn-secondary tx-11
+        tx-uppercase pd-y-12 pd-x-25
+        tx-mont tx-medium">
+        Cancel
+      </button>
+      <button (click)="onUpdate()" [disabled]="isLoading"
+        class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
+        tx-medium">
+        + Save
+        <loading-button [isLoading]='isLoading'></loading-button>
+      </button>
+    </div>
+  </form>
+</ngx-smart-modal>

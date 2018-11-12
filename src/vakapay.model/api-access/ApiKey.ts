@@ -1,3 +1,4 @@
+import { UtilityValidate } from 'utility/UtilityValidate';
 import { Model } from "model/Model";
 import { UtilityFormat } from "utility/utilityFormat";
 import { WalletType } from "model/wallet/WalletType";
@@ -28,6 +29,14 @@ export class ApiKey extends Model {
         this.status = 0;
         this.createdAt = 0;
         this.updatedAt = 0;
+    }
+
+    get isNew() {
+        return UtilityValidate.isToday(this.createdAt);
+    }
+
+    get isEdited() {
+        return this.createdAt !== this.updatedAt && UtilityValidate.isToday(this.updatedAt);
     }
 
     get _createdAt() {
@@ -61,7 +70,7 @@ export class ApiKey extends Model {
 
     get has_CREATED_ADDRESSES() { return this.hasApi('CREATED_ADDRESSES'); }
     get has_CREATED_DEPOSITS() { return this.hasApi('CREATED_DEPOSITS'); }
-    get has_READ_ADDRESSES() { return this.hasApi('CREATED_DEPOSITS'); }
+    get has_READ_ADDRESSES() { return this.hasApi('READ_ADDRESSES'); }
     get has_READ_DEPOSITS() { return this.hasApi('READ_DEPOSITS'); }
     get has_READ_TRANSACTIONS() { return this.hasApi('READ_TRANSACTIONS'); }
     get has_SEND_TRANSACTIONS() { return this.hasApi('SEND_TRANSACTIONS'); }

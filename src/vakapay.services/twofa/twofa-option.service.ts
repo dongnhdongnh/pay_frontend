@@ -6,13 +6,8 @@ export class TwofaOptionService {
 
     private updateTwofaVerifyOptionsUrl = '/api/twofa/option/update';
     private requireSendCodePhoneUrl = '/api/twofa/option/require-send-code-phone';
-    private test = true;
 
     constructor(private httpService: HttpService) { }
-
-    resultTest(operation) {
-        return this.httpService.test(operation);
-    }
 
     requireSendCodePhone() {
         let operation = 'require server to send code to phone to verify change option twofa';

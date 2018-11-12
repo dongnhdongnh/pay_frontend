@@ -1,0 +1,117 @@
+<div class="col-sm-8 mg-l-auto">
+  <mat-radio-group class="example-radio-group" [(ngModel)]="level"
+    (change)="change()">
+    <mat-radio-button class="example-radio-button" value="1" [checked]="true">
+      Enable twofa with google authenticate
+    </mat-radio-button>
+    <mat-radio-button class="example-radio-button" value="2"
+      [hidden]="accountService.mAccount.phoneNumber == ''">
+      Enable twofa with sms
+    </mat-radio-button>
+    <mat-radio-button class="example-radio-button" value="0">
+      Disable twofa
+    </mat-radio-button>
+  </mat-radio-group>
+  <div class="form-layout-footer">
+    <button [disabled]="!isChange" (click)="modalTwoFA_1.open()"
+      class="btn bg-green" type="button">
+      Save
+    </button>
+  </div>
+</div>
+
+<ngx-smart-modal #modalTwoFA_1 [identifier]="'modalTwoFA_1'"
+  (onOpen)="onReset(false)">
+  <form class="modal-content bd-0 tx-14">
+    <div class="modal-header pd-y-20 pd-x-25">
+      <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">
+        <span>Change</span>
+        Authenticator Support</h6>
+    </div>
+    <div class="modal-body pd-25">
+      <div class="row">
+        <label class="col-sm-12 form-control-label">
+          Please enter the 2-step verification code provided by your authen app
+          {{level === '2' ? ' to get code SMS' : ':'}}
+          <i class="tx-danger">*</i>
+        </label>
+        <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+          <div class="input-group sms">
+            <span class="input-group-addon"><i class="fa fa-phone tx-16 lh-0
+                op-6"></i></span>
+            <input #code (keyup)="onCode($event)" type="text"
+              class="form-control
+              fc-outline-white half" maxlength="6" placeholder="000000">
+          </div>
+          <span class="resend">
+            <message-error-input [message]='messageErrorCode'></message-error-input>
+            <br>
+          </span>
+        </div>
+      </div><!-- row -->
+    </div>
+    <div class="modal-footer step">
+      <button #cancel_1 (click)="modalTwoFA_1.close(); cancel()" type="button"
+        class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
+        tx-medium">
+        Cancel
+      </button>
+
+      <button
+        (click)="isChange && level === '2' ? requireSendCodePhone() :
+        onUpdate()"
+        [disabled]="!isChange||!isValid||isLoading"
+        class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
+        tx-medium">
+        + Verify
+        <loading-button [isLoading]='isLoading'></loading-button>
+      </button>
+    </div>
+  </form>
+</ngx-smart-modal>
+
+<ngx-smart-modal #modalTwoFA_1_sms [identifier]="'modalTwoFA_1_sms'"
+  (onOpen)="level= '2'">
+  <form class="modal-content bd-0 tx-14">
+    <div class="modal-header pd-y-20 pd-x-25">
+      <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">
+        Confirm change two factor</h6>
+    </div>
+    <div class="modal-body pd-25">
+      <div class="row mg-t-20">
+        <label class="col-sm-12 form-control-label">
+          Enter the 2-step verification code provided by SMS to your
+          phone:<i class="tx-danger">*</i>
+        </label>
+        <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+          <div class="input-group sms">
+            <span class="input-group-addon">
+              <i class="fa fa-phone tx-16 lh-0 op-6"></i>
+            </span>
+            <input #code_sms (keyup)="onCode($event)" type="text"
+              class="form-control fc-outline-white half" maxlength="6"
+              placeholder="000000">
+          </div>
+          <span class="resend">Didn't receive the verification code?
+            <message-error-input [message]='messageErrorCode'></message-error-input>
+            <br>
+            <a class="resend-sms" (click)="requireSendCodePhone()">Re-send SMS</a>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer step">
+      <button #cancel_1_2 (click)="modalTwoFA_1_sms.close(); cancel()"
+        type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12
+        pd-x-25 tx-mont
+        tx-medium">
+        Cancel
+      </button>
+      <button (click)="onUpdate()" [disabled]="!isChange||!isValid||isLoading"
+        class="btn bg-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
+        tx-medium tx-white">
+        Change
+      </button>
+    </div>
+  </form>
+</ngx-smart-modal>

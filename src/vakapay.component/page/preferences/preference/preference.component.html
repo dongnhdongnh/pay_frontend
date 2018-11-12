@@ -1,25 +1,34 @@
 <h6 class="br-section-label tx-green"><i class="fa fa-cogs"></i> Preferences</h6>
 <hr>
 <div class="row mg-x-0">
-  <label class="col-sm-4 form-control-label"> Local Currency:</label>
+  <label class="col-sm-4 form-control-label">
+    Local Currency:<i class="tx-danger">*</i>
+  </label>
   <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-    <ng-select [items]="listCurrency" bindLabel="name" bindValue="key" [(ngModel)]="mAccount.currencyKey" name="currency"
-      (change)="onChangeCurrency($event)" placeholder="Choose Currency" class="select-list">
+    <ng-select [items]="listWallet" bindLabel="name" bindValue="key"
+      [(ngModel)]="mAccount.currencyKey" name="currency"
+      (change)="onChangeCurrency($event)" placeholder="Choose Currency"
+      class="select-list">
     </ng-select>
+    <message-error-input [message]='messageErrorCurrency'></message-error-input>
   </div>
 </div><!-- row -->
 <div class="row mg-t-20 mg-x-0">
   <label class="col-sm-4 form-control-label"> Time zone:</label>
   <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-    <ng-select [items]="listTimeZone" bindLabel="name" bindValue="key" [(ngModel)]="mAccount.timezoneKey" name="timezone"
-      (change)="onChangeTimezone($event)" placeholder="Choose Time Zone" class="select-list">
+    <ng-select [items]="listTimeZone" bindLabel="name" bindValue="key"
+      [(ngModel)]="mAccount.timezoneKey" name="timezone"
+      (change)="onChangeTimezone($event)" placeholder="Choose Time Zone"
+      class="select-list">
     </ng-select>
+    <message-error-input [message]='messageErrorTimeZone'></message-error-input>
   </div>
 </div><!-- row -->
 <div class="row mg-x-0">
   <div class="col-sm-8 mg-l-auto">
     <div class="form-layout-footer">
-      <button (click)="onUpdate()" [disabled]="!isChange||isLoading||!isValid" class="btn bg-green" type="button">
+      <button (click)="onUpdate()" [disabled]="!isChange||isLoading||!isValid"
+        class="btn bg-green" type="button">
         Save
         <loading-button [isLoading]='isLoading'></loading-button>
       </button>

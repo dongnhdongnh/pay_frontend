@@ -10,5 +10,12 @@ export const Action = {
     LOCK_SCREEN: "LockScreen",
     SEND_TRSANSACTION: "SendTransaction",
     API_ACCESS: "ApiAccess",
-    API_ACCESS_DELETE: "ApiAccessDelete"
+    CUSTOM_TWOFA: "CustomTwofa",
+
+    API_ACCESS_ADD: "ApiAccessAdd",
+    API_ACCESS_GET: "ApiAccessEdit",
+    API_ACCESS_EDIT: "ApiAccessEdit",
+    API_ACCESS_SATUS: "ApiAccessStatus",
+    API_ACCESS_DELETE: "ApiAccessDelete",
 }
+

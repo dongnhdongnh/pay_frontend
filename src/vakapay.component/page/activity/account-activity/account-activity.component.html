@@ -49,10 +49,11 @@
     <mat-header-cell *matHeaderCellDef> </mat-header-cell>
     <mat-cell *matCellDef="let element">
       <span class="mobile-label">Delete:</span>
-      <button-delete (click)=delete(element.id)></button-delete>      
+      <button-delete [service]="service" [id]="element.id"></button-delete>
     </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
+<app-pagination [service]="service"></app-pagination>

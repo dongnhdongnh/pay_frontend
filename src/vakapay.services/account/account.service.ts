@@ -14,7 +14,7 @@ export class AccountService {
     private urlApi: string;
 
     public mAccount: Account;
-    public currentRouter = '/';
+    public currentRouter = '/dashboard';
     public isGet: boolean = false;
     public isCheckLock: boolean = false;
 
@@ -58,6 +58,8 @@ export class AccountService {
             if (result.data.avatar || result.data.Avatar) {
                 this.mAccount.avatar = new URL(this.mAccount.avatar, this.urlApi).href;
             }
+
+            await Utility.sleep(500);
             this.isGet = true;
             return;
         } catch (error) {
