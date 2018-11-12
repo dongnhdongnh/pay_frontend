@@ -28,7 +28,7 @@
             </td>
             <td width="40%" class="tx-right">
               <p [class]="activity.isSend ? 'mg-b-0 tx-inverse tx-medium tx-red' : 'mg-b-0 tx-inverse tx-medium tx-green'">{{ activity.isSend ? '-' : '+'}}{{activity.amount}} {{activity.symbol}}</p>
-              <span class="d-block tx-13 tx-grey">{{ activity.isSend ? '-' : '+'}}${{activity.value}}</span>
+              <span class="d-block tx-13 tx-grey">{{ activity.isSend ? '-' : '+'}}{{currentCurrency.symbol}}{{activity.value}}</span>
             </td>
           </tr>
         </tbody>

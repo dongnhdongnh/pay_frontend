@@ -5,6 +5,7 @@ import { AccountService } from 'services/account/account.service';
 import { HttpService } from 'network/http/http.service';
 import { ConfigService } from 'network/config/config.service';
 import { CurrentCurrency } from 'model/currency/Currency'
+import { Utility } from 'utility/Utility';
 
 @Component({
   selector: 'app-portfolio',
@@ -20,12 +21,12 @@ export class PortfolioComponent implements OnInit {
   accountService: AccountService;
 
   constructor(private httpService: HttpService, configService: ConfigService,
-    currentCurrency : CurrentCurrency, accountService : AccountService) {
-      this.accountService = accountService;
-      this.account = this.accountService.mAccount;
-      this.configService = configService;
-      this.apiUrl = this.configService.urlApi;
-      this.currentCurrency = currentCurrency;
+    currentCurrency: CurrentCurrency, accountService: AccountService) {
+    this.accountService = accountService;
+    this.account = this.accountService.mAccount;
+    this.configService = configService;
+    this.apiUrl = this.configService.urlApi;
+    this.currentCurrency = currentCurrency;
   }
 
   ngOnInit() {
@@ -45,21 +46,25 @@ export class PortfolioComponent implements OnInit {
     this.portfolio.length = 0;
     var apiData = await this.httpService.getFrom("get coinmarket data", this.apiUrl + apiString);
 
-    if (apiData && apiData.data){
+    while (this.currentCurrency.isLoading) {
+      await Utility.sleep(100);
+    }
+
+    if (apiData && apiData.data) {
       var objectData = apiData.data;
-      this.vakaValue = Number(!objectData["VakacoinValue"] ? "0" : objectData["VakacoinValue"]);
-      this.btcValue = Number(!objectData["BitcoinValue"] ? "0" : objectData["BitcoinValue"]);
-      this.ethValue = Number(!objectData["EthereumValue"] ? "0" : objectData["EthereumValue"]);
+      this.vakaValue = Number(!objectData["VakacoinValue"] ? "0" : objectData["VakacoinValue"]) * this.currentCurrency.exchangeRate;
+      this.btcValue = Number(!objectData["BitcoinValue"] ? "0" : objectData["BitcoinValue"]) * this.currentCurrency.exchangeRate;
+      this.ethValue = Number(!objectData["EthereumValue"] ? "0" : objectData["EthereumValue"]) * this.currentCurrency.exchangeRate;
 
       var total = this.vakaValue + this.btcValue + this.ethValue;
 
-      var vaka = new Portfolio("Vakacoin", total, !objectData["VakacoinAmount"] ? "0" : objectData["VakacoinAmount"], this.vakaValue);
+      var vaka = new Portfolio("Vakacoin", total, !objectData["VakacoinAmount"] ? "0" : objectData["VakacoinAmount"], this.vakaValue, this.currentCurrency.symbol);
       this.portfolio.push(vaka);
 
-      var btc = new Portfolio("Bitcoin", total, !objectData["BitcoinAmount"] ? "0" : objectData["BitcoinAmount"], this.btcValue);
+      var btc = new Portfolio("Bitcoin", total, !objectData["BitcoinAmount"] ? "0" : objectData["BitcoinAmount"], this.btcValue, this.currentCurrency.symbol);
       this.portfolio.push(btc);
 
-      var eth = new Portfolio("Ethereum", total, !objectData["EthereumAmount"] ? "0" : objectData["EthereumAmount"], this.ethValue);
+      var eth = new Portfolio("Ethereum", total, !objectData["EthereumAmount"] ? "0" : objectData["EthereumAmount"], this.ethValue, this.currentCurrency.symbol);
       this.portfolio.push(eth);
 
       this.doughnutChartData = [this.vakaValue, this.btcValue, this.ethValue];

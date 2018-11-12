@@ -37,6 +37,8 @@ export class CurrentCurrency {
     configService: ConfigService;
     symbol = '$';
     exchangeRate = 1;
+    //Waiting until loading data is completed
+    isLoading: boolean = true;
     currencyId = 'USD';
     constructor(
         private accountService: AccountService, private httpService: HttpService,
@@ -50,7 +52,7 @@ export class CurrentCurrency {
 
     public async getExchangeRate() {
         while (!this.mAccount.currencyKey) {
-            await Utility.sleep(500);
+            await Utility.sleep(200);
         }
         this.currencyId = this.mAccount.currencyKey;
         listSymbol.forEach(element => {
@@ -61,14 +63,14 @@ export class CurrentCurrency {
         if (this.currencyId === 'USD') {
             return;
         }
-      //  this.currencyId = 'VND';
-        this.exchangeRate = await this.getData(this.currencyId);
+        this.exchangeRate = Number(await this.getData(this.currencyId));
+        this.isLoading = false;
     }
 
     async getData(currencySymbol = '') {
         try {
             // console.log("========> get DAta" + currencySymbol);
-            var apiData = await this.httpService.getFrom("get coinmarket data", this.apiUrl + '/api/currency/' + currencySymbol);
+            var apiData = await this.httpService.getFrom("get exchange rate data", this.apiUrl + '/api/currency/' + currencySymbol);
             if (apiData && apiData.data) {
                 // console.log("===========>GET CURRENTCY DATA " + apiData.data);
                 return Number(apiData.data);
