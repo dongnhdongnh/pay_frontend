@@ -3,6 +3,7 @@ import { Account } from 'model/account/Account';
 import { HttpService } from 'network/http/http.service';
 import { ConfigService } from 'network/config/config.service';
 import { Injectable } from '@angular/core';
+import { Utility } from 'utility/Utility';
 
 var listCurrency = [
     ['USD', 'United States Dollar (USD)'],
@@ -47,25 +48,24 @@ export class CurrentCurrency {
         this.getExchangeRate();
     }
 
-    public getExchangeRate(): void {
+    public async getExchangeRate() {
+        while (!this.mAccount.currencyKey) {
+            await Utility.sleep(500);
+        }
         var currencyId = this.mAccount.currencyKey;
-        // console.log("aaaa = " + currencyId);
         listSymbol.forEach(element => {
             if (currencyId == element[0]) {
                 this.symbol = element[1];
-                // console.log(" bbbb " + element[1])
             }
         });
         if (currencyId === 'USD') {
             return;
         }
-        this.exchangeRate = Number(this.getData(currencyId));
-        // console.log("symbol = " + this.symbol+ "     exchangeRate = "+ this.exchangeRate);
+        this.exchangeRate = Number(await this.getData(currencyId));
     }
 
     public async getData(currencySymbol = '') {
         var apiData = await this.httpService.getFrom("get coinmarket data", this.apiUrl + '/api/currency/' + currencySymbol);
-        // console.log(" xxxx + " + apiData.data);
         if (apiData && apiData.data) {
             return apiData.data;
         }
