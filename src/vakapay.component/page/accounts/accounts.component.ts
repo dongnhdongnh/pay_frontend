@@ -67,6 +67,7 @@ export class AccountsComponent extends Root implements OnInit {
     this.getUserData();
 
     this.sendByAd = true;
+    console.log(this.mAccount.isTwoFactor);
   }
 
   popToast(type, title, body) {
@@ -379,8 +380,7 @@ export class AccountsComponent extends Root implements OnInit {
       }
       this.sendObject.detail = form.value;
       this.loadingObject.sendCoin = true;
-      var result = await this.walletService.checkSendCoin(this.sendObject.detail.withdrawn_from
-        , this.sendObject.detail.recipientWalletAddress, this.sendObject.networkName, this.sendObject.detail.VKCAmount);
+      var result = await this.walletService.checkSendCoin(this.sendObject.detail.recipientWalletAddress, this.sendObject.networkName, this.sendObject.detail.VKCAmount);
       //  console.log("RESULT " + result);
       let _checkObject = JSON.parse(result.message);
       this.sendObject.checkObject = _checkObject;
@@ -510,17 +510,18 @@ export class AccountsComponent extends Root implements OnInit {
     try {
       this.errorObject = {};
       this.sendObject.SMScode = form.value.VKCSMS;
+      this.sendObject.TwoFAcode = form.value.VKC2FA;
       this.sendObject.detail.sendByAd = this.sendByAd;
       delete this.sendObject.checkObject;
       delete this.sendObject.exchangeRate;
 
 
-      //   console.log("HAHAHAHAHA confirm ============>" + JSON.stringify(this.sendObject));
+      console.log("HAHAHAHAHA confirm ============>" + JSON.stringify(this.sendObject));
       this.ngxSmartModalService.getModal('sendDetail').close();
       this.ngxSmartModalService.getModal('sendConfirm').close();
       this.loadingObject.sendCoinConfirm = true;
       let result = await this.walletService.sendCoinConfirm(this.sendObject);
-      //  console.log("result:========== " + JSON.stringify(result));
+      console.log("result:========== " + JSON.stringify(result));
       if (Utility.isError(result)) {
         //  console.log(result.message);
         this.errorObject.sendTransactions = result.message;

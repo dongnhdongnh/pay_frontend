@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpService } from 'network/http/http.service';
 import { Utility } from 'utility/Utility';
 import { ResultObject } from 'model/result/ResultObject';
-
+import { TwofaService } from 'services/twofa/twofa.service';
+import { Action } from 'model/Action';
 import * as priceCrypto from 'crypto-price';
 import * as WAValidator from 'wallet-address-validator';
 
@@ -21,13 +22,14 @@ export class WalletService {
   url_checkSendCoin = '/api/wallet/CheckSendCoin'
   url_requiteSMSCode = '/api/twofa/transaction/require-send-code-phone'
   // url_verifyCode = 'api/twofa/transaction/verify-code'
-  url_sendTransactions = '/api/wallet/sendTransactions'
+  //url_sendTransactions = '/api/wallet/sendTransactions'
+  url_sendTransactions = '/api/twofa/transaction/verify-code'
   url_createWallet = '/api/tools/create-addresses'
   url_currencyConvert = '/api/currency/VND';
   // Status
   isLoading = false;
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService, private twofaService: TwofaService) { }
 
   async getAllWallet() {
     try {
@@ -129,10 +131,10 @@ export class WalletService {
     }
   }
 
-  async checkSendCoin(fromAddress, toAddress, networkName, amount) {
+  async checkSendCoin(toAddress, networkName, amount) {
     try {
       let operation = 'checkSendCoin';
-      let api = this.url_checkSendCoin + "?fromAddress=" + fromAddress + "&toAddress=" + toAddress + "&networkName=" + networkName + "&amount=" + amount;
+      let api = this.url_checkSendCoin + "?toAddress=" + toAddress + "&networkName=" + networkName + "&amount=" + amount;
       let result = await this.httpService.get(operation, api, false);
       if (Utility.isError(result)) {
         console.log(result.message);
@@ -147,10 +149,11 @@ export class WalletService {
   }
 
   //CALL SMS CODE
-  sendCoinMakeSMSCode(): Promise<ResultObject> {
-    let operation = 'request sms code';
-    let api = this.url_requiteSMSCode;
-    return this.httpService.post(operation, api, null, false);
+  sendCoinMakeSMSCode() {
+   // let operation = 'request sms code';
+   // let api = this.url_requiteSMSCode;
+  //  return this.httpService.post(operation, api, null, false);
+    this.twofaService.requireSendCodePhone(Action.SEND_TRANSACTION);
   }
   //SEND DATA WITH SMSCODE:
   sendCoinConfirm(sendObject): Promise<ResultObject> {

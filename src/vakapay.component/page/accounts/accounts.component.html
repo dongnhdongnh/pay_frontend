@@ -42,8 +42,8 @@
                               VKC</p>
                             <div class="pd-t-10 pd-b-10 d-flex align-items-center">
                               <div *ngIf="wallets.get('Vakacoin')?.Balance>0">
-                                <a href="#" (click)="onClickSend('VKC')" class="btn btn-trans send-receive"
-                                  data-toggle="modal" data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send
+                                <a href="#" (click)="onClickSend('VKC')" class="btn btn-trans send-receive" data-toggle="modal"
+                                  data-target="#modaldemo3"><i class="fa fa-send mg-r-3"></i>Send
                                   <loading-button [isLoading]='loadingObject?.loadClickSend'></loading-button>
                                 </a>
                               </div>
@@ -750,11 +750,11 @@
         <div class="row">
           <ul class="nav nav-tabs nav-tabs-style-1 nav-justified tx-13" role="tablist">
             <li class="nav-item width-half">
-              <a class="nav-link pd-y-10 active" data-toggle="tab" href="#taba" role="tab" (click)="sendByAd=true;validateSendCoin(sendCoinForm,-1,false)">Wallet
+              <a class="nav-link pd-y-10 active" data-toggle="tab" href="#taba" role="tab" (click)="sendByAd=true;validateSendCoin(sendCoinForm,-1,true)">Wallet
                 Address</a>
             </li>
             <li class="nav-item width-half">
-              <a class="nav-link pd-y-10" data-toggle="tab" href="#tabb" role="tab" (click)="sendByAd=false;validateSendCoin(sendCoinForm,-1,false)">Email
+              <a class="nav-link pd-y-10" data-toggle="tab" href="#tabb" role="tab" (click)="sendByAd=false;validateSendCoin(sendCoinForm,-1,true)">Email
                 Address</a>
             </li>
           </ul>
@@ -797,7 +797,7 @@
           <div class="col-sm-12 mg-t-10 mg-sm-t-0">
             <div class="width-half-mini input-number">
               <div class="input-left bg-green">
-                  <loading-button style="color:black" [isLoading]='loadingObject?.loadVND'></loading-button>
+                <loading-button style="color:black" [isLoading]='loadingObject?.loadVND'></loading-button>
                 <span color="slate">{{mAccount?.currencyKey}}</span>
               </div>
               <div class="input-right"><input type="number" class="form-control fc-outline-white" placeholder=""
@@ -825,7 +825,7 @@
           <label class="col-sm-12 form-control-label"> Note:</label>
           <div class="col-sm-12 mg-t-10 mg-sm-t-0">
             <textarea rows="3" class="form-control" placeholder="Write an optional message" name="VKCnote" ngModel
-               #VKCnote="ngModel"></textarea>
+              #VKCnote="ngModel"></textarea>
             <!-- <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.VKCnote">
               {{errorObject.VKCnote}}
             </div> -->
@@ -908,18 +908,49 @@
               </div><!-- row -->
             </div>
             <div class="mg-t-20">
-              <label class="col-sm-12 form-control-label"> Enter the 2-step verification code provided by SMS to your
-                phone:
-              </label>
-              <div class="col-sm-12 mg-t-10 mg-sm-t-0">
-                <div class="input-group sms">
-                  <span class="input-group-addon"><i class="fa fa-phone tx-16 lh-0 op-6"></i></span>
-                  <input id="phoneMask" type="text" class="form-control fc-outline-white half" maxlength="7"
-                    placeholder="0000000" name="VKCSMS" ngModel>
+           
+              <div [ngSwitch]="mAccount?.isTwoFactor">
+                <div *ngSwitchCase="0">
+
                 </div>
-                <span class="resend">Didn't receive the verification code? <br> <a (click)="requestSMSCode()">Re-send
-                    SMS</a></span>
+                <div *ngSwitchCase="1">
+                  <label class="col-sm-12 form-control-label"> Enter the 2FA code:
+                  </label>
+                  <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                    <div class="input-group sms">
+                      <!-- <span class="input-group-addon"><i class="fa fa-phone tx-16 lh-0 op-6"></i></span> -->
+                      <input id="phoneMask" type="text" class="form-control fc-outline-white half" maxlength="6"
+                        placeholder="000000" name="VKC2FA" ngModel>
+                    </div>
+                    <span class="resend">Didn't receive the verification code? <br> <a (click)="requestSMSCode()">Re-send
+                        SMS</a></span>
+                  </div>
+                </div>
+                <div *ngSwitchCase="2">
+                  <label class="col-sm-12 form-control-label"> Enter the 2-step verification code provided by SMS to
+                    your
+                    phone:
+                  </label>
+                  <div class="col-sm-12 mg-t-10 mg-sm-t-0">
+                    <div class="input-group sms">
+                      <span class="input-group-addon"><i class="fa fa-phone tx-16 lh-0 op-6"></i></span>
+                      <input id="phoneMask" type="text" class="form-control fc-outline-white half" maxlength="7"
+                        placeholder="0000000" name="VKCSMS" ngModel>
+                    </div>
+                    <span class="resend">Didn't receive the verification code? <br> <a (click)="requestSMSCode()">Re-send
+                        SMS</a></span>
+                  </div>
+
+                </div>
+                <div *ngSwitchDefault>
+                  <i class="tx-btc tx-20"><img src="../assets/icons/send.svg" alt=""></i>
+                </div>
               </div>
+
+
+
+
+
             </div><!-- row -->
           </div>
         </div><!-- row -->

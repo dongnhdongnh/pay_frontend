@@ -8,9 +8,10 @@ export const Action = {
     TWOFA_DISABLE: "TwofaDisable",
     UPDATE_OPTION_VETIFY: "UpdateOptionVerify",
     LOCK_SCREEN: "LockScreen",
-    SEND_TRSANSACTION: "SendTransaction",
+    //SEND_TRSANSACTION: "SendTransaction",
     API_ACCESS: "ApiAccess",
     CUSTOM_TWOFA: "CustomTwofa",
+    SEND_TRANSACTION : "SendTransaction",
 
     API_ACCESS_ADD: "ApiAccessAdd",
     API_ACCESS_GET: "ApiAccessEdit",
