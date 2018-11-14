@@ -658,6 +658,8 @@ export class AccountsComponent extends Root implements OnInit {
   slideConfig: SwiperConfigInterface = {
     speed: 300,
     slidesPerView: 'auto',
+    spaceBetween:80,
+    //centeredSlides:true,
     //visibilityFullFit: true,
     //autoResize: false,
     loopedSlides: 4,
