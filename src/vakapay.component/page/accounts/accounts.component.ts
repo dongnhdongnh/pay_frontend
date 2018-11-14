@@ -59,6 +59,8 @@ export class AccountsComponent extends Root implements OnInit {
     this.toasterService = toasterService;
     this.mAccount = mAccountSerive.mAccount;
     //this.mAccount.id = "8377a95b-79b4-4dfb-8e1e-b4833443c306";
+    this.mAccount.currencyKey = "VND";
+    this.mAccount.isTwoFactor = 2;
     this.walletService = walletService;
     this.isDataLoaded = false;
     this.clipboardService = _clipboardService;
@@ -509,18 +511,19 @@ export class AccountsComponent extends Root implements OnInit {
   async sendCoinConfirm(form: NgForm) {
     try {
       this.errorObject = {};
+   
       this.sendObject.SMScode = form.value.VKCSMS;
       this.sendObject.TwoFAcode = form.value.VKC2FA;
       this.sendObject.detail.sendByAd = this.sendByAd;
-      delete this.sendObject.checkObject;
-      delete this.sendObject.exchangeRate;
+      let _sendObject =JSON.parse(JSON.stringify(this.sendObject));
+      delete _sendObject.checkObject;
+      delete _sendObject.exchangeRate;
 
 
-      console.log("HAHAHAHAHA confirm ============>" + JSON.stringify(this.sendObject));
-      this.ngxSmartModalService.getModal('sendDetail').close();
-      this.ngxSmartModalService.getModal('sendConfirm').close();
+      console.log("HAHAHAHAHA confirm ============>" + JSON.stringify(_sendObject));
+
       this.loadingObject.sendCoinConfirm = true;
-      let result = await this.walletService.sendCoinConfirm(this.sendObject);
+      let result = await this.walletService.sendCoinConfirm(_sendObject);
       console.log("result:========== " + JSON.stringify(result));
       if (Utility.isError(result)) {
         //  console.log(result.message);
@@ -529,10 +532,14 @@ export class AccountsComponent extends Root implements OnInit {
       }
       else {
         //this.getHistory(this.wallet_current);
+        //SEND SUCCESS
         this.getUserData(false);
+        this.ngxSmartModalService.getModal('sendDetail').close();
+        this.ngxSmartModalService.getModal('sendConfirm').close();
+        this.ngxSmartModalService.getModal('popup_ok').open();
       }
       this.loadingObject.sendCoinConfirm = false;
-      this.ngxSmartModalService.getModal('popup_ok').open();
+
 
     } catch (error) {
       this.loadingObject.sendCoinConfirm = false;
