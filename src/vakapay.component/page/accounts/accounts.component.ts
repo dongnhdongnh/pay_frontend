@@ -59,8 +59,8 @@ export class AccountsComponent extends Root implements OnInit {
     this.toasterService = toasterService;
     this.mAccount = mAccountSerive.mAccount;
     //this.mAccount.id = "8377a95b-79b4-4dfb-8e1e-b4833443c306";
-    this.mAccount.currencyKey = "VND";
-    this.mAccount.isTwoFactor = 2;
+  //  this.mAccount.currencyKey = "VND";
+  //  this.mAccount.isTwoFactor = 0;
     this.walletService = walletService;
     this.isDataLoaded = false;
     this.clipboardService = _clipboardService;
@@ -227,6 +227,25 @@ export class AccountsComponent extends Root implements OnInit {
   }
   transactionDetail_current: any;
   public onClickTransactionDetail(item) {
+    if (item.Hash && item.Hash != '' && item.Hash != -1) {
+      switch (this.tab_current.sortName) {
+        case 'ETH':
+          item.viewURL = "https://etherscan.io/tx/" + item.Hash;
+          break;
+        case 'BTC':
+          item.viewURL = "https://live.blockcypher.com/btc/tx/" + item.Hash;
+          break;
+        case "EOS":
+          break;
+        default:
+          break;
+      }
+    }
+    else {
+      item.viewURL = 0;
+    }
+
+
     this.transactionDetail_current = item;
     console.log(JSON.stringify(item));
     this.ngxSmartModalService.getModal('transactionDetail').open();
@@ -316,11 +335,13 @@ export class AccountsComponent extends Root implements OnInit {
         case "VKC":
           this.loadingObject.loadVND = false;
           this.vndValue = this.vkcValue * this.sendObject.exchangeRate;
+          this.vndValue = this.nineNumber(this.vndValue);
           this.validateSendCoin(this.sendCoinForm);
           break;
         case "VND":
           this.loadingObject.loadVKC = false;
           this.vkcValue = this.vndValue / this.sendObject.exchangeRate;
+          // this.vkcValue = this.formatNumber(this.nineNumber(this.vkcValue));
           this.validateSendCoin(this.sendCoinForm);
           break;
         default:
@@ -511,11 +532,11 @@ export class AccountsComponent extends Root implements OnInit {
   async sendCoinConfirm(form: NgForm) {
     try {
       this.errorObject = {};
-   
       this.sendObject.SMScode = form.value.VKCSMS;
       this.sendObject.TwoFAcode = form.value.VKC2FA;
       this.sendObject.detail.sendByAd = this.sendByAd;
-      let _sendObject =JSON.parse(JSON.stringify(this.sendObject));
+      this.sendObject.detail.PricePerCoin = this.sendObject.exchangeRate;
+      let _sendObject = JSON.parse(JSON.stringify(this.sendObject));
       delete _sendObject.checkObject;
       delete _sendObject.exchangeRate;
 
@@ -655,10 +676,26 @@ export class AccountsComponent extends Root implements OnInit {
     return x;
   }
 
+  formatNumber(x) {
+    switch (this.mAccount.currencyKey) {
+      case "VND":
+        return new Intl.NumberFormat('vi-Vi').format(x);
+        break;
+      case "USD":
+        return new Intl.NumberFormat('en-IN').format(x);
+        break;
+      default:
+        return x;
+        break;
+    }
+
+  }
+
+
   slideConfig: SwiperConfigInterface = {
     speed: 300,
     slidesPerView: 'auto',
-    spaceBetween:80,
+    spaceBetween: 80,
     //centeredSlides:true,
     //visibilityFullFit: true,
     //autoResize: false,

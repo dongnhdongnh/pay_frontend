@@ -88,6 +88,9 @@ export class CurrentCurrency {
 
     }
     public async ExchangeRate() {
+        if (this.currencyId === 'USD') {
+            return 1;
+        }
         return this.getData(this.currencyId);
     }
 

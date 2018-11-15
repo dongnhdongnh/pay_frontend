@@ -345,8 +345,9 @@
                               </div>
                             </td>
                             <td width="40%" class="tx-right">
-                              <p class="mg-b-0 tx-inverse tx-medium tx-red">{{item.Amount}} {{Coin}}</p>
-                              <span class="d-block tx-13 tx-grey">+₫456,476.00</span>
+                              <p class="mg-b-0 tx-inverse tx-medium tx-red">{{item.Amount}} {{tab_current?.sortName}}</p>
+                              <span class="d-block tx-13 tx-grey">{{formatNumber(item?.Amount*item?.PricePerCoin)}}
+                                  {{mAccount?.currencyKey}}</span>
                             </td>
                           </div>
                           <div *ngIf="item.type==1">
@@ -606,7 +607,8 @@
       <div class="modal-body pd-x-20 pd-y-5">
         <i class="icon ion-arrow-down-a tx-60 tx-success lh-1 mg-t-20 d-inline-block tx-center img-center"></i>
         <h6 class="check tx-20 mg-b-0"> {{transactionDetail_current?.Amount}} {{tab_current?.sortName}}</h6>
-        <h6 class="grey tx-16">= đ456,455</h6>
+        <h6 class="grey tx-16">= {{formatNumber(transactionDetail_current?.Amount*transactionDetail_current?.PricePerCoin)}}
+          {{mAccount?.currencyKey}}</h6>
         <div class="col-sm-12 mg-t-30 mg-sm-t-0 mg-b-20">
           <div class="form-layout-6">
             <div class="row no-gutters">
@@ -614,7 +616,7 @@
                 Price per coin
               </div><!-- col-4 -->
               <div class="col-8">
-                đ5,564,550.00
+                {{formatNumber(transactionDetail_current?.PricePerCoin)}} {{mAccount?.currencyKey}}
               </div><!-- col-8 -->
             </div><!-- row -->
             <div class="row no-gutters">
@@ -629,6 +631,18 @@
                 <ng-template #showAddTo>{{transactionDetail_current?.ToAddress}}</ng-template>
                 <!-- From {{transactionDetail_current?.FromAddress}} to {{transactionDetail_current?.ToAddress}}
                 <a href="#" data-dismiss="modal">View transaction</a> -->
+              </div><!-- col-8 -->
+            </div><!-- row -->
+            <div class="row no-gutters">
+              <div class="col-4">
+                Transaction
+              </div><!-- col-4 -->
+              <div class="col-8">
+                <div *ngIf="transactionDetail_current?.viewURL!=0;else showNoHash">
+                  <a href={{transactionDetail_current?.viewURL}} data-dismiss="modal">View transaction</a>
+                </div>
+                <ng-template #showNoHash> </ng-template>
+
               </div><!-- col-8 -->
             </div><!-- row -->
             <div class="row no-gutters">
@@ -908,7 +922,7 @@
               </div><!-- row -->
             </div>
             <div class="mg-t-20">
-           
+
               <div [ngSwitch]="mAccount?.isTwoFactor">
                 <div *ngSwitchCase="0">
 
@@ -986,7 +1000,7 @@
         <ng-template #sendDone>
           <h4 class="tx-success mg-b-20">Your transaction is on the way!</h4>
           <p class="mg-b-20 mg-x-20">You sent {{sendObject?.detail?.VKCAmount}} {{sendObject?.sortName}}
-            (₫{{sendObject?.detail?.VNDAmount}}) to an
+            ( {{formatNumber(sendObject?.detail?.VNDAmount)}} {{mAccount?.currencyKey}}) to an
             external address.</p>
           <a href="#" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-toggle="modal"
             data-dismiss="modal" (click)="closePopup('popup_ok')" data-target="#modaldemo3d"> View Details
