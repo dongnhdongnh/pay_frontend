@@ -19,7 +19,7 @@ export class ConfigService {
 
     constructor() {
         IpService.getIpLAN();
-        this.issuer = 'https://vakaid.vakaxalab.com';
+        this.issuer = 'https://vakaid.com';
         this.urlApi = environment.urlApi;
         
         this.redirectUri = `${origin}/login`;
