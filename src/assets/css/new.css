@@ -659,7 +659,7 @@ hr {
 } 
 .swiper-slide { 
     width: auto !important;
-    margin-right: 10px;
+    margin-right: 10px !important;
 }
 .send-receive {
     background: transparent;
