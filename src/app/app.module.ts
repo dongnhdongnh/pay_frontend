@@ -46,7 +46,7 @@ export function highchartsModules() {
 import { ProgressBarModule } from "angular-progress-bar"
 
 //ng-select
-import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 // modal in angular
 import { NgxSmartModalModule } from 'ngx-smart-modal';
@@ -331,12 +331,6 @@ import { CustomTwoFactorAuthenticateWithGoogleAuthenticateComponent }
     NgxPaginationModule
   ],
   providers: [
-    {
-      provide: NG_SELECT_DEFAULT_CONFIG,
-      useValue: {
-        notFoundText: 'Custom not found'
-      }
-    },
     { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules }
   ],
   bootstrap: [AppComponent]
