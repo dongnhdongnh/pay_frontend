@@ -15,4 +15,5 @@ before_script:
 
 build:
   script:
+  - npm install -save
   - npm test
