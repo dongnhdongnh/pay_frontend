@@ -2,5 +2,4 @@ production:
   script:
   - npm install --save @angular-devkit/build-angular
   - npm link
-  - ng serve
   - ng build --prod --aot --output-hashing=none
