@@ -15,4 +15,4 @@ before_script:
 
 build:
   script:
-  - npm test
+  - npm build
