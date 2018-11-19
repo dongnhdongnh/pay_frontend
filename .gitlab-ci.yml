@@ -19,4 +19,4 @@ build:
   
 production:
   script:
-  - npm start
+  - ng build --prod --aot --output-hashing=none
