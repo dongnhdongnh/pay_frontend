@@ -16,6 +16,7 @@ import {
   SwiperScrollbarInterface, SwiperPaginationInterface
 } from 'ngx-swiper-wrapper';
 import { Utility } from 'utility/Utility';
+import { JsonPipe } from '@angular/common';
 
 
 @Component({
@@ -59,8 +60,8 @@ export class AccountsComponent extends Root implements OnInit {
     this.toasterService = toasterService;
     this.mAccount = mAccountSerive.mAccount;
     //this.mAccount.id = "8377a95b-79b4-4dfb-8e1e-b4833443c306";
-  //  this.mAccount.currencyKey = "VND";
-  //  this.mAccount.isTwoFactor = 0;
+    //  this.mAccount.currencyKey = "VND";
+    //  this.mAccount.isTwoFactor = 0;
     this.walletService = walletService;
     this.isDataLoaded = false;
     this.clipboardService = _clipboardService;
@@ -423,7 +424,7 @@ export class AccountsComponent extends Root implements OnInit {
   }
 
   errorObject: any;
-  validateSendCoin(form: NgForm, id = -1, showError = true) {
+  async  validateSendCoin(form: NgForm, id = -1, showError = true) {
 
     try {
       // console.log("validate coin " + id);
@@ -465,6 +466,27 @@ export class AccountsComponent extends Root implements OnInit {
             if (!UtilityValidate.isEmail(form.value.recipientEmailAddress)) {
               this.errorObject.recipientEmailAddress = 'Email is not valid';
               canNext = false;
+            }
+            else {
+              console.log("CHECKING MAIL "+form.value.recipientEmailAddress);
+              try {
+                this.loadingObject.checkMail=true;
+                var _checkEmail = await this.walletService.checkEmail(form.value.recipientEmailAddress);
+                this.loadingObject.checkMail=false;
+                console.log("CHECKING MAIL "+JSON.stringify(_checkEmail));
+                if (!Utility.isError(_checkEmail)) { 
+                  canNext=true;
+                }
+                else
+                {
+                  this.errorObject.recipientEmailAddress = 'Email is not exist';
+                  canNext=false;
+                }
+              } catch (error) {
+                this.loadingObject.checkMail=false;
+                canNext=false;
+              }
+           
             }
           }
 

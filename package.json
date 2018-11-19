@@ -4,7 +4,7 @@
   "main": "main.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4040 --ssl -o",
+    "start": "ng serve --port 4040 --ssl -o --live-reload false",
     "build": "ng build",
     "test": "ng test ",
     "lint": "ng lint",

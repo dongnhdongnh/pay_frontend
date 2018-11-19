@@ -776,10 +776,11 @@
         <div class="tab-content">
           <div class="tab-pane active" id="taba" role="tabpanel">
             <div class="row mg-t-10">
-              <label class="col-sm-12 form-control-label"> Recipient:<i class="tx-danger">*</i></label>
+              <label class="col-sm-12 form-control-label"> Recipient:<i class="tx-danger">* </i>     <loading-button [isLoading]='loadingObject?.checkMail'></loading-button></label>
               <div class="col-sm-12 mg-t-10 mg-sm-t-0">
                 <input type="text" class="form-control" placeholder="Enter a VKC Address" name="recipientWalletAddress"
                   #recipientWalletAddress="ngModel" required minlength="1" ngModel (keyup)="validateSendCoin(sendCoinForm)">
+    
                 <div class="col alert alert-danger" role="alert" *ngIf="errorObject?.recipientWalletAddress">
                   {{errorObject.recipientWalletAddress}}
                 </div>

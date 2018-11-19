@@ -6,6 +6,7 @@ import { TwofaService } from 'services/twofa/twofa.service';
 import { Action } from 'model/Action';
 import * as priceCrypto from 'crypto-price';
 import * as WAValidator from 'wallet-address-validator';
+import { utf8Encode } from '@angular/compiler/src/util';
 
 //import * as cc from 'currency-converter';
 @Injectable({
@@ -20,6 +21,7 @@ export class WalletService {
   url_getWalletHistory = '/api/wallet/History'
   url_getAddress = '/api/wallet/AddressInfor'
   url_checkSendCoin = '/api/wallet/CheckSendCoin'
+  url_checkEmail = '/api/wallet/CheckUserMail'
   url_requiteSMSCode = '/api/twofa/transaction/require-send-code-phone'
   // url_verifyCode = 'api/twofa/transaction/verify-code'
   //url_sendTransactions = '/api/wallet/sendTransactions'
@@ -148,6 +150,28 @@ export class WalletService {
     }
   }
 
+  async checkEmail(email) {
+    try {
+      let operation = 'checkSendCoin';
+      
+      console.log("EMAIL "+escape(email));
+     // enc
+      let api = this.url_checkEmail + "?userMail=" + encodeURIComponent(email);
+   //  api= encodeURI(api);
+      console.log("api"+api);
+      let result = await this.httpService.get(operation, api, false);
+     return result;
+      // if (Utility.isError(result)) {
+      //   console.log(result.message);
+      //   return;
+      // }
+      // else {
+      //   return result;
+      // }
+    } catch (error) {
+      console.log(JSON.stringify(error));
+    }
+  }
   //CALL SMS CODE
   sendCoinMakeSMSCode() {
    // let operation = 'request sms code';
