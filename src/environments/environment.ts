@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlApi:'https://api.vakaid.vakaxalab.com'
+  urlApi:'https://api.vakapay.io'
  // urlApi:'http://localhost:5001'
 };
 
