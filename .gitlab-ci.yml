@@ -16,3 +16,7 @@ before_script:
 build:
   script:
   - npm build
+  
+production:
+  script:
+  - npm start
