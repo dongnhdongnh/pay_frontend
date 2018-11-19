@@ -1,4 +1,3 @@
 production:
   script:
-  - npm install @angular-devkit/build-angular
   - ng build --prod --aot --output-hashing=none
