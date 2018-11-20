@@ -154,7 +154,7 @@ export class WalletService {
     try {
       let operation = 'checkSendCoin';
       
-      console.log("EMAIL "+escape(email));
+     // console.log("EMAIL "+escape(email));
      // enc
       let api = this.url_checkEmail + "?userMail=" + encodeURIComponent(email);
    //  api= encodeURI(api);

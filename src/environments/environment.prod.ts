@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  // urlApi:'https://api.vakaid.vakaxalab.com'
-  urlApi: 'https://localhost:5001'
+   urlApi:'https://api.vakapay.io'
+ // urlApi: 'https://localhost:5001'
 };
