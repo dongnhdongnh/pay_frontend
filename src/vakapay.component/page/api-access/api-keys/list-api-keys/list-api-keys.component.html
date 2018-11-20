@@ -18,7 +18,7 @@
 </div>
 <br>
 
-<mat-table #table [dataSource]="this.service.list" style="width: 100%;">
+<mat-table #table [dataSource]="this.service.list" style="width: 100%;" [hidden]="service.total === 0">
   <ng-container matColumnDef="keyApi">
     <mat-header-cell *matHeaderCellDef> Key </mat-header-cell>
     <mat-cell *matCellDef="let element">
@@ -58,8 +58,7 @@
       <div style="min-width: 100%;">
         <span class="mobile-label">Permissions</span>
 
-        <mat-expansion-panel (opened)="showPermission[element.id]= true"
-          (closed)="showPermission[element.id]= false">
+        <mat-expansion-panel (opened)="showPermission[element.id]= true" (closed)="showPermission[element.id]= false">
           <mat-expansion-panel-header>
             <mat-panel-title>
               <div class="dropbtn btn btn-trans tx-11
@@ -81,9 +80,7 @@
 
   <ng-container matColumnDef="action">
     <mat-header-cell *matHeaderCellDef> </mat-header-cell>
-    <mat-cell *matCellDef="let element"
-      (click)="onClick($event)"
-      [id]="element.id">
+    <mat-cell *matCellDef="let element" (click)="onClick($event)" [id]="element.id">
       <div>
         <span class="mobile-label"></span>
         <app-show-api-key></app-show-api-key>
