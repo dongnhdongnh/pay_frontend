@@ -1,7 +1,48 @@
 .error {
     color: #cc2243;
 }
-
+.noti .tx-info {
+    color: #fff !important;
+}
+.logged-name:hover {
+    color: #0ba9d7;
+}
+.t-7 {
+    padding-top: 7px;
+}
+.media img {
+    width: 30px !important;
+    height: auto;
+    margin: auto;
+}
+.media .noti-icon {
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    width: 30px;
+}
+.media-list-link .media {
+    position: relative;
+}
+.media .noti-icon i {
+    font-size: 30px;
+    position: relative;
+    display: table;
+    margin: auto;
+}
+.noti-top .media-body {
+    margin-left: 45px;
+}
+.noti-top strong {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+.media-list-link .media-body > div {
+    margin-bottom: 0;
+}
 .bg-home {
   background: url('/assets/images/backgrounds/bg-signin.jpg') center no-repeat;
   background-size: cover;
@@ -2056,6 +2097,9 @@ ul, ol {
     }
 }
 @media only screen and (max-width: 640px) {
+    .noti {
+        display: none;
+    }
     .br-mainpanel {
         padding-bottom: 0;
     }
