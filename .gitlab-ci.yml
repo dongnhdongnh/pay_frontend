@@ -1,6 +1,16 @@
 stages:
+ - staging
  - production
  
+staging:
+  stage: staging
+  tags:
+  - ansible
+  script:
+  - npm start
+  only:
+  - tags
+
 production:
   stage: production
   tags:
