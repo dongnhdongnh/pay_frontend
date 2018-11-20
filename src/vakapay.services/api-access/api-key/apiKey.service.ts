@@ -75,16 +75,15 @@ export class ApiKeyService extends PaginationService {
                 this.isError = true;
                 return;
             }
-
             this.isError = false;
-            let list = result.data.List;
+            let list = result.data.List || result.data;
             this.list = list.map(element => {
                 let model = new ApiKey();
                 model.attributes = element;
                 return model;
             });
             this.list = this.list.sort((a, b) => b.updatedAt - a.updatedAt);
-            this.total = result.data.Total;
+            this.total = list.length === 0 ? 0 : result.data.Total;
             return;
         } catch (error) {
             this.isError = true;

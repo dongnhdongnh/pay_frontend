@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { ApiAccessService } from 'services/api-access/apiAccess.service';
 import { ApiKeyService } from 'services/api-access/api-key/apiKey.service';
 
