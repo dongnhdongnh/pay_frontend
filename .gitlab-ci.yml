@@ -16,7 +16,6 @@ production:
   tags:
   - ansible
   script:
-  - npm install --save @angular-devkit/build-angular
   - npm link
   - ng build --prod --aot --output-hashing=none
   only:
