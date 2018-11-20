@@ -479,7 +479,7 @@ export class AccountsComponent extends Root implements OnInit {
                 }
                 else
                 {
-                  this.errorObject.recipientEmailAddress = 'Email is not exist';
+                  this.errorObject.recipientEmailAddress = 'Email account does not exist';
                   canNext=false;
                 }
               } catch (error) {
