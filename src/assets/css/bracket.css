@@ -18176,8 +18176,8 @@ textarea.parsley-success:focus {
   font-size: 14px;
 }
 
-.media-list-link .media-body>div span {
-  font-size: 11px;
+.media-list-link .media-body span {
+  font-size: 12px;
   color: #adb5bd;
 }
 
