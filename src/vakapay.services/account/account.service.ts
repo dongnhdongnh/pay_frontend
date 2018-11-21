@@ -7,7 +7,7 @@ import { Account } from 'model/account/Account';
 @Injectable({ providedIn: 'root' })
 export class AccountService {
 
-    private getInfoUrl = '/api/user/get-info';
+    private getInfoUrl = '/api/login/get-info';
     private updateProfileUrl = '/api/user/update-profile';
     private updatePreferenceUrl = '/api/user/update-preferences';
     private updateNotificationsUrl = '/api/user/update-notifications';
