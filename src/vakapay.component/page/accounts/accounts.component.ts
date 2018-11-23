@@ -84,7 +84,7 @@ export class AccountsComponent extends Root implements OnInit {
 
     this.toasterService.pop(toast);
   }
-  async getUserData(loadDefault = true) {
+  async getUserData(loadDefault = true, tabCurrent = null) {
     try {
       this.loadingObject.loadAllWallet = true;
       var result = await this.walletService.getAllWallet();
@@ -103,9 +103,13 @@ export class AccountsComponent extends Root implements OnInit {
       this.isDataLoaded = true;
       if (loadDefault)
         this.wallet_current = this.getWalletByName(NetworkName.VAKA.toString());
-      this.tab_current = {};
-      this.tab_current.sortName = "VKC";
-      this.tab_current.fullName = "VakaCoin";
+      if (tabCurrent == null) {
+        this.tab_current = {};
+        this.tab_current.sortName = "VKC";
+        this.tab_current.fullName = "VakaCoin";
+      } else {
+        this.tab_current = tabCurrent;
+      }
       await this.getHistory(this.wallet_current);
     } catch (error) {
       this.loadingObject.loadAllWallet = false;
@@ -468,25 +472,24 @@ export class AccountsComponent extends Root implements OnInit {
               canNext = false;
             }
             else {
-              console.log("CHECKING MAIL "+form.value.recipientEmailAddress);
+              console.log("CHECKING MAIL " + form.value.recipientEmailAddress);
               try {
-                this.loadingObject.checkMail=true;
+                this.loadingObject.checkMail = true;
                 var _checkEmail = await this.walletService.checkEmail(form.value.recipientEmailAddress);
-                this.loadingObject.checkMail=false;
-                console.log("CHECKING MAIL "+JSON.stringify(_checkEmail));
-                if (!Utility.isError(_checkEmail)) { 
-                  canNext=true;
+                this.loadingObject.checkMail = false;
+                console.log("CHECKING MAIL " + JSON.stringify(_checkEmail));
+                if (!Utility.isError(_checkEmail)) {
+                  canNext = true;
                 }
-                else
-                {
+                else {
                   this.errorObject.recipientEmailAddress = 'Email account does not exist';
-                  canNext=false;
+                  canNext = false;
                 }
               } catch (error) {
-                this.loadingObject.checkMail=false;
-                canNext=false;
+                this.loadingObject.checkMail = false;
+                canNext = false;
               }
-           
+
             }
           }
 
@@ -576,7 +579,7 @@ export class AccountsComponent extends Root implements OnInit {
       else {
         //this.getHistory(this.wallet_current);
         //SEND SUCCESS
-        this.getUserData(false);
+        this.getUserData(false,this.tab_current);
         this.ngxSmartModalService.getModal('sendDetail').close();
         this.ngxSmartModalService.getModal('sendConfirm').close();
         this.ngxSmartModalService.getModal('popup_ok').open();
