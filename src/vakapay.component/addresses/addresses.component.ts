@@ -31,6 +31,10 @@ export class AddressesComponent implements OnInit {
 
   //status
   isLoading: boolean = false;
+  isCreating: boolean = false;
+
+  //message
+  messageErrorCreate: string = '';
 
   title = 'angular-mat-table';
   walletService: WalletService;
@@ -39,6 +43,7 @@ export class AddressesComponent implements OnInit {
   filter: string;
   qrcode: string;
   displayedColumns: string[] = ['address', 'label', 'whenFormat', 'id'];
+
   constructor(
     public serviceAddress: AddressToolsService,
     public ngxSmartModalService: NgxSmartModalService,
@@ -75,17 +80,30 @@ export class AddressesComponent implements OnInit {
 
   }
   // onClick function of 'Create New Address' button
-  public async onClickCreateNewWallet() {
+  public async onCreateNewWallet() {
     try {
+      if (this.isCreating === true) return;
+      this.isCreating = true;
+      this.messageErrorCreate = '';
       // tslint:disable-next-line:prefer-const
 
       var dataPost = {
         networkName: this.networkName || ''
       };
-      await this.walletService.createWalletAddress(dataPost);
+
+      let result = await this.walletService.createWalletAddress(dataPost);
+      this.isCreating = false;
+
+      let _result = result.data.Result;
+      if (_result.Status.toLowerCase() === 'error') {
+        this.messageErrorCreate = _result.Message;
+        return;
+      }
+
       this.serviceAddress.getList(this.networkName);
 
     } catch (error) {
+      this.isCreating = false;
       console.log(error);
     }
   }

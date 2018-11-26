@@ -218,6 +218,6 @@ export class WalletService {
     // this.isLoading = true;
     const operation = 'create new wallet';
     const api = this.url_createWallet;
-    return this.httpService.post(operation, api, data);
+    return this.httpService.post(operation, api, data, false);
   }
 }

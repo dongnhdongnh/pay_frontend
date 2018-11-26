@@ -1,6 +1,4 @@
 <app-header></app-header>
-
-<!-- ########## START: MAIN PANEL ########## -->
 <div class="br-mainpanel">
   <div class="br-pagebody">
     <div class="row row-sm mg-t-20">
@@ -10,9 +8,8 @@
           <p class="br-section-text">Scheduled and one-time reports of your account history</p>
         </div>
         <div class="width-half">
-          <a href="#" class="btn bg-green pd-x-30 pd-y-11 tx-uppercase tx-bold tx-14 fl-right tx-white" data-toggle="modal"
-            data-target="#modaldemo1"  routerLink="/reportform" routerLinkActive="active">+
-            New Report</a>
+          <a class="btn bg-green pd-x-30 pd-y-11 tx-uppercase tx-bold tx-14 fl-right tx-white" data-toggle="modal"
+            data-target="#modaldemo1">+ New Report</a>
         </div>
         <div class="clear-both"></div>
         <div class="bd bd-gray-300 table-responsive table-add mg-t-10">
@@ -40,7 +37,7 @@
               </tr>
             </tbody>
           </table>
-        </div><!-- bd -->
+        </div>
         <div class="ht-80 d-flex align-items-center justify-content-center mg-t-20">
           <ul class="pagination pagination-basic pagination-rounded mg-b-0">
             <li class="page-item hidden-xs-down">
@@ -68,34 +65,7 @@
   </div><!-- br-section-wrapper -->
 </div><!-- br-mainpanel -->
 <div class="clear-both"></div>
-<!-- ########## END: MAIN PANEL ########## -->
-<div class="br-profile">
-  <footer class="br-footer">
-    <div class="footer-left">
-      <div class="mg-b-2">Copyright &copy; 2018 VakaPay. All Rights Reserved.</div>
-      <div>Attentively and carefully made by <a href="#" style="color:rgb(28, 175, 154);">VakaGroup</a>.</div>
-    </div>
-    <div class="footer-right">
-      <div class="dropdown">
-        <a href="" class="tx-gray-800 d-inline-block" data-toggle="dropdown">
-          <div class="ht-45 pd-x-20 bd d-flex align-items-center justify-content-center">
-            <span class="mg-r-10 tx-13 tx-medium">English</span>
-            <i class="fa fa-angle-down mg-l-10"></i>
-          </div>
-        </a>
-        <div class="dropdown-menu pd-10">
-          <nav class="nav nav-style-1 flex-column">
-            <a href="" class="nav-link"> English</a>
-            <a href="" class="nav-link"> Tieng Viet</a>
-            <a href="" class="nav-link"> Japan</a>
-          </nav>
-        </div><!-- dropdown-menu -->
-      </div><!-- dropdown -->
-    </div>
-  </footer>
-</div>
-
-
+<app-footer></app-footer>
 <div id="modaldemo1" class="modal fade">
   <div class="modal-dialog modal-dialog-vertical-center" role="document">
     <form class="modal-content bd-0 tx-14">
@@ -109,70 +79,40 @@
         <div class="form-group mg-md-l--1 bd-t-0-force">
           <label class="form-control-label mg-b-0-force">Type:</label>
           <select id="select2-a" class="form-control" data-placeholder="Choose country" tabindex="-1" aria-hidden="true">
-            <option label="Choose country"></option>
-            <option value="USA" selected="">Transaction History</option>
-            <option value="UK">United Kingdom</option>
-            <option value="China">China</option>
-            <option value="Japan">Japan</option>
+            <option label="Choose type" disabled></option>
+            <option value="transaction-history" selected="">Transaction History</option>
           </select>
         </div>
         <div class="form-group mg-md-l--1 bd-t-0-force">
           <label class="form-control-label mg-b-0-force">Account:</label>
           <select id="select2-a" class="form-control" data-placeholder="Choose country" tabindex="-1" aria-hidden="true">
-            <option label="Choose country"></option>
-            <option value="USA" selected="">BTC Wallet (0.0000 BTC)</option>
-            <option value="UK">United Kingdom</option>
-            <option value="China">China</option>
-            <option value="Japan">Japan</option>
+            <option label="Choose account" disabled></option>
+            <option value="Bitcoin" selected="">BTC Wallet</option>
+            <option value="Ethereum">Ethereum</option>
           </select>
         </div>
         <div class="form-group mg-md-l--1 bd-t-0-force">
           <label class="form-control-label mg-b-0-force">Time Range:</label>
           <select id="select2-a" class="form-control" data-placeholder="Choose country" tabindex="-1" aria-hidden="true">
-            <option label="Choose country"></option>
-            <option value="USA" selected="">Past 30 days</option>
-            <option value="UK">United Kingdom</option>
-            <option value="China">China</option>
-            <option value="Japan">Japan</option>
+            <option label="Choose time" disabled></option>
+            <option value="30" selected="">Past 30 days</option>
+            <option value="7">Pass 7 days</option>
+            <option value="365">Past a year</option>
           </select>
         </div>
         <div class="form-group">
           <label class="form-control-label mg-b-0-force">Email to:</label>
           <input type="text" class="form-control" placeholder="vaka@gmail.com" required="">
-        </div><!-- form-group -->
-        <div class="form-group mg-md-l--1 bd-t-0-force">
-          <label class="form-control-label mg-b-0-force">Repeat:</label>
-          <div class="width-half">
-            <select id="select2-a" class="form-control" data-placeholder="Choose country" tabindex="-1" aria-hidden="true">
-              <option label="Choose country"></option>
-              <option value="USA" selected="">Never</option>
-              <option value="UK">United Kingdom</option>
-              <option value="China">China</option>
-              <option value="Japan">Japan</option>
-            </select>
-          </div>
-          <div class="width-half">
-            <select id="select2-a" class="form-control" data-placeholder="Choose country" tabindex="-1" aria-hidden="true">
-              <option label="Choose country"></option>
-              <option value="USA" selected="">Until I Cancel</option>
-              <option value="UK">United Kingdom</option>
-              <option value="China">China</option>
-              <option value="Japan">Japan</option>
-            </select>
-          </div>
         </div>
       </div>
       <div class="modal-footer step">
-        <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
+        <button #cancel type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
           data-dismiss="modal">Cancel</button>
-        <a href="#" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">
-          Creat
-          Repost
-        </a>
+        <button (click)="onUpdate()"
+        class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">
+          Creat Repost <loading-button [isLoading]='isLoading'></loading-button>
+        </button>
       </div>
     </form>
-  </div><!-- modal-dialog -->
+  </div>
 </div>
-
-
-<!-- ########## END: MAIN PANEL ########## -->

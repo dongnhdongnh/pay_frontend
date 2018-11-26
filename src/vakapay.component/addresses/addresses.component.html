@@ -6,15 +6,15 @@
     <div class="row row-sm mg-t-20">
       <div class="col-xl-12 bg-white mg-t-20 pd-30">
         <h6 class="tx-inverse tx-uppercase tx-bold tx-18 mg-t-10 mg-b-10">Your Address</h6>
-        <p class="br-section-text">Each account on VakaPay is a collection of addresses. New addresses are automatically
-          generated for each payment on VakaPay and stay associated with your account forever (so it is safe to reuse them).</p>
+        <p class="br-section-text">Each account on VakaPay is a collection of addresses. New addresses are
+          automatically
+          generated for each payment on VakaPay and stay associated with your account forever (so it is safe to reuse
+          them).</p>
         <div class="col-12 mg-b-20">
           <div class="col-md-3 col-sm-12 pd-l-0 pd-r-0 mg-t-10">
-            <ng-select [items]="listWallet" bindLabel="name" bindValue="key"
-            [(ngModel)]="networkName" name="networkName"
-            (change)="onChangeWallet($event)" placeholder="Choose Currency"
-            class="select-list">
-          </ng-select>
+            <ng-select [items]="listWallet" bindLabel="name" bindValue="key" [(ngModel)]="networkName" name="networkName"
+              (change)="onChangeWallet($event)" placeholder="Choose Currency" class="select-list">
+            </ng-select>
           </div>
           <div class="col-md-4 col-sm-12 pd-r-0 mg-t-10">
             <div class="input-group">
@@ -26,64 +26,68 @@
           </div>
           <div class="col-md-2 col-sm-12 hidden-mob"></div>
           <div class="col-md-3 col-sm-12 pd-r-0 mg-t-10">
-            <a class="btn bg-green pd-x-30 pd-y-11 tx-uppercase tx-bold tx-14 fl-right tx-white" (click)="onClickCreateNewWallet();"><i class="fa fa-credit-card mg-r-5"></i>
-              Creat new wallet
-            </a>
+            <button class="btn bg-green pd-x-30 pd-y-11 tx-uppercase tx-bold tx-14 fl-right tx-white" 
+              [disabled]="isCreating"
+              (click)="onCreateNewWallet();">
+              <i class="fa fa-credit-card mg-r-5"></i> 
+                Creat new wallet<loading-button [isLoading]='isCreating'></loading-button>
+            </button>
+            <message-error-input [message]='messageErrorCreate'></message-error-input>
           </div>
         </div>
         <div class="clear-both"></div>
         <!-- Table for address information -->
-     
-          <!-- Mat table (start) -->
-          <!-- 1. Write mat-table -->
-          <mat-table #table [dataSource]="this.serviceAddress.list" style="width: 100%;">
 
-              <!--- Note that these columns can be defined in any order.
+        <!-- Mat table (start) -->
+        <!-- 1. Write mat-table -->
+        <mat-table #table [dataSource]="this.serviceAddress.list" style="width: 100%;">
+
+          <!--- Note that these columns can be defined in any order.
                     The actual rendered columns are set as a property on the row definition" -->
 
-              <!-- Address Column -->
-              <ng-container matColumnDef="address">
-                <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                    <span class="mobile-label">Address:</span> {{element.address}}
-                  </mat-cell>
-              </ng-container>
+          <!-- Address Column -->
+          <ng-container matColumnDef="address">
+            <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">Address:</span> {{element.address}}
+            </mat-cell>
+          </ng-container>
 
-              <!-- Label Column -->
-              <ng-container matColumnDef="label">
-                  <mat-header-cell *matHeaderCellDef> Label </mat-header-cell>
-                  <mat-cell *matCellDef="let element">
-                      <span class="mobile-label">Label:</span> {{element.label}}
-                    </mat-cell>
-              </ng-container>
+          <!-- Label Column -->
+          <ng-container matColumnDef="label">
+            <mat-header-cell *matHeaderCellDef> Label </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">Label:</span> {{element.label}}
+            </mat-cell>
+          </ng-container>
 
-              <!-- Created Column -->
-              <ng-container matColumnDef="whenFormat">
-                  <mat-header-cell *matHeaderCellDef> Created </mat-header-cell>
-                  <mat-cell *matCellDef="let element">
-                      <span class="mobile-label">Created:</span> {{element.whenFormat}}
-                    </mat-cell>
-               
-              </ng-container>
+          <!-- Created Column -->
+          <ng-container matColumnDef="whenFormat">
+            <mat-header-cell *matHeaderCellDef> Created </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">Created:</span> {{element.whenFormat}}
+            </mat-cell>
 
-              <!-- Detail Column -->
-              <ng-container matColumnDef="id">
-                  <mat-header-cell *matHeaderCellDef> Detail </mat-header-cell>
-                  <mat-cell *matCellDef="let element">
-                      <span class="mobile-label">Detail:</span>  <a (click)="onClickDetail(element.id);">Detail</a>
-                   
-                    </mat-cell>
-              </ng-container>
+          </ng-container>
 
-              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
-            <!-- Mat table (end) -->
-  
+          <!-- Detail Column -->
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> Detail </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">Detail:</span> <a (click)="onClickDetail(element.id);">Detail</a>
+
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <!-- Mat table (end) -->
+
 
         <!-- Table Pagination (start) -->
         <div class="ht-80 d-flex align-items-center justify-content-center mg-t-20">
-          <app-pagination [service]="serviceAddress"></app-pagination> 
+          <app-pagination [service]="serviceAddress"></app-pagination>
         </div>
 
       </div><!-- col-6 -->
@@ -97,29 +101,30 @@
   <form class="modal-content bd-0 tx-14">
     <div class="modal-header pd-y-20 pd-x-25">
       <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">
-       {{networkName}} Wallet Address
+        {{networkName}} Wallet Address
       </h6>
     </div>
     <div class="modal-body pd-x-20 pd-y-5">
-        <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center">
-          <qrcode [qrdata]="qrcode" [size]="150" [level]="'M'"></qrcode>
-        </i>
-        <div class="mg-t-40">
-            <!-- <div class="col-12 mg-b-10 ">
+      <i class="icon tx-success lh-1 mg-t-20 d-inline-block tx-center img-center">
+        <qrcode [qrdata]="qrcode" [size]="150" [level]="'M'"></qrcode>
+      </i>
+      <div class="mg-t-40">
+        <!-- <div class="col-12 mg-b-10 ">
               <label class="width-half mob form-control-label">Account:</label>
               <label class="width-half mob form-control-label">{{this.serviceAddress.infoAddress.id}}</label>
             </div> -->
-            <div class="col-12 mg-b-10">
-              <label class="width-half mob form-control-label">Address:</label>
-              <label class="width-half mob form-control-label break">{{this.serviceAddress.infoAddress.address}}</label>
-            </div>
-            <div class="col-12 mg-b-10">
-              <label class="width-half mob form-control-label">Label:</label>
-              <div class="width-half mob mg-t-10 mg-sm-t-0">
-                <input [(ngModel)]="this.serviceAddress.infoAddress.label" name="this.serviceAddress.infoAddress.label" type="text" class="form-control"  placeholder="My Label">
-              </div>
-            </div>
+        <div class="col-12 mg-b-10">
+          <label class="width-half mob form-control-label">Address:</label>
+          <label class="width-half mob form-control-label break">{{this.serviceAddress.infoAddress.address}}</label>
+        </div>
+        <div class="col-12 mg-b-10">
+          <label class="width-half mob form-control-label">Label:</label>
+          <div class="width-half mob mg-t-10 mg-sm-t-0">
+            <input [(ngModel)]="this.serviceAddress.infoAddress.label" name="this.serviceAddress.infoAddress.label"
+              type="text" class="form-control" placeholder="My Label">
           </div>
+        </div>
+      </div>
     </div>
     <div class="modal-footer step">
       <button (click)="cancel()" type="button" class="btn btn-secondary tx-11
@@ -127,8 +132,7 @@
         tx-mont tx-medium">
         Cancel
       </button>
-      <button (click)="onUpdate()" [disabled]="isLoading"
-        class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
+      <button (click)="onUpdate()" [disabled]="isLoading" class="btn bg-green tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont
         tx-medium">
         + Save
         <loading-button [isLoading]='isLoading'></loading-button>
