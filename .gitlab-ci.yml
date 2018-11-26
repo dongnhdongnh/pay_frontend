@@ -1,22 +1,9 @@
 stages:
- - staging
  - production
- 
-staging:
-  stage: staging
-  tags:
-  - ansible
-  script:
-  - npm start
-  only:
-  - tags
 
 production:
   stage: production
-  tags:
-  - ansible
   script:
   - npm link
-  - ng build --prod --aot --output-hashing=none
   only:
-  - tags
+  - master

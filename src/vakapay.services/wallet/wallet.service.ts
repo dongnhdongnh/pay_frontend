@@ -25,7 +25,7 @@ export class WalletService {
   url_requiteSMSCode = '/api/twofa/transaction/require-send-code-phone'
   // url_verifyCode = 'api/twofa/transaction/verify-code'
   //url_sendTransactions = '/api/wallet/sendTransactions'
-  url_sendTransactions = '/api/twofa/transaction/verify-code'
+  url_sendTransactions = '/api/wallet/transaction/verify-code'
   url_createWallet = '/api/tools/create-addresses'
   url_currencyConvert = '/api/currency/VND';
   // Status
